@@ -2,10 +2,15 @@
 #define MATH_CORE_VECTOR2_HPP
 
 #include <ostream>
+#include "swizzle.hpp"
 
 namespace math {
 namespace core {
 
+/**
+ * @class vector2
+ * @tparam T Storage type.
+ */
 template<typename T>
 class vector2 {
 public:
@@ -39,7 +44,40 @@ public:
 	static vector2<T> refract(const vector2<T>&, const vector2<T>&, const T&);
 	static vector2<T> lerp(const vector2<T>&, const vector2<T>&, const T&);
 
-	T x, y;
+	union {
+		struct { T x, y; };
+		// 2d swizzles
+		Swizzle2<T, 2, 0, 0> xx;
+		Swizzle2<T, 2, 0, 1> xy;
+		Swizzle2<T, 2, 1, 0> yx;
+		Swizzle2<T, 2, 1, 1> yy;
+		// 3d swizzles
+		Swizzle3<T, 2, 0, 0, 0> xxx;
+		Swizzle3<T, 2, 0, 0, 1> xxy;
+		Swizzle3<T, 2, 0, 1, 0> xyx;
+		Swizzle3<T, 2, 0, 1, 1> xyy;
+		Swizzle3<T, 2, 1, 0, 0> yxx;
+		Swizzle3<T, 2, 1, 0, 1> yxy;
+		Swizzle3<T, 2, 1, 1, 0> yyx;
+		Swizzle3<T, 2, 1, 1, 1> yyy;
+		// 4d swizzles
+		Swizzle4<T, 2, 0, 0, 0, 0> xxxx;
+		Swizzle4<T, 2, 0, 0, 0, 1> xxxy;
+		Swizzle4<T, 2, 0, 0, 1, 0> xxyx;
+		Swizzle4<T, 2, 0, 0, 1, 1> xxyy;
+		Swizzle4<T, 2, 0, 1, 0, 0> xyxx;
+		Swizzle4<T, 2, 0, 1, 0, 1> xyxy;
+		Swizzle4<T, 2, 0, 1, 1, 0> xyyx;
+		Swizzle4<T, 2, 0, 1, 1, 1> xyyy;
+		Swizzle4<T, 2, 1, 0, 0, 0> yxxx;
+		Swizzle4<T, 2, 1, 0, 0, 1> yxxy;
+		Swizzle4<T, 2, 1, 0, 1, 0> yxyx;
+		Swizzle4<T, 2, 1, 0, 1, 1> yxyy;
+		Swizzle4<T, 2, 1, 1, 0, 0> yyxx;
+		Swizzle4<T, 2, 1, 1, 0, 1> yyxy;
+		Swizzle4<T, 2, 1, 1, 1, 0> yyyx;
+		Swizzle4<T, 2, 1, 1, 1, 1> yyyy;
+	};
 };
 
 template<typename T>
