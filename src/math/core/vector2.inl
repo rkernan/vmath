@@ -21,18 +21,6 @@ template<typename T>
 vector2<T>::vector2(const T& x, const T& y) : x(x), y(y) {}
 
 /**
- * Set vector equal to another.
- * @param orig Vector to set equal to.
- * @return The modified vector.
- */
-template<typename T>
-vector2<T>& vector2<T>::operator=(const vector2<T>& orig) {
-	this->x = orig.x;
-	this->y = orig.y;
-	return *this;
-}
-
-/**
  * Negate a vector.
  * @return The vector negated.
  */

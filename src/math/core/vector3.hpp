@@ -26,7 +26,7 @@ public:
 	//vector3(vector3<T>&&) = default;
 	//~vector3(void) = default;
 
-	vector3<T>& operator=(const vector3<T>&);
+	// vector3<T>& operator=(const vector3<T>&) = default;
 	vector3<T> operator-(void) const;
 	vector3<T> operator+(const vector3<T>&) const;
 	vector3<T>& operator+=(const vector3<T>&);

@@ -24,7 +24,7 @@ public:
 	//vector4(vector4<T>&&) = default;
 	//~vector4(void) = default;
 
-	vector4<T>& operator=(const vector4<T>&);
+	// vector4<T>& operator=(const vector4<T>&) = default;
 	vector4<T> operator-(void) const;
 	vector4<T> operator+(const vector4<T>&) const;
 	vector4<T>& operator+=(const vector4<T>&);

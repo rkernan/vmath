@@ -22,7 +22,7 @@ public:
 	//vector2(vector2<T>&&) = default;
 	//~vector2(void) = default;
 
-	vector2<T>& operator=(const vector2<T>&);
+	// vector2<T>& operator=(const vector2<T>&) = default;
 	vector2<T> operator-(void) const;
 	vector2<T> operator+(const vector2<T>&) const;
 	vector2<T>& operator+=(const vector2<T>&);

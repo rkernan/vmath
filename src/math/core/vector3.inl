@@ -30,19 +30,6 @@ template<typename T>
 vector3<T>::vector3(const vector2<T>& V, const T& z) : vector3(V.x, V.y, z) {}
 
 /**
- * Set vector equal to another.
- * @param orig Vector to set equal to.
- * @return The modified vector.
- */
-template<typename T>
-vector3<T>& vector3<T>::operator=(const vector3<T>& orig) {
-	this->x = orig.x;
-	this->y = orig.y;
-	this->z = orig.z;
-	return *this;
-}
-
-/**
  * Negate a vector.
  * @return The vector negated.
  */
