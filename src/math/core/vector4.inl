@@ -50,6 +50,8 @@ template<typename T>
 vector4<T>& vector4<T>::operator=(const vector4<T>& orig) {
 	this->x = orig.x;
 	this->y = orig.y;
+	this->z = orig.z;
+	this->w = orig.w;
 	return *this;
 }
 
@@ -61,7 +63,9 @@ template<typename T>
 vector4<T> vector4<T>::operator-(void) const {
 	T x = -this->x;
 	T y = -this->y;
-	return vector4<T>(x, y);
+	T z = -this->z;
+	T w = -this->w;
+	return vector4<T>(x, y, z, w);
 }
 
 /**
@@ -73,7 +77,9 @@ template<typename T>
 vector4<T> vector4<T>::operator+(const vector4<T>& V) const {
 	T x = this->x + V.x;
 	T y = this->y + V.y;
-	return vector4<T>(x, y);
+	T z = this->z + V.z;
+	T w = this->w + V.w;
+	return vector4<T>(x, y, z, w);
 }
 
 /**
@@ -115,7 +121,9 @@ template<typename T>
 vector4<T> vector4<T>::operator*(const vector4<T>& V) const {
 	T x = this->x * V.x;
 	T y = this->y * V.y;
-	return vector4<T>(x, y);
+	T z = this->z * V.z;
+	T w = this->w * V.w;
+	return vector4<T>(x, y, z, w);
 }
 
 /**
@@ -137,7 +145,9 @@ template<typename T>
 vector4<T> vector4<T>::operator/(const vector4<T>& V) const {
 	T x = this->x / V.x;
 	T y = this->y / V.y;
-	return vector4<T>(x, y);
+	T z = this->z / V.z;
+	T w = this->w / V.w;
+	return vector4<T>(x, y, z, w);
 }
 
 /**
@@ -156,7 +166,7 @@ vector4<T>& vector4<T>::operator/=(const vector4<T>& V) {
  */
 template<typename T>
 T vector4<T>::norm(void) const {
-	return (this->x * this->x) + (this->y * this->y);
+	return (this->x * this->x) + (this->y * this->y) + (this->z * this->z) + (this->w * this->w);
 }
 
 /**
@@ -177,7 +187,9 @@ vector4<T> vector4<T>::normal(void) const {
 	T mag = this->mag();
 	T x = this->x / mag;
 	T y = this->y / mag;
-	return vector4<T>(x, y);
+	T z = this->z / mag;
+	T w = this->w / mag;
+	return vector4<T>(x, y, z, w);
 }
 
 /**
@@ -196,23 +208,23 @@ vector4<T>& vector4<T>::normalize(void) {
  */
 template<typename T>
 bool vector4<T>::operator==(const vector4<T>& other) const {
-	return this->x == other.x && this->y == other.y;
+	return this->x == other.x && this->y == other.y && this->z == other.z && this->w == other.w;
 }
 
 // TODO Use enable_if to specialize.
 template<>
 bool vector4<float>::operator==(const vector4<float>& other) const {
-	return math::equals(this->x, other.x) && math::equals(this->y, other.y);
+	return math::equals(this->x, other.x) && math::equals(this->y, other.y) && math::equals(this->z, other.z) && math::equals(this->w, other.w);
 }
 
 template<>
 bool vector4<double>::operator==(const vector4<double>& other) const {
-	return math::equals(this->x, other.x) && math::equals(this->y, other.y);
+	return math::equals(this->x, other.x) && math::equals(this->y, other.y) && math::equals(this->z, other.z) && math::equals(this->w, other.w);
 }
 
 template<>
 bool vector4<long double>::operator==(const vector4<long double>& other) const {
-	return math::equals(this->y, other.x) && math::equals(this->y, other.y);
+	return math::equals(this->x, other.x) && math::equals(this->y, other.y) && math::equals(this->z, other.z) && math::equals(this->w, other.w);
 }
 
 /**
@@ -233,7 +245,7 @@ bool vector4<T>::operator!=(const vector4<T>& other) const {
  */
 template<typename T>
 T vector4<T>::dot(const vector4<T>& V1, const vector4<T>& V2) {
-	return (V1.x * V2.x) + (V1.y * V2.y);
+	return (V1.x * V2.x) + (V1.y * V2.y) + (V1.z * V2.z) + (V1.w * V2.w);
 }
 
 /**
@@ -260,9 +272,7 @@ vector4<T> vector4<T>::refract(const vector4<T>& I, const vector4<T>& N, const T
 	if (k < static_cast<T>(0.0)) {
 		return vector4<T>();
 	} else {
-		// TODO Need generic sqrt.
-		// return eta * I - (eta * vector4::dot(N, I) + math::sqrt(k)) * N;
-		return vector4<T>();
+		return eta * I - (eta * vector4::dot(N, I) + math::sqrt(k)) * N;
 	}
 }
 
@@ -285,10 +295,12 @@ vector4<T> lerp(const vector4<T>& S, const vector4<T>& E, const T& t) {
  * @return Scalar-vector product.
  */
 template<typename T>
-vector4<T> math::core::operator*(const T& s, const vector4<T>& v) {
-	T x = s * v.x;
-	T y = s * v.y;
-	return vector4<T>(x, y);
+vector4<T> math::core::operator*(const T& s, const vector4<T>& V) {
+	T x = s * V.x;
+	T y = s * V.y;
+	T z = s * V.z;
+	T w = s * V.w;
+	return vector4<T>(x, y, z, w);
 }
 
 /**
@@ -298,8 +310,8 @@ vector4<T> math::core::operator*(const T& s, const vector4<T>& v) {
  * @return Modified output stream.
  */
 template<typename T>
-std::ostream& math::core::operator<<(std::ostream& out, const vector4<T>& v) {
-	return out << "<" << v.x << ", " << v.y << ">";
+std::ostream& math::core::operator<<(std::ostream& out, const vector4<T>& V) {
+	return out << "<" << V.x << ", " << V.y << ", " << V.z << ", " << V.w << ">";
 }
 
 #endif

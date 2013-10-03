@@ -250,9 +250,7 @@ vector2<T> vector2<T>::refract(const vector2<T>& I, const vector2<T>& N, const T
 	if (k < static_cast<T>(0.0)) {
 		return vector2<T>();
 	} else {
-		// TODO Need generic sqrt.
-		// return eta * I - (eta * vector2::dot(N, I) + math::sqrt(k)) * N;
-		return vector2<T>();
+		return eta * I - (eta * vector2::dot(N, I) + math::sqrt(k)) * N;
 	}
 }
 
@@ -275,9 +273,9 @@ vector2<T> lerp(const vector2<T>& S, const vector2<T>& E, const T& t) {
  * @return Scalar-vector product.
  */
 template<typename T>
-vector2<T> math::core::operator*(const T& s, const vector2<T>& v) {
-	T x = s * v.x;
-	T y = s * v.y;
+vector2<T> math::core::operator*(const T& s, const vector2<T>& V) {
+	T x = s * V.x;
+	T y = s * V.y;
 	return vector2<T>(x, y);
 }
 
@@ -288,8 +286,8 @@ vector2<T> math::core::operator*(const T& s, const vector2<T>& v) {
  * @return Modified output stream.
  */
 template<typename T>
-std::ostream& math::core::operator<<(std::ostream& out, const vector2<T>& v) {
-	return out << "<" << v.x << ", " << v.y << ">";
+std::ostream& math::core::operator<<(std::ostream& out, const vector2<T>& V) {
+	return out << "<" << V.x << ", " << V.y << ">";
 }
 
 #endif
