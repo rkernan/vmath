@@ -2,8 +2,10 @@
 #define MATH_CORE_VECTOR2_HPP
 
 #include <ostream>
-#include "swizzle.hpp"
-#include "swizzle_gen.hpp"
+#include "swizzle/swizzle2.hpp"
+#include "swizzle/swizzle3.hpp"
+#include "swizzle/swizzle4.hpp"
+#include "swizzle/swizzle_gen.hpp"
 
 namespace math {
 namespace core {

@@ -9,14 +9,9 @@ int main(int argc, char* argv[]) {
 			static_assert(sizeof(math::Vector3) == sizeof(float[3]), "sizeof(vector3) != sizeof(float[3])");
 			static_assert(sizeof(math::Vector4) == sizeof(float[4]), "sizeof(vector4) != sizeof(float[4])");
 			math::Vector2 v1(1.0f, 1.0f);
-			math::Vector2 v2(2.0f, 3.0f);
-			std::cout << v1 << std::endl;
-			v1 = v2;
-			std::cout << v1 << std::endl;
-			math::tuple::EulerAngles<float> ea(1.0f, 2.0f, 3.0f);
-			std::cout << ea.pitch() << std::endl;
-			std::cout << ea.yaw() << std::endl;
-			std::cout << ea.roll() << std::endl;
+			math::Vector2 v2(0.0f, 3.0f);
+			std::cout << (v1 + v2.xy) << std::endl;
+			std::cout << (v1 + v2.yx) << std::endl;
 		}
 	}
 	return 0;
