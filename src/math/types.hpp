@@ -8,10 +8,10 @@
 
 namespace math {
 
-typedef core::quaternion<float> quaternion;
-typedef core::vector2<float> vector2;
-typedef core::vector3<float> vector3;
-typedef core::vector4<float> vector4;
+typedef core::Quaternion<float> Quaternion;
+typedef core::Vector2<float> Vector2;
+typedef core::Vector3<float> Vector3;
+typedef core::Vector4<float> Vector4;
 
 }
 

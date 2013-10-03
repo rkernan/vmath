@@ -7,13 +7,13 @@ namespace math {
 namespace core {
 
 template<typename T>
-class vector2;
+class Vector2;
 
 template<typename T>
-class vector3;
+class Vector3;
 
 template<typename T>
-class vector4;
+class Vector4;
 
 /**
  * @class Swizzle
@@ -36,12 +36,12 @@ protected:
 template<typename T, std::size_t N, std::size_t E1, std::size_t E2>
 class Swizzle2 : Swizzle<T, N> {
 public:
-	operator vector2<T>();
-	vector2<T>& operator=(const vector2<T>&);
-	vector2<T>& operator+=(const vector2<T>&);
-	vector2<T>& operator-=(const vector2<T>&);
-	vector2<T>& operator*=(const vector2<T>&);
-	vector2<T>& operator/=(const vector2<T>&);
+	operator Vector2<T>();
+	Vector2<T>& operator=(const Vector2<T>&);
+	Vector2<T>& operator+=(const Vector2<T>&);
+	Vector2<T>& operator-=(const Vector2<T>&);
+	Vector2<T>& operator*=(const Vector2<T>&);
+	Vector2<T>& operator/=(const Vector2<T>&);
 };
 
 /**
@@ -55,12 +55,12 @@ public:
 template<typename T, std::size_t N, std::size_t E1, std::size_t E2, std::size_t E3>
 class Swizzle3 : Swizzle<T, N> {
 public:
-	operator vector3<T>();
-	vector3<T>& operator=(const vector3<T>&);
-	vector3<T>& operator+=(const vector3<T>&);
-	vector3<T>& operator-=(const vector3<T>&);
-	vector3<T>& operator*=(const vector3<T>&);
-	vector3<T>& operator/=(const vector3<T>&);
+	operator Vector3<T>();
+	Vector3<T>& operator=(const Vector3<T>&);
+	Vector3<T>& operator+=(const Vector3<T>&);
+	Vector3<T>& operator-=(const Vector3<T>&);
+	Vector3<T>& operator*=(const Vector3<T>&);
+	Vector3<T>& operator/=(const Vector3<T>&);
 };
 
 /**
@@ -75,12 +75,12 @@ public:
 template<typename T, std::size_t N, std::size_t E1, std::size_t E2, std::size_t E3, std::size_t E4>
 class Swizzle4 : Swizzle<T, N> {
 public:
-	operator vector4<T>();
-	vector4<T>& operator=(const vector4<T>&);
-	vector4<T>& operator+=(const vector4<T>&);
-	vector4<T>& operator-=(const vector4<T>&);
-	vector4<T>& operator*=(const vector4<T>&);
-	vector4<T>& operator/=(const vector4<T>&);
+	operator Vector4<T>();
+	Vector4<T>& operator=(const Vector4<T>&);
+	Vector4<T>& operator+=(const Vector4<T>&);
+	Vector4<T>& operator-=(const Vector4<T>&);
+	Vector4<T>& operator*=(const Vector4<T>&);
+	Vector4<T>& operator/=(const Vector4<T>&);
 };
 
 }

@@ -9,252 +9,252 @@
 using namespace math::core;
 
 /**
- * Convert from a swizzle to a vector.
- * @return Converted vector.
+ * Convert from a swizzle to a Vector.
+ * @return Converted Vector.
  */
 template<typename T, std::size_t N, std::size_t E1, std::size_t E2>
-Swizzle2<T, N, E1, E2>::operator vector2<T>() {
-	return vector2<T>(this->values[E1], this->values[E2]);
+Swizzle2<T, N, E1, E2>::operator Vector2<T>() {
+	return Vector2<T>(this->values[E1], this->values[E2]);
 }
 
 /**
- * Set this swizzle (and the underlying vector) equal to a vector.  @param V
+ * Set this swizzle (and the underlying Vector) equal to a Vector.  @param V
  * Vector to set equal to.
- * @return The modified vector.
+ * @return The modified Vector.
  */
 template<typename T, std::size_t N, std::size_t E1, std::size_t E2>
-vector2<T>& Swizzle2<T, N, E1, E2>::operator=(const vector2<T>& V) {
+Vector2<T>& Swizzle2<T, N, E1, E2>::operator=(const Vector2<T>& V) {
 	// TODO possible if: E1 != E2
 	this->values[E1] = V.x;
 	this->values[E2] = V.y;
-	return *(vector2<T>*)this;
+	return *(Vector2<T>*)this;
 }
 
 /**
- * Add a vector to this swizzle. Set this swizzle (and the underlying vector) to
+ * Add a Vector to this swizzle. Set this swizzle (and the underlying Vector) to
  * the result.
  * @param V Vector to add.
- * @return The modified vector (component-wise sum).
+ * @return The modified Vector (component-wise sum).
  */
 template<typename T, std::size_t N, std::size_t E1, std::size_t E2>
-vector2<T>& Swizzle2<T, N, E1, E2>::operator+=(const vector2<T>& V) {
+Vector2<T>& Swizzle2<T, N, E1, E2>::operator+=(const Vector2<T>& V) {
 	// TODO possible if: E1 != E2
 	this->values[E1] += V.x;
 	this->values[E2] += V.y;
-	return *(vector2<T>*)this;
+	return *(Vector2<T>*)this;
 }
 
 /**
- * Subtract a vector from this swizzle. Set this swizzle (and the underlying
- * vector) to the result.
+ * Subtract a Vector from this swizzle. Set this swizzle (and the underlying
+ * Vector) to the result.
  * @param V Vector to add.
- * @return The modified vector (component-wise difference).
+ * @return The modified Vector (component-wise difference).
  */
 template<typename T, std::size_t N, std::size_t E1, std::size_t E2>
-vector2<T>& Swizzle2<T, N, E1, E2>::operator-=(const vector2<T>& V) {
+Vector2<T>& Swizzle2<T, N, E1, E2>::operator-=(const Vector2<T>& V) {
 	// TODO possible if: E1 != E2
 	this->values[E1] -= V.x;
 	this->values[E2] -= V.y;
-	return *(vector2<T>*)this;
+	return *(Vector2<T>*)this;
 }
 
 /**
- * Multiply this swizzle by a vector. Set this swizzle (and the underlying
- * vector) to the result.
+ * Multiply this swizzle by a Vector. Set this swizzle (and the underlying
+ * Vector) to the result.
  * @param V Vector to multiply by.
- * @return The modified vector (component-wise product.
+ * @return The modified Vector (component-wise product.
  */
 template<typename T, std::size_t N, std::size_t E1, std::size_t E2>
-vector2<T>& Swizzle2<T, N, E1, E2>::operator*=(const vector2<T>& V) {
+Vector2<T>& Swizzle2<T, N, E1, E2>::operator*=(const Vector2<T>& V) {
 	// TODO possible if: E1 != E2
 	this->values[E1] *= V.x;
 	this->values[E2] *= V.y;
-	return *(vector2<T>*)this;
+	return *(Vector2<T>*)this;
 }
 
 /**
- * Divide this swizzle by a vector. Set this swizzle (and the underlying vector)
+ * Divide this swizzle by a Vector. Set this swizzle (and the underlying Vector)
  * to the result.
  * @param v Vector to multiply by.
- * @return The modified vector (component-wise quotient).
+ * @return The modified Vector (component-wise quotient).
  */
 template<typename T, std::size_t N, std::size_t E1, std::size_t E2>
-vector2<T>& Swizzle2<T, N, E1, E2>::operator/=(const vector2<T>& V) {
+Vector2<T>& Swizzle2<T, N, E1, E2>::operator/=(const Vector2<T>& V) {
 	// TODO possible if: E1 != E2
 	this->values[E1] /= V.x;
 	this->values[E2] /= V.y;
-	return *(vector2<T>*)this;
+	return *(Vector2<T>*)this;
 }
 
 /**
- * Convert from a swizzle to a vector.
- * @return Converted vector.
+ * Convert from a swizzle to a Vector.
+ * @return Converted Vector.
  */
 template<typename T, std::size_t N, std::size_t E1, std::size_t E2, std::size_t E3>
-Swizzle3<T, N, E1, E2, E3>::operator vector3<T>() {
-	return vector3<T>(this->values[E1], this->values[E2], this->values[E3]);
+Swizzle3<T, N, E1, E2, E3>::operator Vector3<T>() {
+	return Vector3<T>(this->values[E1], this->values[E2], this->values[E3]);
 }
 
 /**
- * Set this swizzle (and the underlying vector) equal to a vector.  @param V
+ * Set this swizzle (and the underlying Vector) equal to a Vector.  @param V
  * Vector to set equal to.
- * @return The modified vector.
+ * @return The modified Vector.
  */
 template<typename T, std::size_t N, std::size_t E1, std::size_t E2, std::size_t E3>
-vector3<T>& Swizzle3<T, N, E1, E2, E3>::operator=(const vector3<T>& V) {
+Vector3<T>& Swizzle3<T, N, E1, E2, E3>::operator=(const Vector3<T>& V) {
 	// TODO possible if: E1 != E2 != E3
 	this->values[E1] = V.x;
 	this->values[E2] = V.y;
 	this->values[E3] = V.z;
-	return *(vector3<T>*)this;
+	return *(Vector3<T>*)this;
 }
 
 /**
- * Add a vector to this swizzle. Set this swizzle (and the underlying vector) to
+ * Add a Vector to this swizzle. Set this swizzle (and the underlying Vector) to
  * the result.
  * @param V Vector to add.
- * @return The modified vector (component-wise sum).
+ * @return The modified Vector (component-wise sum).
  */
 template<typename T, std::size_t N, std::size_t E1, std::size_t E2, std::size_t E3>
-vector3<T>& Swizzle3<T, N, E1, E2, E3>::operator+=(const vector3<T>& V) {
+Vector3<T>& Swizzle3<T, N, E1, E2, E3>::operator+=(const Vector3<T>& V) {
 	// TODO possible if: E1 != E2 != E3
 	this->values[E1] += V.x;
 	this->values[E2] += V.y;
 	this->valeus[E3] += V.z;
-	return *(vector3<T>*)this;
+	return *(Vector3<T>*)this;
 }
 
 /**
- * Subtract a vector from this swizzle. Set this swizzle (and the underlying
- * vector) to the result.
+ * Subtract a Vector from this swizzle. Set this swizzle (and the underlying
+ * Vector) to the result.
  * @param V Vector to add.
- * @return The modified vector (component-wise difference).
+ * @return The modified Vector (component-wise difference).
  */
 template<typename T, std::size_t N, std::size_t E1, std::size_t E2, std::size_t E3>
-vector3<T>& Swizzle3<T, N, E1, E2, E3>::operator-=(const vector3<T>& V) {
+Vector3<T>& Swizzle3<T, N, E1, E2, E3>::operator-=(const Vector3<T>& V) {
 	// TODO possible if: E1 != E2 != E3
 	this->values[E1] -= V.x;
 	this->values[E2] -= V.y;
 	this->values[E3] -= V.z;
-	return *(vector3<T>*)this;
+	return *(Vector3<T>*)this;
 }
 
 /**
- * Multiply this swizzle by a vector. Set this swizzle (and the underlying
- * vector) to the result.
+ * Multiply this swizzle by a Vector. Set this swizzle (and the underlying
+ * Vector) to the result.
  * @param V Vector to multiply by.
- * @return The modified vector (component-wise product.
+ * @return The modified Vector (component-wise product.
  */
 template<typename T, std::size_t N, std::size_t E1, std::size_t E2, std::size_t E3>
-vector3<T>& Swizzle3<T, N, E1, E2, E3>::operator*=(const vector3<T>& V) {
+Vector3<T>& Swizzle3<T, N, E1, E2, E3>::operator*=(const Vector3<T>& V) {
 	// TODO possible if: E1 != E2 != E3
 	this->values[E1] *= V.x;
 	this->values[E2] *= V.y;
 	this->values[E3] *= V.z;
-	return *(vector3<T>*)this;
+	return *(Vector3<T>*)this;
 }
 
 /**
- * Divide this swizzle by a vector. Set this swizzle (and the underlying vector)
+ * Divide this swizzle by a Vector. Set this swizzle (and the underlying Vector)
  * to the result.
  * @param v Vector to multiply by.
- * @return The modified vector (component-wise quotient).
+ * @return The modified Vector (component-wise quotient).
  */
 template<typename T, std::size_t N, std::size_t E1, std::size_t E2, std::size_t E3>
-vector3<T>& Swizzle3<T, N, E1, E2, E3>::operator/=(const vector3<T>& V) {
+Vector3<T>& Swizzle3<T, N, E1, E2, E3>::operator/=(const Vector3<T>& V) {
 	// TODO possible if: E1 != E2 != E3
 	this->values[E1] /= V.x;
 	this->values[E2] /= V.y;
 	this->values[E3] /= V.z;
-	return *(vector3<T>*)this;
+	return *(Vector3<T>*)this;
 }
 
 /**
- * Convert from a swizzle to a vector.
- * @return Converted vector.
+ * Convert from a swizzle to a Vector.
+ * @return Converted Vector.
  */
 template<typename T, std::size_t N, std::size_t E1, std::size_t E2, std::size_t E3, std::size_t E4>
-Swizzle4<T, N, E1, E2, E3, E4>::operator vector4<T>() {
-	return vector4<T>(this->values[E1], this->values[E2], this->values[E3], this->values[E4]);
+Swizzle4<T, N, E1, E2, E3, E4>::operator Vector4<T>() {
+	return Vector4<T>(this->values[E1], this->values[E2], this->values[E3], this->values[E4]);
 }
 
 /**
- * Set this swizzle (and the underlying vector) equal to a vector.  @param V
+ * Set this swizzle (and the underlying Vector) equal to a Vector.  @param V
  * Vector to set equal to.
- * @return The modified vector.
+ * @return The modified Vector.
  */
 template<typename T, std::size_t N, std::size_t E1, std::size_t E2, std::size_t E3, std::size_t E4>
-vector4<T>& Swizzle4<T, N, E1, E2, E3, E4>::operator=(const vector4<T>& V) {
+Vector4<T>& Swizzle4<T, N, E1, E2, E3, E4>::operator=(const Vector4<T>& V) {
 	// TODO possible if: E1 != E2 != E3 != E4
 	this->values[E1] = V.x;
 	this->values[E2] = V.y;
 	this->values[E3] = V.z;
 	this->values[E4] = V.w;
-	return *(vector3<T>*)this;
+	return *(Vector3<T>*)this;
 }
 
 /**
- * Add a vector to this swizzle. Set this swizzle (and the underlying vector) to
+ * Add a Vector to this swizzle. Set this swizzle (and the underlying Vector) to
  * the result.
  * @param V Vector to add.
- * @return The modified vector (component-wise sum).
+ * @return The modified Vector (component-wise sum).
  */
 template<typename T, std::size_t N, std::size_t E1, std::size_t E2, std::size_t E3, std::size_t E4>
-vector4<T>& Swizzle4<T, N, E1, E2, E3, E4>::operator+=(const vector4<T>& V) {
+Vector4<T>& Swizzle4<T, N, E1, E2, E3, E4>::operator+=(const Vector4<T>& V) {
 	// TODO possible if: E1 != E2 != E3 != E4
 	this->values[E1] += V.x;
 	this->values[E2] += V.y;
 	this->values[E3] += V.z;
 	this->values[E4] += V.w;
-	return *(vector3<T>*)this;
+	return *(Vector3<T>*)this;
 }
 
 /**
- * Subtract a vector from this swizzle. Set this swizzle (and the underlying
- * vector) to the result.
+ * Subtract a Vector from this swizzle. Set this swizzle (and the underlying
+ * Vector) to the result.
  * @param V Vector to add.
- * @return The modified vector (component-wise difference).
+ * @return The modified Vector (component-wise difference).
  */
 template<typename T, std::size_t N, std::size_t E1, std::size_t E2, std::size_t E3, std::size_t E4>
-vector4<T>& Swizzle4<T, N, E1, E2, E3, E4>::operator-=(const vector4<T>& V) {
+Vector4<T>& Swizzle4<T, N, E1, E2, E3, E4>::operator-=(const Vector4<T>& V) {
 	// TODO possible if: E1 != E2 != E3 != E4
 	this->values[E1] -= V.x;
 	this->values[E2] -= V.y;
 	this->values[E3] -= V.z;
 	this->values[E4] -= V.w;
-	return *(vector3<T>*)this;
+	return *(Vector3<T>*)this;
 }
 
 /**
- * Multiply this swizzle by a vector. Set this swizzle (and the underlying
- * vector) to the result.
+ * Multiply this swizzle by a Vector. Set this swizzle (and the underlying
+ * Vector) to the result.
  * @param V Vector to multiply by.
- * @return The modified vector (component-wise product.
+ * @return The modified Vector (component-wise product.
  */
 template<typename T, std::size_t N, std::size_t E1, std::size_t E2, std::size_t E3, std::size_t E4>
-vector4<T>& Swizzle4<T, N, E1, E2, E3, E4>::operator*=(const vector4<T>& V) {
+Vector4<T>& Swizzle4<T, N, E1, E2, E3, E4>::operator*=(const Vector4<T>& V) {
 	// TODO possible if: E1 != E2 != E3 != E4
 	this->values[E1] *= V.x;
 	this->values[E2] *= V.y;
 	this->values[E3] *= V.z;
 	this->values[E4] *= V.w;
-	return *(vector3<T>*)this;
+	return *(Vector3<T>*)this;
 }
 
 /**
- * Divide this swizzle by a vector. Set this swizzle (and the underlying vector)
+ * Divide this swizzle by a Vector. Set this swizzle (and the underlying Vector)
  * to the result.
  * @param v Vector to multiply by.
- * @return The modified vector (component-wise quotient).
+ * @return The modified Vector (component-wise quotient).
  */
 template<typename T, std::size_t N, std::size_t E1, std::size_t E2, std::size_t E3, std::size_t E4>
-vector4<T>& Swizzle4<T, N, E1, E2, E3, E4>::operator/=(const vector4<T>& V) {
+Vector4<T>& Swizzle4<T, N, E1, E2, E3, E4>::operator/=(const Vector4<T>& V) {
 	// TODO possible if: E1 != E2 != E3 != E4
 	this->values[E1] /= V.x;
 	this->values[E2] /= V.y;
 	this->values[E3] /= V.z;
 	this->values[E4] /= V.w;
-	return *(vector3<T>*)this;
+	return *(Vector3<T>*)this;
 }
 
 #endif

@@ -1,9 +1,11 @@
 #ifndef MATH_CORE_QUATERNION_INL
-#define  MATH_CORE_QUATERNION_INL
+#define MATH_CORE_QUATERNION_INL
 
 #include "quaternion.hpp"
 #include "vector3.hpp"
 #include "../func.hpp"
+#include "../tuple/axis_angle.hpp"
+#include "../tuple/euler.hpp"
 
 using namespace math::core;
 
@@ -11,7 +13,7 @@ using namespace math::core;
  * Default constructor.
  */
 template<typename T>
-quaternion<T>::quaternion(void) : x(), y(), z(), w() {}
+Quaternion<T>::Quaternion(void) : x(), y(), z(), w() {}
 
 /**
  * Parameterized constructor.
@@ -21,19 +23,65 @@ quaternion<T>::quaternion(void) : x(), y(), z(), w() {}
  * @param w Quaternion w-component.
  */
 template<typename T>
-quaternion<T>::quaternion(const T& x, const T& y, const T& z, const T& w) : x(x), y(y), z(z), w(w) {}
+Quaternion<T>::Quaternion(const T& x, const T& y, const T& z, const T& w) : x(x), y(y), z(z), w(w) {}
+
+/**
+ * Parameterized constructor.
+ * @param axis Axis of rotation.
+ * @param angle Angle of rotation.
+ */
+// TODO Use named constructor?
+template<typename T>
+Quaternion<T>::Quaternion(const math::tuple::AxisAngle<T>& axis_angle) {
+	Vector3<T> axis = axis_angle.axis();
+	T angle = axis_angle.angle();
+	T half_angle = angle / static_cast<T>(2.0);
+	Vector3<T> N = math::sin(half_angle) * axis.normal();
+	this->x = N.x;
+	this->y = N.y;
+	this->z = N.z;
+	this->w = math::cos(half_angle);
+}
+
+/**
+ * Parameterized constructor.
+ * @param pitch Counter-clockwise x-axis rotation in radians.
+ * @param yaw Counter-clockwise y-axis rotation in radians.
+ * @param roll Counter-clockwise z-axis rotation in radians.
+ */
+// TODO Use named constructor?
+template<typename T>
+Quaternion<T>::Quaternion(const math::tuple::EulerAngles<T>& euler) {
+	T pitch = euler.pitch();
+	T yaw = euler.yaw();
+	T roll = euler.roll();
+	T half_pitch = pitch / static_cast<T>(2.0);
+	T half_yaw = yaw / static_cast<T>(2.0);
+	T half_roll = roll / static_cast<T>(2.0);
+	T sinp = math::sin(half_pitch);
+	T siny = math::sin(half_yaw);
+	T sinr = math::sin(half_roll);
+	T cosp = math::cos(half_pitch);
+	T cosy = math::cos(half_yaw);
+	T cosr = math::cos(half_roll);
+	this->w = cosp * cosy * cosr + sinp * siny * sinr;
+	this->x = sinp * cosy * cosr - cosp * siny * sinr;
+	this->y = cosp * siny * cosr + sinp * cosy * sinr;
+	this->z = cosp * cosy * sinr - sinp * siny * cosr;
+	this->normalize();
+}
 
 /**
  * Negate a quaternion.
  * @return The negated quaternion.
  */
 template<typename T>
-quaternion<T> quaternion<T>::operator-(void) const {
+Quaternion<T> Quaternion<T>::operator-(void) const {
 	T x = -this->x;
 	T y = -this->y;
 	T z = -this->z;
 	T w = -this->w;
-	return quaternion<T>(x, y, z, w);
+	return Quaternion<T>(x, y, z, w);
 }
 
 /**
@@ -42,12 +90,12 @@ quaternion<T> quaternion<T>::operator-(void) const {
  * @return The component-wise sum.
  */
 template<typename T>
-quaternion<T> quaternion<T>::operator+(const quaternion<T>& H) const {
+Quaternion<T> Quaternion<T>::operator+(const Quaternion<T>& H) const {
 	T x = this->x + H.x;
 	T y = this->y + H.y;
 	T z = this->z + H.z;
 	T w = this->w + H.w;
-	return quaternion<T>(x, y, z, w);
+	return Quaternion<T>(x, y, z, w);
 }
 
 /**
@@ -56,7 +104,7 @@ quaternion<T> quaternion<T>::operator+(const quaternion<T>& H) const {
  * @return The modified quaternion (component-wise sum).
  */
 template<typename T>
-quaternion<T>& quaternion<T>::operator+=(const quaternion<T>& H) {
+Quaternion<T>& Quaternion<T>::operator+=(const Quaternion<T>& H) {
 	return *this = *this + H;
 }
 
@@ -66,12 +114,12 @@ quaternion<T>& quaternion<T>::operator+=(const quaternion<T>& H) {
  * @return The component-wise difference.
  */
 template<typename T>
-quaternion<T> quaternion<T>::operator-(const quaternion<T>& H) const {
+Quaternion<T> Quaternion<T>::operator-(const Quaternion<T>& H) const {
 	T x = this->x - H.x;
 	T y = this->y - H.y;
 	T z = this->z - H.z;
 	T w = this->w - H.w;
-	return quaternion<T>(x, y, z, w);
+	return Quaternion<T>(x, y, z, w);
 }
 
 /**
@@ -80,7 +128,7 @@ quaternion<T> quaternion<T>::operator-(const quaternion<T>& H) const {
  * @return The modified quaternion (component-wise difference).
  */
 template<typename T>
-quaternion<T>& quaternion<T>::operator-=(const quaternion<T>& H) {
+Quaternion<T>& Quaternion<T>::operator-=(const Quaternion<T>& H) {
 	return *this = *this - H;
 }
 
@@ -90,12 +138,12 @@ quaternion<T>& quaternion<T>::operator-=(const quaternion<T>& H) {
  * @return The combined rotation.
  */
 template<typename T>
-quaternion<T> quaternion<T>::operator*(const quaternion<T>& H) const {
+Quaternion<T> Quaternion<T>::operator*(const Quaternion<T>& H) const {
 	T x = (this->w * H.x) + (this->x * H.w) + (this->y * H.z) - (this->z * H.y);
 	T y = (this->w * H.y) + (this->y * H.w) + (this->z * H.x) - (this->x * H.z);
 	T z = (this->w * H.z) + (this->z * H.w) + (this->x * H.y) - (this->y * H.x);
 	T w = (this->w * H.w) - (this->w * H.w) - (this->y * H.y) - (this->z * H.z);
-	return quaternion<T>(x, y, z, w);
+	return Quaternion<T>(x, y, z, w);
 }
 
 /**
@@ -104,31 +152,8 @@ quaternion<T> quaternion<T>::operator*(const quaternion<T>& H) const {
  * @return The modified quaternion (combined rotation).
  */
 template<typename T>
-quaternion<T>& quaternion<T>::operator*=(const quaternion<T>& H) {
+Quaternion<T>& Quaternion<T>::operator*=(const Quaternion<T>& H) {
 	return *this = *this * H;
-}
-/**
- * Component-wise division.
- * @param H Quaternion to divide by.
- * @return The component-wise quotient.
- */
-template<typename T>
-quaternion<T> quaternion<T>::operator/(const quaternion<T>& H) const {
-	T x = this->x / H.x;
-	T y = this->y / H.y;
-	T z = this->z / H.z;
-	T w = this->w / H.w;
-	return quaternion<T>(x, y, z, w);
-}
-
-/**
- * Component-wise division. Copy the result into this quaternion.
- * @param H Quaternion to divide by.
- * @return The modified quaternion (component-wise quotient).
- */
-template<typename T>
-quaternion<T>& quaternion<T>::operator/=(const quaternion<T>& H) {
-	return *this = *this / H;
 }
 
 /**
@@ -137,13 +162,13 @@ quaternion<T>& quaternion<T>::operator/=(const quaternion<T>& H) {
  * @return Rotated vector.
  */
 template<typename T>
-vector3<T> quaternion<T>::operator*(const vector3<T>& V) const {
-	vector3<T> N = V.normal();
-	quaternion<T> vQ(N.x, N.y, N.z, T());
-	quaternion<T> cQ(this->conjugate());
-	quaternion<T> rQ(vQ * cQ);
+Vector3<T> Quaternion<T>::operator*(const Vector3<T>& V) const {
+	Vector3<T> N = V.normal();
+	Quaternion<T> vQ(N.x, N.y, N.z, T());
+	Quaternion<T> cQ(this->conjugate());
+	Quaternion<T> rQ(vQ * cQ);
 	rQ = *this * rQ;
-	return vector3<T>(rQ.x, rQ.y, rQ.z);
+	return Vector3<T>(rQ.x, rQ.y, rQ.z);
 }
 
 /**
@@ -152,12 +177,12 @@ vector3<T> quaternion<T>::operator*(const vector3<T>& V) const {
  * @return Quaternion-scalar quotient.
  */
 template<typename T>
-quaternion<T> quaternion<T>::operator/(const T& s) const {
+Quaternion<T> Quaternion<T>::operator/(const T& s) const {
 	T x = this->x / s;
 	T y = this->y / s;
 	T z = this->z / s;
 	T w = this->w / s;
-	return quaternion<T>(x, y, z, w);
+	return Quaternion<T>(x, y, z, w);
 }
 
 /**
@@ -165,7 +190,7 @@ quaternion<T> quaternion<T>::operator/(const T& s) const {
  * @return Quaternion magnitude.
  */
 template<typename T>
-T quaternion<T>::mag(void) const {
+T Quaternion<T>::mag(void) const {
 	return math::sqrt(this->mag2());
 }
 
@@ -174,7 +199,7 @@ T quaternion<T>::mag(void) const {
  * @return Magnitude squared.
  */
 template<typename T>
-T quaternion<T>::mag2(void) const {
+T Quaternion<T>::mag2(void) const {
 	return (this->x * this->x) + (this->y * this->y) + (this->z * this->z) + (this->w * this->w);
 }
 
@@ -183,7 +208,7 @@ T quaternion<T>::mag2(void) const {
  * @return Quaternion normal.
  */
 template<typename T>
-quaternion<T> quaternion<T>::normal(void) const {
+Quaternion<T> Quaternion<T>::normal(void) const {
 	return *this / this->mag();
 }
 
@@ -192,7 +217,7 @@ quaternion<T> quaternion<T>::normal(void) const {
  * @return The modified quaternion (quaternion normal).
  */
 template<typename T>
-quaternion<T>& quaternion<T>::normalize(void) {
+Quaternion<T>& Quaternion<T>::normalize(void) {
 	return *this = this->normal();
 }
 
@@ -201,8 +226,8 @@ quaternion<T>& quaternion<T>::normalize(void) {
  * @return Quaternion conjugate.
  */
 template<typename T>
-quaternion<T> quaternion<T>::conjugate(void) const {
-	return quaternion<T>(-this->x, -this->y, -this->z, this->w);
+Quaternion<T> Quaternion<T>::conjugate(void) const {
+	return Quaternion<T>(-this->x, -this->y, -this->z, this->w);
 }
 
 /**
@@ -210,34 +235,63 @@ quaternion<T> quaternion<T>::conjugate(void) const {
  * @return Quaternion inverse.
  */
 template<typename T>
-quaternion<T> quaternion<T>::inverse(void) const {
+Quaternion<T> Quaternion<T>::inverse(void) const {
 	return this->conjugate() / this->mag2();
 }
 
 /**
- * Check quaternion equality.
+ * Convert Quaternion to euler angles tuple.
+ * @return Euler angles.
+ */
+template<typename T>
+math::tuple::EulerAngles<T> Quaternion<T>::eulerAngles(void) const {
+	T pitch = math::atan2(2.0f * (this->y * this->z + this->w * this->x),
+		this->w * this->w - this->x * this->x - this->y * this->y + this->z * this->z);
+	T yaw = math::asin(-2.0f * (this->x * this->z - this-> w * this->y));
+	T roll = math::atan2(2.0f * (this->x * this->y + this->w * this->z),
+		this->w * this->w + this->x * this->x - this->y * this->y - this->z * this->z);
+	return math::tuple::EulerAngles<T>(pitch, yaw, roll);
+}
+
+/**
+ * Convert quaternion to axis angle tuple.
+ * @return Axis angle tuple.
+ */
+template<typename T>
+math::tuple::AxisAngle<T> Quaternion<T>::axisAngle(void) const {
+	Vector3<T> axis(this->x, this->y, this->z);
+	axis.normalize();
+	T angle = math::acos(this->x) * static_cast<T>(2.0);
+	return math::tuple::AxisAngle<T>(axis, angle);
+}
+
+/**
+ * Check Quaternion equality.
  * @param other Quaternion to check equality with.
  * @return True if they are equal, otherwise false.
  */
 template<typename T>
-bool quaternion<T>::operator==(const quaternion<T>& other) const {
+bool Quaternion<T>::operator==(const Quaternion<T>& other) const {
 	return this->x == other.x && this->y == other.y && this->z == other.z && this->w == other.w;
 }
 
 // TODO Use enable_if to specialize.
 template<>
-bool quaternion<float>::operator==(const quaternion<float>& other) const {
-	return math::equals(this->x, other.x) && math::equals(this->y, other.y) && math::equals(this->z, other.z) && math::equals(this->w, other.w);
+bool Quaternion<float>::operator==(const Quaternion<float>& other) const {
+	return math::equals(this->x, other.x) && math::equals(this->y, other.y)
+		&& math::equals(this->z, other.z) && math::equals(this->w, other.w);
 }
 
 template<>
-bool quaternion<double>::operator==(const quaternion<double>& other) const {
-	return math::equals(this->x, other.x) && math::equals(this->y, other.y) && math::equals(this->z, other.z) && math::equals(this->w, other.w);
+bool Quaternion<double>::operator==(const Quaternion<double>& other) const {
+	return math::equals(this->x, other.x) && math::equals(this->y, other.y)
+		&& math::equals(this->z, other.z) && math::equals(this->w, other.w);
 }
 
 template<>
-bool quaternion<long double>::operator==(const quaternion<long double>& other) const {
-	return math::equals(this->x, other.x) && math::equals(this->y, other.y) && math::equals(this->z, other.z) && math::equals(this->w, other.w);
+bool Quaternion<long double>::operator==(const Quaternion<long double>& other) const {
+	return math::equals(this->x, other.x) && math::equals(this->y, other.y)
+		&& math::equals(this->z, other.z) && math::equals(this->w, other.w);
 }
 
 /**
@@ -247,7 +301,7 @@ bool quaternion<long double>::operator==(const quaternion<long double>& other) c
  * @return Quaternion dot product.
  */
 template<typename T>
-T quaternion<T>::dot(const quaternion<T>& H1, const quaternion<T>& H2) {
+T Quaternion<T>::dot(const Quaternion<T>& H1, const Quaternion<T>& H2) {
 	return (H1.x * H2.x) + (H1.y * H2.y) + (H1.z * H2.z) + (H1.w * H2.w);
 }
 
@@ -259,7 +313,7 @@ T quaternion<T>::dot(const quaternion<T>& H1, const quaternion<T>& H2) {
  * @return Interpolated quaternion.
  */
 template<typename T>
-quaternion<T> quaternion<T>::lerp(const quaternion<T>& S, const quaternion<T>& E, const T& t) {
+Quaternion<T> Quaternion<T>::lerp(const Quaternion<T>& S, const Quaternion<T>& E, const T& t) {
 	return S + (t * (E - S));
 }
 
@@ -272,9 +326,9 @@ quaternion<T> quaternion<T>::lerp(const quaternion<T>& S, const quaternion<T>& E
  * @return Interpolated quaternion.
  */
 template<typename T>
-quaternion<T> quaternion<T>::slerp(const quaternion<T>& S, const quaternion<T>& E, const T& t, const bool shortest) {
-	T d = quaternion<T>::dot(S, E);
-	quaternion<T> H;
+Quaternion<T> Quaternion<T>::slerp(const Quaternion<T>& S, const Quaternion<T>& E, const T& t, const bool shortest) {
+	T d = Quaternion<T>::dot(S, E);
+	Quaternion<T> H;
 	if (d < static_cast<T>(0.0) && shortest) {
 		d = -d;
 		H = -E;
@@ -292,12 +346,12 @@ quaternion<T> quaternion<T>::slerp(const quaternion<T>& S, const quaternion<T>& 
  * @return Scalar-quaternion product.
  */
 template<typename T>
-quaternion<T> operator*(const T& s, const quaternion<T>& H) {
+Quaternion<T> operator*(const T& s, const Quaternion<T>& H) {
 	T x = s * H.x;
 	T y = s * H.y;
 	T z = s * H.z;
 	T w = s * H.w;
-	return quaternion<T>(x, y, z, w);
+	return Quaternion<T>(x, y, z, w);
 }
 
 /**
@@ -307,7 +361,7 @@ quaternion<T> operator*(const T& s, const quaternion<T>& H) {
  * @return Modified output stream.
  */
 template<typename T>
-std::ostream& operator<<(std::ostream& out, const quaternion<T>& H) {
+std::ostream& operator<<(std::ostream& out, const Quaternion<T>& H) {
 	return out << "<" << H.x << ", " << H.y << ", " << H.z << ", " << H.w << ">";
 }
 

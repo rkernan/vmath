@@ -213,17 +213,20 @@ bool Vector4<T>::operator==(const Vector4<T>& other) const {
 // TODO Use enable_if to specialize.
 template<>
 bool Vector4<float>::operator==(const Vector4<float>& other) const {
-	return math::equals(this->x, other.x) && math::equals(this->y, other.y) && math::equals(this->z, other.z) && math::equals(this->w, other.w);
+	return math::equals(this->x, other.x) && math::equals(this->y, other.y)
+		&& math::equals(this->z, other.z) && math::equals(this->w, other.w);
 }
 
 template<>
 bool Vector4<double>::operator==(const Vector4<double>& other) const {
-	return math::equals(this->x, other.x) && math::equals(this->y, other.y) && math::equals(this->z, other.z) && math::equals(this->w, other.w);
+	return math::equals(this->x, other.x) && math::equals(this->y, other.y)
+		&& math::equals(this->z, other.z) && math::equals(this->w, other.w);
 }
 
 template<>
 bool Vector4<long double>::operator==(const Vector4<long double>& other) const {
-	return math::equals(this->x, other.x) && math::equals(this->y, other.y) && math::equals(this->z, other.z) && math::equals(this->w, other.w);
+	return math::equals(this->x, other.x) && math::equals(this->y, other.y)
+		&& math::equals(this->z, other.z) && math::equals(this->w, other.w);
 }
 
 /**
