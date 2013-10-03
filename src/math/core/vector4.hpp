@@ -19,9 +19,10 @@ public:
 	vector4(const T&, const T&, const T&, const T&);
 	vector4(const vector2<T>&, const T&, const T&);
 	vector4(const vector3<T>&, const T&);
-	vector4(const vector4<T>&) = default;
-	vector4(vector4<T>&&) = default;
-	~vector4(void) = default;
+	// TODO VS2012 doesn't support C++11 explicitly defaulted constructors. Reassess with VS2013.
+	//vector4(const vector4<T>&) = default;
+	//vector4(vector4<T>&&) = default;
+	//~vector4(void) = default;
 
 	vector4<T>& operator=(const vector4<T>&);
 	vector4<T> operator-(void) const;

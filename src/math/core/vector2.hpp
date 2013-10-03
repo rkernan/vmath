@@ -17,9 +17,10 @@ class vector2 {
 public:
 	vector2(void);
 	vector2(const T&, const T&);
-	vector2(const vector2<T>&) = default;
-	vector2(vector2<T>&&) = default;
-	~vector2(void) = default;
+	// TODO VS2012 doesn't support C++11 explicitly defaulted constructors. Reassess with VS2013.
+	//vector2(const vector2<T>&) = default;
+	//vector2(vector2<T>&&) = default;
+	//~vector2(void) = default;
 
 	vector2<T>& operator=(const vector2<T>&);
 	vector2<T> operator-(void) const;
