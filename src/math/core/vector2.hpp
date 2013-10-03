@@ -17,12 +17,15 @@ class vector2 {
 public:
 	vector2(void);
 	vector2(const T&, const T&);
-	// TODO VS2012 doesn't support C++11 explicitly defaulted constructors. Reassess with VS2013.
-	//vector2(const vector2<T>&) = default;
-	//vector2(vector2<T>&&) = default;
-	//~vector2(void) = default;
+#if !defined(WIN32)
+	// TODO VS2012 doesn't support C++11 explicitly defaulted constructors.
+	// Reassess with VS2013.
+	vector2(const vector2<T>&) = default;
+	vector2(vector2<T>&&) = default;
+	~vector2(void) = default;
 
-	// vector2<T>& operator=(const vector2<T>&) = default;
+	vector2<T>& operator=(const vector2<T>&) = default;
+#endif
 	vector2<T> operator-(void) const;
 	vector2<T> operator+(const vector2<T>&) const;
 	vector2<T>& operator+=(const vector2<T>&);
@@ -32,8 +35,10 @@ public:
 	vector2<T>& operator*=(const vector2<T>&);
 	vector2<T> operator/(const vector2<T>&) const;
 	vector2<T>& operator/=(const vector2<T>&);
-	T norm(void) const;
+	vector2<T> operator/(const T&) const;
+
 	T mag(void) const;
+	T mag2(void) const;
 	vector2<T> normal(void) const;
 	vector2<T>& normalize(void);
 

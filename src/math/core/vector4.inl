@@ -55,9 +55,9 @@ vector4<T> vector4<T>::operator-(void) const {
 }
 
 /**
- * Component-wise vector addition.
+ * Component-wise addition.
  * @param V Vector to add.
- * @return The component-wise vector sum.
+ * @return The component-wise sum.
  */
 template<typename T>
 vector4<T> vector4<T>::operator+(const vector4<T>& V) const {
@@ -69,7 +69,7 @@ vector4<T> vector4<T>::operator+(const vector4<T>& V) const {
 }
 
 /**
- * Component-wise vector addition. Copy the result into this vector.
+ * Component-wise addition. Copy the result into this vector.
  * @param V Vector to add.
  * @return The modified vector (component-wise sum).
  */
@@ -79,17 +79,21 @@ vector4<T>& vector4<T>::operator+=(const vector4<T>& V) {
 }
 
 /**
- * Component-wise vector subtraction.
+ * Component-wise subtraction.
  * @param V Vector to subtract.
  * @return The component-wise vector difference.
  */
 template<typename T>
 vector4<T> vector4<T>::operator-(const vector4<T>& V) const {
-	return *this + -V;
+	T x = this->x - V.x;
+	T y = this->y - V.y;
+	T z = this->z - V.z;
+	T w = this->w - V.w;
+	return vector4<T>(x, y, z, w);
 }
 
 /**
- * Component-wise vector subtraction. Copy the result into this vector.
+ * Component-wise subtraction. Copy the result into this vector.
  * @param V Vector to subtract.
  * @return The modified vector (component-wise difference).
  */
@@ -99,7 +103,7 @@ vector4<T>& vector4<T>::operator-=(const vector4<T>& V) {
 }
 
 /**
- * Component-wise vector multiplication.
+ * Component-wise multiplication.
  * @param V Vector to multiply.
  * @return The component-wise product.
  */
@@ -113,7 +117,7 @@ vector4<T> vector4<T>::operator*(const vector4<T>& V) const {
 }
 
 /**
- * Component-wise vector multiplication. Copy the result into this vector.
+ * Component-wise multiplication. Copy the result into this vector.
  * @param V Vector to multiply.
  * @return The modified vector (component-wise product).
  */
@@ -123,7 +127,7 @@ vector4<T>& vector4<T>::operator*=(const vector4<T>& V) {
 }
 
 /**
- * Component-wise vector division.
+ * Component-wise division.
  * @param V Vector to divide by.
  * @return The component-wise quotient.
  */
@@ -137,7 +141,7 @@ vector4<T> vector4<T>::operator/(const vector4<T>& V) const {
 }
 
 /**
- * Component-wise vector division. Copy the result into this vector.
+ * Component-wise division. Copy the result into this vector.
  * @param V Vector to divide by.
  * @return The modified vector (component-wise quotient).
  */
@@ -147,12 +151,17 @@ vector4<T>& vector4<T>::operator/=(const vector4<T>& V) {
 }
 
 /**
- * Calculate the nor-negative vector norm (magnitude squared).
- * @return Vector magnitude squared.
+ * Scalar division.
+ * @param s Scalar to divide by.
+ * @return Vector-scalar quotient.
  */
 template<typename T>
-T vector4<T>::norm(void) const {
-	return (this->x * this->x) + (this->y * this->y) + (this->z * this->z) + (this->w * this->w);
+vector4<T> vector4<T>::operator/(const T& s) const {
+	T x = this->x / s;
+	T y = this->y / s;
+	T z = this->z / s;
+	T w = this->w / s;
+	return vector4<T>(x, y, z, w);
 }
 
 /**
@@ -161,7 +170,16 @@ T vector4<T>::norm(void) const {
  */
 template<typename T>
 T vector4<T>::mag(void) const {
-	return math::sqrt(this->norm());
+	return math::sqrt(this->mag2());
+}
+
+/**
+ * Calculate the magnitude squared.
+ * @return Magnitude squared.
+ */
+template<typename T>
+T vector4<T>::mag2(void) const {
+	return (this->x * this->x) + (this->y * this->y) + (this->z * this->z) + (this->w * this->w);
 }
 
 /**
@@ -170,12 +188,7 @@ T vector4<T>::mag(void) const {
  */
 template<typename T>
 vector4<T> vector4<T>::normal(void) const {
-	T mag = this->mag();
-	T x = this->x / mag;
-	T y = this->y / mag;
-	T z = this->z / mag;
-	T w = this->w / mag;
-	return vector4<T>(x, y, z, w);
+	return *this / this->mag();
 }
 
 /**

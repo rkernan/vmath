@@ -21,12 +21,15 @@ public:
 	vector3(void);
 	vector3(const T&, const T&, const T&);
 	vector3(const vector2<T>&, const T&);
-	// TODO VS2012 doesn't support C++11 explicitly defaulted constructors. Reassess with VS2013.
-	//vector3(const vector3<T>&) = default;
-	//vector3(vector3<T>&&) = default;
-	//~vector3(void) = default;
+#if !defined(WIN32)
+	// TODO VS2012 doesn't support C++11 explicitly defaulted constructors.
+	// Reassess with VS2013.
+	vector3(const vector3<T>&) = default;
+	vector3(vector3<T>&&) = default;
+	~vector3(void) = default;
 
-	// vector3<T>& operator=(const vector3<T>&) = default;
+	vector3<T>& operator=(const vector3<T>&) = default;
+#endif
 	vector3<T> operator-(void) const;
 	vector3<T> operator+(const vector3<T>&) const;
 	vector3<T>& operator+=(const vector3<T>&);
@@ -36,8 +39,10 @@ public:
 	vector3<T>& operator*=(const vector3<T>&);
 	vector3<T> operator/(const vector3<T>&) const;
 	vector3<T>& operator/=(const vector3<T>&);
-	T norm(void) const;
+	vector3<T> operator/(const T&) const;
+
 	T mag(void) const;
+	T mag2(void) const;
 	vector3<T> normal(void) const;
 	vector3<T>& normalize(void);
 
