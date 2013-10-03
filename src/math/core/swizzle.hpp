@@ -20,7 +20,7 @@ class vector4;
  * @tparam T Storage type.
  * @tparam N Storage size.
  */
-template<typename T, size_t N>
+template<typename T, std::size_t N>
 class Swizzle {
 protected:
 	T values[N];
@@ -33,7 +33,7 @@ protected:
  * @tparam E1 Index of first element.
  * @tparam E2 Index of second element.
  */
-template<typename T, size_t N, size_t E1, size_t E2>
+template<typename T, std::size_t N, std::size_t E1, std::size_t E2>
 class Swizzle2 : Swizzle<T, N> {
 public:
 	operator vector2<T>();
@@ -52,7 +52,7 @@ public:
  * @tparam E2 Index of second element.
  * @tparam E3 Index of third element.
  */
-template<typename T, size_t N, size_t E1, size_t E2, size_t E3>
+template<typename T, std::size_t N, std::size_t E1, std::size_t E2, std::size_t E3>
 class Swizzle3 : Swizzle<T, N> {
 public:
 	operator vector3<T>();
@@ -72,7 +72,7 @@ public:
  * @tparam E3 Index of third element.
  * @tparam E4 Index of fourth element.
  */
-template<typename T, size_t N, size_t E1, size_t E2, size_t E3, size_t E4>
+template<typename T, std::size_t N, std::size_t E1, std::size_t E2, std::size_t E3, std::size_t E4>
 class Swizzle4 : Swizzle<T, N> {
 public:
 	operator vector4<T>();
