@@ -182,6 +182,6 @@ std::ostream& operator<<(std::ostream&, const vector3<T>&);
 }
 }
 
-// #include "vector3.inl"
+#include "vector3.inl"
 
 #endif

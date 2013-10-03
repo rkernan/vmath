@@ -15,7 +15,9 @@ template<typename T>
 class vector4 {
 public:
 	vector4(void);
-	vector4(const T&, const T&);
+	vector4(const T&, const T&, const T&, const T&);
+	vector4(const vector2<T>&, const T&, const T&);
+	vector4(const vector3<T>&, const T&);
 	vector4(const vector4<T>&) = default;
 	vector4(vector4<T>&&) = default;
 	~vector4(void) = default;
@@ -396,6 +398,6 @@ std::ostream& operator<<(std::ostream&, const vector4<T>&);
 }
 }
 
-// #include "vector4.inl"
+#include "vector4.inl"
 
 #endif

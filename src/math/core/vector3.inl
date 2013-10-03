@@ -1,7 +1,7 @@
-#ifndef MATH_CORE_VECTOR2_INL
-#define MATH_CORE_VECTOR2_INL
+#ifndef MATH_CORE_vector3_INL
+#define MATH_CORE_vector3_INL
 
-#include "vector2.hpp"
+#include "vector3.hpp"
 #include "../func.hpp"
 
 using namespace math::core;
@@ -10,15 +10,24 @@ using namespace math::core;
  * Default constructor.
  */
 template<typename T>
-vector2<T>::vector2(void) : x(), y() {}
+vector3<T>::vector3(void) : x(), y() {}
 
 /**
  * Parameterized constructor.
  * @param x Vector x-component.
  * @param y Vector y-component.
+ * @param z Vector z-component.
  */
 template<typename T>
-vector2<T>::vector2(const T& x, const T& y) : x(x), y(y) {}
+vector3<T>::vector3(const T& x, const T& y, const T& z) : x(x), y(y), z(z) {}
+
+/**
+ * Parameterized constructor.
+ * @param V 2-d vector.
+ * @param z Vector z-component.
+ */
+template<typename T>
+vector3<T>::vector3(const vector2<T>& V, const T& z) : vector3(V.x, V.y, z) {}
 
 /**
  * Set vector equal to another.
@@ -26,7 +35,7 @@ vector2<T>::vector2(const T& x, const T& y) : x(x), y(y) {}
  * @return The modified vector.
  */
 template<typename T>
-vector2<T>& vector2<T>::operator=(const vector2<T>& orig) {
+vector3<T>& vector3<T>::operator=(const vector3<T>& orig) {
 	this->x = orig.x;
 	this->y = orig.y;
 	return *this;
@@ -37,10 +46,10 @@ vector2<T>& vector2<T>::operator=(const vector2<T>& orig) {
  * @return The vector negated.
  */
 template<typename T>
-vector2<T> vector2<T>::operator-(void) const {
+vector3<T> vector3<T>::operator-(void) const {
 	T x = -this->x;
 	T y = -this->y;
-	return vector2<T>(x, y);
+	return vector3<T>(x, y);
 }
 
 /**
@@ -49,10 +58,10 @@ vector2<T> vector2<T>::operator-(void) const {
  * @return The component-wise vector sum.
  */
 template<typename T>
-vector2<T> vector2<T>::operator+(const vector2<T>& V) const {
+vector3<T> vector3<T>::operator+(const vector3<T>& V) const {
 	T x = this->x + V.x;
 	T y = this->y + V.y;
-	return vector2<T>(x, y);
+	return vector3<T>(x, y);
 }
 
 /**
@@ -61,7 +70,7 @@ vector2<T> vector2<T>::operator+(const vector2<T>& V) const {
  * @return The modified vector (component-wise sum).
  */
 template<typename T>
-vector2<T>& vector2<T>::operator+=(const vector2<T>& V) {
+vector3<T>& vector3<T>::operator+=(const vector3<T>& V) {
 	return *this = *this + V;
 }
 
@@ -71,7 +80,7 @@ vector2<T>& vector2<T>::operator+=(const vector2<T>& V) {
  * @return The component-wise vector difference.
  */
 template<typename T>
-vector2<T> vector2<T>::operator-(const vector2<T>& V) const {
+vector3<T> vector3<T>::operator-(const vector3<T>& V) const {
 	return *this + -V;
 }
 
@@ -81,7 +90,7 @@ vector2<T> vector2<T>::operator-(const vector2<T>& V) const {
  * @return The modified vector (component-wise difference).
  */
 template<typename T>
-vector2<T>& vector2<T>::operator-=(const vector2<T>& V) {
+vector3<T>& vector3<T>::operator-=(const vector3<T>& V) {
 	return *this = *this - V;
 }
 
@@ -91,10 +100,10 @@ vector2<T>& vector2<T>::operator-=(const vector2<T>& V) {
  * @return The component-wise product.
  */
 template<typename T>
-vector2<T> vector2<T>::operator*(const vector2<T>& V) const {
+vector3<T> vector3<T>::operator*(const vector3<T>& V) const {
 	T x = this->x * V.x;
 	T y = this->y * V.y;
-	return vector2<T>(x, y);
+	return vector3<T>(x, y);
 }
 
 /**
@@ -103,7 +112,7 @@ vector2<T> vector2<T>::operator*(const vector2<T>& V) const {
  * @return The modified vector (component-wise product).
  */
 template<typename T> 
-vector2<T>& vector2<T>::operator*=(const vector2<T>& V) {
+vector3<T>& vector3<T>::operator*=(const vector3<T>& V) {
 	return *this = *this * V;
 }
 
@@ -113,10 +122,10 @@ vector2<T>& vector2<T>::operator*=(const vector2<T>& V) {
  * @return The component-wise quotient.
  */
 template<typename T>
-vector2<T> vector2<T>::operator/(const vector2<T>& V) const {
+vector3<T> vector3<T>::operator/(const vector3<T>& V) const {
 	T x = this->x / V.x;
 	T y = this->y / V.y;
-	return vector2<T>(x, y);
+	return vector3<T>(x, y);
 }
 
 /**
@@ -125,7 +134,7 @@ vector2<T> vector2<T>::operator/(const vector2<T>& V) const {
  * @return The modified vector (component-wise quotient).
  */
 template<typename T>
-vector2<T>& vector2<T>::operator/=(const vector2<T>& V) {
+vector3<T>& vector3<T>::operator/=(const vector3<T>& V) {
 	return *this = *this / V;
 }
 
@@ -134,7 +143,7 @@ vector2<T>& vector2<T>::operator/=(const vector2<T>& V) {
  * @return Vector magnitude squared.
  */
 template<typename T>
-T vector2<T>::norm(void) const {
+T vector3<T>::norm(void) const {
 	return (this->x * this->x) + (this->y * this->y);
 }
 
@@ -143,7 +152,7 @@ T vector2<T>::norm(void) const {
  * @return Vector magnitude.
  */
 template<typename T>
-T vector2<T>::mag(void) const {
+T vector3<T>::mag(void) const {
 	return math::sqrt(this->norm());
 }
 
@@ -152,11 +161,11 @@ T vector2<T>::mag(void) const {
  * @return Vector normal.
  */
 template<typename T>
-vector2<T> vector2<T>::normal(void) const {
+vector3<T> vector3<T>::normal(void) const {
 	T mag = this->mag();
 	T x = this->x / mag;
 	T y = this->y / mag;
-	return vector2<T>(x, y);
+	return vector3<T>(x, y);
 }
 
 /**
@@ -164,7 +173,7 @@ vector2<T> vector2<T>::normal(void) const {
  * @return The modified vector (vector normal).
  */
 template<typename T>
-vector2<T>& vector2<T>::normalize(void) {
+vector3<T>& vector3<T>::normalize(void) {
 	return *this = this->normal();
 }
 
@@ -174,23 +183,23 @@ vector2<T>& vector2<T>::normalize(void) {
  * @return True if they are equal, otherwise false.
  */
 template<typename T>
-bool vector2<T>::operator==(const vector2<T>& other) const {
+bool vector3<T>::operator==(const vector3<T>& other) const {
 	return this->x == other.x && this->y == other.y;
 }
 
 // TODO Use enable_if to specialize.
 template<>
-bool vector2<float>::operator==(const vector2<float>& other) const {
+bool vector3<float>::operator==(const vector3<float>& other) const {
 	return math::equals(this->x, other.x) && math::equals(this->y, other.y);
 }
 
 template<>
-bool vector2<double>::operator==(const vector2<double>& other) const {
+bool vector3<double>::operator==(const vector3<double>& other) const {
 	return math::equals(this->x, other.x) && math::equals(this->y, other.y);
 }
 
 template<>
-bool vector2<long double>::operator==(const vector2<long double>& other) const {
+bool vector3<long double>::operator==(const vector3<long double>& other) const {
 	return math::equals(this->y, other.x) && math::equals(this->y, other.y);
 }
 
@@ -200,7 +209,7 @@ bool vector2<long double>::operator==(const vector2<long double>& other) const {
  * @return False if they are equal, otherwise true.
  */
 template<typename T>
-bool vector2<T>::operator!=(const vector2<T>& other) const {
+bool vector3<T>::operator!=(const vector3<T>& other) const {
 	return !(*this == other);
 }
 
@@ -211,7 +220,7 @@ bool vector2<T>::operator!=(const vector2<T>& other) const {
  * @return Vector dot product.
  */
 template<typename T>
-T vector2<T>::dot(const vector2<T>& V1, const vector2<T>& V2) {
+T vector3<T>::dot(const vector3<T>& V1, const vector3<T>& V2) {
 	return (V1.x * V2.x) + (V1.y * V2.y);
 }
 
@@ -219,11 +228,14 @@ T vector2<T>::dot(const vector2<T>& V1, const vector2<T>& V2) {
  * Calculate the outer vector product (cross product).
  * @param V1 Vector to take outer product of.
  * @param V2 Vector to take outer product of.
- * @return 2-dimensional vector cross product.
+ * @return 3-dimensional vector cross product.
  */
 template<typename T>
-T vector2<T>::cross(const vector2<T>& V1, const vector2<T>& V2) {
-	return (V1.x * V2.y) - (V1.y * V2.x);
+vector3<T> vector3<T>::cross(const vector3<T>& V1, const vector3<T>& V2) {
+	T x = (V1.y * V2.z) - (V1.z * V2.y);
+	T y = (V1.z * V2.x) - (V1.x * V2.z);
+	T z = (V1.x * V2.y) - (V1.y * V2.x);
+	return vector3<T>(x, y, z);
 }
 
 /**
@@ -233,8 +245,8 @@ T vector2<T>::cross(const vector2<T>& V1, const vector2<T>& V2) {
  * @return Reflection of incident over the normal.
  */
 template<typename T>
-vector2<T> vector2<T>::reflect(const vector2<T>& I, const vector2<T>& N) {
-	return I - static_cast<T>(2.0) * vector2::dot(N, I) * N;
+vector3<T> vector3<T>::reflect(const vector3<T>& I, const vector3<T>& N) {
+	return I - static_cast<T>(2.0) * vector3::dot(N, I) * N;
 }
 
 /**
@@ -245,14 +257,14 @@ vector2<T> vector2<T>::reflect(const vector2<T>& I, const vector2<T>& N) {
  * @return Refraction of the indedent over the normal.
  */
 template<typename T>
-vector2<T> vector2<T>::refract(const vector2<T>& I, const vector2<T>& N, const T& eta) {
-	T k = static_cast<T>(1.0) - eta * eta * (static_cast<T>(1.0) - vector2::dot(N, I) * vector2::dot(N, I));
+vector3<T> vector3<T>::refract(const vector3<T>& I, const vector3<T>& N, const T& eta) {
+	T k = static_cast<T>(1.0) - eta * eta * (static_cast<T>(1.0) - vector3::dot(N, I) * vector3::dot(N, I));
 	if (k < static_cast<T>(0.0)) {
-		return vector2<T>();
+		return vector3<T>();
 	} else {
 		// TODO Need generic sqrt.
-		// return eta * I - (eta * vector2::dot(N, I) + math::sqrt(k)) * N;
-		return vector2<T>();
+		// return eta * I - (eta * vector3::dot(N, I) + math::sqrt(k)) * N;
+		return vector3<T>();
 	}
 }
 
@@ -264,7 +276,7 @@ vector2<T> vector2<T>::refract(const vector2<T>& I, const vector2<T>& N, const T
  * @return Interpolated vector.
  */
 template<typename T>
-vector2<T> lerp(const vector2<T>& S, const vector2<T>& E, const T& t) {
+vector3<T> lerp(const vector3<T>& S, const vector3<T>& E, const T& t) {
 	return S + (t * (E - S));
 }
 
@@ -275,10 +287,10 @@ vector2<T> lerp(const vector2<T>& S, const vector2<T>& E, const T& t) {
  * @return Scalar-vector product.
  */
 template<typename T>
-vector2<T> math::core::operator*(const T& s, const vector2<T>& v) {
+vector3<T> math::core::operator*(const T& s, const vector3<T>& v) {
 	T x = s * v.x;
 	T y = s * v.y;
-	return vector2<T>(x, y);
+	return vector3<T>(x, y);
 }
 
 /**
@@ -288,7 +300,7 @@ vector2<T> math::core::operator*(const T& s, const vector2<T>& v) {
  * @return Modified output stream.
  */
 template<typename T>
-std::ostream& math::core::operator<<(std::ostream& out, const vector2<T>& v) {
+std::ostream& math::core::operator<<(std::ostream& out, const vector3<T>& v) {
 	return out << "<" << v.x << ", " << v.y << ">";
 }
 
