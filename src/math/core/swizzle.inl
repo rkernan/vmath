@@ -12,7 +12,7 @@ using namespace math::core;
  * Convert from a swizzle to a vector.
  * @return Converted vector.
  */
-template<typename T, int N, int E1, int E2>
+template<typename T, size_t N, size_t E1, size_t E2>
 Swizzle2<T, N, E1, E2>::operator vector2<T>() {
 	return vector2<T>(this->values[E1], this->values[E2]);
 }
@@ -22,7 +22,7 @@ Swizzle2<T, N, E1, E2>::operator vector2<T>() {
  * Vector to set equal to.
  * @return The modified vector.
  */
-template<typename T, int N, int E1, int E2>
+template<typename T, size_t N, size_t E1, size_t E2>
 vector2<T>& Swizzle2<T, N, E1, E2>::operator=(const vector2<T>& V) {
 	// TODO possible if: N == 2 && E1 != E2
 	this->values[E1] = V.x;
@@ -36,7 +36,7 @@ vector2<T>& Swizzle2<T, N, E1, E2>::operator=(const vector2<T>& V) {
  * @param V Vector to add.
  * @return The modified vector (component-wise sum).
  */
-template<typename T, int N, int E1, int E2>
+template<typename T, size_t N, size_t E1, size_t E2>
 vector2<T>& Swizzle2<T, N, E1, E2>::operator+=(const vector2<T>& V) {
 	// TODO possible if: N == 2 && E1 != E2
 	this->values[E1] += V.x;
@@ -50,7 +50,7 @@ vector2<T>& Swizzle2<T, N, E1, E2>::operator+=(const vector2<T>& V) {
  * @param V Vector to add.
  * @return The modified vector (component-wise difference).
  */
-template<typename T, int N, int E1, int E2>
+template<typename T, size_t N, size_t E1, size_t E2>
 vector2<T>& Swizzle2<T, N, E1, E2>::operator-=(const vector2<T>& V) {
 	// TODO possible if: N == 2 && E1 != E2
 	this->values[E1] -= V.x;
@@ -64,7 +64,7 @@ vector2<T>& Swizzle2<T, N, E1, E2>::operator-=(const vector2<T>& V) {
  * @param V Vector to multiply by.
  * @return The modified vector (component-wise product.
  */
-template<typename T, int N, int E1, int E2>
+template<typename T, size_t N, size_t E1, size_t E2>
 vector2<T>& Swizzle2<T, N, E1, E2>::operator*=(const vector2<T>& V) {
 	// TODO possible if: N == 2 && E1 != E2
 	this->values[E1] *= V.x;
@@ -78,7 +78,7 @@ vector2<T>& Swizzle2<T, N, E1, E2>::operator*=(const vector2<T>& V) {
  * @param v Vector to multiply by.
  * @return The modified vector (component-wise quotient).
  */
-template<typename T, int N, int E1, int E2>
+template<typename T, size_t N, size_t E1, size_t E2>
 vector2<T>& Swizzle2<T, N, E1, E2>::operator/=(const vector2<T>& V) {
 	// TODO possible if: N == 2 && E1 != E2
 	this->values[E1] /= V.x;
@@ -90,7 +90,7 @@ vector2<T>& Swizzle2<T, N, E1, E2>::operator/=(const vector2<T>& V) {
  * Convert from a swizzle to a vector.
  * @return Converted vector.
  */
-template<typename T, int N, int E1, int E2, int E3>
+template<typename T, size_t N, size_t E1, size_t E2, size_t E3>
 Swizzle3<T, N, E1, E2, E3>::operator vector3<T>() {
 	return vector3<T>(this->values[E1], this->values[E2], this->values[E3]);
 }
@@ -100,7 +100,7 @@ Swizzle3<T, N, E1, E2, E3>::operator vector3<T>() {
  * Vector to set equal to.
  * @return The modified vector.
  */
-template<typename T, int N, int E1, int E2, int E3>
+template<typename T, size_t N, size_t E1, size_t E2, size_t E3>
 vector3<T>& Swizzle3<T, N, E1, E2, E3>::operator=(const vector3<T>& V) {
 	// TODO possible if: N == 3 && E1 != E2 != E3
 	this->values[E1] = V.x;
@@ -115,7 +115,7 @@ vector3<T>& Swizzle3<T, N, E1, E2, E3>::operator=(const vector3<T>& V) {
  * @param V Vector to add.
  * @return The modified vector (component-wise sum).
  */
-template<typename T, int N, int E1, int E2, int E3>
+template<typename T, size_t N, size_t E1, size_t E2, size_t E3>
 vector3<T>& Swizzle3<T, N, E1, E2, E3>::operator+=(const vector3<T>& V) {
 	// TODO possible if: N == 3 && E1 != E2 != E3
 	this->values[E1] += V.x;
@@ -130,7 +130,7 @@ vector3<T>& Swizzle3<T, N, E1, E2, E3>::operator+=(const vector3<T>& V) {
  * @param V Vector to add.
  * @return The modified vector (component-wise difference).
  */
-template<typename T, int N, int E1, int E2, int E3>
+template<typename T, size_t N, size_t E1, size_t E2, size_t E3>
 vector3<T>& Swizzle3<T, N, E1, E2, E3>::operator-=(const vector3<T>& V) {
 	// TODO possible if: N == 3 && E1 != E2 != E3
 	this->values[E1] -= V.x;
@@ -145,7 +145,7 @@ vector3<T>& Swizzle3<T, N, E1, E2, E3>::operator-=(const vector3<T>& V) {
  * @param V Vector to multiply by.
  * @return The modified vector (component-wise product.
  */
-template<typename T, int N, int E1, int E2, int E3>
+template<typename T, size_t N, size_t E1, size_t E2, size_t E3>
 vector3<T>& Swizzle3<T, N, E1, E2, E3>::operator*=(const vector3<T>& V) {
 	// TODO possible if: N == 3 && E1 != E2 != E3
 	this->values[E1] *= V.x;
@@ -160,7 +160,7 @@ vector3<T>& Swizzle3<T, N, E1, E2, E3>::operator*=(const vector3<T>& V) {
  * @param v Vector to multiply by.
  * @return The modified vector (component-wise quotient).
  */
-template<typename T, int N, int E1, int E2, int E3>
+template<typename T, size_t N, size_t E1, size_t E2, size_t E3>
 vector3<T>& Swizzle3<T, N, E1, E2, E3>::operator/=(const vector3<T>& V) {
 	// TODO possible if: N == 3 && E1 != E2 != E3
 	this->values[E1] /= V.x;
@@ -173,7 +173,7 @@ vector3<T>& Swizzle3<T, N, E1, E2, E3>::operator/=(const vector3<T>& V) {
  * Convert from a swizzle to a vector.
  * @return Converted vector.
  */
-template<typename T, int N, int E1, int E2, int E3, int E4>
+template<typename T, size_t N, size_t E1, size_t E2, size_t E3, size_t E4>
 Swizzle4<T, N, E1, E2, E3, E4>::operator vector4<T>() {
 	return vector4<T>(this->values[E1], this->values[E2], this->values[E3], this->values[E4]);
 }
@@ -183,7 +183,7 @@ Swizzle4<T, N, E1, E2, E3, E4>::operator vector4<T>() {
  * Vector to set equal to.
  * @return The modified vector.
  */
-template<typename T, int N, int E1, int E2, int E3, int E4>
+template<typename T, size_t N, size_t E1, size_t E2, size_t E3, size_t E4>
 vector4<T>& Swizzle4<T, N, E1, E2, E3, E4>::operator=(const vector4<T>& V) {
 	// TODO possible if: N == 4 && E1 != E2 != E3 != E4
 	this->values[E1] = V.x;
@@ -199,7 +199,7 @@ vector4<T>& Swizzle4<T, N, E1, E2, E3, E4>::operator=(const vector4<T>& V) {
  * @param V Vector to add.
  * @return The modified vector (component-wise sum).
  */
-template<typename T, int N, int E1, int E2, int E3, int E4>
+template<typename T, size_t N, size_t E1, size_t E2, size_t E3, size_t E4>
 vector4<T>& Swizzle4<T, N, E1, E2, E3, E4>::operator+=(const vector4<T>& V) {
 	// TODO possible if: N == 4 && E1 != E2 != E3 != E4
 	this->values[E1] += V.x;
@@ -215,7 +215,7 @@ vector4<T>& Swizzle4<T, N, E1, E2, E3, E4>::operator+=(const vector4<T>& V) {
  * @param V Vector to add.
  * @return The modified vector (component-wise difference).
  */
-template<typename T, int N, int E1, int E2, int E3, int E4>
+template<typename T, size_t N, size_t E1, size_t E2, size_t E3, size_t E4>
 vector4<T>& Swizzle4<T, N, E1, E2, E3, E4>::operator-=(const vector4<T>& V) {
 	// TODO possible if: N == 4 && E1 != E2 != E3 != E4
 	this->values[E1] -= V.x;
@@ -231,7 +231,7 @@ vector4<T>& Swizzle4<T, N, E1, E2, E3, E4>::operator-=(const vector4<T>& V) {
  * @param V Vector to multiply by.
  * @return The modified vector (component-wise product.
  */
-template<typename T, int N, int E1, int E2, int E3, int E4>
+template<typename T, size_t N, size_t E1, size_t E2, size_t E3, size_t E4>
 vector4<T>& Swizzle4<T, N, E1, E2, E3, E4>::operator*=(const vector4<T>& V) {
 	// TODO possible if: N == 4 && E1 != E2 != E3 != E4
 	this->values[E1] *= V.x;
@@ -247,7 +247,7 @@ vector4<T>& Swizzle4<T, N, E1, E2, E3, E4>::operator*=(const vector4<T>& V) {
  * @param v Vector to multiply by.
  * @return The modified vector (component-wise quotient).
  */
-template<typename T, int N, int E1, int E2, int E3, int E4>
+template<typename T, size_t N, size_t E1, size_t E2, size_t E3, size_t E4>
 vector4<T>& Swizzle4<T, N, E1, E2, E3, E4>::operator/=(const vector4<T>& V) {
 	// TODO possible if: N == 4 && E1 != E2 != E3 != E4
 	this->values[E1] /= V.x;
