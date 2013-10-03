@@ -164,7 +164,7 @@ Quaternion<T>& Quaternion<T>::operator*=(const Quaternion<T>& H) {
 template<typename T>
 Vector3<T> Quaternion<T>::operator*(const Vector3<T>& V) const {
 	Vector3<T> N = V.normal();
-	Quaternion<T> vQ(N.x, N.y, N.z, T());
+	Quaternion<T> vQ(N.x, N.y, N.z, static_cast<T>(0.0));
 	Quaternion<T> cQ(this->conjugate());
 	Quaternion<T> rQ(vQ * cQ);
 	rQ = *this * rQ;
