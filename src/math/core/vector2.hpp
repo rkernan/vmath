@@ -3,6 +3,7 @@
 
 #include <ostream>
 #include "swizzle.hpp"
+#include "swizzle_gen.hpp"
 
 namespace math {
 namespace core {
@@ -45,38 +46,21 @@ public:
 	static vector2<T> lerp(const vector2<T>&, const vector2<T>&, const T&);
 
 	union {
+		// axis coords
 		struct { T x, y; };
-		// 2d swizzles
-		Swizzle2<T, 2, 0, 0> xx;
-		Swizzle2<T, 2, 0, 1> xy;
-		Swizzle2<T, 2, 1, 0> yx;
-		Swizzle2<T, 2, 1, 1> yy;
-		// 3d swizzles
-		Swizzle3<T, 2, 0, 0, 0> xxx;
-		Swizzle3<T, 2, 0, 0, 1> xxy;
-		Swizzle3<T, 2, 0, 1, 0> xyx;
-		Swizzle3<T, 2, 0, 1, 1> xyy;
-		Swizzle3<T, 2, 1, 0, 0> yxx;
-		Swizzle3<T, 2, 1, 0, 1> yxy;
-		Swizzle3<T, 2, 1, 1, 0> yyx;
-		Swizzle3<T, 2, 1, 1, 1> yyy;
-		// 4d swizzles
-		Swizzle4<T, 2, 0, 0, 0, 0> xxxx;
-		Swizzle4<T, 2, 0, 0, 0, 1> xxxy;
-		Swizzle4<T, 2, 0, 0, 1, 0> xxyx;
-		Swizzle4<T, 2, 0, 0, 1, 1> xxyy;
-		Swizzle4<T, 2, 0, 1, 0, 0> xyxx;
-		Swizzle4<T, 2, 0, 1, 0, 1> xyxy;
-		Swizzle4<T, 2, 0, 1, 1, 0> xyyx;
-		Swizzle4<T, 2, 0, 1, 1, 1> xyyy;
-		Swizzle4<T, 2, 1, 0, 0, 0> yxxx;
-		Swizzle4<T, 2, 1, 0, 0, 1> yxxy;
-		Swizzle4<T, 2, 1, 0, 1, 0> yxyx;
-		Swizzle4<T, 2, 1, 0, 1, 1> yxyy;
-		Swizzle4<T, 2, 1, 1, 0, 0> yyxx;
-		Swizzle4<T, 2, 1, 1, 0, 1> yyxy;
-		Swizzle4<T, 2, 1, 1, 1, 0> yyyx;
-		Swizzle4<T, 2, 1, 1, 1, 1> yyyy;
+		MATH_CORE_SWIZZLE_GEN_SWIZZLE2_FOR_VECTOR2(T, x, y)
+		MATH_CORE_SWIZZLE_GEN_SWIZZLE3_FOR_VECTOR2(T, x, y)
+		MATH_CORE_SWIZZLE_GEN_SWIZZLE4_FOR_VECTOR2(T, x, y)
+		// texture coords
+		struct {T s, t; };
+		MATH_CORE_SWIZZLE_GEN_SWIZZLE2_FOR_VECTOR2(T, s, t)
+		MATH_CORE_SWIZZLE_GEN_SWIZZLE3_FOR_VECTOR2(T, s, t)
+		MATH_CORE_SWIZZLE_GEN_SWIZZLE4_FOR_VECTOR2(T, s, t)
+		// color values
+		struct { T r, g; };
+		MATH_CORE_SWIZZLE_GEN_SWIZZLE2_FOR_VECTOR2(T, r, g)
+		MATH_CORE_SWIZZLE_GEN_SWIZZLE3_FOR_VECTOR2(T, r, g)
+		MATH_CORE_SWIZZLE_GEN_SWIZZLE4_FOR_VECTOR2(T, r, g)
 	};
 };
 

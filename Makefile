@@ -19,8 +19,8 @@ DEFS=DEBUG LINUX
 # libraries
 LIBS=
 # flags
-CFLAGS=-std=c11 -Wall -Wextra -pedantic -g
-CXXFLAGS=-std=c++11 -Wall -Wextra -Winline -pedantic -g
+CFLAGS=-std=c11 -Wall -Wextra -g
+CXXFLAGS=-std=c++11 -Wall -Wextra -Winline -g
 # commands
 RM=rm -f
 MKDIR=mkdir -p
