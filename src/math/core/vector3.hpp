@@ -23,7 +23,7 @@ public:
 	Vector3(void);
 	Vector3(const T&, const T&, const T&);
 	Vector3(const Vector2<T>&, const T&);
-#if !defined(WIN32)
+#if !defined(WINDOWS)
 	// TODO VS2012 doesn't support C++11 explicitly defaulted constructors.
 	// Reassess with VS2013.
 	Vector3(const Vector3<T>&) = default;

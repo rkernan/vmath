@@ -19,7 +19,7 @@ class Vector2 {
 public:
 	Vector2(void);
 	Vector2(const T&, const T&);
-#if !defined(WIN32)
+#if !defined(WINDOWS)
 	// TODO VS2012 doesn't support C++11 explicitly defaulted constructors.
 	// Reassess with VS2013.
 	Vector2(const Vector2<T>&) = default;

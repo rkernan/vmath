@@ -31,7 +31,7 @@ public:
 	Quaternion(const T&, const T&, const T&, const T&);
 	Quaternion(const math::tuple::AxisAngle<T>&);
 	Quaternion(const math::tuple::EulerAngles<T>&);
-#if !defined(WIN32)
+#if !defined(WINDOWS)
 	// TODO VS2012 doesn't support C++11 explicitly defaulted constructors.
 	// Reassess with VS2013.
 	Quaternion(const Quaternion<T>&) = default;

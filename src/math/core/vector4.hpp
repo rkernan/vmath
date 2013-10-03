@@ -27,7 +27,7 @@ public:
 	Vector4(const T&, const T&, const T&, const T&);
 	Vector4(const Vector2<T>&, const T&, const T&);
 	Vector4(const Vector3<T>&, const T&);
-#if !defined(WIN32)
+#if !defined(WINDOWS)
 	// TODO VS2012 doesn't support C++11 explicitly defaulted constructors.
 	// Reassess with VS2013.
 	Vector4(const Vector4<T>&) = default;
