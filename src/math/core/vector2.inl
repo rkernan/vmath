@@ -10,7 +10,7 @@ using namespace math::core;
  * Default constructor.
  */
 template<typename T>
-vector2<T>::vector2(void) : x(), y() {}
+Vector2<T>::Vector2(void) : x(), y() {}
 
 /**
  * Parameterized constructor.
@@ -18,17 +18,17 @@ vector2<T>::vector2(void) : x(), y() {}
  * @param y Vector y-component.
  */
 template<typename T>
-vector2<T>::vector2(const T& x, const T& y) : x(x), y(y) {}
+Vector2<T>::Vector2(const T& x, const T& y) : x(x), y(y) {}
  
 /**
  * Negate a vector.
  * @return The vector negated.
  */
 template<typename T>
-vector2<T> vector2<T>::operator-(void) const {
+Vector2<T> Vector2<T>::operator-(void) const {
 	T x = -this->x;
 	T y = -this->y;
-	return vector2<T>(x, y);
+	return Vector2<T>(x, y);
 }
 
 /**
@@ -37,10 +37,10 @@ vector2<T> vector2<T>::operator-(void) const {
  * @return The component-wise sum.
  */
 template<typename T>
-vector2<T> vector2<T>::operator+(const vector2<T>& V) const {
+Vector2<T> Vector2<T>::operator+(const Vector2<T>& V) const {
 	T x = this->x + V.x;
 	T y = this->y + V.y;
-	return vector2<T>(x, y);
+	return Vector2<T>(x, y);
 }
 
 /**
@@ -49,7 +49,7 @@ vector2<T> vector2<T>::operator+(const vector2<T>& V) const {
  * @return The modified vector (component-wise sum).
  */
 template<typename T>
-vector2<T>& vector2<T>::operator+=(const vector2<T>& V) {
+Vector2<T>& Vector2<T>::operator+=(const Vector2<T>& V) {
 	return *this = *this + V;
 }
 
@@ -59,10 +59,10 @@ vector2<T>& vector2<T>::operator+=(const vector2<T>& V) {
  * @return The component-wise difference.
  */
 template<typename T>
-vector2<T> vector2<T>::operator-(const vector2<T>& V) const {
+Vector2<T> Vector2<T>::operator-(const Vector2<T>& V) const {
 	T x = this->x - V.x;
 	T y = this->y - V.y;
-	return vector2<T>(x, y);
+	return Vector2<T>(x, y);
 }
 
 /**
@@ -71,7 +71,7 @@ vector2<T> vector2<T>::operator-(const vector2<T>& V) const {
  * @return The modified vector (component-wise difference).
  */
 template<typename T>
-vector2<T>& vector2<T>::operator-=(const vector2<T>& V) {
+Vector2<T>& Vector2<T>::operator-=(const Vector2<T>& V) {
 	return *this = *this - V;
 }
 
@@ -81,10 +81,10 @@ vector2<T>& vector2<T>::operator-=(const vector2<T>& V) {
  * @return The component-wise product.
  */
 template<typename T>
-vector2<T> vector2<T>::operator*(const vector2<T>& V) const {
+Vector2<T> Vector2<T>::operator*(const Vector2<T>& V) const {
 	T x = this->x * V.x;
 	T y = this->y * V.y;
-	return vector2<T>(x, y);
+	return Vector2<T>(x, y);
 }
 
 /**
@@ -93,7 +93,7 @@ vector2<T> vector2<T>::operator*(const vector2<T>& V) const {
  * @return The modified vector (component-wise product).
  */
 template<typename T> 
-vector2<T>& vector2<T>::operator*=(const vector2<T>& V) {
+Vector2<T>& Vector2<T>::operator*=(const Vector2<T>& V) {
 	return *this = *this * V;
 }
 
@@ -103,10 +103,10 @@ vector2<T>& vector2<T>::operator*=(const vector2<T>& V) {
  * @return The component-wise quotient.
  */
 template<typename T>
-vector2<T> vector2<T>::operator/(const vector2<T>& V) const {
+Vector2<T> Vector2<T>::operator/(const Vector2<T>& V) const {
 	T x = this->x / V.x;
 	T y = this->y / V.y;
-	return vector2<T>(x, y);
+	return Vector2<T>(x, y);
 }
 
 /**
@@ -115,7 +115,7 @@ vector2<T> vector2<T>::operator/(const vector2<T>& V) const {
  * @return The modified vector (component-wise quotient).
  */
 template<typename T>
-vector2<T>& vector2<T>::operator/=(const vector2<T>& V) {
+Vector2<T>& Vector2<T>::operator/=(const Vector2<T>& V) {
 	return *this = *this / V;
 }
 
@@ -125,10 +125,10 @@ vector2<T>& vector2<T>::operator/=(const vector2<T>& V) {
  * @return Vector-scalar quotient.
  */
 template<typename T>
-vector2<T> vector2<T>::operator/(const T& s) const {
+Vector2<T> Vector2<T>::operator/(const T& s) const {
 	T x = this->x / s;
 	T y = this->y / s;
-	return vector2<T>(x, y);
+	return Vector2<T>(x, y);
 }
 
 /**
@@ -136,7 +136,7 @@ vector2<T> vector2<T>::operator/(const T& s) const {
  * @return Vector magnitude.
  */
 template<typename T>
-T vector2<T>::mag(void) const {
+T Vector2<T>::mag(void) const {
 	return math::sqrt(this->mag2());
 }
 
@@ -145,7 +145,7 @@ T vector2<T>::mag(void) const {
  * @return Magnitude squared.
  */
 template<typename T>
-T vector2<T>::mag2(void) const {
+T Vector2<T>::mag2(void) const {
 	return (this->x * this->x) + (this->y * this->y);
 }
 
@@ -154,7 +154,7 @@ T vector2<T>::mag2(void) const {
  * @return Vector normal.
  */
 template<typename T>
-vector2<T> vector2<T>::normal(void) const {
+Vector2<T> Vector2<T>::normal(void) const {
 	return *this / this->mag();
 }
 
@@ -163,43 +163,43 @@ vector2<T> vector2<T>::normal(void) const {
  * @return The modified vector (vector normal).
  */
 template<typename T>
-vector2<T>& vector2<T>::normalize(void) {
+Vector2<T>& Vector2<T>::normalize(void) {
 	return *this = this->normal();
 }
 
 /**
- * Check vector equality.
+ * Check Vector equality.
  * @param other Vector to check equality with.
  * @return True if they are equal, otherwise false.
  */
 template<typename T>
-bool vector2<T>::operator==(const vector2<T>& other) const {
+bool Vector2<T>::operator==(const Vector2<T>& other) const {
 	return this->x == other.x && this->y == other.y;
 }
 
 // TODO Use enable_if to specialize.
 template<>
-bool vector2<float>::operator==(const vector2<float>& other) const {
+bool Vector2<float>::operator==(const Vector2<float>& other) const {
 	return math::equals(this->x, other.x) && math::equals(this->y, other.y);
 }
 
 template<>
-bool vector2<double>::operator==(const vector2<double>& other) const {
+bool Vector2<double>::operator==(const Vector2<double>& other) const {
 	return math::equals(this->x, other.x) && math::equals(this->y, other.y);
 }
 
 template<>
-bool vector2<long double>::operator==(const vector2<long double>& other) const {
+bool Vector2<long double>::operator==(const Vector2<long double>& other) const {
 	return math::equals(this->y, other.x) && math::equals(this->y, other.y);
 }
 
 /**
- * Check vector inequality.
+ * Check Vector inequality.
  * @param other Vector to check inequality with.
  * @return False if they are equal, otherwise true.
  */
 template<typename T>
-bool vector2<T>::operator!=(const vector2<T>& other) const {
+bool Vector2<T>::operator!=(const Vector2<T>& other) const {
 	return !(*this == other);
 }
 
@@ -210,7 +210,7 @@ bool vector2<T>::operator!=(const vector2<T>& other) const {
  * @return Vector dot product.
  */
 template<typename T>
-T vector2<T>::dot(const vector2<T>& V1, const vector2<T>& V2) {
+T Vector2<T>::dot(const Vector2<T>& V1, const Vector2<T>& V2) {
 	return (V1.x * V2.x) + (V1.y * V2.y);
 }
 
@@ -221,7 +221,7 @@ T vector2<T>::dot(const vector2<T>& V1, const vector2<T>& V2) {
  * @return 2-dimensional vector cross product.
  */
 template<typename T>
-T vector2<T>::cross(const vector2<T>& V1, const vector2<T>& V2) {
+T Vector2<T>::cross(const Vector2<T>& V1, const Vector2<T>& V2) {
 	return (V1.x * V2.y) - (V1.y * V2.x);
 }
 
@@ -232,8 +232,8 @@ T vector2<T>::cross(const vector2<T>& V1, const vector2<T>& V2) {
  * @return Reflection of incident over the normal.
  */
 template<typename T>
-vector2<T> vector2<T>::reflect(const vector2<T>& I, const vector2<T>& N) {
-	return I - static_cast<T>(2.0) * vector2::dot(N, I) * N;
+Vector2<T> Vector2<T>::reflect(const Vector2<T>& I, const Vector2<T>& N) {
+	return I - static_cast<T>(2.0) * Vector2::dot(N, I) * N;
 }
 
 /**
@@ -244,12 +244,12 @@ vector2<T> vector2<T>::reflect(const vector2<T>& I, const vector2<T>& N) {
  * @return Refraction of the indedent over the normal.
  */
 template<typename T>
-vector2<T> vector2<T>::refract(const vector2<T>& I, const vector2<T>& N, const T& eta) {
-	T k = static_cast<T>(1.0) - eta * eta * (static_cast<T>(1.0) - vector2::dot(N, I) * vector2::dot(N, I));
+Vector2<T> Vector2<T>::refract(const Vector2<T>& I, const Vector2<T>& N, const T& eta) {
+	T k = static_cast<T>(1.0) - eta * eta * (static_cast<T>(1.0) - Vector2::dot(N, I) * Vector2::dot(N, I));
 	if (k < static_cast<T>(0.0)) {
-		return vector2<T>();
+		return Vector2<T>();
 	} else {
-		return eta * I - (eta * vector2::dot(N, I) + math::sqrt(k)) * N;
+		return eta * I - (eta * Vector2::dot(N, I) + math::sqrt(k)) * N;
 	}
 }
 
@@ -261,7 +261,7 @@ vector2<T> vector2<T>::refract(const vector2<T>& I, const vector2<T>& N, const T
  * @return Interpolated vector.
  */
 template<typename T>
-vector2<T> lerp(const vector2<T>& S, const vector2<T>& E, const T& t) {
+Vector2<T> lerp(const Vector2<T>& S, const Vector2<T>& E, const T& t) {
 	return S + (t * (E - S));
 }
 
@@ -272,10 +272,10 @@ vector2<T> lerp(const vector2<T>& S, const vector2<T>& E, const T& t) {
  * @return Scalar-vector product.
  */
 template<typename T>
-vector2<T> math::core::operator*(const T& s, const vector2<T>& V) {
+Vector2<T> math::core::operator*(const T& s, const Vector2<T>& V) {
 	T x = s * V.x;
 	T y = s * V.y;
-	return vector2<T>(x, y);
+	return Vector2<T>(x, y);
 }
 
 /**
@@ -285,7 +285,7 @@ vector2<T> math::core::operator*(const T& s, const vector2<T>& V) {
  * @return Modified output stream.
  */
 template<typename T>
-std::ostream& math::core::operator<<(std::ostream& out, const vector2<T>& V) {
+std::ostream& math::core::operator<<(std::ostream& out, const Vector2<T>& V) {
 	return out << "<" << V.x << ", " << V.y << ">";
 }
 

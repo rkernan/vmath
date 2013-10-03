@@ -1,5 +1,5 @@
-#ifndef MATH_CORE_vector4_INL
-#define MATH_CORE_vector4_INL
+#ifndef MATH_CORE_VECTOR4_INL
+#define MATH_CORE_VECTOR4_INL
 
 #include "vector2.hpp"
 #include "vector3.hpp"
@@ -12,7 +12,7 @@ using namespace math::core;
  * Default constructor.
  */
 template<typename T>
-vector4<T>::vector4(void) : x(), y() {}
+Vector4<T>::Vector4(void) : x(), y() {}
 
 /**
  * Parameterized constructor.
@@ -22,7 +22,7 @@ vector4<T>::vector4(void) : x(), y() {}
  * @param w Vector w-component.
  */
 template<typename T>
-vector4<T>::vector4(const T& x, const T& y, const T& z, const T& w) : x(x), y(y), z(z), w(w) {}
+Vector4<T>::Vector4(const T& x, const T& y, const T& z, const T& w) : x(x), y(y), z(z), w(w) {}
 
 /**
  * Parameterized constructor.
@@ -31,7 +31,7 @@ vector4<T>::vector4(const T& x, const T& y, const T& z, const T& w) : x(x), y(y)
  * @param w Vector w-component.
  */
 template<typename T>
-vector4<T>::vector4(const vector2<T>& V, const T& z, const T& w) : vector4(V.x, V.y, z, w) {}
+Vector4<T>::Vector4(const Vector2<T>& V, const T& z, const T& w) : Vector4(V.x, V.y, z, w) {}
 
 /**
  * Paremeterized constructor.
@@ -39,19 +39,19 @@ vector4<T>::vector4(const vector2<T>& V, const T& z, const T& w) : vector4(V.x, 
  * @param w Vector w-component.
  */
 template<typename T>
-vector4<T>::vector4(const vector3<T>& V, const T& w) : vector4(V.x, V.y, V.z, w) {}
+Vector4<T>::Vector4(const Vector3<T>& V, const T& w) : Vector4(V.x, V.y, V.z, w) {}
 
 /**
  * Negate a vector.
  * @return The vector negated.
  */
 template<typename T>
-vector4<T> vector4<T>::operator-(void) const {
+Vector4<T> Vector4<T>::operator-(void) const {
 	T x = -this->x;
 	T y = -this->y;
 	T z = -this->z;
 	T w = -this->w;
-	return vector4<T>(x, y, z, w);
+	return Vector4<T>(x, y, z, w);
 }
 
 /**
@@ -60,12 +60,12 @@ vector4<T> vector4<T>::operator-(void) const {
  * @return The component-wise sum.
  */
 template<typename T>
-vector4<T> vector4<T>::operator+(const vector4<T>& V) const {
+Vector4<T> Vector4<T>::operator+(const Vector4<T>& V) const {
 	T x = this->x + V.x;
 	T y = this->y + V.y;
 	T z = this->z + V.z;
 	T w = this->w + V.w;
-	return vector4<T>(x, y, z, w);
+	return Vector4<T>(x, y, z, w);
 }
 
 /**
@@ -74,22 +74,22 @@ vector4<T> vector4<T>::operator+(const vector4<T>& V) const {
  * @return The modified vector (component-wise sum).
  */
 template<typename T>
-vector4<T>& vector4<T>::operator+=(const vector4<T>& V) {
+Vector4<T>& Vector4<T>::operator+=(const Vector4<T>& V) {
 	return *this = *this + V;
 }
 
 /**
  * Component-wise subtraction.
  * @param V Vector to subtract.
- * @return The component-wise vector difference.
+ * @return The component-wise difference.
  */
 template<typename T>
-vector4<T> vector4<T>::operator-(const vector4<T>& V) const {
+Vector4<T> Vector4<T>::operator-(const Vector4<T>& V) const {
 	T x = this->x - V.x;
 	T y = this->y - V.y;
 	T z = this->z - V.z;
 	T w = this->w - V.w;
-	return vector4<T>(x, y, z, w);
+	return Vector4<T>(x, y, z, w);
 }
 
 /**
@@ -98,7 +98,7 @@ vector4<T> vector4<T>::operator-(const vector4<T>& V) const {
  * @return The modified vector (component-wise difference).
  */
 template<typename T>
-vector4<T>& vector4<T>::operator-=(const vector4<T>& V) {
+Vector4<T>& Vector4<T>::operator-=(const Vector4<T>& V) {
 	return *this = *this - V;
 }
 
@@ -108,12 +108,12 @@ vector4<T>& vector4<T>::operator-=(const vector4<T>& V) {
  * @return The component-wise product.
  */
 template<typename T>
-vector4<T> vector4<T>::operator*(const vector4<T>& V) const {
+Vector4<T> Vector4<T>::operator*(const Vector4<T>& V) const {
 	T x = this->x * V.x;
 	T y = this->y * V.y;
 	T z = this->z * V.z;
 	T w = this->w * V.w;
-	return vector4<T>(x, y, z, w);
+	return Vector4<T>(x, y, z, w);
 }
 
 /**
@@ -122,7 +122,7 @@ vector4<T> vector4<T>::operator*(const vector4<T>& V) const {
  * @return The modified vector (component-wise product).
  */
 template<typename T> 
-vector4<T>& vector4<T>::operator*=(const vector4<T>& V) {
+Vector4<T>& Vector4<T>::operator*=(const Vector4<T>& V) {
 	return *this = *this * V;
 }
 
@@ -132,12 +132,12 @@ vector4<T>& vector4<T>::operator*=(const vector4<T>& V) {
  * @return The component-wise quotient.
  */
 template<typename T>
-vector4<T> vector4<T>::operator/(const vector4<T>& V) const {
+Vector4<T> Vector4<T>::operator/(const Vector4<T>& V) const {
 	T x = this->x / V.x;
 	T y = this->y / V.y;
 	T z = this->z / V.z;
 	T w = this->w / V.w;
-	return vector4<T>(x, y, z, w);
+	return Vector4<T>(x, y, z, w);
 }
 
 /**
@@ -146,7 +146,7 @@ vector4<T> vector4<T>::operator/(const vector4<T>& V) const {
  * @return The modified vector (component-wise quotient).
  */
 template<typename T>
-vector4<T>& vector4<T>::operator/=(const vector4<T>& V) {
+Vector4<T>& Vector4<T>::operator/=(const Vector4<T>& V) {
 	return *this = *this / V;
 }
 
@@ -156,12 +156,12 @@ vector4<T>& vector4<T>::operator/=(const vector4<T>& V) {
  * @return Vector-scalar quotient.
  */
 template<typename T>
-vector4<T> vector4<T>::operator/(const T& s) const {
+Vector4<T> Vector4<T>::operator/(const T& s) const {
 	T x = this->x / s;
 	T y = this->y / s;
 	T z = this->z / s;
 	T w = this->w / s;
-	return vector4<T>(x, y, z, w);
+	return Vector4<T>(x, y, z, w);
 }
 
 /**
@@ -169,7 +169,7 @@ vector4<T> vector4<T>::operator/(const T& s) const {
  * @return Vector magnitude.
  */
 template<typename T>
-T vector4<T>::mag(void) const {
+T Vector4<T>::mag(void) const {
 	return math::sqrt(this->mag2());
 }
 
@@ -178,16 +178,16 @@ T vector4<T>::mag(void) const {
  * @return Magnitude squared.
  */
 template<typename T>
-T vector4<T>::mag2(void) const {
+T Vector4<T>::mag2(void) const {
 	return (this->x * this->x) + (this->y * this->y) + (this->z * this->z) + (this->w * this->w);
 }
 
 /**
- * Calculate the vector normal.
+ * Calculate the Vector normal.
  * @return Vector normal.
  */
 template<typename T>
-vector4<T> vector4<T>::normal(void) const {
+Vector4<T> Vector4<T>::normal(void) const {
 	return *this / this->mag();
 }
 
@@ -196,43 +196,43 @@ vector4<T> vector4<T>::normal(void) const {
  * @return The modified vector (vector normal).
  */
 template<typename T>
-vector4<T>& vector4<T>::normalize(void) {
+Vector4<T>& Vector4<T>::normalize(void) {
 	return *this = this->normal();
 }
 
 /**
- * Check vector equality.
+ * Check Vector equality.
  * @param other Vector to check equality with.
  * @return True if they are equal, otherwise false.
  */
 template<typename T>
-bool vector4<T>::operator==(const vector4<T>& other) const {
+bool Vector4<T>::operator==(const Vector4<T>& other) const {
 	return this->x == other.x && this->y == other.y && this->z == other.z && this->w == other.w;
 }
 
 // TODO Use enable_if to specialize.
 template<>
-bool vector4<float>::operator==(const vector4<float>& other) const {
+bool Vector4<float>::operator==(const Vector4<float>& other) const {
 	return math::equals(this->x, other.x) && math::equals(this->y, other.y) && math::equals(this->z, other.z) && math::equals(this->w, other.w);
 }
 
 template<>
-bool vector4<double>::operator==(const vector4<double>& other) const {
+bool Vector4<double>::operator==(const Vector4<double>& other) const {
 	return math::equals(this->x, other.x) && math::equals(this->y, other.y) && math::equals(this->z, other.z) && math::equals(this->w, other.w);
 }
 
 template<>
-bool vector4<long double>::operator==(const vector4<long double>& other) const {
+bool Vector4<long double>::operator==(const Vector4<long double>& other) const {
 	return math::equals(this->x, other.x) && math::equals(this->y, other.y) && math::equals(this->z, other.z) && math::equals(this->w, other.w);
 }
 
 /**
- * Check vector inequality.
+ * Check Vector inequality.
  * @param other Vector to check inequality with.
  * @return False if they are equal, otherwise true.
  */
 template<typename T>
-bool vector4<T>::operator!=(const vector4<T>& other) const {
+bool Vector4<T>::operator!=(const Vector4<T>& other) const {
 	return !(*this == other);
 }
 
@@ -243,7 +243,7 @@ bool vector4<T>::operator!=(const vector4<T>& other) const {
  * @return Vector dot product.
  */
 template<typename T>
-T vector4<T>::dot(const vector4<T>& V1, const vector4<T>& V2) {
+T Vector4<T>::dot(const Vector4<T>& V1, const Vector4<T>& V2) {
 	return (V1.x * V2.x) + (V1.y * V2.y) + (V1.z * V2.z) + (V1.w * V2.w);
 }
 
@@ -254,8 +254,8 @@ T vector4<T>::dot(const vector4<T>& V1, const vector4<T>& V2) {
  * @return Reflection of incident over the normal.
  */
 template<typename T>
-vector4<T> vector4<T>::reflect(const vector4<T>& I, const vector4<T>& N) {
-	return I - static_cast<T>(2.0) * vector4::dot(N, I) * N;
+Vector4<T> Vector4<T>::reflect(const Vector4<T>& I, const Vector4<T>& N) {
+	return I - static_cast<T>(2.0) * Vector4::dot(N, I) * N;
 }
 
 /**
@@ -266,12 +266,12 @@ vector4<T> vector4<T>::reflect(const vector4<T>& I, const vector4<T>& N) {
  * @return Refraction of the indedent over the normal.
  */
 template<typename T>
-vector4<T> vector4<T>::refract(const vector4<T>& I, const vector4<T>& N, const T& eta) {
-	T k = static_cast<T>(1.0) - eta * eta * (static_cast<T>(1.0) - vector4::dot(N, I) * vector4::dot(N, I));
+Vector4<T> Vector4<T>::refract(const Vector4<T>& I, const Vector4<T>& N, const T& eta) {
+	T k = static_cast<T>(1.0) - eta * eta * (static_cast<T>(1.0) - Vector4::dot(N, I) * Vector4::dot(N, I));
 	if (k < static_cast<T>(0.0)) {
-		return vector4<T>();
+		return Vector4<T>();
 	} else {
-		return eta * I - (eta * vector4::dot(N, I) + math::sqrt(k)) * N;
+		return eta * I - (eta * Vector4::dot(N, I) + math::sqrt(k)) * N;
 	}
 }
 
@@ -283,7 +283,7 @@ vector4<T> vector4<T>::refract(const vector4<T>& I, const vector4<T>& N, const T
  * @return Interpolated vector.
  */
 template<typename T>
-vector4<T> lerp(const vector4<T>& S, const vector4<T>& E, const T& t) {
+Vector4<T> lerp(const Vector4<T>& S, const Vector4<T>& E, const T& t) {
 	return S + (t * (E - S));
 }
 
@@ -294,12 +294,12 @@ vector4<T> lerp(const vector4<T>& S, const vector4<T>& E, const T& t) {
  * @return Scalar-vector product.
  */
 template<typename T>
-vector4<T> math::core::operator*(const T& s, const vector4<T>& V) {
+Vector4<T> math::core::operator*(const T& s, const Vector4<T>& V) {
 	T x = s * V.x;
 	T y = s * V.y;
 	T z = s * V.z;
 	T w = s * V.w;
-	return vector4<T>(x, y, z, w);
+	return Vector4<T>(x, y, z, w);
 }
 
 /**
@@ -309,7 +309,7 @@ vector4<T> math::core::operator*(const T& s, const vector4<T>& V) {
  * @return Modified output stream.
  */
 template<typename T>
-std::ostream& math::core::operator<<(std::ostream& out, const vector4<T>& V) {
+std::ostream& math::core::operator<<(std::ostream& out, const Vector4<T>& V) {
 	return out << "<" << V.x << ", " << V.y << ", " << V.z << ", " << V.w << ">";
 }
 

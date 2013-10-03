@@ -1,5 +1,5 @@
-#ifndef MATH_CORE_vector4_HPP
-#define MATH_CORE_vector4_HPP
+#ifndef MATH_CORE_VECTOR4_HPP
+#define MATH_CORE_VECTOR4_HPP
 
 #include <ostream>
 #include "swizzle.hpp"
@@ -8,49 +8,55 @@
 namespace math {
 namespace core {
 
+template<typename T>
+class Vector2;
+
+template<typename T>
+class Vector3;
+
 /**
- * @class vector4
+ * @class Vector4
  * @tparam T Storage type.
  */
 template<typename T>
-class vector4 {
+class Vector4 {
 public:
-	vector4(void);
-	vector4(const T&, const T&, const T&, const T&);
-	vector4(const vector2<T>&, const T&, const T&);
-	vector4(const vector3<T>&, const T&);
+	Vector4(void);
+	Vector4(const T&, const T&, const T&, const T&);
+	Vector4(const Vector2<T>&, const T&, const T&);
+	Vector4(const Vector3<T>&, const T&);
 #if !defined(WIN32)
 	// TODO VS2012 doesn't support C++11 explicitly defaulted constructors.
 	// Reassess with VS2013.
-	vector4(const vector4<T>&) = default;
-	vector4(vector4<T>&&) = default;
-	~vector4(void) = default;
+	Vector4(const Vector4<T>&) = default;
+	Vector4(Vector4<T>&&) = default;
+	~Vector4(void) = default;
 
-	vector4<T>& operator=(const vector4<T>&) = default;
+	Vector4<T>& operator=(const Vector4<T>&) = default;
 #endif
-	vector4<T> operator-(void) const;
-	vector4<T> operator+(const vector4<T>&) const;
-	vector4<T>& operator+=(const vector4<T>&);
-	vector4<T> operator-(const vector4<T>&) const;
-	vector4<T>& operator-=(const vector4<T>&);
-	vector4<T> operator*(const vector4<T>&) const;
-	vector4<T>& operator*=(const vector4<T>&);
-	vector4<T> operator/(const vector4<T>&) const;
-	vector4<T>& operator/=(const vector4<T>&);
-	vector4<T> operator/(const T&) const;
+	Vector4<T> operator-(void) const;
+	Vector4<T> operator+(const Vector4<T>&) const;
+	Vector4<T>& operator+=(const Vector4<T>&);
+	Vector4<T> operator-(const Vector4<T>&) const;
+	Vector4<T>& operator-=(const Vector4<T>&);
+	Vector4<T> operator*(const Vector4<T>&) const;
+	Vector4<T>& operator*=(const Vector4<T>&);
+	Vector4<T> operator/(const Vector4<T>&) const;
+	Vector4<T>& operator/=(const Vector4<T>&);
+	Vector4<T> operator/(const T&) const;
 
 	T mag(void) const;
 	T mag2(void) const;
-	vector4<T> normal(void) const;
-	vector4<T>& normalize(void);
+	Vector4<T> normal(void) const;
+	Vector4<T>& normalize(void);
 
-	bool operator==(const vector4<T>&) const;
-	bool operator!=(const vector4<T>&) const;
+	bool operator==(const Vector4<T>&) const;
+	bool operator!=(const Vector4<T>&) const;
 	
-	static T dot(const vector4<T>&, const vector4<T>&);
-	static vector4<T> reflect(const vector4<T>&, const vector4<T>&);
-	static vector4<T> refract(const vector4<T>&, const vector4<T>&, const T&);
-	static vector4<T> lerp(const vector4<T>&, const vector4<T>&, const T&);
+	static T dot(const Vector4<T>&, const Vector4<T>&);
+	static Vector4<T> reflect(const Vector4<T>&, const Vector4<T>&);
+	static Vector4<T> refract(const Vector4<T>&, const Vector4<T>&, const T&);
+	static Vector4<T> lerp(const Vector4<T>&, const Vector4<T>&, const T&);
 
 	union {
 		// axis coords
@@ -72,10 +78,10 @@ public:
 };
 
 template<typename T>
-vector4<T> operator*(const T&, const vector4<T>&);
+Vector4<T> operator*(const T&, const Vector4<T>&);
 
 template<typename T>
-std::ostream& operator<<(std::ostream&, const vector4<T>&);
+std::ostream& operator<<(std::ostream&, const Vector4<T>&);
 
 }
 }

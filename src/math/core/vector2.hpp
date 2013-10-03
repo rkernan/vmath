@@ -9,47 +9,47 @@ namespace math {
 namespace core {
 
 /**
- * @class vector2
+ * @class Vector2
  * @tparam T Storage type.
  */
 template<typename T>
-class vector2 {
+class Vector2 {
 public:
-	vector2(void);
-	vector2(const T&, const T&);
+	Vector2(void);
+	Vector2(const T&, const T&);
 #if !defined(WIN32)
 	// TODO VS2012 doesn't support C++11 explicitly defaulted constructors.
 	// Reassess with VS2013.
-	vector2(const vector2<T>&) = default;
-	vector2(vector2<T>&&) = default;
-	~vector2(void) = default;
+	Vector2(const Vector2<T>&) = default;
+	Vector2(Vector2<T>&&) = default;
+	~Vector2(void) = default;
 
-	vector2<T>& operator=(const vector2<T>&) = default;
+	Vector2<T>& operator=(const Vector2<T>&) = default;
 #endif
-	vector2<T> operator-(void) const;
-	vector2<T> operator+(const vector2<T>&) const;
-	vector2<T>& operator+=(const vector2<T>&);
-	vector2<T> operator-(const vector2<T>&) const;
-	vector2<T>& operator-=(const vector2<T>&);
-	vector2<T> operator*(const vector2<T>&) const;
-	vector2<T>& operator*=(const vector2<T>&);
-	vector2<T> operator/(const vector2<T>&) const;
-	vector2<T>& operator/=(const vector2<T>&);
-	vector2<T> operator/(const T&) const;
+	Vector2<T> operator-(void) const;
+	Vector2<T> operator+(const Vector2<T>&) const;
+	Vector2<T>& operator+=(const Vector2<T>&);
+	Vector2<T> operator-(const Vector2<T>&) const;
+	Vector2<T>& operator-=(const Vector2<T>&);
+	Vector2<T> operator*(const Vector2<T>&) const;
+	Vector2<T>& operator*=(const Vector2<T>&);
+	Vector2<T> operator/(const Vector2<T>&) const;
+	Vector2<T>& operator/=(const Vector2<T>&);
+	Vector2<T> operator/(const T&) const;
 
 	T mag(void) const;
 	T mag2(void) const;
-	vector2<T> normal(void) const;
-	vector2<T>& normalize(void);
+	Vector2<T> normal(void) const;
+	Vector2<T>& normalize(void);
 
-	bool operator==(const vector2<T>&) const;
-	bool operator!=(const vector2<T>&) const;
+	bool operator==(const Vector2<T>&) const;
+	bool operator!=(const Vector2<T>&) const;
 	
-	static T dot(const vector2<T>&, const vector2<T>&);
-	static T cross(const vector2<T>&, const vector2<T>&);
-	static vector2<T> reflect(const vector2<T>&, const vector2<T>&);
-	static vector2<T> refract(const vector2<T>&, const vector2<T>&, const T&);
-	static vector2<T> lerp(const vector2<T>&, const vector2<T>&, const T&);
+	static T dot(const Vector2<T>&, const Vector2<T>&);
+	static T cross(const Vector2<T>&, const Vector2<T>&);
+	static Vector2<T> reflect(const Vector2<T>&, const Vector2<T>&);
+	static Vector2<T> refract(const Vector2<T>&, const Vector2<T>&, const T&);
+	static Vector2<T> lerp(const Vector2<T>&, const Vector2<T>&, const T&);
 
 	union {
 		// axis coords
@@ -71,10 +71,10 @@ public:
 };
 
 template<typename T>
-vector2<T> operator*(const T&, const vector2<T>&);
+Vector2<T> operator*(const T&, const Vector2<T>&);
 
 template<typename T>
-std::ostream& operator<<(std::ostream&, const vector2<T>&);
+std::ostream& operator<<(std::ostream&, const Vector2<T>&);
 
 }
 }
