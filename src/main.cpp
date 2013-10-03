@@ -1,7 +1,7 @@
 #include <iostream>
 #include "math/types.hpp"
 
-int main(int argc, const char* argv[]) {
+int main(int argc, char* argv[]) {
 	for (int i = 0; i < argc; ++i) {
 		std::string arg(argv[i]);
 		if (arg == std::string("-test") || arg == std::string("-t")) {
