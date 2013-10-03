@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="math">
+      <UniqueIdentifier>{441727cc-a383-477a-bdb4-ca19620b7a1c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="math\core">
+      <UniqueIdentifier>{74cd398d-07e2-4521-9147-c704fc6cd939}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="src\math\core\swizzle.hpp">
+      <Filter>math\core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\math\core\swizzle_gen.hpp">
+      <Filter>math\core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\math\core\vector2.hpp">
+      <Filter>math\core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\math\core\vector3.hpp">
+      <Filter>math\core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\math\core\vector4.hpp">
+      <Filter>math\core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\math\func.hpp">
+      <Filter>math</Filter>
+    </ClInclude>
+    <ClInclude Include="src\math\types.hpp">
+      <Filter>math</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="src\math\core\swizzle.inl">
+      <Filter>math\core</Filter>
+    </None>
+    <None Include="src\math\core\vector2.inl">
+      <Filter>math\core</Filter>
+    </None>
+    <None Include="src\math\core\vector3.inl">
+      <Filter>math\core</Filter>
+    </None>
+    <None Include="src\math\core\vector4.inl">
+      <Filter>math\core</Filter>
+    </None>
+    <None Include="src\math\func.inl">
+      <Filter>math</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="src\main.cpp" />
+  </ItemGroup>
+</Project>
