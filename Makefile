@@ -11,9 +11,12 @@ C_EXT=c
 CPP_EXT=cpp
 INL_EXT=inl
 # compiler / linker
-CC=clang
-CXX=clang++
-LD=clang++
+# CC=clang
+# CXX=clang++
+# LD=clang++
+CC=gcc
+CXX=g++
+LD=g++
 # defines
 DEFS=DEBUG LINUX
 # libraries

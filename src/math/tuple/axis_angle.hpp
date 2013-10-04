@@ -6,8 +6,8 @@
 namespace math {
 namespace core {
 
-template<typename T>
-class Vector3;
+template<typename T, std::size_t N>
+class Vector;
 
 }
 
@@ -18,11 +18,11 @@ namespace tuple {
  * @tparam T Storage type.
  */
 template<typename T>
-class AxisAngle : public std::tuple<math::core::Vector3<T>, T> {
+class AxisAngle : public std::tuple<math::core::Vector<T, 3>, T> {
 public:
-	AxisAngle(const math::core::Vector3<T>&, const T&);
+	AxisAngle(const math::core::Vector<T, 3>&, const T&);
 
-	math::core::Vector3<T> axis(void) const;
+	math::core::Vector<T, 3> axis(void) const;
 	T angle(void) const;
 private:
 	static const std::size_t axis_idx = 0;

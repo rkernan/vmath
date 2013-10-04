@@ -2,7 +2,7 @@
 #define MATH_CORE_QUATERNION_INL
 
 #include "quaternion.hpp"
-#include "vector3.hpp"
+#include "vector.hpp"
 #include "../func.hpp"
 #include "../tuple/axis_angle.hpp"
 #include "../tuple/euler.hpp"
@@ -33,10 +33,10 @@ Quaternion<T>::Quaternion(const T& x, const T& y, const T& z, const T& w) : x(x)
 // TODO Use named constructor?
 template<typename T>
 Quaternion<T>::Quaternion(const math::tuple::AxisAngle<T>& axis_angle) {
-	Vector3<T> axis = axis_angle.axis();
+	Vector<T, 3> axis = axis_angle.axis();
 	T angle = axis_angle.angle();
 	T half_angle = angle / static_cast<T>(2.0);
-	Vector3<T> N = math::sin(half_angle) * axis.normal();
+	Vector<T, 3> N = math::sin(half_angle) * axis.normal();
 	this->x = N.x;
 	this->y = N.y;
 	this->z = N.z;
@@ -162,8 +162,8 @@ Quaternion<T>& Quaternion<T>::operator*=(const Quaternion<T>& H) {
  * @return Rotated vector.
  */
 template<typename T>
-Vector3<T> Quaternion<T>::operator*(const Vector3<T>& V) const {
-	Vector3<T> N = V.normal();
+Vector<T, 3> Quaternion<T>::operator*(const Vector<T, 3>& V) const {
+	Vector<T, 3> N = V.normal();
 	Quaternion<T> vQ(N.x, N.y, N.z, static_cast<T>(0.0));
 	Quaternion<T> cQ(this->conjugate());
 	Quaternion<T> rQ(vQ * cQ);
@@ -259,7 +259,7 @@ math::tuple::EulerAngles<T> Quaternion<T>::eulerAngles(void) const {
  */
 template<typename T>
 math::tuple::AxisAngle<T> Quaternion<T>::axisAngle(void) const {
-	Vector3<T> axis = Vector3<T>(this->x, this->y, this->z).normal();
+	Vector<T, 3> axis = Vector<T, 3>(this->x, this->y, this->z).normal();
 	T angle = math::acos(this->w) * static_cast<T>(2.0);
 	return math::tuple::AxisAngle<T>(axis, angle);
 }

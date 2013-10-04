@@ -2,7 +2,7 @@
 #define MATH_CORE_QUATERNION_HPP
 
 #include <ostream>
-#include <tuple>
+#include <cstddef>
 
 namespace math {
 
@@ -18,8 +18,8 @@ class AxisAngle;
 
 namespace core {
 
-template<typename T>
-class Vector3;
+template<typename T, std::size_t N>
+class Vector;
 
 /**
  * @class Quaternion
@@ -50,7 +50,7 @@ public:
 	Quaternion<T>& operator*=(const Quaternion<T>&);
 	Quaternion<T> operator/(const Quaternion<T>&) const;
 	Quaternion<T>& operator/=(const Quaternion<T>&);
-	Vector3<T> operator*(const Vector3<T>&) const;
+	Vector<T, 3> operator*(const Vector<T, 3>&) const;
 	Quaternion<T> operator/(const T&) const;
 
 	T mag(void) const;

@@ -2,7 +2,7 @@
 #define MATH_TUPLE_AXIS_ANGLE_INL
 
 #include "axis_angle.hpp"
-#include "../core/vector3.hpp"
+#include "../core/vector.hpp"
 
 using namespace math::tuple;
 
@@ -12,15 +12,15 @@ using namespace math::tuple;
  * @param angle Angle of rotation.
  */
 template<typename T>
-AxisAngle<T>::AxisAngle(const math::core::Vector3<T>& axis, const T& angle) :
-	std::tuple<math::core::Vector3<T>, T>(axis, angle) {}
+AxisAngle<T>::AxisAngle(const math::core::Vector<T, 3>& axis, const T& angle) :
+	std::tuple<math::core::Vector<T, 3>, T>(axis, angle) {}
 
 /**
  * Accessor for axis.
  * @return Axis of rotation.
  */
 template<typename T>
-math::core::Vector3<T> AxisAngle<T>::axis(void) const {
+math::core::Vector<T, 3> AxisAngle<T>::axis(void) const {
 	return std::get<AxisAngle::axis_idx>(*this);
 }
 
