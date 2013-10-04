@@ -188,7 +188,7 @@ T Vector4<T>::mag2(void) const {
  */
 template<typename T>
 Vector4<T> Vector4<T>::normal(void) const {
-	// FIXME divide by zero
+	// TODO divide by zero
 	return *this / this->mag();
 }
 

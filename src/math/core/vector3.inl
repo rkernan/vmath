@@ -170,7 +170,7 @@ T Vector3<T>::mag2(void) const {
  */
 template<typename T>
 Vector3<T> Vector3<T>::normal(void) const {
-	// FIXME divide by zero
+	// TODO divide by zero
 	return *this / this->mag();
 }
 

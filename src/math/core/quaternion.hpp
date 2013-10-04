@@ -5,6 +5,7 @@
 #include <tuple>
 
 namespace math {
+
 namespace tuple {
 
 template<typename T>

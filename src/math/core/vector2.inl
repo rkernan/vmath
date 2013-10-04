@@ -155,7 +155,7 @@ T Vector2<T>::mag2(void) const {
  */
 template<typename T>
 Vector2<T> Vector2<T>::normal(void) const {
-	// FIXME divide by zero possible
+	// TODO divide by zero possible
 	return *this / this->mag();
 }
 
