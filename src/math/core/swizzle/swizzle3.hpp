@@ -18,7 +18,7 @@ class Vector3;
  * @tparam E3 Index of third element.
  */
 template<typename T, std::size_t N, std::size_t E1, std::size_t E2, std::size_t E3>
-class Swizzle3 : Swizzle<T, N> {
+class Swizzle3 : public Swizzle<T, N> {
 public:
 	operator Vector3<T>();
 	Vector3<T>& operator=(const Vector3<T>&);

@@ -18,7 +18,7 @@ namespace tuple {
  * @tparam T Storage type.
  */
 template<typename T>
-class AxisAngle : std::tuple<math::core::Vector3<T>, T> {
+class AxisAngle : public std::tuple<math::core::Vector3<T>, T> {
 public:
 	AxisAngle(const math::core::Vector3<T>&, const T&);
 
