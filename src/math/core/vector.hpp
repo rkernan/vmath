@@ -103,7 +103,14 @@ public:
 template<typename T, std::size_t N>
 class Vector : public VectorComponents<T, N> {
 public:
-	using VectorComponents<T, N>::VectorComponents;
+	//using VectorComponents<T, N>::VectorComponents; // not supported in VS2012 or clang < 3.3
+	// FIXME This is just temporary until VS supports constructor inheritance (above)
+	Vector(const T& x, const T& y) : VectorComponents<T, N>(x, y) {}
+	Vector(const T& x, const T& y, const T& z) : VectorComponents<T, N>(x, y, z) {}
+	Vector(const T& x, const T& y, const T& z, const T& w) : VectorComponents<T, N>(x, y, z, w) {}
+
+	Vector(void);
+	Vector(const T values[N]);
 
 #if !defined(WINDOWS)
 	~Vector(void) = default;
@@ -131,10 +138,12 @@ public:
 	bool operator==(const Vector<T, N>&);
 	bool operator!=(const Vector<T, N>&);
 
+#if !defined(WINDOWS)
 	template<typename = typename std::enable_if<std::is_floating_point<T>::value>::type>
 	bool operator==(const Vector<T, N>&);
 	template<typename = typename std::enable_if<std::is_floating_point<T>::value>::type>
 	bool operator!=(const Vector<T, N>&);
+#endif
 
 	static T dot(const Vector<T, N>&, const Vector<T, N>&);
 	static T cross(const Vector<T, 2>&, const Vector<T, 2>&);
@@ -155,5 +164,7 @@ std::ostream& operator<<(std::ostream&, const Vector<T, N>&);
 
 }
 }
+
+#include "vector.inl"
 
 #endif

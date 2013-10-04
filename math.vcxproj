@@ -89,6 +89,7 @@
     <None Include="src\math\core\swizzle\swizzle2.inl" />
     <None Include="src\math\core\swizzle\swizzle3.inl" />
     <None Include="src\math\core\swizzle\swizzle4.inl" />
+    <None Include="src\math\core\vector.inl" />
     <None Include="src\math\func.inl" />
     <None Include="src\math\tuple\axis_angle.inl" />
     <None Include="src\math\tuple\euler.inl" />

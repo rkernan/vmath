@@ -74,6 +74,9 @@
     <None Include="src\math\tuple\euler.inl">
       <Filter>math\tuple</Filter>
     </None>
+    <None Include="src\math\core\vector.inl">
+      <Filter>math</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\main.cpp" />
