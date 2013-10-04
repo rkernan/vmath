@@ -346,7 +346,7 @@ Quaternion<T> Quaternion<T>::slerp(const Quaternion<T>& S, const Quaternion<T>& 
  * @return Scalar-quaternion product.
  */
 template<typename T>
-Quaternion<T> operator*(const T& s, const Quaternion<T>& H) {
+Quaternion<T> math::core::operator*(const T& s, const Quaternion<T>& H) {
 	T x = s * H.x;
 	T y = s * H.y;
 	T z = s * H.z;
@@ -361,7 +361,7 @@ Quaternion<T> operator*(const T& s, const Quaternion<T>& H) {
  * @return Modified output stream.
  */
 template<typename T>
-std::ostream& operator<<(std::ostream& out, const Quaternion<T>& H) {
+std::ostream& math::core::operator<<(std::ostream& out, const Quaternion<T>& H) {
 	return out << "<" << H.x << ", " << H.y << ", " << H.z << ", " << H.w << ">";
 }
 

@@ -23,10 +23,16 @@ class Swizzle4 : Swizzle<T, N> {
 public:
 	operator Vector4<T>();
 	Vector4<T>& operator=(const Vector4<T>&);
+	Vector4<T> operator+(const Vector4<T>&) const;
 	Vector4<T>& operator+=(const Vector4<T>&);
+	Vector4<T> operator-(const Vector4<T>&) const;
 	Vector4<T>& operator-=(const Vector4<T>&);
+	Vector4<T> operator*(const Vector4<T>&) const;
 	Vector4<T>& operator*=(const Vector4<T>&);
+	Vector4<T> operator/(const Vector4<T>&) const;
 	Vector4<T>& operator/=(const Vector4<T>&);
+	bool operator==(const Vector4<T>&) const;
+	bool operator!=(const Vector4<T>&) const;
 };
 
 }

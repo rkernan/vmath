@@ -1,5 +1,5 @@
 #ifndef MATH_CORE_SWIZZLE_SWIZZLE3_HPP
-#define  MATH_CORE_SWIZZLE_SWIZZLE3_HPP
+#define MATH_CORE_SWIZZLE_SWIZZLE3_HPP
 
 #include "swizzle.hpp"
 
@@ -22,10 +22,16 @@ class Swizzle3 : Swizzle<T, N> {
 public:
 	operator Vector3<T>();
 	Vector3<T>& operator=(const Vector3<T>&);
+	Vector3<T> operator+(const Vector3<T>&) const;
 	Vector3<T>& operator+=(const Vector3<T>&);
+	Vector3<T> operator-(const Vector3<T>&) const;
 	Vector3<T>& operator-=(const Vector3<T>&);
+	Vector3<T> operator*(const Vector3<T>&) const;
 	Vector3<T>& operator*=(const Vector3<T>&);
+	Vector3<T> operator/(const Vector3<T>&) const;
 	Vector3<T>& operator/=(const Vector3<T>&);
+	bool operator==(const Vector3<T>&) const;
+	bool operator!=(const Vector3<T>&) const;
 };
 
 }
