@@ -12,7 +12,7 @@ int main(int argc, char* argv[]) {
 			std::cout << V << std::endl;
 			V.yx = math::Vector2(3.0f, 1.0f);
 			std::cout << V << std::endl;
-			V.xx = math::Vector2(0.0f, 0.0f);
+			// V.xx = math::Vector2(0.0f, 0.0f); // compile error
 		}
 	}
 	return 0;
