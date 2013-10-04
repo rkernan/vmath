@@ -168,7 +168,7 @@ Vector3<T> Quaternion<T>::operator*(const Vector3<T>& V) const {
 	Quaternion<T> cQ(this->conjugate());
 	Quaternion<T> rQ(vQ * cQ);
 	rQ = *this * rQ;
-	return Vector3<T>(rQ.x, rQ.y, rQ.z);
+	return vector3(rQ.x, rQ.y, rQ.z);
 }
 
 /**
@@ -259,9 +259,8 @@ math::tuple::EulerAngles<T> Quaternion<T>::eulerAngles(void) const {
  */
 template<typename T>
 math::tuple::AxisAngle<T> Quaternion<T>::axisAngle(void) const {
-	Vector3<T> axis(this->x, this->y, this->z);
-	axis.normalize();
-	T angle = math::acos(this->x) * static_cast<T>(2.0);
+	Vector3<T> axis = Vector3<T>(this->x, this->y, this->z).normal();
+	T angle = math::acos(this->w) * static_cast<T>(2.0);
 	return math::tuple::AxisAngle<T>(axis, angle);
 }
 
