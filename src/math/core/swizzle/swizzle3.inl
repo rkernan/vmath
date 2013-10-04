@@ -137,4 +137,25 @@ bool Swizzle3<T, N, E1, E2, E3>::operator!=(const Vector3<T>& V) const {
 	return *(Vector3<T>*)this != V;
 }
 
+/**
+ * Vector-scalar division.
+ * @param s Scalar to divide by.
+ * @return The vector-scalar quotient.
+ */
+template<typename T, std::size_t N, std::size_t E1, std::size_t E2, std::size_t E3>
+Vector3<T> Swizzle3<T, N, E1, E2, E3>::operator/(const T& s) const {
+	return *(Vector3<T>*)this / s;
+}
+
+/**
+ * Scalar-vector multiplication.
+ * @param s Scalar to multiply by.
+ * @param V Vector to multiply.
+ * @return The scalar-vector product.
+ */
+template<typename T, std::size_t N, std::size_t E1, std::size_t E2, std::size_t E3>
+Vector3<T> operator*(const T& s, const Swizzle3<T, N, E1, E2, E3>& V) {
+	return s * (Vector3<T>)V;
+}
+
 #endif

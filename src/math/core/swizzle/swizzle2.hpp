@@ -31,7 +31,11 @@ public:
 	Vector2<T>& operator/=(const Vector2<T>&);
 	bool operator==(const Vector2<T>&) const;
 	bool operator!=(const Vector2<T>&) const;
+	Vector2<T> operator/(const T&) const;
 };
+
+template<typename T, std::size_t N, std::size_t E1, std::size_t E2>
+Vector2<T> operator*(const T&, const Swizzle2<T, N, E1, E2>);
 
 }
 }

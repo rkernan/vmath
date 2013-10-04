@@ -14,7 +14,8 @@ int main(int argc, char* argv[]) {
 			std::cout << (v1 + v2.xy) << std::endl;
 			std::cout << (v1.xy + v2.yx) << std::endl;
 			v3.yx += v2.yx;
-			std::cout << v3 << std::endl;
+			std::cout << 3.0f * v3 << std::endl;
+			std::cout << v3 / 3.0f << std::endl;
 			math::Vector3 v4(v2.yyy);
 			std::cout << v4 <<std::endl;
 		}
