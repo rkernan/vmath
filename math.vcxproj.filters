@@ -15,15 +15,6 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="src\math\core\vector2.hpp">
-      <Filter>math\core</Filter>
-    </ClInclude>
-    <ClInclude Include="src\math\core\vector3.hpp">
-      <Filter>math\core</Filter>
-    </ClInclude>
-    <ClInclude Include="src\math\core\vector4.hpp">
-      <Filter>math\core</Filter>
-    </ClInclude>
     <ClInclude Include="src\math\func.hpp">
       <Filter>math</Filter>
     </ClInclude>
@@ -54,17 +45,14 @@
     <ClInclude Include="src\math\tuple\euler.hpp">
       <Filter>math\tuple</Filter>
     </ClInclude>
+    <ClInclude Include="src\math\core\vector.hpp">
+      <Filter>math\core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\math\core\matrix.hpp">
+      <Filter>math\core</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <None Include="src\math\core\vector2.inl">
-      <Filter>math\core</Filter>
-    </None>
-    <None Include="src\math\core\vector3.inl">
-      <Filter>math\core</Filter>
-    </None>
-    <None Include="src\math\core\vector4.inl">
-      <Filter>math\core</Filter>
-    </None>
     <None Include="src\math\func.inl">
       <Filter>math</Filter>
     </None>

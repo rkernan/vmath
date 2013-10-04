@@ -136,7 +136,6 @@ public:
 	template<typename = typename std::enable_if<std::is_floating_point<T>::value>::type>
 	bool operator!=(const Vector<T, N>&);
 
-
 	static T dot(const Vector<T, N>&, const Vector<T, N>&);
 	static T cross(const Vector<T, 2>&, const Vector<T, 2>&);
 	static Vector<T, N> cross(const Vector<T, 3>&, const Vector<T, 3>&);

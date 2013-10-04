@@ -71,15 +71,14 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="src\math\core\matrix.hpp" />
     <ClInclude Include="src\math\core\quaternion.hpp" />
     <ClInclude Include="src\math\core\swizzle\swizzle.hpp" />
     <ClInclude Include="src\math\core\swizzle\swizzle2.hpp" />
     <ClInclude Include="src\math\core\swizzle\swizzle3.hpp" />
     <ClInclude Include="src\math\core\swizzle\swizzle4.hpp" />
     <ClInclude Include="src\math\core\swizzle\swizzle_gen.hpp" />
-    <ClInclude Include="src\math\core\vector2.hpp" />
-    <ClInclude Include="src\math\core\vector3.hpp" />
-    <ClInclude Include="src\math\core\vector4.hpp" />
+    <ClInclude Include="src\math\core\vector.hpp" />
     <ClInclude Include="src\math\func.hpp" />
     <ClInclude Include="src\math\tuple\axis_angle.hpp" />
     <ClInclude Include="src\math\tuple\euler.hpp" />
@@ -90,9 +89,6 @@
     <None Include="src\math\core\swizzle\swizzle2.inl" />
     <None Include="src\math\core\swizzle\swizzle3.inl" />
     <None Include="src\math\core\swizzle\swizzle4.inl" />
-    <None Include="src\math\core\vector2.inl" />
-    <None Include="src\math\core\vector3.inl" />
-    <None Include="src\math\core\vector4.inl" />
     <None Include="src\math\func.inl" />
     <None Include="src\math\tuple\axis_angle.inl" />
     <None Include="src\math\tuple\euler.inl" />
