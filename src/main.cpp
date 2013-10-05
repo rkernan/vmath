@@ -20,9 +20,16 @@ int main(int argc, char* argv[]) {
 	std::cout << "    Vector2: " << sizeof(math::Vector2) << std::endl;
 	std::cout << "   float[2]: " << sizeof(float[2]) << std::endl;
 	math::core::Vector<float, 2> v1(1.0f, 2.0f);
-	math::core::Vector<float, 2> v2();
-	v2 + v1;
+	math::core::Vector<float, 2> v2;
+	std::cout << (v2 + v1) << std::endl;
+	v1 == v2;
+	float r1 = Vector<float, 2>::cross(v1, v2);
+	math::core::Vector<float, 3> v3;
+	math::core::Vector<float, 3> v4;
+	math::core::Vector<float, 3> r2 = Vector<float, 3>::cross(v3, v4);
 
+#if defined(WINDOWS)
 	while(1) {}
+#endif
 	return 0;
 }
