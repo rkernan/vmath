@@ -6,8 +6,8 @@
 namespace math {
 namespace core {
 
-template<typename T>
-class Vector4;
+template<typename T, std::size_t N>
+class Vector;
 
 /**
  * @class Swizzle4
@@ -21,23 +21,23 @@ class Vector4;
 template<typename T, std::size_t N, std::size_t E1, std::size_t E2, std::size_t E3, std::size_t E4>
 class Swizzle4 : public Swizzle<T, N> {
 public:
-	operator Vector4<T>();
-	Vector4<T>& operator=(const Vector4<T>&);
-	Vector4<T> operator+(const Vector4<T>&) const;
-	Vector4<T>& operator+=(const Vector4<T>&);
-	Vector4<T> operator-(const Vector4<T>&) const;
-	Vector4<T>& operator-=(const Vector4<T>&);
-	Vector4<T> operator*(const Vector4<T>&) const;
-	Vector4<T>& operator*=(const Vector4<T>&);
-	Vector4<T> operator/(const Vector4<T>&) const;
-	Vector4<T>& operator/=(const Vector4<T>&);
-	bool operator==(const Vector4<T>&) const;
-	bool operator!=(const Vector4<T>&) const;
-	Vector4<T> operator/(const T&) const;
+	operator Vector<T, 4>();
+	Vector<T, 4>& operator=(const Vector<T, 4>&);
+	Vector<T, 4> operator+(const Vector<T, 4>&) const;
+	Vector<T, 4>& operator+=(const Vector<T, 4>&);
+	Vector<T, 4> operator-(const Vector<T, 4>&) const;
+	Vector<T, 4>& operator-=(const Vector<T, 4>&);
+	Vector<T, 4> operator*(const Vector<T, 4>&) const;
+	Vector<T, 4>& operator*=(const Vector<T, 4>&);
+	Vector<T, 4> operator/(const Vector<T, 4>&) const;
+	Vector<T, 4>& operator/=(const Vector<T, 4>&);
+	bool operator==(const Vector<T, 4>&) const;
+	bool operator!=(const Vector<T, 4>&) const;
+	Vector<T, 4> operator/(const T&) const;
 };
 
 template<typename T, std::size_t N, std::size_t E1, std::size_t E2, std::size_t E3, std::size_t E4>
-Vector4<T> operator*(const T&, const Swizzle4<T, N, E1, E2, E3, E4>);
+Vector<T, 4> operator*(const T&, const Swizzle4<T, N, E1, E2, E3, E4>);
 
 }
 }

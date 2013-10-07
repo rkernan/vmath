@@ -2,7 +2,7 @@
 #define MATH_CORE_SWIZZLE_SWIZZLE3_INL
 
 #include "swizzle3.hpp"
-#include "../vector3.hpp"
+#include "../vector.hpp"
 
 using namespace math::core;
 
@@ -11,8 +11,8 @@ using namespace math::core;
  * @return Converted vector.
  */
 template<typename T, std::size_t N, std::size_t E1, std::size_t E2, std::size_t E3>
-Swizzle3<T, N, E1, E2, E3>::operator Vector3<T>() {
-	return Vector3<T>(this->values[E1], this->values[E2], this->values[E3]);
+Swizzle3<T, N, E1, E2, E3>::operator Vector<T, 3>() {
+	return Vector<T, 3>(this->values[E1], this->values[E2], this->values[E3]);
 }
 
 /**
@@ -21,12 +21,12 @@ Swizzle3<T, N, E1, E2, E3>::operator Vector3<T>() {
  * @return The modified vector.
  */
 template<typename T, std::size_t N, std::size_t E1, std::size_t E2, std::size_t E3>
-Vector3<T>& Swizzle3<T, N, E1, E2, E3>::operator=(const Vector3<T>& V) {
+Vector<T, 3>& Swizzle3<T, N, E1, E2, E3>::operator=(const Vector<T, 3>& V) {
 	static_assert(swizzle_has_unique_elems<N, E1, E2, E3>::value, MATH_CORE_SWIZZLE_ASSIGN_ERROR);
 	this->values[E1] = V.x;
 	this->values[E2] = V.y;
 	this->values[E3] = V.z;
-	return *(Vector3<T>*)this;
+	return *(Vector<T, 3>*)this;
 }
 
 /**
@@ -35,8 +35,8 @@ Vector3<T>& Swizzle3<T, N, E1, E2, E3>::operator=(const Vector3<T>& V) {
  * @return The vector sum.
  */
 template<typename T, std::size_t N, std::size_t E1, std::size_t E2, std::size_t E3>
-Vector3<T> Swizzle3<T, N, E1, E2, E3>::operator+(const Vector3<T>& V) const {
-	return *(Vector3<T>*)this + V;
+Vector<T, 3> Swizzle3<T, N, E1, E2, E3>::operator+(const Vector<T, 3>& V) const {
+	return *(Vector<T, 3>*)this + V;
 }
 
 /**
@@ -46,7 +46,7 @@ Vector3<T> Swizzle3<T, N, E1, E2, E3>::operator+(const Vector3<T>& V) const {
  * @return The modified vector.
  */
 template<typename T, std::size_t N, std::size_t E1, std::size_t E2, std::size_t E3>
-Vector3<T>& Swizzle3<T, N, E1, E2, E3>::operator+=(const Vector3<T>& V) {
+Vector<T, 3>& Swizzle3<T, N, E1, E2, E3>::operator+=(const Vector<T, 3>& V) {
 	static_assert(swizzle_has_unique_elems<N, E1, E2, E3>::value, MATH_CORE_SWIZZLE_ASSIGN_ERROR);
 	return *this = *this + V;
 }
@@ -57,8 +57,8 @@ Vector3<T>& Swizzle3<T, N, E1, E2, E3>::operator+=(const Vector3<T>& V) {
  * @return The vector difference.
  */
 template<typename T, std::size_t N, std::size_t E1, std::size_t E2, std::size_t E3>
-Vector3<T> Swizzle3<T, N, E1, E2, E3>::operator-(const Vector3<T>& V) const {
-	return *(Vector3<T>*)this - V;
+Vector<T, 3> Swizzle3<T, N, E1, E2, E3>::operator-(const Vector<T, 3>& V) const {
+	return *(Vector<T, 3>*)this - V;
 }
 
 /**
@@ -68,7 +68,7 @@ Vector3<T> Swizzle3<T, N, E1, E2, E3>::operator-(const Vector3<T>& V) const {
  * @return The modified vector.
  */
 template<typename T, std::size_t N, std::size_t E1, std::size_t E2, std::size_t E3>
-Vector3<T>& Swizzle3<T, N, E1, E2, E3>::operator-=(const Vector3<T>& V) {
+Vector<T, 3>& Swizzle3<T, N, E1, E2, E3>::operator-=(const Vector<T, 3>& V) {
 	static_assert(swizzle_has_unique_elems<N, E1, E2, E3>::value, MATH_CORE_SWIZZLE_ASSIGN_ERROR);
 	return *this = *this - V;
 }
@@ -79,8 +79,8 @@ Vector3<T>& Swizzle3<T, N, E1, E2, E3>::operator-=(const Vector3<T>& V) {
  * @return The vector product.
  */
 template<typename T, std::size_t N, std::size_t E1, std::size_t E2, std::size_t E3>
-Vector3<T> Swizzle3<T, N, E1, E2, E3>::operator*(const Vector3<T>& V) const {
-	return *(Vector3<T>*)this * V;
+Vector<T, 3> Swizzle3<T, N, E1, E2, E3>::operator*(const Vector<T, 3>& V) const {
+	return *(Vector<T, 3>*)this * V;
 }
 
 /**
@@ -90,7 +90,7 @@ Vector3<T> Swizzle3<T, N, E1, E2, E3>::operator*(const Vector3<T>& V) const {
  * @return The modified vector.
  */
 template<typename T, std::size_t N, std::size_t E1, std::size_t E2, std::size_t E3>
-Vector3<T>& Swizzle3<T, N, E1, E2, E3>::operator*=(const Vector3<T>& V) {
+Vector<T, 3>& Swizzle3<T, N, E1, E2, E3>::operator*=(const Vector<T, 3>& V) {
 	static_assert(swizzle_has_unique_elems<N, E1, E2, E3>::value, MATH_CORE_SWIZZLE_ASSIGN_ERROR);
 	return *this = *this * V;
 }
@@ -101,8 +101,8 @@ Vector3<T>& Swizzle3<T, N, E1, E2, E3>::operator*=(const Vector3<T>& V) {
  * @return The vector quotient.
  */
 template<typename T, std::size_t N, std::size_t E1, std::size_t E2, std::size_t E3>
-Vector3<T> Swizzle3<T, N, E1, E2, E3>::operator/(const Vector3<T>& V) const {
-	return *(Vector3<T>*)this * V;
+Vector<T, 3> Swizzle3<T, N, E1, E2, E3>::operator/(const Vector<T, 3>& V) const {
+	return *(Vector<T, 3>*)this * V;
 }
 
 /**
@@ -112,7 +112,7 @@ Vector3<T> Swizzle3<T, N, E1, E2, E3>::operator/(const Vector3<T>& V) const {
  * @return The modified vector (component-wise quotient).
  */
 template<typename T, std::size_t N, std::size_t E1, std::size_t E2, std::size_t E3>
-Vector3<T>& Swizzle3<T, N, E1, E2, E3>::operator/=(const Vector3<T>& V) {
+Vector<T, 3>& Swizzle3<T, N, E1, E2, E3>::operator/=(const Vector<T, 3>& V) {
 	static_assert(swizzle_has_unique_elems<N, E1, E2, E3>::value, MATH_CORE_SWIZZLE_ASSIGN_ERROR);
 	return *this = *this / V;
 }
@@ -123,8 +123,8 @@ Vector3<T>& Swizzle3<T, N, E1, E2, E3>::operator/=(const Vector3<T>& V) {
  * @return True if they are equal, otherwise false.
  */
 template<typename T, std::size_t N, std::size_t E1, std::size_t E2, std::size_t E3>
-bool Swizzle3<T, N, E1, E2, E3>::operator==(const Vector3<T>& V) const {
-	return *(Vector3<T>*)this == V;
+bool Swizzle3<T, N, E1, E2, E3>::operator==(const Vector<T, 3>& V) const {
+	return *(Vector<T, 3>*)this == V;
 }
 
 /**
@@ -133,8 +133,8 @@ bool Swizzle3<T, N, E1, E2, E3>::operator==(const Vector3<T>& V) const {
  * @return False if they are equal, otherwise true.
  */
 template<typename T, std::size_t N, std::size_t E1, std::size_t E2, std::size_t E3>
-bool Swizzle3<T, N, E1, E2, E3>::operator!=(const Vector3<T>& V) const {
-	return *(Vector3<T>*)this != V;
+bool Swizzle3<T, N, E1, E2, E3>::operator!=(const Vector<T, 3>& V) const {
+	return *(Vector<T, 3>*)this != V;
 }
 
 /**
@@ -143,8 +143,8 @@ bool Swizzle3<T, N, E1, E2, E3>::operator!=(const Vector3<T>& V) const {
  * @return The vector-scalar quotient.
  */
 template<typename T, std::size_t N, std::size_t E1, std::size_t E2, std::size_t E3>
-Vector3<T> Swizzle3<T, N, E1, E2, E3>::operator/(const T& s) const {
-	return *(Vector3<T>*)this / s;
+Vector<T, 3> Swizzle3<T, N, E1, E2, E3>::operator/(const T& s) const {
+	return *(Vector<T, 3>*)this / s;
 }
 
 /**
@@ -154,8 +154,8 @@ Vector3<T> Swizzle3<T, N, E1, E2, E3>::operator/(const T& s) const {
  * @return The scalar-vector product.
  */
 template<typename T, std::size_t N, std::size_t E1, std::size_t E2, std::size_t E3>
-Vector3<T> operator*(const T& s, const Swizzle3<T, N, E1, E2, E3>& V) {
-	return s * (Vector3<T>)V;
+Vector<T, 3> operator*(const T& s, const Swizzle3<T, N, E1, E2, E3>& V) {
+	return s * (Vector<T, 3>)V;
 }
 
 #endif
