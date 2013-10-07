@@ -16,9 +16,16 @@ int main(int argc, char* argv[]) {
 			// V.xx = math::Vector2(0.0f, 0.0f); // compile error
 		}
 	}
-
+	std::cout << "    Vector1: " << sizeof(math::core::Vector<float, 1>) << std::endl;
+	std::cout << "   float[1]: " << sizeof(float[1]) << std::endl;
 	std::cout << "    Vector2: " << sizeof(math::Vector2) << std::endl;
 	std::cout << "   float[2]: " << sizeof(float[2]) << std::endl;
+	std::cout << "    Vector3: " << sizeof(math::Vector3) << std::endl;
+	std::cout << "   float[3]: " << sizeof(float[3]) << std::endl;
+	std::cout << "    Vector4: " << sizeof(math::Vector4) << std::endl;
+	std::cout << "   float[4]: " << sizeof(float[4]) << std::endl;
+	std::cout << "    Vector5: " << sizeof(math::core::Vector<float, 5>) << std::endl;
+	std::cout << "   float[5]: " << sizeof(float[5]) << std::endl;
 	math::core::Vector<float, 2> v1(1.0f, 2.0f);
 	math::core::Vector<float, 2> v2;
 	std::cout << (v2 + v1) << std::endl;
