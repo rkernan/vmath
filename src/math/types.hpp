@@ -1,7 +1,6 @@
 #ifndef MATH_TYPES_HPP
 #define MATH_TYPES_HPP
 
-// #include "core/quaternion.hpp"
 #include "core/vector.hpp"
 
 namespace math {
