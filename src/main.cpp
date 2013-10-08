@@ -34,6 +34,9 @@ int main(int argc, char* argv[]) {
 	math::core::Vector<float, 3> v3;
 	math::core::Vector<float, 3> v4;
 	math::core::Vector<float, 3> r2 = Vector<float, 3>::cross(v3, v4);
+	v3 = math::core::Vector<float, 3>(1.0f, 2.0f, 3.0f);
+	std::cout << v3 << std::endl;
+	std::cout << (math::core::Vector<float, 3>)v3.zyx << std::endl;
 
 #if defined(WINDOWS)
 	while(1) {}

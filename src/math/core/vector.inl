@@ -55,7 +55,7 @@ T& Vector<T, N>::operator[](const std::size_t idx) {
 template<typename T, std::size_t N>
 Vector<T, N>& Vector<T, N>::operator=(const Vector<T, N>& other) {
 	for (std::size_t i = 0; i < N; i++) {
-		this->value[i] = other.values[i];
+		this->values[i] = other.values[i];
 	}
 	return *this;
 }
