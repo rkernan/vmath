@@ -12,8 +12,6 @@
 namespace math {
 namespace core {
 
-namespace {
-
 /**
 * @class VectorComponents
 * @tparam T Storage type.
@@ -133,8 +131,6 @@ public:
 		MATH_CORE_SWIZZLE_GEN_SWIZZLE4_FOR_VECTOR4(T, r, g, b, a)
 	};
 };
-
-}
 
 /**
  * @class Vector
