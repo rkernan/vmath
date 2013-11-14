@@ -143,7 +143,6 @@ public:
 	Vector(void);
 	Vector(const T values[N]);
 
-	// FIXME Explicitly defaulted destructors are supported in VS2013.
 	~Vector(void) = default;
 
 	T operator[](const std::size_t) const;
