@@ -34,11 +34,8 @@ class VectorComponents<T, 2> {
 public:
 	explicit VectorComponents(void) : x(), y() {}
 	explicit VectorComponents(const T& x, const T& y) : x(x), y(y) {}
-#if !defined(WINDOWS)
-	// FIXME Explicitly defaulted constructors are supported in VS2013.
 	explicit VectorComponents(const VectorComponents<T, 2>&) = default;
 	explicit VectorComponents(VectorComponents<T, 2>&&) = default;
-#endif
 
 	union {
 		T values[2];
@@ -70,11 +67,9 @@ class VectorComponents<T, 3> {
 public:
 	explicit VectorComponents(void) : x(), y(), z() {}
 	explicit VectorComponents(const T& x, const T& y, const T& z) : x(x), y(y), z(z) {}
-#if !defined(WINDOWS)
-	// FIXME Explicitly defaulted constructors are supported in VS2013.
+	explicit VectorComponents(const VectorComponents<T, 2>& V, const T& z) : x(V.x), y(V.y), z(z) {}
 	explicit VectorComponents(const VectorComponents<T, 3>&) = default;
 	explicit VectorComponents(VectorComponents<T, 3>&&) = default;
-#endif
 
 	union {
 		T values[3];
@@ -106,11 +101,10 @@ class VectorComponents<T, 4> {
 public:
 	explicit VectorComponents(void) : x(), y(), z(), w() {}
 	explicit VectorComponents(const T& x, const T& y, const T& z, const T& w) : x(x), y(y), z(z), w(w) {}
-#if !defined(WINDOWS)
-	// FIXME Explicitly defaulted constructors are supported in VS2013.
+	explicit VectorComponents(const VectorComponents<T, 2>& V, const T& z, const T& w) : x(V.x), y(V.y), z(z), w(w) {}
+	explicit VectorComponents(const VectorComponents<T, 3>& V, const T& w) : x(V.x), y(V.y), z(V.z), w(w) {}
 	explicit VectorComponents(const VectorComponents<T, 4>&) = default;
 	explicit VectorComponents(VectorComponents<T, 4>&&) = default;
-#endif
 
 	union {
 		T values[4];
@@ -149,10 +143,8 @@ public:
 	Vector(void);
 	Vector(const T values[N]);
 
-#if !defined(WINDOWS)
 	// FIXME Explicitly defaulted destructors are supported in VS2013.
 	~Vector(void) = default;
-#endif
 
 	T operator[](const std::size_t) const;
 	T& operator[](const std::size_t);
