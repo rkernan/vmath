@@ -15,7 +15,7 @@ const long double PI = std::acos(-1.0L);
  * @return True if they are equivalent, otherwise false.
  */
 template<typename T>
-typename std::enable_if<std::is_floating_point<T>::value, bool>::type math::equals(const T& a, const T& b) {
+typename std::enable_if<std::is_floating_point<T>::value, bool>::type math::equals(const T a, const T b) {
 	static const T epsilon = static_cast<T>(0.00001L);
 	return math::equals<T>(a, b, epsilon);
 }
@@ -28,7 +28,7 @@ typename std::enable_if<std::is_floating_point<T>::value, bool>::type math::equa
  * @return True if they are equivalent, otherwise false.
  */
 template<typename T>
-typename std::enable_if<std::is_floating_point<T>::value, bool>::type math::equals(const T& a, const T& b, const T& epsilon) {
+typename std::enable_if<std::is_floating_point<T>::value, bool>::type math::equals(const T a, const T b, const T epsilon) {
 	// TODO This breaks with certain edge cases.
 	return math::abs(a - b) < epsilon;
 }
@@ -39,7 +39,7 @@ typename std::enable_if<std::is_floating_point<T>::value, bool>::type math::equa
  * @return The given degrees in radians.
  */
 template<typename T>
-typename std::enable_if<std::is_arithmetic<T>::value, T>::type math::radians(const T& degrees) {
+typename std::enable_if<std::is_arithmetic<T>::value, T>::type math::radians(const T degrees) {
 	static const T PI_OVER_180 = static_cast<T>(math::PI / 180.0L);
 	return degrees * PI_OVER_180;
 }
@@ -50,7 +50,7 @@ typename std::enable_if<std::is_arithmetic<T>::value, T>::type math::radians(con
  * @return The given radians in degrees.
  */
 template<typename T>
-typename std::enable_if<std::is_arithmetic<T>::value, T>::type math::degrees(const T& radians) {
+typename std::enable_if<std::is_arithmetic<T>::value, T>::type math::degrees(const T radians) {
 	static const T PI_UNDER_180 = static_cast<T>(180.0L / math::PI);
 	return radians * PI_UNDER_180;
 }
@@ -61,7 +61,7 @@ typename std::enable_if<std::is_arithmetic<T>::value, T>::type math::degrees(con
  * @return Cosine.
  */
 template<typename T>
-typename std::enable_if<std::is_arithmetic<T>::value, T>::type math::cos(const T& s) {
+typename std::enable_if<std::is_arithmetic<T>::value, T>::type math::cos(const T s) {
 	return std::cos(s);
 }
 
@@ -71,7 +71,7 @@ typename std::enable_if<std::is_arithmetic<T>::value, T>::type math::cos(const T
  * @return Sine.
  */
 template<typename T>
-typename std::enable_if<std::is_arithmetic<T>::value, T>::type math::sin(const T& s) {
+typename std::enable_if<std::is_arithmetic<T>::value, T>::type math::sin(const T s) {
 	return std::sin(s);
 }
 
@@ -81,7 +81,7 @@ typename std::enable_if<std::is_arithmetic<T>::value, T>::type math::sin(const T
  * @return Tangent.
  */
 template<typename T>
-typename std::enable_if<std::is_arithmetic<T>::value, T>::type math::tan(const T& s) {
+typename std::enable_if<std::is_arithmetic<T>::value, T>::type math::tan(const T s) {
 	return std::tan(s);
 }
 
@@ -91,7 +91,7 @@ typename std::enable_if<std::is_arithmetic<T>::value, T>::type math::tan(const T
  * @return Arccosine.
  */
 template<typename T>
-typename std::enable_if<std::is_arithmetic<T>::value, T>::type math::acos(const T& s) {
+typename std::enable_if<std::is_arithmetic<T>::value, T>::type math::acos(const T s) {
 	return std::acos(s);
 }
 
@@ -101,7 +101,7 @@ typename std::enable_if<std::is_arithmetic<T>::value, T>::type math::acos(const 
  * @return Arcsine.
  */
 template<typename T>
-typename std::enable_if<std::is_arithmetic<T>::value, T>::type math::asin(const T& s) {
+typename std::enable_if<std::is_arithmetic<T>::value, T>::type math::asin(const T s) {
 	return std::asin(s);
 }
 
@@ -111,7 +111,7 @@ typename std::enable_if<std::is_arithmetic<T>::value, T>::type math::asin(const 
  * @return Arctangent.
  */
 template<typename T>
-typename std::enable_if<std::is_arithmetic<T>::value, T>::type math::atan(const T& s) {
+typename std::enable_if<std::is_arithmetic<T>::value, T>::type math::atan(const T s) {
 	return std::atan(s);
 }
 
@@ -122,7 +122,7 @@ typename std::enable_if<std::is_arithmetic<T>::value, T>::type math::atan(const 
  * @return The angle in radians between the given point and the positive x-axis.
  */
 template<typename T>
-typename std::enable_if<std::is_arithmetic<T>::value, T>::type math::atan2(const T& y, const T& x) {
+typename std::enable_if<std::is_arithmetic<T>::value, T>::type math::atan2(const T y, const T x) {
 	// TODO When y = x = 0 a domain error occurs.
 	return std::atan2(y, x);
 }
@@ -134,7 +134,7 @@ typename std::enable_if<std::is_arithmetic<T>::value, T>::type math::atan2(const
  * @return Scalar to the exponent.
  */
 template<typename T>
-typename std::enable_if<std::is_arithmetic<T>::value, T>::type math::pow(const T& s, const T& e) {
+typename std::enable_if<std::is_arithmetic<T>::value, T>::type math::pow(const T s, const T e) {
 	return std::pow(s, e);
 }
 
@@ -144,7 +144,7 @@ typename std::enable_if<std::is_arithmetic<T>::value, T>::type math::pow(const T
  * @return Square root of the scalar.
  */
 template<typename T>
-typename std::enable_if<std::is_arithmetic<T>::value, T>::type math::sqrt(const T& s) {
+typename std::enable_if<std::is_arithmetic<T>::value, T>::type math::sqrt(const T s) {
 	return std::sqrt(s);
 }
 
@@ -154,7 +154,7 @@ typename std::enable_if<std::is_arithmetic<T>::value, T>::type math::sqrt(const 
  * @return Rounded scalar.
  */
 template<typename T>
-typename std::enable_if<std::is_floating_point<T>::value, T>::type math::ceil(const T& s) {
+typename std::enable_if<std::is_floating_point<T>::value, T>::type math::ceil(const T s) {
 	return std::ceil(s);
 }
 
@@ -164,7 +164,7 @@ typename std::enable_if<std::is_floating_point<T>::value, T>::type math::ceil(co
  * @return Rounded scalar.
  */
 template<typename T>
-typename std::enable_if<std::is_floating_point<T>::value, T>::type math::floor(const T& s) {
+typename std::enable_if<std::is_floating_point<T>::value, T>::type math::floor(const T s) {
 	return std::floor(s);
 }
 
@@ -174,7 +174,7 @@ typename std::enable_if<std::is_floating_point<T>::value, T>::type math::floor(c
  * @return Rounded scalar.
  */
 template<typename T>
-typename std::enable_if<std::is_floating_point<T>::value, T>::type math::round(const T& s) {
+typename std::enable_if<std::is_floating_point<T>::value, T>::type math::round(const T s) {
 	return (s < static_cast<T>(0.0L)) ? math::ceil(s - static_cast<T>(0.5L)) : math::floor(s + static_cast<T>(0.5L));
 }
 
@@ -184,7 +184,7 @@ typename std::enable_if<std::is_floating_point<T>::value, T>::type math::round(c
  * @return Truncated scalar.
  */
 template<typename T>
-typename std::enable_if<std::is_floating_point<T>::value, T>::type math::trunc(const T& s) {
+typename std::enable_if<std::is_floating_point<T>::value, T>::type math::trunc(const T s) {
 	return (s < static_cast<T>(0.0L)) ? math::ceil(s) : math::floor(s);
 }
 
@@ -196,7 +196,7 @@ typename std::enable_if<std::is_floating_point<T>::value, T>::type math::trunc(c
  * @return Clamped scalar.
  */
 template<typename T>
-typename std::enable_if<std::is_arithmetic<T>::value, T>::type math::clamp(const T& s, const T& lo, const T& hi) {
+typename std::enable_if<std::is_arithmetic<T>::value, T>::type math::clamp(const T s, const T lo, const T hi) {
 	return (s <= lo) ? lo : ((s >= hi) ? hi : s);
 }
 
@@ -206,7 +206,7 @@ typename std::enable_if<std::is_arithmetic<T>::value, T>::type math::clamp(const
  * @return Absolute value of scalar.
  */
 template<typename T>
-typename std::enable_if<std::is_arithmetic<T>::value, T>::type math::abs(const T& s) {
+typename std::enable_if<std::is_arithmetic<T>::value, T>::type math::abs(const T s) {
 	return (s < static_cast<T>(0.0L)) ? -s : s;
 }
 
@@ -217,7 +217,7 @@ typename std::enable_if<std::is_arithmetic<T>::value, T>::type math::abs(const T
  * @return Number with the given magnitude and sign.
  */
 template<typename T>
-typename std::enable_if<std::is_floating_point<T>::value, T>::type math::copysign(const T& x, const T& y) {
+typename std::enable_if<std::is_floating_point<T>::value, T>::type math::copysign(const T x, const T y) {
 	if (math::equals(y, static_cast<T>(0.0L))) {
 		return static_cast<T>(0.0L);
 	} else {
@@ -231,7 +231,7 @@ typename std::enable_if<std::is_floating_point<T>::value, T>::type math::copysig
 }
 
 template<typename T>
-typename std::enable_if<std::is_integral<T>::value, T>::type math::copysign(const T& x, const T& y) {
+typename std::enable_if<std::is_integral<T>::value, T>::type math::copysign(const T x, const T y) {
 	if (y == 0) {
 		return 0;
 	} else {
@@ -252,7 +252,7 @@ typename std::enable_if<std::is_integral<T>::value, T>::type math::copysign(cons
  * @return Interpolated scalar.
  */
 template<typename T>
-typename std::enable_if<std::is_floating_point<T>::value, T>::type math::lerp(const T& s, const T& e, const T& t) {
+typename std::enable_if<std::is_floating_point<T>::value, T>::type math::lerp(const T s, const T e, const T t) {
 	return s + ((e - s) * t);
 }
 
