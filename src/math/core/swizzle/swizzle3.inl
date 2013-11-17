@@ -2,6 +2,7 @@
 #define MATH_CORE_SWIZZLE_SWIZZLE3_INL
 
 #include "swizzle3.hpp"
+
 #include "../vector.hpp"
 
 using namespace math::core;

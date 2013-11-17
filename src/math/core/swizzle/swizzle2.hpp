@@ -2,7 +2,6 @@
 #define MATH_CORE_SWIZZLE_SWIZZLE2_HPP
 
 #include "swizzle.hpp"
-#include <type_traits>
 
 namespace math {
 namespace core {

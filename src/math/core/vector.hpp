@@ -4,6 +4,7 @@
 #include <cstddef>
 #include <ostream>
 #include <type_traits>
+
 #include "swizzle/swizzle2.hpp"
 #include "swizzle/swizzle3.hpp"
 #include "swizzle/swizzle4.hpp"

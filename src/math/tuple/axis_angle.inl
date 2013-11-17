@@ -2,6 +2,7 @@
 #define MATH_TUPLE_AXIS_ANGLE_INL
 
 #include "axis_angle.hpp"
+
 #include "../core/vector.hpp"
 
 using namespace math::tuple;

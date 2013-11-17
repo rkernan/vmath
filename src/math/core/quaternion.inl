@@ -2,6 +2,9 @@
 #define MATH_CORE_QUATERNION_INL
 
 #include "quaternion.hpp"
+
+#include <ostream>
+
 #include "vector.hpp"
 #include "../func.hpp"
 #include "../tuple/axis_angle.hpp"

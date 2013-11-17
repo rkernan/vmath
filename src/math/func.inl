@@ -2,6 +2,7 @@
 #define MATH_FUNC_INL
 
 #include "func.hpp"
+
 #include <cmath>
 
 using namespace math;

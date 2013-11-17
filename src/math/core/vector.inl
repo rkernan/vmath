@@ -1,8 +1,13 @@
 #ifndef MATH_CORE_VECTOR_INL
 #define MATH_CORE_VECTOR_INL
 
-#include "../func.hpp"
 #include "vector.hpp"
+
+#include <cstddef>
+#include <ostream>
+#include <type_traits>
+
+#include "../func.hpp"
 
 using namespace math::core;
 

@@ -1,8 +1,8 @@
 #ifndef MATH_CORE_QUATERNION_HPP
 #define MATH_CORE_QUATERNION_HPP
 
-#include <ostream>
 #include <cstddef>
+#include <ostream>
 
 namespace math {
 
@@ -62,7 +62,7 @@ public:
 
 	math::tuple::EulerAngles<T> eulerAngles(void) const;
 	math::tuple::AxisAngle<T> axisAngle(void) const;
-	
+
 	bool operator==(const Quaternion<T>&) const;
 	bool operator!=(const Quaternion<T>&) const;
 
