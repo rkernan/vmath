@@ -367,7 +367,7 @@ std::ostream& math::core::operator<<(std::ostream& out, const Vector<T, N>& V) {
  * @return 2-dimensional vector cross product.
  */
 template<typename T, std::size_t N>
-template<typename U>
+template<typename>
 T Vector<T, N>::cross(const Vector<T, N>& V1, const Vector<T, N>& V2) {
 	std::cout << "2d cross product" << std::endl;
 	return (V1.x * V2.y) - (V1.y * V2.x);
@@ -381,7 +381,7 @@ T Vector<T, N>::cross(const Vector<T, N>& V1, const Vector<T, N>& V2) {
  * @return 3-dimensional vector cross product.
  */
 template<typename T, std::size_t N>
-template<typename U>
+template<typename>
 Vector<T, N> Vector<T, N>::cross(const Vector<T, N>& V1, const Vector<T, N>& V2) {
 	std::cout << "3d cross product" << std::endl;
 	T x = (V1.y * V2.z) - (V1.z * V2.y);

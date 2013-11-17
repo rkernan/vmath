@@ -1,6 +1,7 @@
 #include <iostream>
 #include <vector>
-#include "math/types.hpp"
+#include <math/types.hpp>
+#include <math/func.hpp>
 
 int main(int argc, char* argv[]) {
 	static_assert(sizeof(math::Vector2) == sizeof(float[2]), "sizeof(vector2) != sizeof(float[2])");

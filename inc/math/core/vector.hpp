@@ -173,11 +173,11 @@ public:
 	static Vector<T, N> refract(const Vector<T, N>&, const Vector<T, N>&, const T&);
 	static Vector<T, N> lerp(const Vector<T, N>&, const Vector<T, N>&, const T&);
 
-	template<typename = typename std::enable_if<N == 2>::type>
-	static T cross(const Vector<T, N>& V1, const Vector<T, N>& V2);
+	template<typename = typename std::enable_if<N == 2, T>::type>
+	static T cross(const Vector<T, N>&, const Vector<T, N>&);
 
-	template<typename = typename std::enable_if<N == 3>::type>
-	static Vector<T, N> cross(const Vector<T, N>& V1, const Vector<T, N>& V2);
+	template<typename = typename std::enable_if<N == 3, T>::type>
+	static Vector<T, N> cross(const Vector<T, N>&, const Vector<T, N>&);
 };
 
 template<typename T, std::size_t N>
