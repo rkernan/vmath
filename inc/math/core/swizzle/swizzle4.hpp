@@ -34,6 +34,13 @@ public:
 	bool operator==(const Vector<T, 4>&) const;
 	bool operator!=(const Vector<T, 4>&) const;
 	Vector<T, 4> operator/(const T&) const;
+
+#if defined(MATH_CORE_SWIZZLE_ENABLE_ELEMENT_ACCESSORS)
+	T getE1(void) { return this->values[E1]; }
+	T getE2(void) { return this->values[E2]; }
+	T getE3(void) { return this->values[E3]; }
+	T getE4(void) { return this->values[E4]; }
+#endif
 };
 
 template<typename T, std::size_t N, std::size_t E1, std::size_t E2, std::size_t E3, std::size_t E4>
