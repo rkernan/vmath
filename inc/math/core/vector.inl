@@ -189,7 +189,7 @@ T Vector<T, N>::mag(void) const {
  */
 template<typename T, std::size_t N>
 T Vector<T, N>::mag2(void) const {
-	T mag2; // TODO Zero initialize?
+	T mag2 = T();
 	for (std::size_t i = 0; i < N; i++) {
 		mag2 += this->values[i] * this->values[i];
 	}
@@ -262,7 +262,7 @@ bool Vector<T, N>::operator!=(const Vector<T, N>& other) const {
 
 template<typename T, std::size_t N>
 T Vector<T, N>::dot(const Vector<T, N>& V1, const Vector<T, N>& V2) {
-	T dot; // TODO Zero initialize?
+	T dot = T();
 	for (std::size_t i = 0; i < N; ++i) {
 		dot += V1.values[i] * V2.values[i];
 	}
@@ -334,7 +334,7 @@ template<typename T, std::size_t N>
 Vector<T, N> math::core::operator/(const Vector<T, N>& V, const T& s) {
 	T values[N];
 	for (std::size_t i = 0; i < N; i++) {
-		values[i] = V.values / s;
+		values[i] = V.values[i] / s;
 	}
 	return Vector<T, N>(values);
 }
@@ -357,8 +357,6 @@ std::ostream& math::core::operator<<(std::ostream& out, const Vector<T, N>& V) {
 	return out << ">";
 }
 
-#include <iostream>
-
 /**
  * Calculate the outer vector product (cross product). Only valid for 2d
  * vectors.
@@ -367,9 +365,8 @@ std::ostream& math::core::operator<<(std::ostream& out, const Vector<T, N>& V) {
  * @return 2-dimensional vector cross product.
  */
 template<typename T, std::size_t N>
-template<typename U>
+template<typename>
 T Vector<T, N>::cross(const Vector<T, N>& V1, const Vector<T, N>& V2) {
-	std::cout << "2d cross product" << std::endl;
 	return (V1.x * V2.y) - (V1.y * V2.x);
 }
 
@@ -381,9 +378,8 @@ T Vector<T, N>::cross(const Vector<T, N>& V1, const Vector<T, N>& V2) {
  * @return 3-dimensional vector cross product.
  */
 template<typename T, std::size_t N>
-template<typename U>
+template<typename>
 Vector<T, N> Vector<T, N>::cross(const Vector<T, N>& V1, const Vector<T, N>& V2) {
-	std::cout << "3d cross product" << std::endl;
 	T x = (V1.y * V2.z) - (V1.z * V2.y);
 	T y = (V1.z * V2.x) - (V1.x * V2.z);
 	T z = (V1.x * V2.y) - (V1.y * V2.x);
