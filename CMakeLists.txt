@@ -5,8 +5,8 @@ include_directories(inc)
 
 set(CMAKE_CXX_FLAGS "-std=c++11 -Wall -Wextra -Winline -g -DDEBUG")
 
-add_executable(math_tester
-	# library includes
+# source files
+set(SOURCES
 	inc/math/func.hpp
 	inc/math/func.inl
 	inc/math/types.hpp
@@ -23,13 +23,21 @@ add_executable(math_tester
 	inc/math/tuple/axis_angle.inl
 	inc/math/tuple/euler.hpp
 	inc/math/tuple/euler.inl
-	# test files
+	)
+
+# test files
+set(SOURCES_TEST
 	test/math_tester.cpp
 	test/math/func_unit.cpp
 	test/math/quaternion_unit.cpp
 	test/math/vector2_unit.cpp
 	test/math/vector3_unit.cpp
 	test/math/vector4_unit.cpp
+	)
+
+add_executable(math_tester
+	${SOURCES}
+	${SOURCES_TEST}
 	)
 
 find_package(Boost COMPONENTS unit_test_framework REQUIRED)
