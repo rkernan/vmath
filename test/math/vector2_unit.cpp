@@ -121,7 +121,7 @@ BOOST_AUTO_TEST_CASE(sub) {
 	V2.y = -15.5f;
 	math::Vector2 V_sub;
 	V_sub = V1 - V2;
-	BOOST_CHECK_CLOSE(V_sub.x, 9.780000000000001f, 1e-5f);
+	BOOST_CHECK_CLOSE(V_sub.x, 9.78f, 1e-5f);
 	BOOST_CHECK_CLOSE(V_sub.y, 116.39f, 1e-5f);
 }
 
@@ -134,7 +134,7 @@ BOOST_AUTO_TEST_CASE(sub_eq) {
 	V2.y = -15.5f;
 	math::Vector2 V_sub = V1;
 	V_sub -= V2;
-	BOOST_CHECK_CLOSE(V_sub.x, 9.780000000000001f, 1e-5f);
+	BOOST_CHECK_CLOSE(V_sub.x, 9.78f, 1e-5f);
 	BOOST_CHECK_CLOSE(V_sub.y, 116.39f, 1e-5f);
 }
 
@@ -147,7 +147,7 @@ BOOST_AUTO_TEST_CASE(mult) {
 	V2.y = -15.5f;
 	math::Vector2 V_mult;
 	V_mult = V1 * V2;
-	BOOST_CHECK_CLOSE(V_mult.x, 208.04080000000001f, 1e-5f);
+	BOOST_CHECK_CLOSE(V_mult.x, 208.0408f, 1e-5f);
 	BOOST_CHECK_CLOSE(V_mult.y, -1563.795f, 1e-5f);
 }
 
@@ -160,7 +160,7 @@ BOOST_AUTO_TEST_CASE(mult_eq) {
 	V2.y = -15.5f;
 	math::Vector2 V_mult = V1;
 	V_mult *= V2;
-	BOOST_CHECK_CLOSE(V_mult.x, 208.04080000000001f, 1e-5f);
+	BOOST_CHECK_CLOSE(V_mult.x, 208.0408f, 1e-5f);
 	BOOST_CHECK_CLOSE(V_mult.y, -1563.795f, 1e-5f);
 }
 
@@ -197,8 +197,8 @@ BOOST_AUTO_TEST_CASE(scalar_mult) {
 	float s = -34.45f;
 	math::Vector2 V_mult;
 	V_mult = s * V;
-	BOOST_CHECK_CLOSE(V_mult.x, -693.13400000000001f, 1e-5f);
-	BOOST_CHECK_CLOSE(V_mult.y, -3475.6605000000001f, 1e-5f);
+	BOOST_CHECK_CLOSE(V_mult.x, -693.134f, 1e-5f);
+	BOOST_CHECK_CLOSE(V_mult.y, -3475.6605f, 1e-5f);
 }
 
 BOOST_AUTO_TEST_CASE(scalar_div) {
@@ -308,7 +308,7 @@ BOOST_AUTO_TEST_CASE(cross) {
 	V2.x = 10.34f;
 	V2.y = -15.5f;
 	float cross = math::Vector2::cross(V1, V2);
-	BOOST_CHECK_CLOSE(cross, -1355.0626000000002f, 1e-5f);
+	BOOST_CHECK_CLOSE(cross, -1355.0626f, 1e-5f);
 }
 
 BOOST_AUTO_TEST_CASE(reflect) {
