@@ -20,10 +20,6 @@ BOOST_AUTO_TEST_CASE(create) {
 	BOOST_CHECK_CLOSE(V_param.y, 2.0f, 1e-5f);
 }
 
-BOOST_AUTO_TEST_CASE(destroy) {
-	// TODO How???
-}
-
 BOOST_AUTO_TEST_CASE(copy) {
 	math::Vector2 V;
 	V.x = 20.12f;
@@ -31,7 +27,6 @@ BOOST_AUTO_TEST_CASE(copy) {
 	math::Vector2 V_copy(V);
 	BOOST_CHECK_CLOSE(V_copy.x, V.x, 1e-5f);
 	BOOST_CHECK_CLOSE(V_copy.y, V.y, 1e-5f);
-	// TODO Make sure this is testing the copy constructor (not move).
 }
 
 BOOST_AUTO_TEST_CASE(move) {
@@ -41,7 +36,6 @@ BOOST_AUTO_TEST_CASE(move) {
 	math::Vector2 V_move(std::move(V));
 	BOOST_CHECK_CLOSE(V_move.x, V.x, 1e-5f);
 	BOOST_CHECK_CLOSE(V_move.y, V.y, 1e-5f);
-	// TODO Does this actually test the move contructor?
 }
 
 BOOST_AUTO_TEST_CASE(members) {
@@ -318,11 +312,28 @@ BOOST_AUTO_TEST_CASE(cross) {
 }
 
 BOOST_AUTO_TEST_CASE(reflect) {
-	// TODO
+	math::Vector2 I;
+	I.x = -1.0f;
+	I.y = -1.0f;
+	math::Vector2 N;
+	N.x = 1.0f;
+	N.y = 0.0f;
+	math::Vector2 R = math::Vector2::reflect(I, N);
+	BOOST_CHECK_CLOSE(R.x, 1.0f, 1e-5f);
+	BOOST_CHECK_CLOSE(R.y, -1.0f, 1e-5f);
 }
 
 BOOST_AUTO_TEST_CASE(refract) {
-	// TODO
+	math::Vector2 I;
+	I.x = -1.0f;
+	I.y = -1.0f;
+	math::Vector2 N;
+	N.x = 1.0f;
+	N.y = 0.0f;
+	float eta = 0.2f;
+	math::Vector2 R = math::Vector2::refract(I, N, eta);
+	BOOST_CHECK_CLOSE(R.x, -1.0f, 1e-5f);
+	BOOST_CHECK_CLOSE(R.y, -0.2f, 1e-5f);
 }
 
 BOOST_AUTO_TEST_CASE(lerp) {

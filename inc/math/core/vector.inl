@@ -289,11 +289,12 @@ Vector<T, N> Vector<T, N>::reflect(const Vector<T, N>& I, const Vector<T, N>& S)
  */
 template<typename T, std::size_t N>
 Vector<T, N> Vector<T, N>::refract(const Vector<T, N>& I, const Vector<T, N>& S, const T& eta) {
-	T k = static_cast<T>(1.0) - eta * eta * (static_cast<T>(1.0) - Vector<T, N>::dot(S, I) * Vector<T, N>::dot(S, I));
+	T S_dot_I = Vector<T, N>::dot(S, I);
+	T k = static_cast<T>(1.0) - eta * eta * (static_cast<T>(1.0) - S_dot_I * S_dot_I);
 	if (k < static_cast<T>(0.0)) {
 		return Vector<T, N>();
 	} else {
-		return eta * I - (eta * Vector<T, N>::dot(S, I) + math::sqrt(k)) * S;
+		return eta * I - (eta * S_dot_I + math::sqrt(k)) * S;
 	}
 }
 
