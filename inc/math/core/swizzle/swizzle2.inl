@@ -23,7 +23,7 @@ Swizzle2<T, N, E1, E2>::operator Vector<T, 2>() {
  */
 template<typename T, std::size_t N, std::size_t E1, std::size_t E2>
 Vector<T, 2>& Swizzle2<T, N, E1, E2>::operator=(const Vector<T, 2>& V) {
-	static_assert(swizzle_has_unique_elems<N, E1, E2>::value, MATH_CORE_SWIZZLE_ASSIGN_ERROR);
+	static_assert(swizzle_has_unique_elems<2, E1, E2>::value, MATH_CORE_SWIZZLE_ASSIGN_ERROR);
 	this->values[E1] = V.x;
 	this->values[E2] = V.y;
 	return *(Vector<T, 2>*)this;
@@ -47,7 +47,7 @@ Vector<T, 2> Swizzle2<T, N, E1, E2>::operator+(const Vector<T, 2>& V) const {
  */
 template<typename T, std::size_t N, std::size_t E1, std::size_t E2>
 Vector<T, 2>& Swizzle2<T, N, E1, E2>::operator+=(const Vector<T, 2>& V) {
-	static_assert(swizzle_has_unique_elems<N, E1, E2>::value, MATH_CORE_SWIZZLE_ASSIGN_ERROR);
+	static_assert(swizzle_has_unique_elems<2, E1, E2>::value, MATH_CORE_SWIZZLE_ASSIGN_ERROR);
 	return *this = *this + V;
 }
 
@@ -69,7 +69,7 @@ Vector<T, 2> Swizzle2<T, N, E1, E2>::operator-(const Vector<T, 2>& V) const {
  */
 template<typename T, std::size_t N, std::size_t E1, std::size_t E2>
 Vector<T, 2>& Swizzle2<T, N, E1, E2>::operator-=(const Vector<T, 2>& V) {
-	static_assert(swizzle_has_unique_elems<N, E1, E2>::value, MATH_CORE_SWIZZLE_ASSIGN_ERROR);
+	static_assert(swizzle_has_unique_elems<2, E1, E2>::value, MATH_CORE_SWIZZLE_ASSIGN_ERROR);
 	return *this = *this + V;
 }
 
@@ -91,7 +91,7 @@ Vector<T, 2> Swizzle2<T, N, E1, E2>::operator*(const Vector<T, 2>& V) const {
  */
 template<typename T, std::size_t N, std::size_t E1, std::size_t E2>
 Vector<T, 2>& Swizzle2<T, N, E1, E2>::operator*=(const Vector<T, 2>& V) {
-	static_assert(swizzle_has_unique_elems<N, E1, E2>::value, MATH_CORE_SWIZZLE_ASSIGN_ERROR);
+	static_assert(swizzle_has_unique_elems<2, E1, E2>::value, MATH_CORE_SWIZZLE_ASSIGN_ERROR);
 	return *this = *this * V;
 }
 
@@ -113,7 +113,7 @@ Vector<T, 2> Swizzle2<T, N, E1, E2>::operator/(const Vector<T, 2>& V) const {
  */
 template<typename T, std::size_t N, std::size_t E1, std::size_t E2>
 Vector<T, 2>& Swizzle2<T, N, E1, E2>::operator/=(const Vector<T, 2>& V) {
-	static_assert(swizzle_has_unique_elems<N, E1, E2>::value, MATH_CORE_SWIZZLE_ASSIGN_ERROR);
+	static_assert(swizzle_has_unique_elems<2, E1, E2>::value, MATH_CORE_SWIZZLE_ASSIGN_ERROR);
 	return *this = *this / V;
 }
 
