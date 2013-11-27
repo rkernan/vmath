@@ -37,6 +37,8 @@ set(SOURCES
 # test files
 set(SOURCES_TEST
 	test/math_tester.cpp
+	test/math/axis_angle_unit.cpp
+	test/math/euler_unit.cpp
 	test/math/func_unit.cpp
 	test/math/quaternion_unit.cpp
 	test/math/vector2_unit.cpp

@@ -22,6 +22,11 @@ class AxisAngle : public std::tuple<math::core::Vector<T, 3>, T> {
 public:
 	AxisAngle(const math::core::Vector<T, 3>&, const T&);
 
+	AxisAngle(const AxisAngle<T>&) = default;
+	AxisAngle(AxisAngle<T>&&) = default;
+
+	~AxisAngle(void) = default;
+
 	math::core::Vector<T, 3> axis(void) const;
 	T angle(void) const;
 private:
