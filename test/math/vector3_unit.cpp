@@ -16,15 +16,14 @@ BOOST_AUTO_TEST_CASE(create) {
 	BOOST_CHECK_CLOSE(V_param.x, 1.0f, 1e-5f);
 	BOOST_CHECK_CLOSE(V_param.y, 2.0f, 1e-5f);
 	BOOST_CHECK_CLOSE(V_param.z, 3.0f, 1e-5f);
-	// FIXME
-	/* // copy vector2 */
-	/* math::Vector2 V2; */
-	/* V2.x = 3.0f; */
-	/* V2.y = 2.0f; */
-	/* math::Vector3 V_param2(V2, 1.0f); */
-	/* BOOST_CHECK_CLOSE(V_param2.x, 3.0f, 1e-5f); */
-	/* BOOST_CHECK_CLOSE(V_param2.y, 2.0f, 1e-5f); */
-	/* BOOST_CHECK_CLOSE(V_param2.z, 1.0f, 1e-5f); */
+	// copy vector2
+	math::Vector2 V2;
+	V2.x = 3.0f;
+	V2.y = 2.0f;
+	math::Vector3 V_param2(V2, 1.0f);
+	BOOST_CHECK_CLOSE(V_param2.x, 3.0f, 1e-5f);
+	BOOST_CHECK_CLOSE(V_param2.y, 2.0f, 1e-5f);
+	BOOST_CHECK_CLOSE(V_param2.z, 1.0f, 1e-5f);
 }
 
 BOOST_AUTO_TEST_CASE(copy) {

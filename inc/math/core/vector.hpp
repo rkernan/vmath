@@ -135,11 +135,7 @@ public:
 template<typename T, std::size_t N>
 class Vector : public VectorComponents<T, N> {
 public:
-	/* using VectorComponents<T, N>::VectorComponents; // not supported in VS2012/2013 or clang < 3.3 */
-	// FIXME This is just temporary until VS supports constructor inheritance (above)
-	Vector(const T& x, const T& y) : VectorComponents<T, N>(x, y) {}
-	Vector(const T& x, const T& y, const T& z) : VectorComponents<T, N>(x, y, z) {}
-	Vector(const T& x, const T& y, const T& z, const T& w) : VectorComponents<T, N>(x, y, z, w) {}
+	using VectorComponents<T, N>::VectorComponents;
 
 	Vector(void);
 	Vector(const T values[N]);

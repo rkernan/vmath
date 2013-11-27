@@ -17,26 +17,25 @@ BOOST_AUTO_TEST_CASE(create) {
 	BOOST_CHECK_CLOSE(V_param.y, 2.0f, 1e-5f);
 	BOOST_CHECK_CLOSE(V_param.z, 3.0f, 1e-5f);
 	BOOST_CHECK_CLOSE(V_param.w, 4.0f, 1e-5f);
-	// FIXME Requires inheriting constructors.
-	/* // copy vector2 */
-	/* math::Vector2 V2; */
-	/* V2.x = 4.0f; */
-	/* V2.y = 3.0f; */
-	/* math::Vector4 V_param2(V2, 2.0f, 1.0f); */
-	/* BOOST_CHECK_CLOSE(V_param2.x, 4.0f, 1e-5f); */
-	/* BOOST_CHECK_CLOSE(V_param2.x, 3.0f, 1e-5f); */
-	/* BOOST_CHECK_CLOSE(V_param2.x, 2.0f, 1e-5f); */
-	/* BOOST_CHECK_CLOSE(V_param2.x, 1.0f, 1e-5f); */
-	/* // copy vector3 */
-	/* math::Vector3 V3; */
-	/* V3.x = 4.0f; */
-	/* V3.y = 3.0f; */
-	/* V3.z = 2.0f; */
-	/* math::Vector4 V_param3(V3, 1.0f); */
-	/* BOOST_CHECK_CLOSE(V_param3.x, 4.0f, 1e-5f); */
-	/* BOOST_CHECK_CLOSE(V_param3.y, 3.0f, 1e-5f); */
-	/* BOOST_CHECK_CLOSE(V_param3.z, 2.0f, 1e-5f); */
-	/* BOOST_CHECK_CLOSE(V_param3.w, 1.0f, 1e-5f); */
+	// copy vector2
+	math::Vector2 V2;
+	V2.x = 4.0f;
+	V2.y = 3.0f;
+	math::Vector4 V_param2(V2, 2.0f, 1.0f);
+	BOOST_CHECK_CLOSE(V_param2.x, 4.0f, 1e-5f);
+	BOOST_CHECK_CLOSE(V_param2.y, 3.0f, 1e-5f);
+	BOOST_CHECK_CLOSE(V_param2.z, 2.0f, 1e-5f);
+	BOOST_CHECK_CLOSE(V_param2.w, 1.0f, 1e-5f);
+	// copy vector3
+	math::Vector3 V3;
+	V3.x = 4.0f;
+	V3.y = 3.0f;
+	V3.z = 2.0f;
+	math::Vector4 V_param3(V3, 1.0f);
+	BOOST_CHECK_CLOSE(V_param3.x, 4.0f, 1e-5f);
+	BOOST_CHECK_CLOSE(V_param3.y, 3.0f, 1e-5f);
+	BOOST_CHECK_CLOSE(V_param3.z, 2.0f, 1e-5f);
+	BOOST_CHECK_CLOSE(V_param3.w, 1.0f, 1e-5f);
 }
 
 BOOST_AUTO_TEST_CASE(copy) {
