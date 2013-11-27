@@ -12,7 +12,7 @@ using namespace math::core;
  * @return Converted Vector.
  */
 template<typename T, std::size_t N, std::size_t E1, std::size_t E2, std::size_t E3, std::size_t E4>
-Swizzle4<T, N, E1, E2, E3, E4>::operator Vector<T, 4>() {
+Swizzle4<T, N, E1, E2, E3, E4>::operator Vector<T, 4>(void) {
 	return Vector<T, 4>(this->values[E1], this->values[E2], this->values[E3], this->values[E4]);
 }
 
@@ -120,6 +120,48 @@ Vector<T, 4>& Swizzle4<T, N, E1, E2, E3, E4>::operator/=(const Vector<T, 4>& V) 
 }
 
 /**
+ * Vector-scalar multiplication.
+ * @param s Scalar to multiply by.
+ * @return The vector-scalar product.
+ */
+template<typename T, std::size_t N, std::size_t E1, std::size_t E2, std::size_t E3, std::size_t E4>
+Vector<T, 4> Swizzle4<T, N, E1, E2, E3, E4>::operator*(const T& s) const {
+	return *(Vector<T, 4>*)this * s;
+}
+
+/**
+ * Vector-scalar multiplication. Set this swizzle (and the underlying vector) to
+ * the result.
+ * @param s Scalar to multiply by.
+ * @return The vector-scalar product.
+ */
+template<typename T, std::size_t N, std::size_t E1, std::size_t E2, std::size_t E3, std::size_t E4>
+Vector<T, 4>& Swizzle4<T, N, E1, E2, E3, E4>::operator*=(const T& s) {
+	return *this = *this * s;
+}
+
+/**
+ * Vector-scalar division.
+ * @param s Scalar to divide by.
+ * @return The vector-scalar quotient.
+ */
+template<typename T, std::size_t N, std::size_t E1, std::size_t E2, std::size_t E3, std::size_t E4>
+Vector<T, 4> Swizzle4<T, N, E1, E2, E3, E4>::operator/(const T& s) const {
+	return *(Vector<T, 4>*)this / s;
+}
+
+/**
+ * Vector-scalar division. Set this swizzle (and the underlying vector) to the
+ * result.
+ * @param s Scalar to divide by.
+ * @return The vector-scalar quotient.
+ */
+template<typename T, std::size_t N, std::size_t E1, std::size_t E2, std::size_t E3, std::size_t E4>
+Vector<T, 4>& Swizzle4<T, N, E1, E2, E3, E4>::operator/=(const T& s) {
+	return *this = *this / s;
+}
+
+/**
  * Check swizzle-vector equality.
  * @param V Vector to check equality with.
  * @return True if they are equal, otherwise false.
@@ -137,27 +179,6 @@ bool Swizzle4<T, N, E1, E2, E3, E4>::operator==(const Vector<T, 4>& V) const {
 template<typename T, std::size_t N, std::size_t E1, std::size_t E2, std::size_t E3, std::size_t E4>
 bool Swizzle4<T, N, E1, E2, E3, E4>::operator!=(const Vector<T, 4>& V) const {
 	return *(Vector<T, 4>*)this != V;
-}
-
-/**
- * Vector-scalar division.
- * @param s Scalar to divide by.
- * @return The vector-scalar quotient.
- */
-template<typename T, std::size_t N, std::size_t E1, std::size_t E2, std::size_t E3, std::size_t E4>
-Vector<T, 4> Swizzle4<T, N, E1, E2, E3, E4>::operator/(const T& s) const {
-	return *(Vector<T, 4>*)this / s;
-}
-
-/**
- * Scalar-vector multiplication.
- * @param s Scalar to multiply by.
- * @param V Vector to multiply.
- * @return The scalar-vector product.
- */
-template<typename T, std::size_t N, std::size_t E1, std::size_t E2, std::size_t E3, std::size_t E4>
-Vector<T, 4> operator*(const T& s, const Swizzle4<T, N, E1, E2, E3, E4> V) {
-	return s * (Vector<T, 4>)V;
 }
 
 #endif

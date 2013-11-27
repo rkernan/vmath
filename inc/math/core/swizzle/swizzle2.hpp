@@ -19,7 +19,8 @@ class Vector;
 template<typename T, std::size_t N, std::size_t E1, std::size_t E2>
 class Swizzle2 : public Swizzle<T, N> {
 public:
-	operator Vector<T, 2>();
+	operator Vector<T, 2>(void);
+
 	Vector<T, 2>& operator=(const Vector<T, 2>&);
 	Vector<T, 2> operator+(const Vector<T, 2>&) const;
 	Vector<T, 2>& operator+=(const Vector<T, 2>&);
@@ -29,18 +30,20 @@ public:
 	Vector<T, 2>& operator*=(const Vector<T, 2>&);
 	Vector<T, 2> operator/(const Vector<T, 2>&) const;
 	Vector<T, 2>& operator/=(const Vector<T, 2>&);
+
+	Vector<T, 2> operator*(const T&) const;
+	Vector<T, 2>& operator*=(const T&);
+	Vector<T, 2> operator/(const T&) const;
+	Vector<T, 2>& operator/=(const T&);
+
 	bool operator==(const Vector<T, 2>&) const;
 	bool operator!=(const Vector<T, 2>&) const;
-	Vector<T, 2> operator/(const T&) const;
 
 #if defined(MATH_CORE_SWIZZLE_ENABLE_ELEMENT_ACCESSORS)
 	T getE1(void) { return this->values[E1]; }
 	T getE2(void) { return this->values[E2]; }
 #endif
 };
-
-template<typename T, std::size_t N, std::size_t E1, std::size_t E2>
-Vector<T, 2> operator*(const T&, const Swizzle2<T, N, E1, E2>);
 
 }
 }
