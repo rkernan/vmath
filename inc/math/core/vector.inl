@@ -5,6 +5,7 @@
 
 #include <cstddef>
 #include <ostream>
+#include <stdexcept>
 #include <type_traits>
 
 #include "../func.hpp"
@@ -38,7 +39,9 @@ Vector<T, N>::Vector(const T values[N]) {
  */
 template<typename T, std::size_t N>
 T Vector<T, N>::operator[](const std::size_t idx) const {
-	// TODO Check for index out of bounds.
+	if (idx >= N) {
+		throw std::out_of_range("todo");
+	}
 	return this->values[idx];
 }
 
@@ -48,7 +51,9 @@ T Vector<T, N>::operator[](const std::size_t idx) const {
  */
 template<typename T, std::size_t N>
 T& Vector<T, N>::operator[](const std::size_t idx) {
-	// TODO Check for index out of bounds.
+	if (idx >= N) {
+		throw std::out_of_range("todo");
+	}
 	return this->values[idx];
 }
 
