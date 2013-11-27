@@ -180,6 +180,54 @@ Vector<T, N>& Vector<T, N>::operator/=(const Vector<T, N>& V) {
 }
 
 /**
+ * Scalar multiplication.
+ * @param s Scalar to multiply by.
+ * @return Vector-scalar product.
+ */
+template<typename T, std::size_t N>
+Vector<T, N> Vector<T, N>::operator*(const T& s) const {
+	T values[N];
+	for (std::size_t i = 0; i < N; i++) {
+		values[i] = this->values[i] * s;
+	}
+	return Vector<T, N>(values);
+}
+
+/**
+ * Scalar multiplication. Copy the result into this vector.
+ * @param s Scalar to multiply by.
+ * @return Vector-scalar product.
+ */
+template<typename T, std::size_t N>
+Vector<T, N>& Vector<T, N>::operator*=(const T& s) {
+	return *this = *this * s;
+}
+
+/**
+ * Scalar division.
+ * @param s Scalar to divide by.
+ * @return Vector-scalar quotient.
+ */
+template<typename T, std::size_t N>
+Vector<T, N> Vector<T, N>::operator/(const T& s) const {
+	T values[N];
+	for (std::size_t i = 0; i < N; i++) {
+		values[i] = this->values[i] / s;
+	}
+	return Vector<T, N>(values);
+}
+
+/**
+ * Scalar division. Copy the result into this vector.
+ * @param s Scalar to divide by.
+ * @return Vector-scalar quotient.
+ */
+template<typename T, std::size_t N>
+Vector<T, N>& Vector<T, N>::operator/=(const T& s) {
+	return *this = *this / s;
+}
+
+/**
  * Calculate the vector length.
  * @return Vector magnitude.
  */
@@ -282,7 +330,7 @@ T Vector<T, N>::dot(const Vector<T, N>& V1, const Vector<T, N>& V2) {
  */
 template<typename T, std::size_t N>
 Vector<T, N> Vector<T, N>::reflect(const Vector<T, N>& I, const Vector<T, N>& S) {
-	return I - static_cast<T>(2.0) * Vector<T, N>::dot(S, I) * S;
+	return I - S * static_cast<T>(2.0) * Vector<T, N>::dot(S, I);
 }
 
 /**
@@ -299,7 +347,7 @@ Vector<T, N> Vector<T, N>::refract(const Vector<T, N>& I, const Vector<T, N>& S,
 	if (k < static_cast<T>(0.0)) {
 		return Vector<T, N>();
 	} else {
-		return eta * I - (eta * S_dot_I + math::sqrt(k)) * S;
+		return I * eta - S * (eta * S_dot_I + math::sqrt(k));
 	}
 }
 
@@ -312,55 +360,7 @@ Vector<T, N> Vector<T, N>::refract(const Vector<T, N>& I, const Vector<T, N>& S,
  */
 template<typename T, std::size_t N>
 Vector<T, N> Vector<T, N>::lerp(const Vector<T, N>& S, const Vector<T, N>& E, const T& t) {
-	return S + (t * (E - S));
-}
-
-/**
- * Scalar multiplication.
- * @param s Scalar to multiply by.
- * @param V Vector to multiply.
- * @return Scalar-vector product.
- */
-template<typename T, std::size_t N>
-Vector<T, N> math::core::operator*(const T& s, const Vector<T, N>& V) {
-	T values[N];
-	for (std::size_t i = 0; i < N; i++) {
-		values[i] = s * V.values[i];
-	}
-	return Vector<T, N>(values);
-}
-
-/**
- * Scalar division.
- * @parma V Vector to divide.
- * @param s Scalar to divide by.
- * @return Vector-scalar quotient.
- */
-template<typename T, std::size_t N>
-Vector<T, N> math::core::operator/(const Vector<T, N>& V, const T& s) {
-	T values[N];
-	for (std::size_t i = 0; i < N; i++) {
-		values[i] = V.values[i] / s;
-	}
-	return Vector<T, N>(values);
-}
-
-/**
- * Ouput to stream.
- * @param out Stream to ouput to.
- * @param V Vector to print.
- * @return Modified output stream.
- */
-template<typename T, std::size_t N>
-std::ostream& math::core::operator<<(std::ostream& out, const Vector<T, N>& V) {
-	out << "<";
-	for (std::size_t i = 0; i < N; i++) {
-		out << V[i];
-		if (i < N - 1) {
-			out << ", ";
-		}
-	}
-	return out << ">";
+	return S + ((E - S) * t);
 }
 
 /**

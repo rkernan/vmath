@@ -241,7 +241,18 @@ BOOST_AUTO_TEST_CASE(scalar_mult) {
 	V.y = 100.89f;
 	float s = -34.45f;
 	math::Vector2 V_mult;
-	V_mult = s * V;
+	V_mult = V * s;
+	BOOST_CHECK_CLOSE(V_mult.x, -693.134f, 1e-5f);
+	BOOST_CHECK_CLOSE(V_mult.y, -3475.6605f, 1e-5f);
+}
+
+BOOST_AUTO_TEST_CASE(scalar_mult_eq) {
+	math::Vector2 V;
+	V.x = 20.12f;
+	V.y = 100.89f;
+	float s = -34.45f;
+	math::Vector2 V_mult = V;
+	V_mult *= s;
 	BOOST_CHECK_CLOSE(V_mult.x, -693.134f, 1e-5f);
 	BOOST_CHECK_CLOSE(V_mult.y, -3475.6605f, 1e-5f);
 }
@@ -253,6 +264,17 @@ BOOST_AUTO_TEST_CASE(scalar_div) {
 	float s = -34.45f;
 	math::Vector2 V_div;
 	V_div = V / s;
+	BOOST_CHECK_CLOSE(V_div.x, -0.5840348330914369f, 1e-5f);
+	BOOST_CHECK_CLOSE(V_div.y, -2.9285921625544264f, 1e-5f);
+}
+
+BOOST_AUTO_TEST_CASE(scalar_div_eq) {
+	math::Vector2 V;
+	V.x = 20.12f;
+	V.y = 100.89f;
+	float s = -34.45f;
+	math::Vector2 V_div = V;
+	V_div /= s;
 	BOOST_CHECK_CLOSE(V_div.x, -0.5840348330914369f, 1e-5f);
 	BOOST_CHECK_CLOSE(V_div.y, -2.9285921625544264f, 1e-5f);
 }

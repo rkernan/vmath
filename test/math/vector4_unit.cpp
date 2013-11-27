@@ -377,7 +377,22 @@ BOOST_AUTO_TEST_CASE(scalar_mult) {
 	V.w = 35.62f;
 	float s = -34.45f;
 	math::Vector4 V_mult;
-	V_mult = s * V;
+	V_mult = V * s;
+	BOOST_CHECK_CLOSE(V_mult.x, -693.134f, 1e-5f);
+	BOOST_CHECK_CLOSE(V_mult.y, -3475.6605f, 1e-5f);
+	BOOST_CHECK_CLOSE(V_mult.z, 626.99f, 1e-5f);
+	BOOST_CHECK_CLOSE(V_mult.w, -1227.109f, 1e-5f);
+}
+
+BOOST_AUTO_TEST_CASE(scalar_mult_eq) {
+	math::Vector4 V;
+	V.x = 20.12f;
+	V.y = 100.89f;
+	V.z = -18.2f;
+	V.w = 35.62f;
+	float s = -34.45f;
+	math::Vector4 V_mult = V;
+	V_mult *= s;
 	BOOST_CHECK_CLOSE(V_mult.x, -693.134f, 1e-5f);
 	BOOST_CHECK_CLOSE(V_mult.y, -3475.6605f, 1e-5f);
 	BOOST_CHECK_CLOSE(V_mult.z, 626.99f, 1e-5f);
@@ -393,6 +408,21 @@ BOOST_AUTO_TEST_CASE(scalar_div) {
 	float s = -34.45f;
 	math::Vector4 V_div;
 	V_div = V / s;
+	BOOST_CHECK_CLOSE(V_div.x, -0.5840348330914369f, 1e-5f);
+	BOOST_CHECK_CLOSE(V_div.y, -2.9285921625544264f, 1e-5f);
+	BOOST_CHECK_CLOSE(V_div.z, 0.5283018867924527f, 1e-5f);
+	BOOST_CHECK_CLOSE(V_div.w, -1.0339622641509432f, 1e-5f);
+}
+
+BOOST_AUTO_TEST_CASE(scalar_div_eq) {
+	math::Vector4 V;
+	V.x = 20.12f;
+	V.y = 100.89f;
+	V.z = -18.2f;
+	V.w = 35.62f;
+	float s = -34.45f;
+	math::Vector4 V_div = V;
+	V_div /= s;
 	BOOST_CHECK_CLOSE(V_div.x, -0.5840348330914369f, 1e-5f);
 	BOOST_CHECK_CLOSE(V_div.y, -2.9285921625544264f, 1e-5f);
 	BOOST_CHECK_CLOSE(V_div.z, 0.5283018867924527f, 1e-5f);

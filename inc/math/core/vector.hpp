@@ -156,6 +156,11 @@ public:
 	Vector<T, N> operator/(const Vector<T, N>&) const;
 	Vector<T, N>& operator/=(const Vector<T, N>&);
 
+	Vector<T, N> operator/(const T&) const;
+	Vector<T, N>& operator/=(const T&);
+	Vector<T, N> operator*(const T&) const;
+	Vector<T, N>& operator*=(const T&);
+
 	T mag(void) const;
 	T mag2(void) const;
 	Vector<T, N> normal(void) const;
@@ -175,15 +180,6 @@ public:
 	template<typename = typename std::enable_if<N == 3, T>::type>
 	static Vector<T, N> cross(const Vector<T, N>&, const Vector<T, N>&);
 };
-
-template<typename T, std::size_t N>
-Vector<T, N> operator*(const T&, const Vector<T, N>&);
-
-template<typename T, std::size_t N>
-Vector<T, N> operator/(const Vector<T, N>&, const T&);
-
-template<typename T, std::size_t N>
-std::ostream& operator<<(std::ostream&, const Vector<T, N>&);
 
 }
 }
