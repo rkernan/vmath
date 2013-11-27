@@ -1,6 +1,15 @@
 cmake_minimum_required(VERSION 2.8)
 project(autodog_math)
 
+# require clang 3.3+
+if (CMAKE_CXX_COMPILER_ID STREQUAL "Clang")
+	if (CMAKE_CXX_COMPILER_VERSION VERSION_LESS "3.3")
+		message(FATAL_ERROR "Requires clang version > 3.3")
+	endif()
+else()
+	message(FATAL_ERROR "Requires clang")
+endif()
+
 include_directories(inc)
 
 set(CMAKE_CXX_FLAGS "-std=c++11 -Wall -Wextra -Winline -g -DDEBUG")
