@@ -4,9 +4,69 @@
 #define MATH_CORE_SWIZZLE_ENABLE_ELEMENT_ACCESSORS
 #include <math/types.hpp>
 
-BOOST_AUTO_TEST_SUITE(Vector3_swizzles)
+BOOST_AUTO_TEST_SUITE(Swizzle3)
 
-BOOST_AUTO_TEST_CASE(swizzle_access) {
+BOOST_AUTO_TEST_CASE(add) {
+	// TODO
+	BOOST_CHECK(false);
+}
+
+BOOST_AUTO_TEST_CASE(add_eq) {
+	// TODO
+	BOOST_CHECK(false);
+}
+
+BOOST_AUTO_TEST_CASE(sub) {
+	// TODO
+	BOOST_CHECK(false);
+}
+
+BOOST_AUTO_TEST_CASE(sub_eq) {
+	// TODO
+	BOOST_CHECK(false);
+}
+
+BOOST_AUTO_TEST_CASE(mult) {
+	// TODO
+	BOOST_CHECK(false);
+}
+
+BOOST_AUTO_TEST_CASE(mult_eq) {
+	// TODO
+	BOOST_CHECK(false);
+}
+
+BOOST_AUTO_TEST_CASE(div) {
+	// TODO
+	BOOST_CHECK(false);
+}
+
+BOOST_AUTO_TEST_CASE(div_eq) {
+	// TODO
+	BOOST_CHECK(false);
+}
+
+BOOST_AUTO_TEST_CASE(scalar_mult) {
+	// TODO
+	BOOST_CHECK(false);
+}
+
+BOOST_AUTO_TEST_CASE(scalar_mult_eq) {
+	// TODO
+	BOOST_CHECK(false);
+}
+
+BOOST_AUTO_TEST_CASE(scalar_div) {
+	// TODO
+	BOOST_CHECK(false);
+}
+
+BOOST_AUTO_TEST_CASE(scalar_div_eq) {
+	// TODO
+	BOOST_CHECK(false);
+}
+
+BOOST_AUTO_TEST_CASE(access) {
 	math::Vector3 V;
 	V.x = 20.12f;
 	V.y = 100.89f;
@@ -556,7 +616,7 @@ BOOST_AUTO_TEST_CASE(swizzle_access) {
 	BOOST_CHECK_CLOSE(zzzz.getE4(), V.z, 1e-5f);
 }
 
-BOOST_AUTO_TEST_CASE(swizzle_assign) {
+BOOST_AUTO_TEST_CASE(assign) {
 	math::Vector2 V2;
 	V2.x = 20.12f;
 	V2.y = 100.89f;
