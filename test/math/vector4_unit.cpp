@@ -7,6 +7,10 @@
 
 BOOST_AUTO_TEST_SUITE(Vector4)
 
+BOOST_AUTO_TEST_CASE(size) {
+	BOOST_CHECK_EQUAL(sizeof(math::Vector4), 4 * sizeof(float));
+}
+
 BOOST_AUTO_TEST_CASE(create) {
 	// default constructor
 	math::Vector4 V_default;

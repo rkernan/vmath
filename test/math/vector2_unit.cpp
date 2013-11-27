@@ -7,6 +7,10 @@
 
 BOOST_AUTO_TEST_SUITE(Vector2)
 
+BOOST_AUTO_TEST_CASE(size) {
+	BOOST_CHECK_EQUAL(sizeof(math::Vector2), 2 * sizeof(float));
+}
+
 BOOST_AUTO_TEST_CASE(create) {
 	// default constructor
 	math::Vector2 V_default;
