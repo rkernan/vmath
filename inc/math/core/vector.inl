@@ -346,8 +346,8 @@ Vector<T, N> Vector<T, N>::lerp(const Vector<T, N>& S, const Vector<T, N>& E, co
  * @return 2-dimensional vector cross product.
  */
 template<typename T, std::size_t N>
-template<typename>
-T Vector<T, N>::cross(const Vector<T, N>& V1, const Vector<T, N>& V2) {
+template<typename U, typename>
+U Vector<T, N>::cross(const Vector<U, N>& V1, const Vector<U, N>& V2) {
 	return (V1.x * V2.y) - (V1.y * V2.x);
 }
 
@@ -359,12 +359,12 @@ T Vector<T, N>::cross(const Vector<T, N>& V1, const Vector<T, N>& V2) {
  * @return 3-dimensional vector cross product.
  */
 template<typename T, std::size_t N>
-template<typename>
-Vector<T, N> Vector<T, N>::cross(const Vector<T, N>& V1, const Vector<T, N>& V2) {
-	T x = (V1.y * V2.z) - (V1.z * V2.y);
-	T y = (V1.z * V2.x) - (V1.x * V2.z);
-	T z = (V1.x * V2.y) - (V1.y * V2.x);
-	return Vector<T, N>(x, y, z);
+template<typename U, typename>
+Vector<U, N> Vector<T, N>::cross(const Vector<U, N>& V1, const Vector<U, N>& V2) {
+	U x = (V1.y * V2.z) - (V1.z * V2.y);
+	U y = (V1.z * V2.x) - (V1.x * V2.z);
+	U z = (V1.x * V2.y) - (V1.y * V2.x);
+	return Vector<U, N>(x, y, z);
 }
 
 #endif
