@@ -35,11 +35,8 @@ public:
 	Matrix<T, N, M> operator-(const Matrix<T, N, M>&) const;
 	Matrix<T, N, M>& operator-=(const Matrix<T, N, M>&);
 
-	template<std::size_t P> Matrix<T, P, M>
-	operator*(const Matrix<T, P, N>&) const;
-
-	template<std::size_t P> Matrix<T, P, M>&
-	operator*=(const Matrix<T, P, N>&);
+	template<std::size_t P>
+	Matrix<T, P, M> operator*(const Matrix<T, P, N>&) const;
 
 	Matrix<T, N, M> operator-(void) const;
 	Matrix<T, N> operator*(const T&) const;
