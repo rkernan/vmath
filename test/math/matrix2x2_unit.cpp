@@ -1,106 +1,101 @@
+#include <math/types.hpp>
+
 #define BOOST_TEST_DYN_LINK
 #include <boost/test/unit_test.hpp>
 
-#include <math/func.hpp>
+BOOST_AUTO_TEST_SUITE(Matrix2x2)
 
-BOOST_AUTO_TEST_SUITE(Math_Functions)
+BOOST_AUTO_TEST_CASE(create) {
+	// TODO
+	BOOST_CHECK_MESSAGE(false, "test not implemented");
+}
+
+BOOST_AUTO_TEST_CASE(copy) {
+	// TODO
+	BOOST_CHECK_MESSAGE(false, "test not implemented");
+}
+
+BOOST_AUTO_TEST_CASE(move) {
+	// TODO
+	BOOST_CHECK_MESSAGE(false, "test not implemented");
+}
+
+BOOST_AUTO_TEST_CASE(members) {
+	// TODO
+	BOOST_CHECK_MESSAGE(false, "test not implemented");
+}
+
+BOOST_AUTO_TEST_CASE(assign) {
+	// TODO
+	BOOST_CHECK_MESSAGE(false, "test not implemented");
+}
+
+BOOST_AUTO_TEST_CASE(negate) {
+	// TODO
+	BOOST_CHECK_MESSAGE(false, "test not implemented");
+}
 
 BOOST_AUTO_TEST_CASE(equals) {
 	// TODO
 	BOOST_CHECK_MESSAGE(false, "test not implemented");
 }
 
-BOOST_AUTO_TEST_CASE(radians) {
+BOOST_AUTO_TEST_CASE(matrix_add) {
 	// TODO
 	BOOST_CHECK_MESSAGE(false, "test not implemented");
 }
 
-BOOST_AUTO_TEST_CASE(degrees) {
+BOOST_AUTO_TEST_CASE(matrix_add_eq) {
 	// TODO
 	BOOST_CHECK_MESSAGE(false, "test not implemented");
 }
 
-BOOST_AUTO_TEST_CASE(cos) {
+BOOST_AUTO_TEST_CASE(matrix_sub) {
 	// TODO
 	BOOST_CHECK_MESSAGE(false, "test not implemented");
 }
 
-BOOST_AUTO_TEST_CASE(sin) {
+BOOST_AUTO_TEST_CASE(matrix_mult) {
 	// TODO
 	BOOST_CHECK_MESSAGE(false, "test not implemented");
 }
 
-BOOST_AUTO_TEST_CASE(tan) {
+BOOST_AUTO_TEST_CASE(matrix_sub_eq) {
 	// TODO
 	BOOST_CHECK_MESSAGE(false, "test not implemented");
 }
 
-BOOST_AUTO_TEST_CASE(acos) {
+BOOST_AUTO_TEST_CASE(scalar_mult) {
 	// TODO
 	BOOST_CHECK_MESSAGE(false, "test not implemented");
 }
 
-BOOST_AUTO_TEST_CASE(asin) {
+BOOST_AUTO_TEST_CASE(scalar_mult_eq) {
 	// TODO
 	BOOST_CHECK_MESSAGE(false, "test not implemented");
 }
 
-BOOST_AUTO_TEST_CASE(atan) {
+BOOST_AUTO_TEST_CASE(scalar_div) {
 	// TODO
 	BOOST_CHECK_MESSAGE(false, "test not implemented");
 }
 
-BOOST_AUTO_TEST_CASE(atan2) {
+BOOST_AUTO_TEST_CASE(scalar_div_eq) {
 	// TODO
 	BOOST_CHECK_MESSAGE(false, "test not implemented");
 }
 
-BOOST_AUTO_TEST_CASE(pow) {
+BOOST_AUTO_TEST_CASE(det) {
 	// TODO
 	BOOST_CHECK_MESSAGE(false, "test not implemented");
 }
 
-BOOST_AUTO_TEST_CASE(sqrt) {
+BOOST_AUTO_TEST_CASE(transpose) {
 	// TODO
 	BOOST_CHECK_MESSAGE(false, "test not implemented");
 }
 
-BOOST_AUTO_TEST_CASE(ceil) {
-	// TODO
-	BOOST_CHECK_MESSAGE(false, "test not implemented");
-}
-
-BOOST_AUTO_TEST_CASE(floor) {
-	// TODO
-	BOOST_CHECK_MESSAGE(false, "test not implemented");
-}
-
-BOOST_AUTO_TEST_CASE(round) {
-	// TODO
-	BOOST_CHECK_MESSAGE(false, "test not implemented");
-}
-
-BOOST_AUTO_TEST_CASE(trunc) {
-	// TODO
-	BOOST_CHECK_MESSAGE(false, "test not implemented");
-}
-
-BOOST_AUTO_TEST_CASE(clamp) {
-	// TODO
-	BOOST_CHECK_MESSAGE(false, "test not implemented");
-}
-
-BOOST_AUTO_TEST_CASE(abs) {
-	// TODO
-	BOOST_CHECK_MESSAGE(false, "test not implemented");
-}
-
-BOOST_AUTO_TEST_CASE(copysign) {
-	// TODO
-	BOOST_CHECK_MESSAGE(false, "test not implemented");
-}
-
-BOOST_AUTO_TEST_CASE(lerp) {
+BOOST_AUTO_TEST_CASE(inverse) {
 	// TODO
 	BOOST_CHECK_MESSAGE(false, "test not implemented");
 }

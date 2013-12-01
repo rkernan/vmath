@@ -8,62 +8,62 @@ BOOST_AUTO_TEST_SUITE(Vector4_swizzles)
 
 BOOST_AUTO_TEST_CASE(add) {
 	// TODO
-	BOOST_CHECK(false);
+	BOOST_CHECK_MESSAGE(false, "test not implemented");
 }
 
 BOOST_AUTO_TEST_CASE(add_eq) {
 	// TODO
-	BOOST_CHECK(false);
+	BOOST_CHECK_MESSAGE(false, "test not implemented");
 }
 
 BOOST_AUTO_TEST_CASE(sub) {
 	// TODO
-	BOOST_CHECK(false);
+	BOOST_CHECK_MESSAGE(false, "test not implemented");
 }
 
 BOOST_AUTO_TEST_CASE(sub_eq) {
 	// TODO
-	BOOST_CHECK(false);
+	BOOST_CHECK_MESSAGE(false, "test not implemented");
 }
 
 BOOST_AUTO_TEST_CASE(mult) {
 	// TODO
-	BOOST_CHECK(false);
+	BOOST_CHECK_MESSAGE(false, "test not implemented");
 }
 
 BOOST_AUTO_TEST_CASE(mult_eq) {
 	// TODO
-	BOOST_CHECK(false);
+	BOOST_CHECK_MESSAGE(false, "test not implemented");
 }
 
 BOOST_AUTO_TEST_CASE(div) {
 	// TODO
-	BOOST_CHECK(false);
+	BOOST_CHECK_MESSAGE(false, "test not implemented");
 }
 
 BOOST_AUTO_TEST_CASE(div_eq) {
 	// TODO
-	BOOST_CHECK(false);
+	BOOST_CHECK_MESSAGE(false, "test not implemented");
 }
 
 BOOST_AUTO_TEST_CASE(scalar_mult) {
 	// TODO
-	BOOST_CHECK(false);
+	BOOST_CHECK_MESSAGE(false, "test not implemented");
 }
 
 BOOST_AUTO_TEST_CASE(scalar_mult_eq) {
 	// TODO
-	BOOST_CHECK(false);
+	BOOST_CHECK_MESSAGE(false, "test not implemented");
 }
 
 BOOST_AUTO_TEST_CASE(scalar_div) {
 	// TODO
-	BOOST_CHECK(false);
+	BOOST_CHECK_MESSAGE(false, "test not implemented");
 }
 
 BOOST_AUTO_TEST_CASE(scalar_div_eq) {
 	// TODO
-	BOOST_CHECK(false);
+	BOOST_CHECK_MESSAGE(false, "test not implemented");
 }
 
 BOOST_AUTO_TEST_CASE(access) {

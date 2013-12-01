@@ -40,6 +40,15 @@ set(SOURCES_TEST
 	test/math/axis_angle_unit.cpp
 	test/math/euler_unit.cpp
 	test/math/func_unit.cpp
+	test/math/matrix2x2_unit.cpp
+	test/math/matrix2x3_unit.cpp
+	test/math/matrix2x4_unit.cpp
+	test/math/matrix3x2_unit.cpp
+	test/math/matrix3x3_unit.cpp
+	test/math/matrix3x4_unit.cpp
+	test/math/matrix4x2_unit.cpp
+	test/math/matrix4x3_unit.cpp
+	test/math/matrix4x4_unit.cpp
 	test/math/quaternion_unit.cpp
 	test/math/swizzle2_unit.cpp
 	test/math/swizzle3_unit.cpp
