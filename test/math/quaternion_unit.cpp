@@ -19,6 +19,10 @@ BOOST_AUTO_TEST_CASE(create) {
 	BOOST_CHECK_CLOSE(H_param.y, 2.0f, 1e-5f);
 	BOOST_CHECK_CLOSE(H_param.z, 3.0f, 1e-5f);
 	BOOST_CHECK_CLOSE(H_param.w, 4.0f, 1e-5f);
+	// TODO from euler angles
+	BOOST_CHECK_MESSAGE(false, "test not implemented");
+	// TODO from axis angle
+	BOOST_CHECK_MESSAGE(false, "test not implemented");
 }
 
 BOOST_AUTO_TEST_CASE(copy) {
@@ -461,26 +465,61 @@ BOOST_AUTO_TEST_CASE(normalize) {
 	BOOST_CHECK_CLOSE(H_norm.x, 1.0f, 1e-5f);
 	BOOST_CHECK_SMALL(H.y, 1e-10f);
 	BOOST_CHECK_SMALL(H.z, 1e-10f);
-}
-
-BOOST_AUTO_TEST_CASE(conjugate) {
-	// TODO
-	BOOST_CHECK(false);
+	BOOST_CHECK_SMALL(H.w, 1e-10f);
 }
 
 BOOST_AUTO_TEST_CASE(inverse) {
-	// TODO
-	BOOST_CHECK(false);
+	math::Quaternion H;
+	H.x = 2.0f;
+	H.y = 4.0f;
+	H.z = 2.0f;
+	H.w = 4.0f;
+	math::Quaternion H_inv = H.inverse();
+	BOOST_CHECK_CLOSE(H_inv.x, -0.05, 1e-5f);
+	BOOST_CHECK_CLOSE(H_inv.y, -0.1f, 1e-5f);
+	BOOST_CHECK_CLOSE(H_inv.z, -0.05f, 1e-5f);
+	BOOST_CHECK_CLOSE(H_inv.w, 0.1f, 1e-5f);
+	H.x = 0.5f;
+	H.y = 0.5f;
+	H.z = 0.5f;
+	H.w = 0.5f;
+	H_inv = H.inverse();
+	BOOST_CHECK_CLOSE(H_inv.x, -0.5, 1e-5f);
+	BOOST_CHECK_CLOSE(H_inv.y, -0.5f, 1e-5f);
+	BOOST_CHECK_CLOSE(H_inv.z, -0.5f, 1e-5f);
+	BOOST_CHECK_CLOSE(H_inv.w, 0.5f, 1e-5f);
+}
+
+BOOST_AUTO_TEST_CASE(invert) {
+	math::Quaternion H;
+	H.x = 2.0f;
+	H.y = 4.0f;
+	H.z = 2.0f;
+	H.w = 4.0f;
+	H.invert();
+	BOOST_CHECK_CLOSE(H.x, -0.05, 1e-5f);
+	BOOST_CHECK_CLOSE(H.y, -0.1f, 1e-5f);
+	BOOST_CHECK_CLOSE(H.z, -0.05f, 1e-5f);
+	BOOST_CHECK_CLOSE(H.w, 0.1f, 1e-5f);
+	H.x = 0.5f;
+	H.y = 0.5f;
+	H.z = 0.5f;
+	H.w = 0.5f;
+	math::Quaternion H_inv = H.invert();
+	BOOST_CHECK_CLOSE(H_inv.x, -0.5, 1e-5f);
+	BOOST_CHECK_CLOSE(H_inv.y, -0.5f, 1e-5f);
+	BOOST_CHECK_CLOSE(H_inv.z, -0.5f, 1e-5f);
+	BOOST_CHECK_CLOSE(H_inv.w, 0.5f, 1e-5f);
 }
 
 BOOST_AUTO_TEST_CASE(to_euler_angles) {
 	// TODO
-	BOOST_CHECK(false);
+	BOOST_CHECK_MESSAGE(false, "test not implemented");
 }
 
 BOOST_AUTO_TEST_CASE(to_axis_angle) {
 	// TODO
-	BOOST_CHECK(false);
+	BOOST_CHECK_MESSAGE(false, "test not implemented");
 }
 
 BOOST_AUTO_TEST_CASE(equals) {
@@ -578,7 +617,7 @@ BOOST_AUTO_TEST_CASE(lerp) {
 
 BOOST_AUTO_TEST_CASE(slerp) {
 	// TODO
-	BOOST_CHECK(false);
+	BOOST_CHECK_MESSAGE(false, "test not implemented");
 }
 
 BOOST_AUTO_TEST_SUITE_END()

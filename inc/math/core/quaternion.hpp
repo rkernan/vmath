@@ -38,8 +38,8 @@ public:
 	Quaternion(const math::tuple::AxisAngle<T>&);
 	Quaternion(const math::tuple::EulerAngles<T>&);
 
-	Quaternion<T> conjugate(void) const;
 	Quaternion<T> inverse(void) const;
+	Quaternion<T>& invert(void);
 
 	math::tuple::EulerAngles<T> eulerAngles(void) const;
 	math::tuple::AxisAngle<T> axisAngle(void) const;

@@ -1,6 +1,7 @@
 #ifndef MATH_CORE_VECTOR_HPP
 #define MATH_CORE_VECTOR_HPP
 
+#include <array>
 #include <cstddef>
 #include <ostream>
 #include <type_traits>
@@ -22,7 +23,10 @@ namespace core {
 template<typename T, std::size_t N>
 class VectorComponents {
 public:
-	T values[N];
+	explicit VectorComponents(void) : data() {}
+	explicit VectorComponents(const std::array<T, N>& data) : data(data) {}
+
+	std::array<T, N> data;
 };
 
 /**
@@ -34,12 +38,13 @@ template<typename T>
 class VectorComponents<T, 2> {
 public:
 	explicit VectorComponents(void) : x(), y() {}
+	explicit VectorComponents(const std::array<T, 2>& data) : data(data) {}
 	explicit VectorComponents(const T& x, const T& y) : x(x), y(y) {}
 	explicit VectorComponents(const VectorComponents<T, 2>&) = default;
 	explicit VectorComponents(VectorComponents<T, 2>&&) = default;
 
 	union {
-		T values[2];
+		std::array<T, 2> data;
 		// axis coords
 		struct { T x, y; };
 		MATH_CORE_SWIZZLE_GEN_SWIZZLE2_FOR_VECTOR2(T, x, y)
@@ -67,13 +72,14 @@ template<typename T>
 class VectorComponents<T, 3> {
 public:
 	explicit VectorComponents(void) : x(), y(), z() {}
+	explicit VectorComponents(const std::array<T, 3>& data) : data(data) {}
 	explicit VectorComponents(const T& x, const T& y, const T& z) : x(x), y(y), z(z) {}
 	explicit VectorComponents(const VectorComponents<T, 2>& V, const T& z) : x(V.x), y(V.y), z(z) {}
 	explicit VectorComponents(const VectorComponents<T, 3>&) = default;
 	explicit VectorComponents(VectorComponents<T, 3>&&) = default;
 
 	union {
-		T values[3];
+		std::array<T, 3> data;
 		// axis coords
 		struct { T x, y, z; };
 		MATH_CORE_SWIZZLE_GEN_SWIZZLE2_FOR_VECTOR3(T, x, y, z)
@@ -101,6 +107,7 @@ template<typename T>
 class VectorComponents<T, 4> {
 public:
 	explicit VectorComponents(void) : x(), y(), z(), w() {}
+	explicit VectorComponents(const std::array<T, 4>& data) : data(data) {}
 	explicit VectorComponents(const T& x, const T& y, const T& z, const T& w) : x(x), y(y), z(z), w(w) {}
 	explicit VectorComponents(const VectorComponents<T, 2>& V, const T& z, const T& w) : x(V.x), y(V.y), z(z), w(w) {}
 	explicit VectorComponents(const VectorComponents<T, 3>& V, const T& w) : x(V.x), y(V.y), z(V.z), w(w) {}
@@ -108,7 +115,7 @@ public:
 	explicit VectorComponents(VectorComponents<T, 4>&&) = default;
 
 	union {
-		T values[4];
+		std::array<T, 4> data;
 		// axis coords
 		struct { T x, y, z, w; };
 		MATH_CORE_SWIZZLE_GEN_SWIZZLE2_FOR_VECTOR4(T, x, y, z, w)
@@ -137,16 +144,13 @@ class Vector : public VectorComponents<T, N> {
 public:
 	using VectorComponents<T, N>::VectorComponents;
 
-	Vector(void);
-	Vector(const T values[N]);
-
 	~Vector(void) = default;
+
+	Vector<T, N>& operator=(const Vector<T, N>&);
 
 	T operator[](const std::size_t) const;
 	T& operator[](const std::size_t);
 
-	Vector<T, N>& operator=(const Vector<T, N>&);
-	Vector<T, N> operator-(void) const;
 	Vector<T, N> operator+(const Vector<T, N>&) const;
 	Vector<T, N>& operator+=(const Vector<T, N>&);
 	Vector<T, N> operator-(const Vector<T, N>&) const;
@@ -156,10 +160,11 @@ public:
 	Vector<T, N> operator/(const Vector<T, N>&) const;
 	Vector<T, N>& operator/=(const Vector<T, N>&);
 
-	Vector<T, N> operator/(const T&) const;
-	Vector<T, N>& operator/=(const T&);
+	Vector<T, N> operator-(void) const;
 	Vector<T, N> operator*(const T&) const;
 	Vector<T, N>& operator*=(const T&);
+	Vector<T, N> operator/(const T&) const;
+	Vector<T, N>& operator/=(const T&);
 
 	T mag(void) const;
 	T mag2(void) const;

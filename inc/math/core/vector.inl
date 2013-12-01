@@ -3,6 +3,7 @@
 
 #include "vector.hpp"
 
+#include <array>
 #include <cstddef>
 #include <ostream>
 #include <stdexcept>
@@ -14,36 +15,12 @@
 using namespace math::core;
 
 /**
- * Default constructor.
- */
-template<typename T, std::size_t N>
-Vector<T, N>::Vector(void) {
-	for (std::size_t i = 0; i < N; i++) {
-		this->values[i] = T();
-	}
-}
-
-/**
- * Parameterized constructor.
- * @param values Array to store as vector.
- */
-template<typename T, std::size_t N>
-Vector<T, N>::Vector(const T values[N]) {
-	for (std::size_t i = 0; i < N; i++) {
-		this->values[i] = values[i];
-	}
-}
-
-/**
  * Access a vector element using an index.
  * @param idx Location of element to access.
  */
 template<typename T, std::size_t N>
 T Vector<T, N>::operator[](const std::size_t idx) const {
-	if (idx >= N) {
-		throw std::out_of_range("math::core::Vector::operator[" + std::to_string(idx) + "], size = " + std::to_string(N));
-	}
-	return this->values[idx];
+	return this->data.at(idx);
 }
 
 /**
@@ -52,10 +29,7 @@ T Vector<T, N>::operator[](const std::size_t idx) const {
  */
 template<typename T, std::size_t N>
 T& Vector<T, N>::operator[](const std::size_t idx) {
-	if (idx >= N) {
-		throw std::out_of_range("math::core::Vector::operator[" + std::to_string(idx) + "], size = " + std::to_string(N));
-	}
-	return this->values[idx];
+	return this->data.at(idx);
 }
 
 /**
@@ -66,7 +40,7 @@ T& Vector<T, N>::operator[](const std::size_t idx) {
 template<typename T, std::size_t N>
 Vector<T, N>& Vector<T, N>::operator=(const Vector<T, N>& other) {
 	for (std::size_t i = 0; i < N; i++) {
-		this->values[i] = other.values[i];
+		this->data[i] = other.data[i];
 	}
 	return *this;
 }
@@ -77,11 +51,11 @@ Vector<T, N>& Vector<T, N>::operator=(const Vector<T, N>& other) {
  */
 template<typename T, std::size_t N>
 Vector<T, N> Vector<T, N>::operator-(void) const {
-	T values[N];
+	std::array<T, N> data;
 	for (std::size_t i = 0; i < N; i++) {
-		values[i] = -this->values[i];
+		data[i] = -this->data[i];
 	}
-	return Vector<T, N>(values);
+	return Vector<T, N>(data);
 }
 
 /**
@@ -91,11 +65,11 @@ Vector<T, N> Vector<T, N>::operator-(void) const {
  */
 template<typename T, std::size_t N>
 Vector<T, N> Vector<T, N>::operator+(const Vector<T, N>& V) const {
-	T values[N];
+	std::array<T, N> data;
 	for (std::size_t i = 0; i < N; i++) {
-		values[i] = this->values[i] + V.values[i];
+		data[i] = this->data[i] + V.data[i];
 	}
-	return Vector<T, N>(values);
+	return Vector<T, N>(data);
 }
 
 /**
@@ -115,11 +89,11 @@ Vector<T, N>& Vector<T, N>::operator+=(const Vector<T, N>& V) {
  */
 template<typename T, std::size_t N>
 Vector<T, N> Vector<T, N>::operator-(const Vector<T, N>& V) const {
-	T values[N];
+	std::array<T, N> data;
 	for (std::size_t i = 0; i < N; i++) {
-		values[i] = this->values[i] - V.values[i];
+		data[i] = this->data[i] - V.data[i];
 	}
-	return Vector<T, N>(values);
+	return Vector<T, N>(data);
 }
 
 /**
@@ -139,11 +113,11 @@ Vector<T, N>& Vector<T, N>::operator-=(const Vector<T, N>& V) {
  */
 template<typename T, std::size_t N>
 Vector<T, N> Vector<T, N>::operator*(const Vector<T, N>& V) const {
-	T values[N];
+	std::array<T, N> data;
 	for (std::size_t i = 0; i < N; i++) {
-		values[i] = this->values[i] * V.values[i];
+		data[i] = this->data[i] * V.data[i];
 	}
-	return Vector<T, N>(values);
+	return Vector<T, N>(data);
 }
 
 /**
@@ -163,11 +137,11 @@ Vector<T, N>& Vector<T, N>::operator*=(const Vector<T, N>& V) {
  */
 template<typename T, std::size_t N>
 Vector<T, N> Vector<T, N>::operator/(const Vector<T, N>& V) const {
-	T values[N];
+	std::array<T, N> data;
 	for (std::size_t i = 0; i < N; i++) {
-		values[i] = this->values[i] / V.values[i];
+		data[i] = this->data[i] / V.data[i];
 	}
-	return Vector<T, N>(values);
+	return Vector<T, N>(data);
 }
 
 /**
@@ -187,11 +161,11 @@ Vector<T, N>& Vector<T, N>::operator/=(const Vector<T, N>& V) {
  */
 template<typename T, std::size_t N>
 Vector<T, N> Vector<T, N>::operator*(const T& s) const {
-	T values[N];
+	std::array<T, N> data;
 	for (std::size_t i = 0; i < N; i++) {
-		values[i] = this->values[i] * s;
+		data[i] = this->data[i] * s;
 	}
-	return Vector<T, N>(values);
+	return Vector<T, N>(data);
 }
 
 /**
@@ -211,11 +185,11 @@ Vector<T, N>& Vector<T, N>::operator*=(const T& s) {
  */
 template<typename T, std::size_t N>
 Vector<T, N> Vector<T, N>::operator/(const T& s) const {
-	T values[N];
+	std::array<T, N> data;
 	for (std::size_t i = 0; i < N; i++) {
-		values[i] = this->values[i] / s;
+		data[i] = this->data[i] / s;
 	}
-	return Vector<T, N>(values);
+	return Vector<T, N>(data);
 }
 
 /**
@@ -245,7 +219,7 @@ template<typename T, std::size_t N>
 T Vector<T, N>::mag2(void) const {
 	T mag2 = T();
 	for (std::size_t i = 0; i < N; i++) {
-		mag2 += this->values[i] * this->values[i];
+		mag2 += this->data[i] * this->data[i];
 	}
 	return mag2;
 }
@@ -279,7 +253,7 @@ static inline typename std::enable_if<std::is_floating_point<T>::value, bool>::t
 		equals_helper(const Vector<T, N>& V1, const Vector<T, N>& V2) {
 	bool equal = true;
 	for (std::size_t i = 0; i < N; ++i) {
-		equal = equal && math::equals(V1.values[i], V2.values[i]);
+		equal = equal && math::equals(V1.data[i], V2.data[i]);
 	}
 	return equal;
 }
@@ -289,7 +263,7 @@ static inline typename std::enable_if<!std::is_floating_point<T>::value, bool>::
 		equals_helper(const Vector<T, N>& V1, const Vector<T, N>& V2) {
 	bool equal = true;
 	for (std::size_t i = 0; i < N; ++i) {
-		equal = equal && V1.values[i] == V2.values[i];
+		equal = equal && V1.data[i] == V2.data[i];
 	}
 	return equal;
 }
@@ -318,7 +292,7 @@ template<typename T, std::size_t N>
 T Vector<T, N>::dot(const Vector<T, N>& V1, const Vector<T, N>& V2) {
 	T dot = T();
 	for (std::size_t i = 0; i < N; ++i) {
-		dot += V1.values[i] * V2.values[i];
+		dot += V1.data[i] * V2.data[i];
 	}
 	return dot;
 }

@@ -59,21 +59,21 @@ Quaternion<T>::Quaternion(const math::tuple::EulerAngles<T>& euler) {
 }
 
 /**
- * Calculate the conjugate of this quaternion.
- * @return Quaternion conjugate.
- */
-template<typename T>
-Quaternion<T> Quaternion<T>::conjugate(void) const {
-	return Quaternion<T>(-this->x, -this->y, -this->z, this->w);
-}
-
-/**
  * Calculate the inverse of this quaternion.
  * @return Quaternion inverse.
  */
 template<typename T>
 Quaternion<T> Quaternion<T>::inverse(void) const {
-	return this->conjugate() / this->mag2();
+	return Quaternion<T>(-this->x, -this->y, -this->z, this->w) / this->mag2();
+}
+
+/**
+ * Invert this quaternion.
+ * @return The modified quaternion.
+ */
+template<typename T>
+Quaternion<T>& Quaternion<T>::invert(void) {
+	return *this = this->inverse();
 }
 
 /**
