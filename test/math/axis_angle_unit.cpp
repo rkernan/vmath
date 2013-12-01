@@ -45,6 +45,11 @@ BOOST_AUTO_TEST_CASE(move) {
 	BOOST_CHECK_CLOSE(std::get<1>(A_move), std::get<1>(A), 1e-5f);
 }
 
+BOOST_AUTO_TEST_CASE(remove) {
+	// TODO
+	BOOST_CHECK_MESSAGE(false, "test not implemented");
+}
+
 BOOST_AUTO_TEST_CASE(axis) {
 	// FIXME Relies on create.
 	math::core::Vector<float, 3> V;
