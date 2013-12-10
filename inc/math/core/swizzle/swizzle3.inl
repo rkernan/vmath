@@ -13,7 +13,7 @@ using namespace math::core;
  */
 template<typename T, std::size_t N, std::size_t E1, std::size_t E2, std::size_t E3>
 Swizzle3<T, N, E1, E2, E3>::operator Vector<T, 3>(void) {
-	return Vector<T, 3>(this->values[E1], this->values[E2], this->values[E3]);
+	return Vector<T, 3>(this->data[E1], this->data[E2], this->data[E3]);
 }
 
 /**
@@ -22,11 +22,11 @@ Swizzle3<T, N, E1, E2, E3>::operator Vector<T, 3>(void) {
  * @return The modified vector.
  */
 template<typename T, std::size_t N, std::size_t E1, std::size_t E2, std::size_t E3>
+template<typename U, typename>
 Vector<T, 3>& Swizzle3<T, N, E1, E2, E3>::operator=(const Vector<T, 3>& V) {
-	static_assert(swizzle_has_unique_elems<3, E1, E2, E3>::value, MATH_CORE_SWIZZLE_ASSIGN_ERROR);
-	this->values[E1] = V.x;
-	this->values[E2] = V.y;
-	this->values[E3] = V.z;
+	this->data[E1] = V.x;
+	this->data[E2] = V.y;
+	this->data[E3] = V.z;
 	return *(Vector<T, 3>*)this;
 }
 
@@ -47,8 +47,8 @@ Vector<T, 3> Swizzle3<T, N, E1, E2, E3>::operator+(const Vector<T, 3>& V) const 
  * @return The modified vector.
  */
 template<typename T, std::size_t N, std::size_t E1, std::size_t E2, std::size_t E3>
+template<typename U, typename>
 Vector<T, 3>& Swizzle3<T, N, E1, E2, E3>::operator+=(const Vector<T, 3>& V) {
-	static_assert(swizzle_has_unique_elems<3, E1, E2, E3>::value, MATH_CORE_SWIZZLE_ASSIGN_ERROR);
 	return *this = *this + V;
 }
 
@@ -69,8 +69,8 @@ Vector<T, 3> Swizzle3<T, N, E1, E2, E3>::operator-(const Vector<T, 3>& V) const 
  * @return The modified vector.
  */
 template<typename T, std::size_t N, std::size_t E1, std::size_t E2, std::size_t E3>
+template<typename U, typename>
 Vector<T, 3>& Swizzle3<T, N, E1, E2, E3>::operator-=(const Vector<T, 3>& V) {
-	static_assert(swizzle_has_unique_elems<3, E1, E2, E3>::value, MATH_CORE_SWIZZLE_ASSIGN_ERROR);
 	return *this = *this - V;
 }
 
@@ -91,8 +91,8 @@ Vector<T, 3> Swizzle3<T, N, E1, E2, E3>::operator*(const Vector<T, 3>& V) const 
  * @return The modified vector.
  */
 template<typename T, std::size_t N, std::size_t E1, std::size_t E2, std::size_t E3>
+template<typename U, typename>
 Vector<T, 3>& Swizzle3<T, N, E1, E2, E3>::operator*=(const Vector<T, 3>& V) {
-	static_assert(swizzle_has_unique_elems<3, E1, E2, E3>::value, MATH_CORE_SWIZZLE_ASSIGN_ERROR);
 	return *this = *this * V;
 }
 
@@ -113,8 +113,8 @@ Vector<T, 3> Swizzle3<T, N, E1, E2, E3>::operator/(const Vector<T, 3>& V) const 
  * @return The modified vector (component-wise quotient).
  */
 template<typename T, std::size_t N, std::size_t E1, std::size_t E2, std::size_t E3>
+template<typename U, typename>
 Vector<T, 3>& Swizzle3<T, N, E1, E2, E3>::operator/=(const Vector<T, 3>& V) {
-	static_assert(swizzle_has_unique_elems<3, E1, E2, E3>::value, MATH_CORE_SWIZZLE_ASSIGN_ERROR);
 	return *this = *this / V;
 }
 
@@ -135,6 +135,7 @@ Vector<T, 3> Swizzle3<T, N, E1, E2, E3>::operator*(const T& s) const {
  * @return The vector-scalar product.
  */
 template<typename T, std::size_t N, std::size_t E1, std::size_t E2, std::size_t E3>
+template<typename U, typename>
 Vector<T, 3>& Swizzle3<T, N, E1, E2, E3>::operator*=(const T& s) {
 	return *this = *this * s;
 }
@@ -156,6 +157,7 @@ Vector<T, 3> Swizzle3<T, N, E1, E2, E3>::operator/(const T& s) const {
  * @return The vector-scalar quotient.
  */
 template<typename T, std::size_t N, std::size_t E1, std::size_t E2, std::size_t E3>
+template<typename U, typename>
 Vector<T, 3>& Swizzle3<T, N, E1, E2, E3>::operator/=(const T& s) {
 	return *this = *this / s;
 }

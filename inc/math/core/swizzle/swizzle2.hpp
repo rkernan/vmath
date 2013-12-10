@@ -1,6 +1,8 @@
 #ifndef MATH_CORE_SWIZZLE_SWIZZLE2_HPP
 #define MATH_CORE_SWIZZLE_SWIZZLE2_HPP
 
+#include <type_traits>
+
 #include "swizzle.hpp"
 
 namespace math {
@@ -21,27 +23,59 @@ class Swizzle2 : public Swizzle<T, N> {
 public:
 	operator Vector<T, 2>(void);
 
+	template<typename U = T,
+		typename = typename std::enable_if<is_assignable_swizzle<2, E1, E2>::value
+		&& std::is_same<T, U>::value, U>::type>
 	Vector<T, 2>& operator=(const Vector<T, 2>&);
+
 	Vector<T, 2> operator+(const Vector<T, 2>&) const;
+
+	template<typename U = T,
+		typename = typename std::enable_if<is_assignable_swizzle<2, E1, E2>::value
+		&& std::is_same<T, U>::value, U>::type>
 	Vector<T, 2>& operator+=(const Vector<T, 2>&);
+
 	Vector<T, 2> operator-(const Vector<T, 2>&) const;
+
+	template<typename U = T,
+		typename = typename std::enable_if<is_assignable_swizzle<2, E1, E2>::value
+		&& std::is_same<T, U>::value, U>::type>
 	Vector<T, 2>& operator-=(const Vector<T, 2>&);
+
 	Vector<T, 2> operator*(const Vector<T, 2>&) const;
+
+	template<typename U = T,
+		typename = typename std::enable_if<is_assignable_swizzle<2, E1, E2>::value
+		&& std::is_same<T, U>::value, U>::type>
 	Vector<T, 2>& operator*=(const Vector<T, 2>&);
+
 	Vector<T, 2> operator/(const Vector<T, 2>&) const;
+
+	template<typename U = T,
+		typename = typename std::enable_if<is_assignable_swizzle<2, E1, E2>::value
+		&& std::is_same<T, U>::value, U>::type>
 	Vector<T, 2>& operator/=(const Vector<T, 2>&);
 
 	Vector<T, 2> operator*(const T&) const;
+
+	template<typename U = T,
+		typename = typename std::enable_if<is_assignable_swizzle<2, E1, E2>::value
+		&& std::is_same<T, U>::value, U>::type>
 	Vector<T, 2>& operator*=(const T&);
+
 	Vector<T, 2> operator/(const T&) const;
+
+	template<typename U = T,
+		typename = typename std::enable_if<is_assignable_swizzle<2, E1, E2>::value
+		&& std::is_same<T, U>::value, U>::type>
 	Vector<T, 2>& operator/=(const T&);
 
 	bool operator==(const Vector<T, 2>&) const;
 	bool operator!=(const Vector<T, 2>&) const;
 
 #if defined(MATH_CORE_SWIZZLE_ENABLE_ELEMENT_ACCESSORS)
-	T getE1(void) { return this->values[E1]; }
-	T getE2(void) { return this->values[E2]; }
+	T getE1(void) { return this->data[E1]; }
+	T getE2(void) { return this->data[E2]; }
 #endif
 };
 

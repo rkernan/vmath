@@ -22,28 +22,60 @@ class Swizzle3 : public Swizzle<T, N> {
 public:
 	operator Vector<T, 3>(void);
 
+	template<typename U = T,
+		typename = typename std::enable_if<is_assignable_swizzle<3, E1, E2, E3>::value
+		&& std::is_same<T, U>::value>::type>
 	Vector<T, 3>& operator=(const Vector<T, 3>&);
+
 	Vector<T, 3> operator+(const Vector<T, 3>&) const;
+
+	template<typename U = T,
+		typename = typename std::enable_if<is_assignable_swizzle<3, E1, E2, E3>::value
+		&& std::is_same<T, U>::value>::type>
 	Vector<T, 3>& operator+=(const Vector<T, 3>&);
+
 	Vector<T, 3> operator-(const Vector<T, 3>&) const;
+
+	template<typename U = T,
+		typename = typename std::enable_if<is_assignable_swizzle<3, E1, E2, E3>::value
+		&& std::is_same<T, U>::value>::type>
 	Vector<T, 3>& operator-=(const Vector<T, 3>&);
+
 	Vector<T, 3> operator*(const Vector<T, 3>&) const;
+
+	template<typename U = T,
+		typename = typename std::enable_if<is_assignable_swizzle<3, E1, E2, E3>::value
+		&& std::is_same<T, U>::value>::type>
 	Vector<T, 3>& operator*=(const Vector<T, 3>&);
+
 	Vector<T, 3> operator/(const Vector<T, 3>&) const;
+
+	template<typename U = T,
+		typename = typename std::enable_if<is_assignable_swizzle<3, E1, E2, E3>::value
+		&& std::is_same<T, U>::value>::type>
 	Vector<T, 3>& operator/=(const Vector<T, 3>&);
 
 	Vector<T, 3> operator*(const T&) const;
+
+	template<typename U = T,
+		typename = typename std::enable_if<is_assignable_swizzle<3, E1, E2, E3>::value
+		&& std::is_same<T, U>::value>::type>
 	Vector<T, 3>& operator*=(const T&);
+
 	Vector<T, 3> operator/(const T&) const;
+
+	template<typename U = T,
+		typename = typename std::enable_if<is_assignable_swizzle<3, E1, E2, E3>::value
+		&& std::is_same<T, U>::value>::type>
 	Vector<T, 3>& operator/=(const T&);
 
 	bool operator==(const Vector<T, 3>&) const;
 	bool operator!=(const Vector<T, 3>&) const;
 
 #if defined(MATH_CORE_SWIZZLE_ENABLE_ELEMENT_ACCESSORS)
-	T getE1(void) { return this->values[E1]; }
-	T getE2(void) { return this->values[E2]; }
-	T getE3(void) { return this->values[E3]; }
+	T getE1(void) { return this->data[E1]; }
+	T getE2(void) { return this->data[E2]; }
+	T getE3(void) { return this->data[E3]; }
 #endif
 };
 

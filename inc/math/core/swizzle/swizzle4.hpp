@@ -23,34 +23,63 @@ class Swizzle4 : public Swizzle<T, N> {
 public:
 	operator Vector<T, 4>(void);
 
+	template<typename U = T,
+		typename = typename std::enable_if<is_assignable_swizzle<4, E1, E2, E3, E4>::value
+		&& std::is_same<T, U>::value>::type>
 	Vector<T, 4>& operator=(const Vector<T, 4>&);
+
 	Vector<T, 4> operator+(const Vector<T, 4>&) const;
+
+	template<typename U = T,
+		typename = typename std::enable_if<is_assignable_swizzle<4, E1, E2, E3, E4>::value
+		&& std::is_same<T, U>::value>::type>
 	Vector<T, 4>& operator+=(const Vector<T, 4>&);
+
 	Vector<T, 4> operator-(const Vector<T, 4>&) const;
+
+	template<typename U = T,
+		typename = typename std::enable_if<is_assignable_swizzle<4, E1, E2, E3, E4>::value
+		&& std::is_same<T, U>::value>::type>
 	Vector<T, 4>& operator-=(const Vector<T, 4>&);
+
 	Vector<T, 4> operator*(const Vector<T, 4>&) const;
+
+	template<typename U = T,
+		typename = typename std::enable_if<is_assignable_swizzle<4, E1, E2, E3, E4>::value
+		&& std::is_same<T, U>::value>::type>
 	Vector<T, 4>& operator*=(const Vector<T, 4>&);
+
 	Vector<T, 4> operator/(const Vector<T, 4>&) const;
+
+	template<typename U = T,
+		typename = typename std::enable_if<is_assignable_swizzle<4, E1, E2, E3, E4>::value
+		&& std::is_same<T, U>::value>::type>
 	Vector<T, 4>& operator/=(const Vector<T, 4>&);
 
 	Vector<T, 4> operator*(const T&) const;
+
+	template<typename U = T,
+		typename = typename std::enable_if<is_assignable_swizzle<4, E1, E2, E3, E4>::value
+		&& std::is_same<T, U>::value>::type>
 	Vector<T, 4>& operator*=(const T&);
+
 	Vector<T, 4> operator/(const T&) const;
+
+	template<typename U = T,
+		typename = typename std::enable_if<is_assignable_swizzle<4, E1, E2, E3, E4>::value
+		&& std::is_same<T, U>::value>::type>
 	Vector<T, 4>& operator/=(const T&);
 
 	bool operator==(const Vector<T, 4>&) const;
 	bool operator!=(const Vector<T, 4>&) const;
 
 #if defined(MATH_CORE_SWIZZLE_ENABLE_ELEMENT_ACCESSORS)
-	T getE1(void) { return this->values[E1]; }
-	T getE2(void) { return this->values[E2]; }
-	T getE3(void) { return this->values[E3]; }
-	T getE4(void) { return this->values[E4]; }
+	T getE1(void) { return this->data[E1]; }
+	T getE2(void) { return this->data[E2]; }
+	T getE3(void) { return this->data[E3]; }
+	T getE4(void) { return this->data[E4]; }
 #endif
 };
-
-template<typename T, std::size_t N, std::size_t E1, std::size_t E2, std::size_t E3, std::size_t E4>
-Vector<T, 4> operator*(const T&, const Swizzle4<T, N, E1, E2, E3, E4>);
 
 }
 }
