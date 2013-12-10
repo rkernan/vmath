@@ -14,7 +14,7 @@ typedef core::Matrix<float, 3, 2> Matrix3x2;
 typedef core::Matrix<float, 3>    Matrix3x3;
 typedef core::Matrix<float, 3, 4> Matrix3x4;
 typedef core::Matrix<float, 4, 2> Matrix4x2;
-typedef core::Matrix<float, 4, 3> Matirx4x3;
+typedef core::Matrix<float, 4, 3> Matrix4x3;
 typedef core::Matrix<float, 4>    Matrix4x4;
 typedef Matrix2x2 Matrix2;
 typedef Matrix3x3 Matrix3;
