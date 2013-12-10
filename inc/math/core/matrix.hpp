@@ -47,11 +47,13 @@ public:
 	bool operator==(const Matrix<T, N, M>&) const;
 	bool operator!=(const Matrix<T, N, M>&) const;
 
-	T det(void) const;
 	Matrix<T, M, N> transpose(void) const;
 
-	template<typename = typename std::enable_if<N == M, T>::type>
-	Matrix<T, N, M> inverse(void) const;
+	template<typename Q = T, typename = typename std::enable_if<N == M, Q>::type>
+	Q det(void) const;
+
+	template<typename Q = T, typename = typename std::enable_if<N == M, Q>::type>
+	Matrix<Q, N, M> inverse(void) const;
 
 	std::array<Vector<T, N>, M> data;
 };
