@@ -151,6 +151,7 @@ public:
 	T operator[](const std::size_t) const;
 	T& operator[](const std::size_t);
 
+	Vector<T, N> operator-(void) const;
 	Vector<T, N> operator+(const Vector<T, N>&) const;
 	Vector<T, N>& operator+=(const Vector<T, N>&);
 	Vector<T, N> operator-(const Vector<T, N>&) const;
@@ -160,7 +161,6 @@ public:
 	Vector<T, N> operator/(const Vector<T, N>&) const;
 	Vector<T, N>& operator/=(const Vector<T, N>&);
 
-	Vector<T, N> operator-(void) const;
 	Vector<T, N> operator*(const T&) const;
 	Vector<T, N>& operator*=(const T&);
 	Vector<T, N> operator/(const T&) const;
@@ -179,11 +179,11 @@ public:
 	static Vector<T, N> refract(const Vector<T, N>&, const Vector<T, N>&, const T&);
 	static Vector<T, N> lerp(const Vector<T, N>&, const Vector<T, N>&, const T&);
 
-	template<typename U = T, typename = typename std::enable_if<N == 2, U>::type>
-	static U cross(const Vector<U, N>&, const Vector<U, N>&);
+	template<typename U = T, typename = typename std::enable_if<N == 2 && std::is_same<T, U>::value, U>::type>
+	static T cross(const Vector<T, N>&, const Vector<T, N>&);
 
-	template<typename U = T, typename = typename std::enable_if<N == 3, U>::type>
-	static Vector<U, N> cross(const Vector<U, N>&, const Vector<U, N>&);
+	template<typename U = T, typename = typename std::enable_if<N == 3 && std::is_same<T, U>::value, U>::type>
+	static Vector<T, N> cross(const Vector<T, N>&, const Vector<T, N>&);
 };
 
 }

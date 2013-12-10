@@ -15,6 +15,19 @@
 using namespace math::core;
 
 /**
+ * Set this vector equal to another.
+ * @param other Vector to set equal to.
+ * @return The modified vector.
+ */
+template<typename T, std::size_t N>
+Vector<T, N>& Vector<T, N>::operator=(const Vector<T, N>& other) {
+	for (std::size_t i = 0; i < N; i++) {
+		this->data[i] = other.data[i];
+	}
+	return *this;
+}
+
+/**
  * Access a vector element using an index.
  * @param idx Location of element to access.
  */
@@ -33,29 +46,16 @@ T& Vector<T, N>::operator[](const std::size_t idx) {
 }
 
 /**
- * Set this vector equal to another.
- * @param other Vector to set equal to.
- * @return The modified vector.
- */
-template<typename T, std::size_t N>
-Vector<T, N>& Vector<T, N>::operator=(const Vector<T, N>& other) {
-	for (std::size_t i = 0; i < N; i++) {
-		this->data[i] = other.data[i];
-	}
-	return *this;
-}
-
-/**
  * Negate a vector.
  * @return The vector negated.
  */
 template<typename T, std::size_t N>
 Vector<T, N> Vector<T, N>::operator-(void) const {
-	std::array<T, N> data;
+	Vector<T, N> R;
 	for (std::size_t i = 0; i < N; i++) {
-		data[i] = -this->data[i];
+		R.data[i] = -this->data[i];
 	}
-	return Vector<T, N>(data);
+	return R;
 }
 
 /**
@@ -65,11 +65,11 @@ Vector<T, N> Vector<T, N>::operator-(void) const {
  */
 template<typename T, std::size_t N>
 Vector<T, N> Vector<T, N>::operator+(const Vector<T, N>& V) const {
-	std::array<T, N> data;
+	Vector<T, N> R;
 	for (std::size_t i = 0; i < N; i++) {
-		data[i] = this->data[i] + V.data[i];
+		R.data[i] = this->data[i] + V.data[i];
 	}
-	return Vector<T, N>(data);
+	return R;
 }
 
 /**
@@ -89,11 +89,11 @@ Vector<T, N>& Vector<T, N>::operator+=(const Vector<T, N>& V) {
  */
 template<typename T, std::size_t N>
 Vector<T, N> Vector<T, N>::operator-(const Vector<T, N>& V) const {
-	std::array<T, N> data;
+	Vector<T, N> R;
 	for (std::size_t i = 0; i < N; i++) {
-		data[i] = this->data[i] - V.data[i];
+		R.data[i] = this->data[i] - V.data[i];
 	}
-	return Vector<T, N>(data);
+	return R;
 }
 
 /**
@@ -113,11 +113,11 @@ Vector<T, N>& Vector<T, N>::operator-=(const Vector<T, N>& V) {
  */
 template<typename T, std::size_t N>
 Vector<T, N> Vector<T, N>::operator*(const Vector<T, N>& V) const {
-	std::array<T, N> data;
+	Vector<T, N> R;
 	for (std::size_t i = 0; i < N; i++) {
-		data[i] = this->data[i] * V.data[i];
+		R.data[i] = this->data[i] * V.data[i];
 	}
-	return Vector<T, N>(data);
+	return R;
 }
 
 /**
@@ -137,11 +137,11 @@ Vector<T, N>& Vector<T, N>::operator*=(const Vector<T, N>& V) {
  */
 template<typename T, std::size_t N>
 Vector<T, N> Vector<T, N>::operator/(const Vector<T, N>& V) const {
-	std::array<T, N> data;
+	Vector<T, N> R;
 	for (std::size_t i = 0; i < N; i++) {
-		data[i] = this->data[i] / V.data[i];
+		R.data[i] = this->data[i] / V.data[i];
 	}
-	return Vector<T, N>(data);
+	return R;
 }
 
 /**
@@ -161,11 +161,11 @@ Vector<T, N>& Vector<T, N>::operator/=(const Vector<T, N>& V) {
  */
 template<typename T, std::size_t N>
 Vector<T, N> Vector<T, N>::operator*(const T& s) const {
-	std::array<T, N> data;
+	Vector<T, N> R;
 	for (std::size_t i = 0; i < N; i++) {
-		data[i] = this->data[i] * s;
+		R.data[i] = this->data[i] * s;
 	}
-	return Vector<T, N>(data);
+	return R;
 }
 
 /**
@@ -185,11 +185,11 @@ Vector<T, N>& Vector<T, N>::operator*=(const T& s) {
  */
 template<typename T, std::size_t N>
 Vector<T, N> Vector<T, N>::operator/(const T& s) const {
-	std::array<T, N> data;
+	Vector<T, N> R;
 	for (std::size_t i = 0; i < N; i++) {
-		data[i] = this->data[i] / s;
+		R.data[i] = this->data[i] / s;
 	}
-	return Vector<T, N>(data);
+	return R;
 }
 
 /**
@@ -288,6 +288,12 @@ bool Vector<T, N>::operator!=(const Vector<T, N>& other) const {
 	return !(*this == other);
 }
 
+/**
+ * Calculate the inner vector product (dot product).
+ * @param V1 Vector to take dot product of.
+ * @param V2 Vector to take dot product of.
+ * @return Vector dot product.
+ */
 template<typename T, std::size_t N>
 T Vector<T, N>::dot(const Vector<T, N>& V1, const Vector<T, N>& V2) {
 	T dot = T();
@@ -347,7 +353,7 @@ Vector<T, N> Vector<T, N>::lerp(const Vector<T, N>& S, const Vector<T, N>& E, co
  */
 template<typename T, std::size_t N>
 template<typename U, typename>
-U Vector<T, N>::cross(const Vector<U, N>& V1, const Vector<U, N>& V2) {
+T Vector<T, N>::cross(const Vector<T, N>& V1, const Vector<T, N>& V2) {
 	return (V1.x * V2.y) - (V1.y * V2.x);
 }
 
@@ -360,7 +366,7 @@ U Vector<T, N>::cross(const Vector<U, N>& V1, const Vector<U, N>& V2) {
  */
 template<typename T, std::size_t N>
 template<typename U, typename>
-Vector<U, N> Vector<T, N>::cross(const Vector<U, N>& V1, const Vector<U, N>& V2) {
+Vector<T, N> Vector<T, N>::cross(const Vector<T, N>& V1, const Vector<T, N>& V2) {
 	U x = (V1.y * V2.z) - (V1.z * V2.y);
 	U y = (V1.z * V2.x) - (V1.x * V2.z);
 	U z = (V1.x * V2.y) - (V1.y * V2.x);
