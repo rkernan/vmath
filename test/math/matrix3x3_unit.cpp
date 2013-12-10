@@ -5,6 +5,10 @@
 
 BOOST_AUTO_TEST_SUITE(Matrix3x3)
 
+BOOST_AUTO_TEST_CASE(size) {
+	BOOST_WARN(sizeof(math::Matrix3x3) != 3 * 3 * sizeof(float));
+}
+
 BOOST_AUTO_TEST_CASE(create) {
 	// TODO
 	BOOST_CHECK_MESSAGE(false, "test not implemented");

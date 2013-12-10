@@ -5,6 +5,10 @@
 
 BOOST_AUTO_TEST_SUITE(Matrix2x2)
 
+BOOST_AUTO_TEST_CASE(size) {
+	BOOST_WARN(sizeof(math::Matrix2x2) != 2 * 2 * sizeof(float));
+}
+
 BOOST_AUTO_TEST_CASE(create) {
 	// TODO
 	BOOST_CHECK_MESSAGE(false, "test not implemented");

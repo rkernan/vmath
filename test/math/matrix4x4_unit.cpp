@@ -5,6 +5,10 @@
 
 BOOST_AUTO_TEST_SUITE(Matrix4x4)
 
+BOOST_AUTO_TEST_CASE(size) {
+	BOOST_WARN(sizeof(math::Matrix4x4) != 4 * 4 * sizeof(float));
+}
+
 BOOST_AUTO_TEST_CASE(create) {
 	// TODO
 	BOOST_CHECK_MESSAGE(false, "test not implemented");

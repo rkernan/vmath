@@ -5,6 +5,10 @@
 
 BOOST_AUTO_TEST_SUITE(Matrix2x4)
 
+BOOST_AUTO_TEST_CASE(size) {
+	BOOST_WARN(sizeof(math::Matrix2x4) != 2 * 4 * sizeof(float));
+}
+
 BOOST_AUTO_TEST_CASE(create) {
 	// TODO
 	BOOST_CHECK_MESSAGE(false, "test not implemented");
@@ -86,11 +90,6 @@ BOOST_AUTO_TEST_CASE(scalar_div) {
 }
 
 BOOST_AUTO_TEST_CASE(scalar_div_eq) {
-	// TODO
-	BOOST_CHECK_MESSAGE(false, "test not implemented");
-}
-
-BOOST_AUTO_TEST_CASE(det) {
 	// TODO
 	BOOST_CHECK_MESSAGE(false, "test not implemented");
 }
