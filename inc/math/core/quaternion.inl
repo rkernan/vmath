@@ -23,7 +23,7 @@ Quaternion<T>::Quaternion(const math::tuple::AxisAngle<T>& axis_angle) {
 	Vector<T, 3> axis = axis_angle.axis();
 	T angle = axis_angle.angle();
 	T half_angle = angle / static_cast<T>(2.0);
-	Vector<T, 3> N = math::sin(half_angle) * axis.normal();
+	Vector<T, 3> N =  axis.normal() * math::sin(half_angle);
 	this->x = N.x;
 	this->y = N.y;
 	this->z = N.z;
@@ -120,7 +120,7 @@ Quaternion<T> Quaternion<T>::slerp(const Quaternion<T>& S, const Quaternion<T>& 
 		H = E;
 	}
 	T angle = math::acos(d);
-	return (math::sin(angle * (static_cast<T>(1.0) - t)) * S + (math::sin(angle * t) * H)) / math::sin(angle);
+	return (S * math::sin(angle * (static_cast<T>(1.0) - t)) + H * (math::sin(angle * t))) / math::sin(angle);
 }
 
 #endif
