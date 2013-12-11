@@ -6,64 +6,212 @@
 
 BOOST_AUTO_TEST_SUITE(Swizzle3)
 
+BOOST_AUTO_TEST_CASE(negate) {
+	math::Vector3 V;
+	V.x = 20.12f;
+	V.y = 100.89f;
+	V.z = -18.2f;
+	math::Vector3 V_neg;
+	V_neg = -V.yzx;
+	BOOST_CHECK_CLOSE(V_neg.x, -100.89f, 1e-5f);
+	BOOST_CHECK_CLOSE(V_neg.y, 18.2f, 1e-5f);
+	BOOST_CHECK_CLOSE(V_neg.z, -20.12f, 1e-5f);
+}
+
 BOOST_AUTO_TEST_CASE(add) {
-	// TODO
-	BOOST_CHECK_MESSAGE(false, "test not implemented");
+	math::Vector3 V1;
+	V1.x = 20.12f;
+	V1.y = 100.89f;
+	V1.z = -18.2f;
+	math::Vector3 V2;
+	V2.x = 10.34f;
+	V2.y = -15.5f;
+	V2.z = 20.2f;
+	math::Vector3 V_add;
+	V_add = V1.yxy + V2.xxx;
+	BOOST_CHECK_CLOSE(V_add.x, 111.23f, 1e-5f);
+	BOOST_CHECK_CLOSE(V_add.y, 30.46f, 1e-5f);
+	BOOST_CHECK_CLOSE(V_add.z, 111.23f, 1e-5f);
+	V_add = V2.xxx + V1.yxy;
+	BOOST_CHECK_CLOSE(V_add.x, 111.23f, 1e-5f);
+	BOOST_CHECK_CLOSE(V_add.y, 30.46f, 1e-5f);
+	BOOST_CHECK_CLOSE(V_add.x, 111.23f, 1e-5f);
 }
 
 BOOST_AUTO_TEST_CASE(add_eq) {
-	// TODO
-	BOOST_CHECK_MESSAGE(false, "test not implemented");
+	math::Vector3 V1;
+	V1.x = 20.12f;
+	V1.y = 100.89f;
+	V1.z = -18.2f;
+	math::Vector3 V2;
+	V2.x = 10.34f;
+	V2.y = -15.5f;
+	V2.z = 20.2f;
+	math::Vector3 V_add = V1;
+	V_add.yxz += V2.xxx;
+	BOOST_CHECK_CLOSE(V_add.x, 30.46f, 1e-5f);
+	BOOST_CHECK_CLOSE(V_add.y, 111.23f, 1e-5f);
+	BOOST_CHECK_CLOSE(V_add.z, -7.859999999f, 1e-5f);
 }
 
 BOOST_AUTO_TEST_CASE(sub) {
-	// TODO
-	BOOST_CHECK_MESSAGE(false, "test not implemented");
+	math::Vector3 V1;
+	V1.x = 20.12f;
+	V1.y = 100.89f;
+	V1.z = -18.2f;
+	math::Vector3 V2;
+	V2.x = 10.34f;
+	V2.y = -15.5f;
+	V2.z = 20.12f;
+	math::Vector3 V_sub;
+	V_sub = V1.yxx - V2.xxz;
+	BOOST_CHECK_CLOSE(V_sub.x, 90.55f, 1e-5f);
+	BOOST_CHECK_CLOSE(V_sub.y, 9.78f, 1e-5f);
+	BOOST_CHECK_SMALL(V_sub.z, 1e-10f);
+	V_sub = V2.xxz - V1.yxx;
+	BOOST_CHECK_CLOSE(V_sub.x, -90.55f, 1e-5f);
+	BOOST_CHECK_CLOSE(V_sub.y, -9.78f, 1e-5f);
+	BOOST_CHECK_SMALL(V_sub.z, 1e-10f);
 }
 
 BOOST_AUTO_TEST_CASE(sub_eq) {
-	// TODO
-	BOOST_CHECK_MESSAGE(false, "test not implemented");
+	math::Vector3 V1;
+	V1.x = 20.12f;
+	V1.y = 100.89f;
+	V1.z = -18.2f;
+	math::Vector3 V2;
+	V2.x = 10.34f;
+	V2.y = -15.5f;
+	V2.z = 20.2f;
+	math::Vector3 V_sub = V1;
+	V_sub.yxz -= V2.xxx;
+	BOOST_CHECK_CLOSE(V_sub.x, 9.78f, 1e-5f);
+	BOOST_CHECK_CLOSE(V_sub.y, 90.55f, 1e-5f);
+	BOOST_CHECK_CLOSE(V_sub.z, -28.54f, 1e-5f);
 }
 
 BOOST_AUTO_TEST_CASE(mult) {
-	// TODO
-	BOOST_CHECK_MESSAGE(false, "test not implemented");
+	math::Vector3 V1;
+	V1.x = 20.12f;
+	V1.y = 100.89f;
+	V1.z = -18.2f;
+	math::Vector3 V2;
+	V2.x = 10.34f;
+	V2.y = -15.5f;
+	V2.z = 20.2f;
+	math::Vector3 V_mult;
+	V_mult = V1.yxx * V2.xxx;
+	BOOST_CHECK_CLOSE(V_mult.x, 1043.2026f, 1e-5f);
+	BOOST_CHECK_CLOSE(V_mult.y, 208.0408f, 1e-5f);
+	BOOST_CHECK_CLOSE(V_mult.z, 208.0408f, 1e-5f);
+	V_mult = V2.xxx * V1.yxx;
+	BOOST_CHECK_CLOSE(V_mult.x, 1043.2026f, 1e-5f);
+	BOOST_CHECK_CLOSE(V_mult.y, 208.0408f, 1e-5f);
+	BOOST_CHECK_CLOSE(V_mult.z, 208.0408f, 1e-5f);
 }
 
 BOOST_AUTO_TEST_CASE(mult_eq) {
-	// TODO
-	BOOST_CHECK_MESSAGE(false, "test not implemented");
+	math::Vector3 V1;
+	V1.x = 20.12f;
+	V1.y = 100.89f;
+	V1.z = -18.2f;
+	math::Vector3 V2;
+	V2.x = 10.34f;
+	V2.y = -15.5f;
+	V2.z = 20.2f;
+	math::Vector3 V_mult = V1;
+	V_mult.yxz *= V2.xyx;
+	BOOST_CHECK_CLOSE(V_mult.x, -311.86f, 1e-5f);
+	BOOST_CHECK_CLOSE(V_mult.y, 1043.2026f, 1e-5f);
+	BOOST_CHECK_CLOSE(V_mult.z, -188.188f, 1e-5f);
 }
 
 BOOST_AUTO_TEST_CASE(div) {
-	// TODO
-	BOOST_CHECK_MESSAGE(false, "test not implemented");
+	math::Vector3 V1;
+	V1.x = 20.0f;
+	V1.y = 40.0f;
+	V1.z = 60.0f;
+	math::Vector3 V2;
+	V2.x = 2.0f;
+	V2.y = 4.0f;
+	V2.z = 6.0f;
+	math::Vector3 V_div;
+	V_div = V1.yxx / V2.xxx;
+	BOOST_CHECK_CLOSE(V_div.x, 20.0f, 1e-5f);
+	BOOST_CHECK_CLOSE(V_div.y, 10.0f, 1e-5f);
+	BOOST_CHECK_CLOSE(V_div.z, 10.0f, 1e-5f);
+	V_div = V1.xxx / V2.yxx;
+	BOOST_CHECK_CLOSE(V_div.x, 5.0f, 1e-5f);
+	BOOST_CHECK_CLOSE(V_div.y, 10.0f, 1e-5f);
+	BOOST_CHECK_CLOSE(V_div.z, 10.0f, 1e-5f);
 }
 
 BOOST_AUTO_TEST_CASE(div_eq) {
-	// TODO
-	BOOST_CHECK_MESSAGE(false, "test not implemented");
+	math::Vector3 V1;
+	V1.x = 20.0f;
+	V1.y = 40.0f;
+	V1.z = 60.0f;
+	math::Vector3 V2;
+	V2.x = 2.0f;
+	V2.y = 4.0f;
+	V2.z = 6.0f;
+	math::Vector3 V_div = V1;
+	V_div.yxz /= V2.yxx;
+	BOOST_CHECK_CLOSE(V_div.x, 10.0f, 1e-5f);
+	BOOST_CHECK_CLOSE(V_div.y, 10.0f, 1e-5f);
+	BOOST_CHECK_CLOSE(V_div.z, 30.0f, 1e-5f);
 }
 
 BOOST_AUTO_TEST_CASE(scalar_mult) {
-	// TODO
-	BOOST_CHECK_MESSAGE(false, "test not implemented");
+	math::Vector3 V;
+	V.x = 20.12f;
+	V.y = 100.89f;
+	V.z = -18.2f;
+	float s = -34.45f;
+	math::Vector3 V_mult;
+	V_mult = V.xyz * s;
+	BOOST_CHECK_CLOSE(V_mult.x, -693.134f, 1e-5f);
+	BOOST_CHECK_CLOSE(V_mult.y, -3475.6605f, 1e-5f);
+	BOOST_CHECK_CLOSE(V_mult.z, 626.99f, 1e-5f);
 }
 
 BOOST_AUTO_TEST_CASE(scalar_mult_eq) {
-	// TODO
-	BOOST_CHECK_MESSAGE(false, "test not implemented");
+	math::Vector3 V;
+	V.x = 20.12f;
+	V.y = 100.89f;
+	V.z = -18.2f;
+	float s = -34.45f;
+	math::Vector3 V_mult = V;
+	V_mult.zyx *= s;
+	BOOST_CHECK_CLOSE(V_mult.x, -693.134f, 1e-5f);
+	BOOST_CHECK_CLOSE(V_mult.y, -3475.6605f, 1e-5f);
+	BOOST_CHECK_CLOSE(V_mult.z, 626.99f, 1e-5f);
 }
 
 BOOST_AUTO_TEST_CASE(scalar_div) {
-	// TODO
-	BOOST_CHECK_MESSAGE(false, "test not implemented");
+	math::Vector3 V;
+	V.x = 20.12f;
+	V.y = 100.89f;
+	V.z = -18.2f;
+	float s = -34.45f;
+	math::Vector3 V_div;
+	V_div.xyz = V / s;
+	BOOST_CHECK_CLOSE(V_div.x, -0.5840348330914369f, 1e-5f);
+	BOOST_CHECK_CLOSE(V_div.y, -2.9285921625544264f, 1e-5f);
+	BOOST_CHECK_CLOSE(V_div.z, 0.5283018867924527f, 1e-5f);
 }
 
 BOOST_AUTO_TEST_CASE(scalar_div_eq) {
-	// TODO
-	BOOST_CHECK_MESSAGE(false, "test not implemented");
+	math::Vector3 V;
+	V.x = 20.12f;
+	V.y = 100.89f;
+	V.z = -18.2f;
+	float s = -34.45f;
+	math::Vector3 V_div = V;
+	V_div.zxy /= s;
+	BOOST_CHECK_CLOSE(V_div.x, -0.5840348330914369f, 1e-5f);
+	BOOST_CHECK_CLOSE(V_div.y, -2.9285921625544264f, 1e-5f);
+	BOOST_CHECK_CLOSE(V_div.z, 0.5283018867924527f, 1e-5f);
 }
 
 BOOST_AUTO_TEST_CASE(access) {
@@ -632,7 +780,7 @@ BOOST_AUTO_TEST_CASE(assign) {
 	V.xy = V2;
 	BOOST_CHECK_CLOSE(V.x, V2.x, 1e-5f);
 	BOOST_CHECK_CLOSE(V.y, V2.y, 1e-5f);
-	BOOST_CHECK_CLOSE(V.z, 0.0f, 1e-5f);
+	BOOST_CHECK_SMALL(V.z, 1e-10f);
 	V.xz = V2;
 	BOOST_CHECK_CLOSE(V.x, V2.x, 1e-5f);
 	BOOST_CHECK_CLOSE(V.y, V2.y, 1e-5f);

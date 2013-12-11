@@ -105,8 +105,8 @@ BOOST_AUTO_TEST_CASE(mult_eq) {
 
 BOOST_AUTO_TEST_CASE(div) {
 	math::Vector2 V1;
-	V1.x = 20.00f;
-	V1.y = 40.00f;
+	V1.x = 20.0f;
+	V1.y = 40.0f;
 	math::Vector2 V2;
 	V2.x = 2.0f;
 	V2.y = 4.0f;
@@ -121,8 +121,8 @@ BOOST_AUTO_TEST_CASE(div) {
 
 BOOST_AUTO_TEST_CASE(div_eq) {
 	math::Vector2 V1;
-	V1.x = 20.00f;
-	V1.y = 40.00f;
+	V1.x = 20.0f;
+	V1.y = 40.0f;
 	math::Vector2 V2;
 	V2.x = 2.0f;
 	V2.y = 4.0f;

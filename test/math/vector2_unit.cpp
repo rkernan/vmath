@@ -322,7 +322,7 @@ BOOST_AUTO_TEST_CASE(normal) {
 	V.y = 0.0f;
 	V_norm = V.normal();
 	BOOST_CHECK_CLOSE(V_norm.x, 1.0f, 1e-5f);
-	BOOST_CHECK_CLOSE(V_norm.y, 0.0f, 1e-5f);
+	BOOST_CHECK_SMALL(V_norm.y, 1e-10f);
 }
 
 BOOST_AUTO_TEST_CASE(normalize) {
@@ -337,7 +337,7 @@ BOOST_AUTO_TEST_CASE(normalize) {
 	math::Vector2 V_norm;
 	V_norm = V.normalize();
 	BOOST_CHECK_CLOSE(V_norm.x, 1.0f, 1e-5f);
-	BOOST_CHECK_CLOSE(V_norm.y, 0.0f, 1e-5f);
+	BOOST_CHECK_SMALL(V_norm.y, 1e-10f);
 }
 
 BOOST_AUTO_TEST_CASE(equals) {
