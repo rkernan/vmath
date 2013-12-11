@@ -14,22 +14,22 @@ BOOST_AUTO_TEST_CASE(size) {
 BOOST_AUTO_TEST_CASE(create) {
 	// default constructor
 	math::Vector3 V_default;
-	BOOST_CHECK_SMALL(V_default.x, 1e-10f);
-	BOOST_CHECK_SMALL(V_default.y, 1e-10f);
-	BOOST_CHECK_SMALL(V_default.z, 1e-10f);
+	BOOST_CHECK_SMALL(V_default.x, 1e-7f);
+	BOOST_CHECK_SMALL(V_default.y, 1e-7f);
+	BOOST_CHECK_SMALL(V_default.z, 1e-7f);
 	// parameterized constructor
 	math::Vector3 V_param(1.0f, 2.0f, 3.0f);
-	BOOST_CHECK_CLOSE(V_param.x, 1.0f, 1e-5f);
-	BOOST_CHECK_CLOSE(V_param.y, 2.0f, 1e-5f);
-	BOOST_CHECK_CLOSE(V_param.z, 3.0f, 1e-5f);
+	BOOST_CHECK_CLOSE(V_param.x, 1.0f, 1e-4f);
+	BOOST_CHECK_CLOSE(V_param.y, 2.0f, 1e-4f);
+	BOOST_CHECK_CLOSE(V_param.z, 3.0f, 1e-4f);
 	// copy vector2
 	math::Vector2 V2;
 	V2.x = 3.0f;
 	V2.y = 2.0f;
 	math::Vector3 V_param2(V2, 1.0f);
-	BOOST_CHECK_CLOSE(V_param2.x, 3.0f, 1e-5f);
-	BOOST_CHECK_CLOSE(V_param2.y, 2.0f, 1e-5f);
-	BOOST_CHECK_CLOSE(V_param2.z, 1.0f, 1e-5f);
+	BOOST_CHECK_CLOSE(V_param2.x, 3.0f, 1e-4f);
+	BOOST_CHECK_CLOSE(V_param2.y, 2.0f, 1e-4f);
+	BOOST_CHECK_CLOSE(V_param2.z, 1.0f, 1e-4f);
 }
 
 BOOST_AUTO_TEST_CASE(copy) {
@@ -38,9 +38,9 @@ BOOST_AUTO_TEST_CASE(copy) {
 	V.y = 100.89f;
 	V.z = -18.2f;
 	math::Vector3 V_copy(V);
-	BOOST_CHECK_CLOSE(V_copy.x, V.x, 1e-5f);
-	BOOST_CHECK_CLOSE(V_copy.y, V.y, 1e-5f);
-	BOOST_CHECK_CLOSE(V_copy.z, V.z, 1e-5f);
+	BOOST_CHECK_CLOSE(V_copy.x, V.x, 1e-4f);
+	BOOST_CHECK_CLOSE(V_copy.y, V.y, 1e-4f);
+	BOOST_CHECK_CLOSE(V_copy.z, V.z, 1e-4f);
 }
 
 BOOST_AUTO_TEST_CASE(move) {
@@ -49,9 +49,9 @@ BOOST_AUTO_TEST_CASE(move) {
 	V.y = 100.89f;
 	V.z = -18.2f;
 	math::Vector3 V_move(std::move(V));
-	BOOST_CHECK_CLOSE(V_move.x, V.x, 1e-5f);
-	BOOST_CHECK_CLOSE(V_move.y, V.y, 1e-5f);
-	BOOST_CHECK_CLOSE(V_move.z, V.z, 1e-5f);
+	BOOST_CHECK_CLOSE(V_move.x, V.x, 1e-4f);
+	BOOST_CHECK_CLOSE(V_move.y, V.y, 1e-4f);
+	BOOST_CHECK_CLOSE(V_move.z, V.z, 1e-4f);
 }
 
 BOOST_AUTO_TEST_CASE(members) {
@@ -59,87 +59,87 @@ BOOST_AUTO_TEST_CASE(members) {
 	V.x = 20.12f;
 	V.y = 100.89f;
 	V.z = -18.2f;
-	BOOST_CHECK_CLOSE(V.x, V.r, 1e-5f);
-	BOOST_CHECK_CLOSE(V.x, V.s, 1e-5f);
-	BOOST_CHECK_CLOSE(V.r, V.s, 1e-5f);
-	BOOST_CHECK_CLOSE(V.y, V.g, 1e-5f);
-	BOOST_CHECK_CLOSE(V.y, V.t, 1e-5f);
-	BOOST_CHECK_CLOSE(V.g, V.t, 1e-5f);
-	BOOST_CHECK_CLOSE(V.z, V.b, 1e-5f);
-	BOOST_CHECK_CLOSE(V.z, V.p, 1e-5f);
-	BOOST_CHECK_CLOSE(V.b, V.p, 1e-5f);
-	BOOST_CHECK_CLOSE(V[0], V.x, 1e-5f);
-	BOOST_CHECK_CLOSE(V[0], V.r, 1e-5f);
-	BOOST_CHECK_CLOSE(V[0], V.s, 1e-5f);
-	BOOST_CHECK_CLOSE(V[1], V.y, 1e-5f);
-	BOOST_CHECK_CLOSE(V[1], V.g, 1e-5f);
-	BOOST_CHECK_CLOSE(V[1], V.t, 1e-5f);
-	BOOST_CHECK_CLOSE(V[2], V.z, 1e-5f);
-	BOOST_CHECK_CLOSE(V[2], V.b, 1e-5f);
-	BOOST_CHECK_CLOSE(V[2], V.p, 1e-5f);
+	BOOST_CHECK_CLOSE(V.x, V.r, 1e-4f);
+	BOOST_CHECK_CLOSE(V.x, V.s, 1e-4f);
+	BOOST_CHECK_CLOSE(V.r, V.s, 1e-4f);
+	BOOST_CHECK_CLOSE(V.y, V.g, 1e-4f);
+	BOOST_CHECK_CLOSE(V.y, V.t, 1e-4f);
+	BOOST_CHECK_CLOSE(V.g, V.t, 1e-4f);
+	BOOST_CHECK_CLOSE(V.z, V.b, 1e-4f);
+	BOOST_CHECK_CLOSE(V.z, V.p, 1e-4f);
+	BOOST_CHECK_CLOSE(V.b, V.p, 1e-4f);
+	BOOST_CHECK_CLOSE(V[0], V.x, 1e-4f);
+	BOOST_CHECK_CLOSE(V[0], V.r, 1e-4f);
+	BOOST_CHECK_CLOSE(V[0], V.s, 1e-4f);
+	BOOST_CHECK_CLOSE(V[1], V.y, 1e-4f);
+	BOOST_CHECK_CLOSE(V[1], V.g, 1e-4f);
+	BOOST_CHECK_CLOSE(V[1], V.t, 1e-4f);
+	BOOST_CHECK_CLOSE(V[2], V.z, 1e-4f);
+	BOOST_CHECK_CLOSE(V[2], V.b, 1e-4f);
+	BOOST_CHECK_CLOSE(V[2], V.p, 1e-4f);
 	V.r = -18.2f;
 	V.g = 20.12f;
 	V.b = 100.89f;
-	BOOST_CHECK_CLOSE(V.x, V.r, 1e-5f);
-	BOOST_CHECK_CLOSE(V.x, V.s, 1e-5f);
-	BOOST_CHECK_CLOSE(V.r, V.s, 1e-5f);
-	BOOST_CHECK_CLOSE(V.y, V.g, 1e-5f);
-	BOOST_CHECK_CLOSE(V.y, V.t, 1e-5f);
-	BOOST_CHECK_CLOSE(V.g, V.t, 1e-5f);
-	BOOST_CHECK_CLOSE(V.z, V.b, 1e-5f);
-	BOOST_CHECK_CLOSE(V.z, V.p, 1e-5f);
-	BOOST_CHECK_CLOSE(V.b, V.p, 1e-5f);
-	BOOST_CHECK_CLOSE(V[0], V.x, 1e-5f);
-	BOOST_CHECK_CLOSE(V[0], V.r, 1e-5f);
-	BOOST_CHECK_CLOSE(V[0], V.s, 1e-5f);
-	BOOST_CHECK_CLOSE(V[1], V.y, 1e-5f);
-	BOOST_CHECK_CLOSE(V[1], V.g, 1e-5f);
-	BOOST_CHECK_CLOSE(V[1], V.t, 1e-5f);
-	BOOST_CHECK_CLOSE(V[2], V.z, 1e-5f);
-	BOOST_CHECK_CLOSE(V[2], V.b, 1e-5f);
-	BOOST_CHECK_CLOSE(V[2], V.p, 1e-5f);
+	BOOST_CHECK_CLOSE(V.x, V.r, 1e-4f);
+	BOOST_CHECK_CLOSE(V.x, V.s, 1e-4f);
+	BOOST_CHECK_CLOSE(V.r, V.s, 1e-4f);
+	BOOST_CHECK_CLOSE(V.y, V.g, 1e-4f);
+	BOOST_CHECK_CLOSE(V.y, V.t, 1e-4f);
+	BOOST_CHECK_CLOSE(V.g, V.t, 1e-4f);
+	BOOST_CHECK_CLOSE(V.z, V.b, 1e-4f);
+	BOOST_CHECK_CLOSE(V.z, V.p, 1e-4f);
+	BOOST_CHECK_CLOSE(V.b, V.p, 1e-4f);
+	BOOST_CHECK_CLOSE(V[0], V.x, 1e-4f);
+	BOOST_CHECK_CLOSE(V[0], V.r, 1e-4f);
+	BOOST_CHECK_CLOSE(V[0], V.s, 1e-4f);
+	BOOST_CHECK_CLOSE(V[1], V.y, 1e-4f);
+	BOOST_CHECK_CLOSE(V[1], V.g, 1e-4f);
+	BOOST_CHECK_CLOSE(V[1], V.t, 1e-4f);
+	BOOST_CHECK_CLOSE(V[2], V.z, 1e-4f);
+	BOOST_CHECK_CLOSE(V[2], V.b, 1e-4f);
+	BOOST_CHECK_CLOSE(V[2], V.p, 1e-4f);
 	V.s = 100.89f;
 	V.t = -18.2f;
 	V.p = 20.12f;
-	BOOST_CHECK_CLOSE(V.x, V.r, 1e-5f);
-	BOOST_CHECK_CLOSE(V.x, V.s, 1e-5f);
-	BOOST_CHECK_CLOSE(V.r, V.s, 1e-5f);
-	BOOST_CHECK_CLOSE(V.y, V.g, 1e-5f);
-	BOOST_CHECK_CLOSE(V.y, V.t, 1e-5f);
-	BOOST_CHECK_CLOSE(V.g, V.t, 1e-5f);
-	BOOST_CHECK_CLOSE(V.z, V.b, 1e-5f);
-	BOOST_CHECK_CLOSE(V.z, V.p, 1e-5f);
-	BOOST_CHECK_CLOSE(V.b, V.p, 1e-5f);
-	BOOST_CHECK_CLOSE(V[0], V.x, 1e-5f);
-	BOOST_CHECK_CLOSE(V[0], V.r, 1e-5f);
-	BOOST_CHECK_CLOSE(V[0], V.s, 1e-5f);
-	BOOST_CHECK_CLOSE(V[1], V.y, 1e-5f);
-	BOOST_CHECK_CLOSE(V[1], V.g, 1e-5f);
-	BOOST_CHECK_CLOSE(V[1], V.t, 1e-5f);
-	BOOST_CHECK_CLOSE(V[2], V.z, 1e-5f);
-	BOOST_CHECK_CLOSE(V[2], V.b, 1e-5f);
-	BOOST_CHECK_CLOSE(V[2], V.p, 1e-5f);
+	BOOST_CHECK_CLOSE(V.x, V.r, 1e-4f);
+	BOOST_CHECK_CLOSE(V.x, V.s, 1e-4f);
+	BOOST_CHECK_CLOSE(V.r, V.s, 1e-4f);
+	BOOST_CHECK_CLOSE(V.y, V.g, 1e-4f);
+	BOOST_CHECK_CLOSE(V.y, V.t, 1e-4f);
+	BOOST_CHECK_CLOSE(V.g, V.t, 1e-4f);
+	BOOST_CHECK_CLOSE(V.z, V.b, 1e-4f);
+	BOOST_CHECK_CLOSE(V.z, V.p, 1e-4f);
+	BOOST_CHECK_CLOSE(V.b, V.p, 1e-4f);
+	BOOST_CHECK_CLOSE(V[0], V.x, 1e-4f);
+	BOOST_CHECK_CLOSE(V[0], V.r, 1e-4f);
+	BOOST_CHECK_CLOSE(V[0], V.s, 1e-4f);
+	BOOST_CHECK_CLOSE(V[1], V.y, 1e-4f);
+	BOOST_CHECK_CLOSE(V[1], V.g, 1e-4f);
+	BOOST_CHECK_CLOSE(V[1], V.t, 1e-4f);
+	BOOST_CHECK_CLOSE(V[2], V.z, 1e-4f);
+	BOOST_CHECK_CLOSE(V[2], V.b, 1e-4f);
+	BOOST_CHECK_CLOSE(V[2], V.p, 1e-4f);
 	V[0] = 20.12f;
 	V[1] = 100.89f;
 	V[2] = -18.2f;
-	BOOST_CHECK_CLOSE(V.x, V.r, 1e-5f);
-	BOOST_CHECK_CLOSE(V.x, V.s, 1e-5f);
-	BOOST_CHECK_CLOSE(V.r, V.s, 1e-5f);
-	BOOST_CHECK_CLOSE(V.y, V.g, 1e-5f);
-	BOOST_CHECK_CLOSE(V.y, V.t, 1e-5f);
-	BOOST_CHECK_CLOSE(V.g, V.t, 1e-5f);
-	BOOST_CHECK_CLOSE(V.z, V.b, 1e-5f);
-	BOOST_CHECK_CLOSE(V.z, V.p, 1e-5f);
-	BOOST_CHECK_CLOSE(V.b, V.p, 1e-5f);
-	BOOST_CHECK_CLOSE(V[0], V.x, 1e-5f);
-	BOOST_CHECK_CLOSE(V[0], V.r, 1e-5f);
-	BOOST_CHECK_CLOSE(V[0], V.s, 1e-5f);
-	BOOST_CHECK_CLOSE(V[1], V.y, 1e-5f);
-	BOOST_CHECK_CLOSE(V[1], V.g, 1e-5f);
-	BOOST_CHECK_CLOSE(V[1], V.t, 1e-5f);
-	BOOST_CHECK_CLOSE(V[2], V.z, 1e-5f);
-	BOOST_CHECK_CLOSE(V[2], V.b, 1e-5f);
-	BOOST_CHECK_CLOSE(V[2], V.p, 1e-5f);
+	BOOST_CHECK_CLOSE(V.x, V.r, 1e-4f);
+	BOOST_CHECK_CLOSE(V.x, V.s, 1e-4f);
+	BOOST_CHECK_CLOSE(V.r, V.s, 1e-4f);
+	BOOST_CHECK_CLOSE(V.y, V.g, 1e-4f);
+	BOOST_CHECK_CLOSE(V.y, V.t, 1e-4f);
+	BOOST_CHECK_CLOSE(V.g, V.t, 1e-4f);
+	BOOST_CHECK_CLOSE(V.z, V.b, 1e-4f);
+	BOOST_CHECK_CLOSE(V.z, V.p, 1e-4f);
+	BOOST_CHECK_CLOSE(V.b, V.p, 1e-4f);
+	BOOST_CHECK_CLOSE(V[0], V.x, 1e-4f);
+	BOOST_CHECK_CLOSE(V[0], V.r, 1e-4f);
+	BOOST_CHECK_CLOSE(V[0], V.s, 1e-4f);
+	BOOST_CHECK_CLOSE(V[1], V.y, 1e-4f);
+	BOOST_CHECK_CLOSE(V[1], V.g, 1e-4f);
+	BOOST_CHECK_CLOSE(V[1], V.t, 1e-4f);
+	BOOST_CHECK_CLOSE(V[2], V.z, 1e-4f);
+	BOOST_CHECK_CLOSE(V[2], V.b, 1e-4f);
+	BOOST_CHECK_CLOSE(V[2], V.p, 1e-4f);
 	// invalid index
 	BOOST_CHECK_THROW(V[3], std::out_of_range);
 	BOOST_CHECK_THROW(V[3] = 0.0f, std::out_of_range);
@@ -152,9 +152,9 @@ BOOST_AUTO_TEST_CASE(assign) {
 	V.z = -18.2f;
 	math::Vector3 V_assign;
 	V_assign = V;
-	BOOST_CHECK_CLOSE(V_assign.x, V.x, 1e-5f);
-	BOOST_CHECK_CLOSE(V_assign.y, V.y, 1e-5f);
-	BOOST_CHECK_CLOSE(V_assign.z, V.z, 1e-5f);
+	BOOST_CHECK_CLOSE(V_assign.x, V.x, 1e-4f);
+	BOOST_CHECK_CLOSE(V_assign.y, V.y, 1e-4f);
+	BOOST_CHECK_CLOSE(V_assign.z, V.z, 1e-4f);
 }
 
 BOOST_AUTO_TEST_CASE(negate) {
@@ -164,9 +164,9 @@ BOOST_AUTO_TEST_CASE(negate) {
 	V.z = -18.2f;
 	math::Vector3 V_neg;
 	V_neg = -V;
-	BOOST_CHECK_CLOSE(V_neg.x, -20.12f, 1e-5f);
-	BOOST_CHECK_CLOSE(V_neg.y, -100.89f, 1e-5f);
-	BOOST_CHECK_CLOSE(V_neg.z, 18.2f, 1e-5f);
+	BOOST_CHECK_CLOSE(V_neg.x, -20.12f, 1e-4f);
+	BOOST_CHECK_CLOSE(V_neg.y, -100.89f, 1e-4f);
+	BOOST_CHECK_CLOSE(V_neg.z, 18.2f, 1e-4f);
 }
 
 BOOST_AUTO_TEST_CASE(add) {
@@ -180,9 +180,9 @@ BOOST_AUTO_TEST_CASE(add) {
 	V2.z = 20.2f;
 	math::Vector3 V_add;
 	V_add = V1 + V2;
-	BOOST_CHECK_CLOSE(V_add.x, 30.46f, 1e-5f);
-	BOOST_CHECK_CLOSE(V_add.y, 85.39f, 1e-5f);
-	BOOST_CHECK_CLOSE(V_add.z, 2.0f, 1e-5f);
+	BOOST_CHECK_CLOSE(V_add.x, 30.46f, 1e-4f);
+	BOOST_CHECK_CLOSE(V_add.y, 85.39f, 1e-4f);
+	BOOST_CHECK_CLOSE(V_add.z, 2.0f, 1e-4f);
 }
 
 BOOST_AUTO_TEST_CASE(add_eq) {
@@ -196,9 +196,9 @@ BOOST_AUTO_TEST_CASE(add_eq) {
 	V2.z = 20.2f;
 	math::Vector3 V_add = V1;
 	V_add += V2;
-	BOOST_CHECK_CLOSE(V_add.x, 30.46f, 1e-5f);
-	BOOST_CHECK_CLOSE(V_add.y, 85.39f, 1e-5f);
-	BOOST_CHECK_CLOSE(V_add.z, 2.0f, 1e-5f);
+	BOOST_CHECK_CLOSE(V_add.x, 30.46f, 1e-4f);
+	BOOST_CHECK_CLOSE(V_add.y, 85.39f, 1e-4f);
+	BOOST_CHECK_CLOSE(V_add.z, 2.0f, 1e-4f);
 }
 
 BOOST_AUTO_TEST_CASE(sub) {
@@ -212,9 +212,9 @@ BOOST_AUTO_TEST_CASE(sub) {
 	V2.z = 20.2f;
 	math::Vector3 V_sub;
 	V_sub = V1 - V2;
-	BOOST_CHECK_CLOSE(V_sub.x, 9.78f, 1e-5f);
-	BOOST_CHECK_CLOSE(V_sub.y, 116.39f, 1e-5f);
-	BOOST_CHECK_CLOSE(V_sub.z, -38.4f, 1e-5f);
+	BOOST_CHECK_CLOSE(V_sub.x, 9.78f, 1e-4f);
+	BOOST_CHECK_CLOSE(V_sub.y, 116.39f, 1e-4f);
+	BOOST_CHECK_CLOSE(V_sub.z, -38.4f, 1e-4f);
 }
 
 BOOST_AUTO_TEST_CASE(sub_eq) {
@@ -228,9 +228,9 @@ BOOST_AUTO_TEST_CASE(sub_eq) {
 	V2.z = 20.2f;
 	math::Vector3 V_sub = V1;
 	V_sub -= V2;
-	BOOST_CHECK_CLOSE(V_sub.x, 9.78f, 1e-5f);
-	BOOST_CHECK_CLOSE(V_sub.y, 116.39f, 1e-5f);
-	BOOST_CHECK_CLOSE(V_sub.z, -38.4f, 1e-5f);
+	BOOST_CHECK_CLOSE(V_sub.x, 9.78f, 1e-4f);
+	BOOST_CHECK_CLOSE(V_sub.y, 116.39f, 1e-4f);
+	BOOST_CHECK_CLOSE(V_sub.z, -38.4f, 1e-4f);
 }
 
 BOOST_AUTO_TEST_CASE(mult) {
@@ -244,9 +244,9 @@ BOOST_AUTO_TEST_CASE(mult) {
 	V2.z = 20.2f;
 	math::Vector3 V_mult;
 	V_mult = V1 * V2;
-	BOOST_CHECK_CLOSE(V_mult.x, 208.0408f, 1e-5f);
-	BOOST_CHECK_CLOSE(V_mult.y, -1563.795f, 1e-5f);
-	BOOST_CHECK_CLOSE(V_mult.z, -367.64f, 1e-5f);
+	BOOST_CHECK_CLOSE(V_mult.x, 208.0408f, 1e-4f);
+	BOOST_CHECK_CLOSE(V_mult.y, -1563.795f, 1e-4f);
+	BOOST_CHECK_CLOSE(V_mult.z, -367.64f, 1e-4f);
 }
 
 BOOST_AUTO_TEST_CASE(mult_eq) {
@@ -260,9 +260,9 @@ BOOST_AUTO_TEST_CASE(mult_eq) {
 	V2.z = 20.2f;
 	math::Vector3 V_mult = V1;
 	V_mult *= V2;
-	BOOST_CHECK_CLOSE(V_mult.x, 208.0408f, 1e-5f);
-	BOOST_CHECK_CLOSE(V_mult.y, -1563.795f, 1e-5f);
-	BOOST_CHECK_CLOSE(V_mult.z, -367.64f, 1e-5f);
+	BOOST_CHECK_CLOSE(V_mult.x, 208.0408f, 1e-4f);
+	BOOST_CHECK_CLOSE(V_mult.y, -1563.795f, 1e-4f);
+	BOOST_CHECK_CLOSE(V_mult.z, -367.64f, 1e-4f);
 }
 
 BOOST_AUTO_TEST_CASE(div) {
@@ -276,9 +276,9 @@ BOOST_AUTO_TEST_CASE(div) {
 	V2.z = 20.2f;
 	math::Vector3 V_div;
 	V_div = V1 / V2;
-	BOOST_CHECK_CLOSE(V_div.x, 1.9458413926499034f, 1e-5f);
-	BOOST_CHECK_CLOSE(V_div.y, -6.509032258064516f, 1e-5f);
-	BOOST_CHECK_CLOSE(V_div.z, -0.900990099009901f, 1e-5f);
+	BOOST_CHECK_CLOSE(V_div.x, 1.9458413926499034f, 1e-4f);
+	BOOST_CHECK_CLOSE(V_div.y, -6.509032258064516f, 1e-4f);
+	BOOST_CHECK_CLOSE(V_div.z, -0.900990099009901f, 1e-4f);
 }
 
 BOOST_AUTO_TEST_CASE(div_eq) {
@@ -292,9 +292,9 @@ BOOST_AUTO_TEST_CASE(div_eq) {
 	V2.z = 20.2f;
 	math::Vector3 V_div = V1;
 	V_div /= V2;
-	BOOST_CHECK_CLOSE(V_div.x, 1.9458413926499034f, 1e-5f);
-	BOOST_CHECK_CLOSE(V_div.y, -6.509032258064516f, 1e-5f);
-	BOOST_CHECK_CLOSE(V_div.z, -0.900990099009901f, 1e-5f);
+	BOOST_CHECK_CLOSE(V_div.x, 1.9458413926499034f, 1e-4f);
+	BOOST_CHECK_CLOSE(V_div.y, -6.509032258064516f, 1e-4f);
+	BOOST_CHECK_CLOSE(V_div.z, -0.900990099009901f, 1e-4f);
 }
 
 BOOST_AUTO_TEST_CASE(scalar_mult) {
@@ -305,9 +305,9 @@ BOOST_AUTO_TEST_CASE(scalar_mult) {
 	float s = -34.45f;
 	math::Vector3 V_mult;
 	V_mult = V * s;
-	BOOST_CHECK_CLOSE(V_mult.x, -693.134f, 1e-5f);
-	BOOST_CHECK_CLOSE(V_mult.y, -3475.6605f, 1e-5f);
-	BOOST_CHECK_CLOSE(V_mult.z, 626.99f, 1e-5f);
+	BOOST_CHECK_CLOSE(V_mult.x, -693.134f, 1e-4f);
+	BOOST_CHECK_CLOSE(V_mult.y, -3475.6605f, 1e-4f);
+	BOOST_CHECK_CLOSE(V_mult.z, 626.99f, 1e-4f);
 }
 
 BOOST_AUTO_TEST_CASE(scalar_mult_eq) {
@@ -318,9 +318,9 @@ BOOST_AUTO_TEST_CASE(scalar_mult_eq) {
 	float s = -34.45f;
 	math::Vector3 V_mult = V;
 	V_mult *= s;
-	BOOST_CHECK_CLOSE(V_mult.x, -693.134f, 1e-5f);
-	BOOST_CHECK_CLOSE(V_mult.y, -3475.6605f, 1e-5f);
-	BOOST_CHECK_CLOSE(V_mult.z, 626.99f, 1e-5f);
+	BOOST_CHECK_CLOSE(V_mult.x, -693.134f, 1e-4f);
+	BOOST_CHECK_CLOSE(V_mult.y, -3475.6605f, 1e-4f);
+	BOOST_CHECK_CLOSE(V_mult.z, 626.99f, 1e-4f);
 }
 
 BOOST_AUTO_TEST_CASE(scalar_div) {
@@ -331,9 +331,9 @@ BOOST_AUTO_TEST_CASE(scalar_div) {
 	float s = -34.45f;
 	math::Vector3 V_div;
 	V_div = V / s;
-	BOOST_CHECK_CLOSE(V_div.x, -0.5840348330914369f, 1e-5f);
-	BOOST_CHECK_CLOSE(V_div.y, -2.9285921625544264f, 1e-5f);
-	BOOST_CHECK_CLOSE(V_div.z, 0.5283018867924527f, 1e-5f);
+	BOOST_CHECK_CLOSE(V_div.x, -0.5840348330914369f, 1e-4f);
+	BOOST_CHECK_CLOSE(V_div.y, -2.9285921625544264f, 1e-4f);
+	BOOST_CHECK_CLOSE(V_div.z, 0.5283018867924527f, 1e-4f);
 }
 
 BOOST_AUTO_TEST_CASE(scalar_div_eq) {
@@ -344,9 +344,9 @@ BOOST_AUTO_TEST_CASE(scalar_div_eq) {
 	float s = -34.45f;
 	math::Vector3 V_div = V;
 	V_div /= s;
-	BOOST_CHECK_CLOSE(V_div.x, -0.5840348330914369f, 1e-5f);
-	BOOST_CHECK_CLOSE(V_div.y, -2.9285921625544264f, 1e-5f);
-	BOOST_CHECK_CLOSE(V_div.z, 0.5283018867924527f, 1e-5f);
+	BOOST_CHECK_CLOSE(V_div.x, -0.5840348330914369f, 1e-4f);
+	BOOST_CHECK_CLOSE(V_div.y, -2.9285921625544264f, 1e-4f);
+	BOOST_CHECK_CLOSE(V_div.z, 0.5283018867924527f, 1e-4f);
 }
 
 BOOST_AUTO_TEST_CASE(mag) {
@@ -355,17 +355,17 @@ BOOST_AUTO_TEST_CASE(mag) {
 	V.y = 100.89f;
 	V.z = -18.2f;
 	float mag = V.mag();
-	BOOST_CHECK_CLOSE(mag, 104.47414273397987f, 1e-5f);
+	BOOST_CHECK_CLOSE(mag, 104.47414273397987f, 1e-4f);
 	V.x = 1.0f;
 	V.y = 0.0f;
 	V.z = 0.0f;
 	mag = V.mag();
-	BOOST_CHECK_CLOSE(mag, 1.0f, 1e-5f);
+	BOOST_CHECK_CLOSE(mag, 1.0f, 1e-4f);
 	V.x = 0.0f;
 	V.y = 0.0f;
 	V.z = 0.0f;
 	mag = V.mag();
-	BOOST_CHECK_SMALL(mag, 1e-10f);
+	BOOST_CHECK_SMALL(mag, 1e-7f);
 }
 
 BOOST_AUTO_TEST_CASE(mag2) {
@@ -374,17 +374,17 @@ BOOST_AUTO_TEST_CASE(mag2) {
 	V.y = 100.89f;
 	V.z = -18.2f;
 	float mag2 = V.mag2();
-	BOOST_CHECK_CLOSE(mag2, 10914.8465f, 1e-5f);
+	BOOST_CHECK_CLOSE(mag2, 10914.8465f, 1e-4f);
 	V.x = 1.0f;
 	V.y = 0.0f;
 	V.z = 0.0f;
 	mag2 = V.mag2();
-	BOOST_CHECK_CLOSE(mag2, 1.0f, 1e-5f);
+	BOOST_CHECK_CLOSE(mag2, 1.0f, 1e-4f);
 	V.x = 0.0f;
 	V.y = 0.0f;
 	V.z = 0.0f;
 	mag2 = V.mag2();
-	BOOST_CHECK_SMALL(mag2, 1e-10f);
+	BOOST_CHECK_SMALL(mag2, 1e-7f);
 }
 
 BOOST_AUTO_TEST_CASE(normal) {
@@ -393,16 +393,16 @@ BOOST_AUTO_TEST_CASE(normal) {
 	V.y = 100.89f;
 	V.z = -18.2f;
 	math::Vector3 V_norm(V.normal());
-	BOOST_CHECK_CLOSE(V_norm.x, 0.19258353764367417f, 1e-5f);
-	BOOST_CHECK_CLOSE(V_norm.y, 0.96569346754615f, 1e-5f);
-	BOOST_CHECK_CLOSE(V_norm.z, -0.17420578454845276f, 1e-5f);
+	BOOST_CHECK_CLOSE(V_norm.x, 0.19258353764367417f, 1e-4f);
+	BOOST_CHECK_CLOSE(V_norm.y, 0.96569346754615f, 1e-4f);
+	BOOST_CHECK_CLOSE(V_norm.z, -0.17420578454845276f, 1e-4f);
 	V.x = 1.0f;
 	V.y = 0.0f;
 	V.z = 0.0f;
 	V_norm = V.normal();
-	BOOST_CHECK_CLOSE(V_norm.x, 1.0f, 1e-5f);
-	BOOST_CHECK_SMALL(V_norm.y, 1e-10f);
-	BOOST_CHECK_SMALL(V_norm.z, 1e-10f);
+	BOOST_CHECK_CLOSE(V_norm.x, 1.0f, 1e-4f);
+	BOOST_CHECK_SMALL(V_norm.y, 1e-7f);
+	BOOST_CHECK_SMALL(V_norm.z, 1e-7f);
 }
 
 BOOST_AUTO_TEST_CASE(normalize) {
@@ -411,17 +411,17 @@ BOOST_AUTO_TEST_CASE(normalize) {
 	V.y = 100.89f;
 	V.z = -18.2f;
 	V.normalize();
-	BOOST_CHECK_CLOSE(V.x, 0.19258353764367417f, 1e-5f);
-	BOOST_CHECK_CLOSE(V.y, 0.96569346754615f, 1e-5f);
-	BOOST_CHECK_CLOSE(V.z, -0.17420578454845276f, 1e-5f);
+	BOOST_CHECK_CLOSE(V.x, 0.19258353764367417f, 1e-4f);
+	BOOST_CHECK_CLOSE(V.y, 0.96569346754615f, 1e-4f);
+	BOOST_CHECK_CLOSE(V.z, -0.17420578454845276f, 1e-4f);
 	V.x = 1.0f;
 	V.y = 0.0f;
 	V.z = 0.0f;
 	math::Vector3 V_norm;
 	V_norm = V.normalize();
-	BOOST_CHECK_CLOSE(V_norm.x, 1.0f, 1e-5f);
-	BOOST_CHECK_SMALL(V.y, 1e-10f);
-	BOOST_CHECK_SMALL(V.z, 1e-10f);
+	BOOST_CHECK_CLOSE(V_norm.x, 1.0f, 1e-4f);
+	BOOST_CHECK_SMALL(V.y, 1e-7f);
+	BOOST_CHECK_SMALL(V.z, 1e-7f);
 }
 
 BOOST_AUTO_TEST_CASE(equals) {
@@ -453,7 +453,7 @@ BOOST_AUTO_TEST_CASE(dot) {
 	V2.y = -15.5f;
 	V2.z = 20.2f;
 	float dot = math::Vector3::dot(V1, V2);
-	BOOST_CHECK_CLOSE(dot, -1723.3942f, 1e-5f);
+	BOOST_CHECK_CLOSE(dot, -1723.3942f, 1e-4f);
 }
 
 BOOST_AUTO_TEST_CASE(cross) {
@@ -466,9 +466,9 @@ BOOST_AUTO_TEST_CASE(cross) {
 	V2.y = -15.5f;
 	V2.z = 20.2f;
 	math::Vector3 cross = math::Vector3::cross(V1, V2);
-	BOOST_CHECK_CLOSE(cross.x, 1755.878f, 1e-5f);
-	BOOST_CHECK_CLOSE(cross.y, -594.612061f, 1e-5f);
-	BOOST_CHECK_CLOSE(cross.z, -1355.0626f, 1e-5f);
+	BOOST_CHECK_CLOSE(cross.x, 1755.878f, 1e-4f);
+	BOOST_CHECK_CLOSE(cross.y, -594.612061f, 1e-4f);
+	BOOST_CHECK_CLOSE(cross.z, -1355.0626f, 1e-4f);
 }
 
 BOOST_AUTO_TEST_CASE(reflect) {
@@ -481,9 +481,9 @@ BOOST_AUTO_TEST_CASE(reflect) {
 	N.y = 0.0f;
 	N.z = 0.0f;
 	math::Vector3 R = math::Vector3::reflect(I, N);
-	BOOST_CHECK_CLOSE(R.x, 1.0f, 1e-5f);
-	BOOST_CHECK_CLOSE(R.y, -1.0f, 1e-5f);
-	BOOST_CHECK_SMALL(R.z, 1e-10f);
+	BOOST_CHECK_CLOSE(R.x, 1.0f, 1e-4f);
+	BOOST_CHECK_CLOSE(R.y, -1.0f, 1e-4f);
+	BOOST_CHECK_SMALL(R.z, 1e-7f);
 }
 
 BOOST_AUTO_TEST_CASE(refract) {
@@ -497,9 +497,9 @@ BOOST_AUTO_TEST_CASE(refract) {
 	N.z = 0.0f;
 	float eta = 0.2f;
 	math::Vector3 R = math::Vector3::refract(I, N, eta);
-	BOOST_CHECK_CLOSE(R.x, -1.0f, 1e-5f);
-	BOOST_CHECK_CLOSE(R.y, -0.2f, 1e-5f);
-	BOOST_CHECK_SMALL(R.z, 1e-10f);
+	BOOST_CHECK_CLOSE(R.x, -1.0f, 1e-4f);
+	BOOST_CHECK_CLOSE(R.y, -0.2f, 1e-4f);
+	BOOST_CHECK_SMALL(R.z, 1e-7f);
 }
 
 BOOST_AUTO_TEST_CASE(lerp) {
@@ -513,9 +513,9 @@ BOOST_AUTO_TEST_CASE(lerp) {
 	V2.z = 20.2f;
 	math::Vector3 V_lerp;
 	V_lerp = math::Vector3::lerp(V1, V2, 0.5f);
-	BOOST_CHECK_CLOSE(V_lerp.x, 15.23f, 1e-5f);
-	BOOST_CHECK_CLOSE(V_lerp.y, 42.695f, 1e-5f);
-	BOOST_CHECK_CLOSE(V_lerp.z, 1.0f, 1e-5f);
+	BOOST_CHECK_CLOSE(V_lerp.x, 15.23f, 1e-4f);
+	BOOST_CHECK_CLOSE(V_lerp.y, 42.695f, 1e-4f);
+	BOOST_CHECK_CLOSE(V_lerp.z, 1.0f, 1e-4f);
 }
 
 BOOST_AUTO_TEST_SUITE_END()
