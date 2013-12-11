@@ -51,11 +51,6 @@ BOOST_AUTO_TEST_CASE(move) {
 	BOOST_CHECK_CLOSE(H_move.w, H.w, 1e-5f);
 }
 
-BOOST_AUTO_TEST_CASE(remove) {
-	// TODO
-	BOOST_CHECK_MESSAGE(false, "test not implemented");
-}
-
 BOOST_AUTO_TEST_CASE(members) {
 	math::Quaternion H;
 	H.x = 20.12f;

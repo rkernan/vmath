@@ -30,11 +30,6 @@ BOOST_AUTO_TEST_CASE(move) {
 	BOOST_CHECK_CLOSE(std::get<2>(E_move), std::get<2>(E), 1e-5f);
 }
 
-BOOST_AUTO_TEST_CASE(remove) {
-	// TODO
-	BOOST_CHECK_MESSAGE(false, "test not implemented");
-}
-
 BOOST_AUTO_TEST_CASE(pitch) {
 	// FIXME Relies on create.
 	math::tuple::EulerAngles<float> E(1.0f, 2.0f, 3.0f);

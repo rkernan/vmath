@@ -70,11 +70,6 @@ BOOST_AUTO_TEST_CASE(move) {
 	BOOST_CHECK_CLOSE(V_move.w, V.w, 1e-5f);
 }
 
-BOOST_AUTO_TEST_CASE(remove) {
-	// TODO
-	BOOST_CHECK_MESSAGE(false, "test not implemented");
-}
-
 BOOST_AUTO_TEST_CASE(members) {
 	math::Vector4 V;
 	V.x = 20.12f;

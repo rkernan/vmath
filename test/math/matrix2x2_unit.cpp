@@ -24,11 +24,6 @@ BOOST_AUTO_TEST_CASE(move) {
 	BOOST_CHECK_MESSAGE(false, "test not implemented");
 }
 
-BOOST_AUTO_TEST_CASE(remove) {
-	// TODO
-	BOOST_CHECK_MESSAGE(false, "test not implemented");
-}
-
 BOOST_AUTO_TEST_CASE(members) {
 	// TODO
 	BOOST_CHECK_MESSAGE(false, "test not implemented");

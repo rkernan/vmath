@@ -6,70 +6,181 @@
 
 BOOST_AUTO_TEST_SUITE(Swizzle2)
 
+BOOST_AUTO_TEST_CASE(negate) {
+	math::Vector2 V;
+	V.x = 20.12f;
+	V.y = 100.89f;
+	math::Vector2 V_neg;
+	V_neg = -V.xx;
+	BOOST_CHECK_CLOSE(V_neg.x, -20.12f, 1e-5f);
+	BOOST_CHECK_CLOSE(V_neg.y, -20.12f, 1e-5f);
+}
+
 BOOST_AUTO_TEST_CASE(add) {
-	// TODO
-	BOOST_CHECK_MESSAGE(false, "test not implemented");
+	math::Vector2 V1;
+	V1.x = 20.12f;
+	V1.y = 100.89f;
+	math::Vector2 V2;
+	V2.x = 10.34f;
+	V2.y = -15.5f;
+	math::Vector2 V_add;
+	V_add = V1.yx + V2.xx;
+	BOOST_CHECK_CLOSE(V_add.x, 111.23f, 1e-5f);
+	BOOST_CHECK_CLOSE(V_add.y, 30.46f, 1e-5f);
+	V_add = V2.xx + V1.yx;
+	BOOST_CHECK_CLOSE(V_add.x, 111.23f, 1e-5f);
+	BOOST_CHECK_CLOSE(V_add.y, 30.46f, 1e-5f);
 }
 
 BOOST_AUTO_TEST_CASE(add_eq) {
-	// TODO
-	BOOST_CHECK_MESSAGE(false, "test not implemented");
+	math::Vector2 V1;
+	V1.x = 20.12f;
+	V1.y = 100.89f;
+	math::Vector2 V2;
+	V2.x = 10.34f;
+	V2.y = -15.5f;
+	math::Vector2 V_add = V1;
+	V_add.yx += V2.xx;
+	BOOST_CHECK_CLOSE(V_add.x, 30.46f, 1e-5f);
+	BOOST_CHECK_CLOSE(V_add.y, 111.23f, 1e-5f);
 }
 
 BOOST_AUTO_TEST_CASE(sub) {
-	// TODO
-	BOOST_CHECK_MESSAGE(false, "test not implemented");
+	math::Vector2 V1;
+	V1.x = 20.12f;
+	V1.y = 100.89f;
+	math::Vector2 V2;
+	V2.x = 10.34f;
+	V2.y = -15.5f;
+	math::Vector2 V_sub;
+	V_sub = V1.yx - V2.xx;
+	BOOST_CHECK_CLOSE(V_sub.x, 90.55f, 1e-5f);
+	BOOST_CHECK_CLOSE(V_sub.y, 9.78f, 1e-5f);
+	V_sub = V2.xx - V1.yx;
+	BOOST_CHECK_CLOSE(V_sub.x, -90.55f, 1e-5f);
+	BOOST_CHECK_CLOSE(V_sub.y, -9.78f, 1e-5f);
 }
 
 BOOST_AUTO_TEST_CASE(sub_eq) {
-	// TODO
-	BOOST_CHECK_MESSAGE(false, "test not implemented");
+	math::Vector2 V1;
+	V1.x = 20.12f;
+	V1.y = 100.89f;
+	math::Vector2 V2;
+	V2.x = 10.34f;
+	V2.y = -15.5f;
+	math::Vector2 V_sub = V1;
+	V_sub.yx -= V2.xx;
+	BOOST_CHECK_CLOSE(V_sub.x, 9.78f, 1e-5f);
+	BOOST_CHECK_CLOSE(V_sub.y, 90.55f, 1e-5f);
 }
 
 BOOST_AUTO_TEST_CASE(mult) {
-	// TODO
-	BOOST_CHECK_MESSAGE(false, "test not implemented");
+	math::Vector2 V1;
+	V1.x = 20.12f;
+	V1.y = 100.89f;
+	math::Vector2 V2;
+	V2.x = 10.34f;
+	V2.y = -15.5f;
+	math::Vector2 V_mult;
+	V_mult = V1.yx * V2.xx;
+	BOOST_CHECK_CLOSE(V_mult.x, 1043.2026f, 1e-5f);
+	BOOST_CHECK_CLOSE(V_mult.y, 208.0408f, 1e-5f);
+	V_mult = V2.xx * V1.yx;
+	BOOST_CHECK_CLOSE(V_mult.x, 1043.2026f, 1e-5f);
+	BOOST_CHECK_CLOSE(V_mult.y, 208.0408f, 1e-5f);
 }
 
 BOOST_AUTO_TEST_CASE(mult_eq) {
-	// TODO
-	BOOST_CHECK_MESSAGE(false, "test not implemented");
+	math::Vector2 V1;
+	V1.x = 20.12f;
+	V1.y = 100.89f;
+	math::Vector2 V2;
+	V2.x = 10.34f;
+	V2.y = -15.5f;
+	math::Vector2 V_mult = V1;
+	V_mult.yx *= V2.xy;
+	BOOST_CHECK_CLOSE(V_mult.x, -311.86f, 1e-5f);
+	BOOST_CHECK_CLOSE(V_mult.y, 1043.2026f, 1e-5f);
 }
 
 BOOST_AUTO_TEST_CASE(div) {
-	// TODO
-	BOOST_CHECK_MESSAGE(false, "test not implemented");
+	math::Vector2 V1;
+	V1.x = 20.00f;
+	V1.y = 40.00f;
+	math::Vector2 V2;
+	V2.x = 2.0f;
+	V2.y = 4.0f;
+	math::Vector2 V_div;
+	V_div = V1.yx / V2.xx;
+	BOOST_CHECK_CLOSE(V_div.x, 20.0f, 1e-5f);
+	BOOST_CHECK_CLOSE(V_div.y, 10.0f, 1e-5f);
+	V_div = V1.xx / V2.yx;
+	BOOST_CHECK_CLOSE(V_div.x, 5.0f, 1e-5f);
+	BOOST_CHECK_CLOSE(V_div.y, 10.0f, 1e-5f);
 }
 
 BOOST_AUTO_TEST_CASE(div_eq) {
-	// TODO
-	BOOST_CHECK_MESSAGE(false, "test not implemented");
+	math::Vector2 V1;
+	V1.x = 20.00f;
+	V1.y = 40.00f;
+	math::Vector2 V2;
+	V2.x = 2.0f;
+	V2.y = 4.0f;
+	math::Vector2 V_div = V1;
+	V_div.yx /= V2.xy;
+	BOOST_CHECK_CLOSE(V_div.x, 5.0f, 1e-5f);
+	BOOST_CHECK_CLOSE(V_div.y, 20.0f, 1e-5f);
 }
 
 BOOST_AUTO_TEST_CASE(scalar_mult) {
-	// TODO
-	BOOST_CHECK_MESSAGE(false, "test not implemented");
+	math::Vector2 V;
+	V.x = 20.12f;
+	V.y = 100.89f;
+	float s = -34.45f;
+	math::Vector2 V_mult;
+	V_mult = V.xx * s;
+	BOOST_CHECK_CLOSE(V_mult.x, -693.134f, 1e-5f);
+	BOOST_CHECK_CLOSE(V_mult.y, -693.134f, 1e-5f);
 }
 
 BOOST_AUTO_TEST_CASE(scalar_mult_eq) {
-	// TODO
-	BOOST_CHECK_MESSAGE(false, "test not implemented");
+	math::Vector2 V;
+	V.x = 20.12f;
+	V.y = 100.89f;
+	float s = -34.45f;
+	math::Vector2 V_mult = V;
+	V_mult.yx *= s;
+	BOOST_CHECK_CLOSE(V_mult.x, -693.134f, 1e-5f);
+	BOOST_CHECK_CLOSE(V_mult.y, -3475.6605f, 1e-5f);
 }
 
 BOOST_AUTO_TEST_CASE(scalar_div) {
-	// TODO
-	BOOST_CHECK_MESSAGE(false, "test not implemented");
+	math::Vector2 V;
+	V.x = 20.12f;
+	V.y = 100.89f;
+	float s = -34.45f;
+	math::Vector2 V_div;
+	V_div = V.xx / s;
+	BOOST_CHECK_CLOSE(V_div.x, -0.5840348330914369f, 1e-5f);
+	BOOST_CHECK_CLOSE(V_div.y, -0.5840348330914369f, 1e-5f);
 }
 
 BOOST_AUTO_TEST_CASE(scalar_div_eq) {
-	// TODO
-	BOOST_CHECK_MESSAGE(false, "test not implemented");
+	math::Vector2 V;
+	V.x = 20.12f;
+	V.y = 100.89f;
+	float s = -34.45f;
+	math::Vector2 V_div = V;
+	V_div.yx /= s;
+	BOOST_CHECK_CLOSE(V_div.x, -0.5840348330914369f, 1e-5f);
+	BOOST_CHECK_CLOSE(V_div.y, -2.9285921625544264f, 1e-5f);
 }
 
 BOOST_AUTO_TEST_CASE(access) {
 	math::Vector2 V;
 	V.x = 20.12f;
 	V.y = 100.89f;
+	math::Vector2 V2;
 	// 2d swizzles <x,y>
 	auto xx = V.xx;
 	BOOST_CHECK_CLOSE(xx.getE1(), V.x, 1e-5f);
