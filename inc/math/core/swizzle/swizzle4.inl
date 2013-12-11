@@ -12,8 +12,17 @@ using namespace math::core;
  * @return Converted Vector.
  */
 template<typename T, std::size_t N, std::size_t E1, std::size_t E2, std::size_t E3, std::size_t E4>
-Swizzle4<T, N, E1, E2, E3, E4>::operator Vector<T, 4>(void) {
+Vector<T, 4> Swizzle4<T, N, E1, E2, E3, E4>::to_vector4(void) const {
 	return Vector<T, 4>(this->data[E1], this->data[E2], this->data[E3], this->data[E4]);
+}
+
+/**
+ * Implicitly convert from a swizzle to a Vector.
+ * @return Converted Vector.
+ */
+template<typename T, std::size_t N, std::size_t E1, std::size_t E2, std::size_t E3, std::size_t E4>
+Swizzle4<T, N, E1, E2, E3, E4>::operator Vector<T, 4>(void) {
+	return this->to_vector4();
 }
 
 /**
@@ -32,13 +41,22 @@ Vector<T, 4>& Swizzle4<T, N, E1, E2, E3, E4>::operator=(const Vector<T, 4>& V) {
 }
 
 /**
+ * Negate this swizzle.
+ * @return The negated swizzle.
+ */
+template<typename T, std::size_t N, std::size_t E1, std::size_t E2, std::size_t E3, std::size_t E4>
+Vector<T, 4> Swizzle4<T, N, E1, E2, E3, E4>::operator-(void) const {
+	return -this->to_vector4();
+}
+
+/**
  * Add a vector to this swizzle.
  * @param V Vector to add.
  * @return The vector sum.
  */
 template<typename T, std::size_t N, std::size_t E1, std::size_t E2, std::size_t E3, std::size_t E4>
 Vector<T, 4> Swizzle4<T, N, E1, E2, E3, E4>::operator+(const Vector<T, 4>& V) const {
-	return *(Vector<T, 4>*)this + V;
+	return this->to_vector4() + V;
 }
 
 /**
@@ -60,7 +78,7 @@ Vector<T, 4>& Swizzle4<T, N, E1, E2, E3, E4>::operator+=(const Vector<T, 4>& V) 
  */
 template<typename T, std::size_t N, std::size_t E1, std::size_t E2, std::size_t E3, std::size_t E4>
 Vector<T, 4> Swizzle4<T, N, E1, E2, E3, E4>::operator-(const Vector<T, 4>& V) const {
-	return *(Vector<T, 4>*)this - V;
+	return this->to_vector4() - V;
 }
 
 /**
@@ -82,7 +100,7 @@ Vector<T, 4>& Swizzle4<T, N, E1, E2, E3, E4>::operator-=(const Vector<T, 4>& V) 
  */
 template<typename T, std::size_t N, std::size_t E1, std::size_t E2, std::size_t E3, std::size_t E4>
 Vector<T, 4> Swizzle4<T, N, E1, E2, E3, E4>::operator*(const Vector<T, 4>& V) const {
-	return *(Vector<T, 4>*)this * V;
+	return this->to_vector4() * V;
 }
 
 /**
@@ -104,7 +122,7 @@ Vector<T, 4>& Swizzle4<T, N, E1, E2, E3, E4>::operator*=(const Vector<T, 4>& V) 
  */
 template<typename T, std::size_t N, std::size_t E1, std::size_t E2, std::size_t E3, std::size_t E4>
 Vector<T, 4> Swizzle4<T, N, E1, E2, E3, E4>::operator/(const Vector<T, 4>& V) const {
-	return *(Vector<T, 4>*)this / V;
+	return this->to_vector4() / V;
 }
 
 /**
@@ -126,7 +144,7 @@ Vector<T, 4>& Swizzle4<T, N, E1, E2, E3, E4>::operator/=(const Vector<T, 4>& V) 
  */
 template<typename T, std::size_t N, std::size_t E1, std::size_t E2, std::size_t E3, std::size_t E4>
 Vector<T, 4> Swizzle4<T, N, E1, E2, E3, E4>::operator*(const T& s) const {
-	return *(Vector<T, 4>*)this * s;
+	return this->to_vector4() * s;
 }
 
 /**
@@ -148,7 +166,7 @@ Vector<T, 4>& Swizzle4<T, N, E1, E2, E3, E4>::operator*=(const T& s) {
  */
 template<typename T, std::size_t N, std::size_t E1, std::size_t E2, std::size_t E3, std::size_t E4>
 Vector<T, 4> Swizzle4<T, N, E1, E2, E3, E4>::operator/(const T& s) const {
-	return *(Vector<T, 4>*)this / s;
+	return this->to_vector4() / s;
 }
 
 /**
@@ -170,7 +188,7 @@ Vector<T, 4>& Swizzle4<T, N, E1, E2, E3, E4>::operator/=(const T& s) {
  */
 template<typename T, std::size_t N, std::size_t E1, std::size_t E2, std::size_t E3, std::size_t E4>
 bool Swizzle4<T, N, E1, E2, E3, E4>::operator==(const Vector<T, 4>& V) const {
-	return *(Vector<T, 4>*)this == V;
+	return this->to_vector4() == V;
 }
 
 /**
@@ -180,7 +198,7 @@ bool Swizzle4<T, N, E1, E2, E3, E4>::operator==(const Vector<T, 4>& V) const {
  */
 template<typename T, std::size_t N, std::size_t E1, std::size_t E2, std::size_t E3, std::size_t E4>
 bool Swizzle4<T, N, E1, E2, E3, E4>::operator!=(const Vector<T, 4>& V) const {
-	return *(Vector<T, 4>*)this != V;
+	return this->to_vector4() != V;
 }
 
 #endif

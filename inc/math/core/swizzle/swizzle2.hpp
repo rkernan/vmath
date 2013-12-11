@@ -21,7 +21,7 @@ class Vector;
 template<typename T, std::size_t N, std::size_t E1, std::size_t E2>
 class Swizzle2 : public Swizzle<T, N> {
 private:
-	Vector<T, N> to_vector2(void) const;
+	inline Vector<T, 2> to_vector2(void) const;
 public:
 	operator Vector<T, 2>(void);
 

@@ -20,6 +20,8 @@ class Vector;
  */
 template<typename T, std::size_t N, std::size_t E1, std::size_t E2, std::size_t E3, std::size_t E4>
 class Swizzle4 : public Swizzle<T, N> {
+private:
+	inline Vector<T, 4> to_vector4(void) const;
 public:
 	operator Vector<T, 4>(void);
 
@@ -29,6 +31,8 @@ public:
 	Vector<T, 4>& operator=(const Vector<T, 4>&);
 
 	Vector<T, 4> operator+(const Vector<T, 4>&) const;
+
+	Vector<T, 4> operator-(void) const;
 
 	template<typename U = T,
 		typename = typename std::enable_if<is_assignable_swizzle<4, E1, E2, E3, E4>::value
