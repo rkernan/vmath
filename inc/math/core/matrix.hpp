@@ -135,7 +135,7 @@ public:
 	Matrix<T, M, N>& operator-=(const Matrix<T, M, N>&);
 
 	template<std::size_t P>
-	Matrix<T, P, M> operator*(const Matrix<T, P, N>&) const;
+	Matrix<T, M, P> operator*(const Matrix<T, N, P>&) const;
 
 	Matrix<T, M, N> operator*(const T&) const;
 	Matrix<T, M, N>& operator*=(const T&);

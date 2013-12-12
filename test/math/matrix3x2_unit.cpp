@@ -231,7 +231,67 @@ BOOST_AUTO_TEST_CASE(matrix_sub_eq) {
 }
 
 BOOST_AUTO_TEST_CASE(matrix_mult) {
-	// TODO
+	math::Matrix3x2 M;
+	M[0][0] = 1.0f;
+	M[0][1] = 2.0f;
+	M[0][2] = 3.0f;
+	M[1][0] = 4.0f;
+	M[1][1] = 5.0f;
+	M[1][2] = 6.0f;
+	math::Matrix2x2 M_2x2;
+	M_2x2[0][0] = 1.0f;
+	M_2x2[0][1] = 2.0f;
+	M_2x2[1][0] = 3.0f;
+	M_2x2[1][1] = 4.0f;
+	math::Matrix2x3 M_2x3;
+	M_2x3[0][0] = 1.0f;
+	M_2x3[0][1] = 2.0f;
+	M_2x3[1][0] = 3.0f;
+	M_2x3[1][1] = 4.0f;
+	M_2x3[2][0] = 5.0f;
+	M_2x3[2][1] = 6.0f;
+	math::Matrix2x4 M_2x4;
+	M_2x4[0][0] = 1.0f;
+	M_2x4[0][1] = 2.0f;
+	M_2x4[1][0] = 3.0f;
+	M_2x4[1][1] = 4.0f;
+	M_2x4[2][0] = 5.0f;
+	M_2x4[2][1] = 6.0f;
+	M_2x4[3][0] = 7.0f;
+	M_2x4[3][1] = 8.0f;
+	math::Matrix3x2 M_sum3x2;
+	M_sum3x2 = M * M_2x2;
+	BOOST_CHECK_CLOSE(M_sum3x2[0][0], 9.0f, 1e-4f);
+	BOOST_CHECK_CLOSE(M_sum3x2[0][1], 12.0f, 1e-4f);
+	BOOST_CHECK_CLOSE(M_sum3x2[0][2], 15.0f, 1e-4f);
+	BOOST_CHECK_CLOSE(M_sum3x2[1][0], 19.0f, 1e-4f);
+	BOOST_CHECK_CLOSE(M_sum3x2[1][1], 26.0f, 1e-4f);
+	BOOST_CHECK_CLOSE(M_sum3x2[1][2], 33.0f, 1e-4f);
+	math::Matrix3x3 M_sum3x3;
+	M_sum3x3 = M * M_2x3;
+	BOOST_CHECK_CLOSE(M_sum3x3[0][0], 9.0f, 1e-4f);
+	BOOST_CHECK_CLOSE(M_sum3x3[0][1], 12.0f, 1e-4f);
+	BOOST_CHECK_CLOSE(M_sum3x3[0][2], 15.0f, 1e-4f);
+	BOOST_CHECK_CLOSE(M_sum3x3[1][0], 19.0f, 1e-4f);
+	BOOST_CHECK_CLOSE(M_sum3x3[1][1], 26.0f, 1e-4f);
+	BOOST_CHECK_CLOSE(M_sum3x3[1][2], 33.0f, 1e-4f);
+	BOOST_CHECK_CLOSE(M_sum3x3[2][0], 29.0f, 1e-4f);
+	BOOST_CHECK_CLOSE(M_sum3x3[2][1], 40.0f, 1e-4f);
+	BOOST_CHECK_CLOSE(M_sum3x3[2][2], 51.0f, 1e-4f);
+	math::Matrix3x4 M_sum3x4;
+	M_sum3x4 = M * M_2x4;
+	BOOST_CHECK_CLOSE(M_sum3x4[0][0], 9.0f, 1e-4f);
+	BOOST_CHECK_CLOSE(M_sum3x4[0][1], 12.0f, 1e-4f);
+	BOOST_CHECK_CLOSE(M_sum3x4[0][2], 15.0f, 1e-4f);
+	BOOST_CHECK_CLOSE(M_sum3x4[1][0], 19.0f, 1e-4f);
+	BOOST_CHECK_CLOSE(M_sum3x4[1][1], 26.0f, 1e-4f);
+	BOOST_CHECK_CLOSE(M_sum3x4[1][2], 33.0f, 1e-4f);
+	BOOST_CHECK_CLOSE(M_sum3x4[2][0], 29.0f, 1e-4f);
+	BOOST_CHECK_CLOSE(M_sum3x4[2][1], 40.0f, 1e-4f);
+	BOOST_CHECK_CLOSE(M_sum3x4[2][2], 51.0f, 1e-4f);
+	BOOST_CHECK_CLOSE(M_sum3x4[3][0], 39.0f, 1e-4f);
+	BOOST_CHECK_CLOSE(M_sum3x4[3][1], 54.0f, 1e-4f);
+	BOOST_CHECK_CLOSE(M_sum3x4[3][2], 69.0f, 1e-4f);
 }
 
 BOOST_AUTO_TEST_CASE(scalar_mult) {

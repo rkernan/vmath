@@ -183,7 +183,56 @@ BOOST_AUTO_TEST_CASE(matrix_sub_eq) {
 }
 
 BOOST_AUTO_TEST_CASE(matrix_mult) {
-	// TODO
+	math::Matrix2x2 M;
+	M[0][0] = 1.0f;
+	M[0][1] = 2.0f;
+	M[1][0] = 3.0f;
+	M[1][1] = 4.0f;
+	math::Matrix2x2 M_2x2;
+	M_2x2[0][0] = 1.0f;
+	M_2x2[0][1] = 2.0f;
+	M_2x2[1][0] = 3.0f;
+	M_2x2[1][1] = 4.0f;
+	math::Matrix2x3 M_2x3;
+	M_2x3[0][0] = 1.0f;
+	M_2x3[0][1] = 2.0f;
+	M_2x3[1][0] = 3.0f;
+	M_2x3[1][1] = 4.0f;
+	M_2x3[2][0] = 5.0f;
+	M_2x3[2][1] = 6.0f;
+	math::Matrix2x4 M_2x4;
+	M_2x4[0][0] = 1.0f;
+	M_2x4[0][1] = 2.0f;
+	M_2x4[1][0] = 3.0f;
+	M_2x4[1][1] = 4.0f;
+	M_2x4[2][0] = 5.0f;
+	M_2x4[2][1] = 6.0f;
+	M_2x4[3][0] = 7.0f;
+	M_2x4[3][1] = 8.0f;
+	math::Matrix2x2 M_sum2x2;
+	M_sum2x2 = M * M_2x2;
+	BOOST_CHECK_CLOSE(M_sum2x2[0][0], 7.0f, 1e-4f);
+	BOOST_CHECK_CLOSE(M_sum2x2[0][1], 10.0f, 1e-4f);
+	BOOST_CHECK_CLOSE(M_sum2x2[1][0], 15.0f, 1e-4f);
+	BOOST_CHECK_CLOSE(M_sum2x2[1][1], 22.0f, 1e-4f);
+	math::Matrix2x3 M_sum2x3;
+	M_sum2x3 = M * M_2x3;
+	BOOST_CHECK_CLOSE(M_sum2x3[0][0], 7.0f, 1e-4f);
+	BOOST_CHECK_CLOSE(M_sum2x3[0][1], 10.0f, 1e-4f);
+	BOOST_CHECK_CLOSE(M_sum2x3[1][0], 15.0f, 1e-4f);
+	BOOST_CHECK_CLOSE(M_sum2x3[1][1], 22.0f, 1e-4f);
+	BOOST_CHECK_CLOSE(M_sum2x3[2][0], 23.0f, 1e-4f);
+	BOOST_CHECK_CLOSE(M_sum2x3[2][1], 34.0f, 1e-4f);
+	math::Matrix2x4 M_sum2x4;
+	M_sum2x4 = M * M_2x4;
+	BOOST_CHECK_CLOSE(M_sum2x4[0][0], 7.0f, 1e-4f);
+	BOOST_CHECK_CLOSE(M_sum2x4[0][1], 10.0f, 1e-4f);
+	BOOST_CHECK_CLOSE(M_sum2x4[1][0], 15.0f, 1e-4f);
+	BOOST_CHECK_CLOSE(M_sum2x4[1][1], 22.0f, 1e-4f);
+	BOOST_CHECK_CLOSE(M_sum2x4[2][0], 23.0f, 1e-4f);
+	BOOST_CHECK_CLOSE(M_sum2x4[2][1], 34.0f, 1e-4f);
+	BOOST_CHECK_CLOSE(M_sum2x4[3][0], 31.0f, 1e-4f);
+	BOOST_CHECK_CLOSE(M_sum2x4[3][1], 46.0f, 1e-4f);
 }
 
 BOOST_AUTO_TEST_CASE(scalar_mult) {

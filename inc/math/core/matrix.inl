@@ -107,13 +107,19 @@ Matrix<T, M, N>& Matrix<T, M, N>::operator-=(const Matrix<T, M, N>& W) {
  * @param W Matrix to multiply by.
  * @return Matrix product.
  */
-/* template<typename T, std::size_t M, std::size_t N> */
-/* template<std::size_t P> */
-/* Matrix<T, P, M> Matrix<T, N, M>::operator*(const Matrix<T, P, N>& W) const { */
-/* 	// TODO */
-/* 	(void)W; */
-/* 	return Matrix<T, P, M>(); */
-/* } */
+template<typename T, std::size_t M, std::size_t N>
+template<std::size_t P>
+Matrix<T, M, P> Matrix<T, M, N>::operator*(const Matrix<T, N, P>& W) const {
+	Matrix<T, M, P> R;
+	for (std::size_t m = 0; m < M; m++) {
+		for (std::size_t p = 0; p < P; p++) {
+			for (std::size_t n = 0; n < N; n++) {
+				R[p][m] += this->data[n][m] * W[p][n];
+			}
+		}
+	}
+	return R;
+}
 
 /**
  * Scalar multiplication.
