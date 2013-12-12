@@ -26,6 +26,7 @@ class Vector;
 /**
  * @class Quaternion
  * @tparam T Storage type.
+ * A quaternion rotation.
  */
 template<typename T>
 class Quaternion : public Vector<T, 4> {

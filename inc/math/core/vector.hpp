@@ -138,6 +138,7 @@ public:
  * @class Vector
  * @tparam T Storage type.
  * @tparam N Number of vector elements.
+ * A vector with generic size and type.
  */
 template<typename T, std::size_t N>
 class Vector : public VectorComponents<T, N> {

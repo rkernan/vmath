@@ -17,6 +17,7 @@ class Vector;
  * @tparam N Storage size.
  * @tparam E1 Index of first element.
  * @tparam E2 Index of second element.
+ * A 2-dimensional vector swizzle.
  */
 template<typename T, std::size_t N, std::size_t E1, std::size_t E2>
 class Swizzle2 : public Swizzle<T, N> {

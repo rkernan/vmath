@@ -9,6 +9,7 @@ namespace tuple {
 /**
  * @class EulerAngles
  * @tparam T Storage type.
+ * A tuple containing euler angles.
  */
 template<typename T>
 class EulerAngles : public std::tuple<T, T, T> {

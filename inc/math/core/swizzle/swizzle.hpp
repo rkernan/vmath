@@ -28,6 +28,7 @@ struct is_assignable_swizzle : std::integral_constant<bool,
  * @class Swizzle
  * @tparam T Storage type.
  * @tparam N Storage size.
+ * Swizzle members. All swizzles extend this class.
  */
 template<typename T, std::size_t N>
 class Swizzle {

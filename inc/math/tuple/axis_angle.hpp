@@ -16,6 +16,7 @@ namespace tuple {
 /**
  * @class AxisAnglePair
  * @tparam T Storage type.
+ * Tuple containing 3-dimensional vector axis and scalar angle.
  */
 template<typename T>
 class AxisAngle : public std::tuple<math::core::Vector<T, 3>, T> {

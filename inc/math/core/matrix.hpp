@@ -115,6 +115,7 @@ public:
  * @tparam T Storage type.
  * @tparam M Number of rows.
  * @tparam N Number of columns. Defaults to number of rows.
+ * A matrix with generic size and type.
  */
 template<typename T, std::size_t M, std::size_t N = M>
 class Matrix : public MatrixComponents<T, M, N> {
