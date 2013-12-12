@@ -220,14 +220,24 @@ T Matrix<T, M, N>::det(void) const {
 }
 
 /**
+ * Calculate the matrix adjugate.
+ * @return Matrix adjugate.
+ */
+template<typename T, std::size_t M, std::size_t N>
+template<typename U, typename>
+Matrix<T, M, N> Matrix<T, M, N>::adjugate(void) const {
+	// TODO
+	return Matrix<T, M, N>();
+}
+
+/**
  * Calculate the matrix inverse.
  * @return Matrix inverse.
  */
 template<typename T, std::size_t M, std::size_t N>
 template<typename U, typename>
 Matrix<T, M, N> Matrix<T, M, N>::inverse(void) const {
-	// TODO
-	return Matrix<T, M, N>();
+	return this->adjugate() / this->det();
 }
 
 #endif

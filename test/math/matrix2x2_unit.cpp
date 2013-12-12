@@ -295,10 +295,6 @@ BOOST_AUTO_TEST_CASE(scalar_div_eq) {
 	BOOST_CHECK_CLOSE(M_div[1][1], 4.0f, 1e-4f);
 }
 
-BOOST_AUTO_TEST_CASE(det) {
-	// TODO
-}
-
 BOOST_AUTO_TEST_CASE(transpose) {
 	math::Matrix2x2 M;
 	M[0][0] = 1.0f;
@@ -313,8 +309,46 @@ BOOST_AUTO_TEST_CASE(transpose) {
 	BOOST_CHECK_CLOSE(M_trans[1][1], 4.0f, 1e-4f);
 }
 
+BOOST_AUTO_TEST_CASE(det) {
+	math::Matrix2x2 M;
+	M[0][0] = 1.0f;
+	M[0][1] = 2.0f;
+	M[1][0] = 3.0f;
+	M[1][1] = 4.0f;
+	BOOST_CHECK_CLOSE(M.det(), -2.0f, 1e-4f);
+	M[0][0] = 0.0f;
+	M[0][1] = 0.0f;
+	M[1][0] = 3.0f;
+	M[1][1] = 4.0f;
+	BOOST_CHECK_SMALL(M.det(), 1e-7f);
+}
+
+BOOST_AUTO_TEST_CASE(adjugate) {
+	math::Matrix2x2 M;
+	M[0][0] = 1.0f;
+	M[0][1] = 2.0f;
+	M[1][0] = 3.0f;
+	M[1][1] = 4.0f;
+	math::Matrix2x2 M_adj;
+	M_adj = M.adjugate();
+	BOOST_CHECK_CLOSE(M_adj[0][0], 4.0f, 1e-4f);
+	BOOST_CHECK_CLOSE(M_adj[0][1], -2.0f, 1e-4f);
+	BOOST_CHECK_CLOSE(M_adj[1][0], -3.0f, 1e-4f);
+	BOOST_CHECK_CLOSE(M_adj[1][1], 1.0f, 1e-4f);
+}
+
 BOOST_AUTO_TEST_CASE(inverse) {
-	// TODO
+	math::Matrix2x2 M;
+	M[0][0] = 1.0f;
+	M[0][1] = 2.0f;
+	M[1][0] = 3.0f;
+	M[1][1] = 4.0f;
+	math::Matrix2x2 M_inv;
+	M_inv = M.inverse();
+	BOOST_CHECK_CLOSE(M_inv[0][0], -2.0f, 1e-4f);
+	BOOST_CHECK_CLOSE(M_inv[0][1], 1.0f, 1e-4f);
+	BOOST_CHECK_CLOSE(M_inv[1][0], 1.5f, 1e-4f);
+	BOOST_CHECK_CLOSE(M_inv[1][1], -0.5f, 1e-4f);
 }
 
 BOOST_AUTO_TEST_CASE(equals) {

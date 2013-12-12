@@ -154,6 +154,10 @@ public:
 
 	template<typename U = T,
 		typename = typename std::enable_if<is_square_matrix<M, N>::value && std::is_same<T, U>::value, U>::type>
+	Matrix<T, M, N> adjugate(void) const;
+
+	template<typename U = T,
+		typename = typename std::enable_if<is_square_matrix<M, N>::value && std::is_same<T, U>::value, U>::type>
 	Matrix<T, M, N> inverse(void) const;
 };
 

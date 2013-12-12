@@ -733,10 +733,6 @@ BOOST_AUTO_TEST_CASE(scalar_div_eq) {
 	BOOST_CHECK_CLOSE(M_div[3][3], 16.0f, 1e-4f);
 }
 
-BOOST_AUTO_TEST_CASE(det) {
-	// TODO
-}
-
 BOOST_AUTO_TEST_CASE(transpose) {
 	math::Matrix4x4 M;
 	M[0][0] = 1.0f;
@@ -775,8 +771,116 @@ BOOST_AUTO_TEST_CASE(transpose) {
 	BOOST_CHECK_CLOSE(M_trans[3][3], 16.0f, 1e-4f);
 }
 
+BOOST_AUTO_TEST_CASE(det) {
+	math::Matrix4x4 M;
+	M[0][0] = 1.0f;
+	M[0][1] = 2.0f;
+	M[0][2] = 3.0f;
+	M[0][3] = 4.0f;
+	M[1][0] = 5.0f;
+	M[1][1] = 6.0f;
+	M[1][2] = 7.0f;
+	M[1][3] = 8.0f;
+	M[2][0] = 9.0f;
+	M[2][1] = 10.0f;
+	M[2][2] = 11.0f;
+	M[2][3] = 12.0f;
+	M[3][0] = 13.0f;
+	M[3][1] = 14.0f;
+	M[3][2] = 15.0f;
+	M[3][3] = 16.0f;
+	BOOST_CHECK_SMALL(M.det(), 1e-7f);
+	M[0][0] = 1.0f;
+	M[0][1] = 2.0f;
+	M[0][2] = 3.0f;
+	M[0][3] = 4.0f;
+	M[1][0] = 2.0f;
+	M[1][1] = 3.0f;
+	M[1][2] = 4.0f;
+	M[1][3] = 1.0f;
+	M[2][0] = 3.0f;
+	M[2][1] = 4.0f;
+	M[2][2] = 1.0f;
+	M[2][3] = 2.0f;
+	M[3][0] = 4.0f;
+	M[3][1] = 1.0f;
+	M[3][2] = 2.0f;
+	M[3][3] = 3.0f;
+	BOOST_CHECK_CLOSE(M.det(), 160.0f, 1e-4f);
+}
+
+BOOST_AUTO_TEST_CASE(adjugate) {
+	math::Matrix4x4 M;
+	M[0][0] = 1.0f;
+	M[0][1] = 2.0f;
+	M[0][2] = 3.0f;
+	M[0][3] = 4.0f;
+	M[1][0] = 2.0f;
+	M[1][1] = 3.0f;
+	M[1][2] = 4.0f;
+	M[1][3] = 1.0f;
+	M[2][0] = 3.0f;
+	M[2][1] = 4.0f;
+	M[2][2] = 1.0f;
+	M[2][3] = 2.0f;
+	M[3][0] = 4.0f;
+	M[3][1] = 1.0f;
+	M[3][2] = 2.0f;
+	M[3][3] = 3.0f;
+	math::Matrix4x4 M_adj = M.adjugate();
+	BOOST_CHECK_CLOSE(M_adj[0][0], -36.0f, 1e-4f);
+	BOOST_CHECK_CLOSE(M_adj[0][1], 4.0f, 1e-4f);
+	BOOST_CHECK_CLOSE(M_adj[0][2], 4.0f, 1e-4f);
+	BOOST_CHECK_CLOSE(M_adj[0][3], 44.0f, 1e-4f);
+	BOOST_CHECK_CLOSE(M_adj[1][0], 4.0f, 1e-4f);
+	BOOST_CHECK_CLOSE(M_adj[1][1], 4.0f, 1e-4f);
+	BOOST_CHECK_CLOSE(M_adj[1][2], 44.0f, 1e-4f);
+	BOOST_CHECK_CLOSE(M_adj[1][3], -36.0f, 1e-4f);
+	BOOST_CHECK_CLOSE(M_adj[2][0], 4.0f, 1e-4f);
+	BOOST_CHECK_CLOSE(M_adj[2][1], 44.0f, 1e-4f);
+	BOOST_CHECK_CLOSE(M_adj[2][2], -36.0f, 1e-4f);
+	BOOST_CHECK_CLOSE(M_adj[2][3], 4.0f, 1e-4f);
+	BOOST_CHECK_CLOSE(M_adj[3][0], 44.0f, 1e-4f);
+	BOOST_CHECK_CLOSE(M_adj[3][1], -36.0f, 1e-4f);
+	BOOST_CHECK_CLOSE(M_adj[3][2], 4.0f, 1e-4f);
+	BOOST_CHECK_CLOSE(M_adj[3][3], 4.0f, 1e-4f);
+}
+
 BOOST_AUTO_TEST_CASE(inverse) {
-	// TODO
+	math::Matrix4x4 M;
+	M[0][0] = 1.0f;
+	M[0][1] = 2.0f;
+	M[0][2] = 3.0f;
+	M[0][3] = 4.0f;
+	M[1][0] = 2.0f;
+	M[1][1] = 3.0f;
+	M[1][2] = 4.0f;
+	M[1][3] = 1.0f;
+	M[2][0] = 3.0f;
+	M[2][1] = 4.0f;
+	M[2][2] = 1.0f;
+	M[2][3] = 2.0f;
+	M[3][0] = 4.0f;
+	M[3][1] = 1.0f;
+	M[3][2] = 2.0f;
+	M[3][3] = 3.0f;
+	math::Matrix4x4 M_inv = M.inverse();
+	BOOST_CHECK_CLOSE(M_inv[0][0], -0.255f, 1e-4f);
+	BOOST_CHECK_CLOSE(M_inv[0][1], 0.025f, 1e-4f);
+	BOOST_CHECK_CLOSE(M_inv[0][2], 0.025f, 1e-4f);
+	BOOST_CHECK_CLOSE(M_inv[0][3], 0.275f, 1e-4f);
+	BOOST_CHECK_CLOSE(M_inv[1][0], 0.025f, 1e-4f);
+	BOOST_CHECK_CLOSE(M_inv[1][1], 0.025f, 1e-4f);
+	BOOST_CHECK_CLOSE(M_inv[1][2], 0.275f, 1e-4f);
+	BOOST_CHECK_CLOSE(M_inv[1][3], -0.255f, 1e-4f);
+	BOOST_CHECK_CLOSE(M_inv[2][0], 0.025f, 1e-4f);
+	BOOST_CHECK_CLOSE(M_inv[2][1], 0.275f, 1e-4f);
+	BOOST_CHECK_CLOSE(M_inv[2][2], -0.255, 1e-4f);
+	BOOST_CHECK_CLOSE(M_inv[2][3], 0.025, 1e-4f);
+	BOOST_CHECK_CLOSE(M_inv[3][0], 0.275f, 1e-4f);
+	BOOST_CHECK_CLOSE(M_inv[3][1], -0.255f, 1e-4f);
+	BOOST_CHECK_CLOSE(M_inv[3][2], 0.025f, 1e-4f);
+	BOOST_CHECK_CLOSE(M_inv[3][3], 0.025f, 1e-4f);
 }
 
 BOOST_AUTO_TEST_CASE(equals) {
