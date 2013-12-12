@@ -39,6 +39,20 @@ BOOST_AUTO_TEST_CASE(create) {
 	BOOST_CHECK_CLOSE(M_param[2][1], 6.0f, 1e-4f);
 	BOOST_CHECK_CLOSE(M_param[3][0], 7.0f, 1e-4f);
 	BOOST_CHECK_CLOSE(M_param[3][1], 8.0f, 1e-4f);
+	// parameterized constructor
+	math::Vector2 col1(1.0f, 2.0f);
+	math::Vector2 col2(3.0f, 4.0f);
+	math::Vector2 col3(5.0f, 6.0f);
+	math::Vector2 col4(7.0f, 8.0f);
+	math::Matrix4x2 M_param2(col1, col2, col3, col4);
+	BOOST_CHECK_CLOSE(M_param2[0][0], 1.0f, 1e-4f);
+	BOOST_CHECK_CLOSE(M_param2[0][1], 2.0f, 1e-4f);
+	BOOST_CHECK_CLOSE(M_param2[1][0], 3.0f, 1e-4f);
+	BOOST_CHECK_CLOSE(M_param2[1][1], 4.0f, 1e-4f);
+	BOOST_CHECK_CLOSE(M_param2[2][0], 5.0f, 1e-4f);
+	BOOST_CHECK_CLOSE(M_param2[2][1], 6.0f, 1e-4f);
+	BOOST_CHECK_CLOSE(M_param2[3][0], 7.0f, 1e-4f);
+	BOOST_CHECK_CLOSE(M_param2[3][1], 8.0f, 1e-4f);
 }
 
 BOOST_AUTO_TEST_CASE(copy) {
