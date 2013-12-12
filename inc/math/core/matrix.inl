@@ -27,7 +27,7 @@ Matrix<T, N, M>& Matrix<T, N, M>::operator=(const Matrix<T, N, M>& other) {
  * @return Accessed element.
  */
 template<typename T, std::size_t N, std::size_t M>
-T Matrix<T, N, M>::operator[](const std::size_t idx) const {
+Vector<T, M> Matrix<T, N, M>::operator[](const std::size_t idx) const {
 	return this->data.at(idx);
 }
 
@@ -37,7 +37,7 @@ T Matrix<T, N, M>::operator[](const std::size_t idx) const {
  * @return Modified element.
  */
 template<typename T, std::size_t N, std::size_t M>
-T& Matrix<T, N, M>::operator[](const std::size_t idx) {
+Vector<T, M>& Matrix<T, N, M>::operator[](const std::size_t idx) {
 	return this->data.at(idx);
 }
 

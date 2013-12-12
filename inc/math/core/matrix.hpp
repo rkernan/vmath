@@ -24,11 +24,11 @@ struct is_square_matrix : std::integral_constant<bool, N == M> {};
  * @tparam N Number of columns.
  * @tparam M Number of rows. Defaults to the number of columns.
  */
-template<typename T, std::size_t N, std::size_t M=N>
+template<typename T, std::size_t N, std::size_t M = N>
 class Matrix {
 public:
 	Matrix(void) : data() {}
-	Matrix(const std::array<Vector<T, N>, M>& data) : data(data) {}
+	Matrix(const std::array<Vector<T, M>, N>& data) : data(data) {}
 	Matrix(const Matrix<T, N, M>&) = default;
 	Matrix(Matrix<T, N, M>&&) = default;
 
@@ -36,8 +36,8 @@ public:
 
 	Matrix<T, N, M>& operator=(const Matrix<T, N, M>&);
 
-	T operator[](const std::size_t) const;
-	T& operator[](const std::size_t);
+	Vector<T, M> operator[](const std::size_t) const;
+	Vector<T, M>& operator[](const std::size_t);
 
 	Matrix<T, N, M> operator-(void) const;
 	Matrix<T, N, M> operator+(const Matrix<T, N, M>&) const;
