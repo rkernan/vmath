@@ -8,6 +8,7 @@
 
 namespace math {
 namespace core {
+namespace {
 
 /**
  * @struct is_square_matrix
@@ -40,7 +41,7 @@ public:
  * @class MatrixComponents
  * @tparam T Storage type.
  * @tparam M Number of rows.
- * Matrix component specialization for column vectors.
+ * Matrix component specialization for column vectors. Column-major.
  */
 template<typename T, std::size_t M>
 class MatrixComponents<T, M, 1> {
@@ -58,7 +59,7 @@ public:
  * @class MatrixComponents
  * @tparam T Storage type.
  * @tparam M Number of rows.
- * Matrix component specialization for matrices with 2 columns.
+ * Matrix component specialization for matrices with 2 columns. Column-major.
  */
 template<typename T, std::size_t M>
 class MatrixComponents<T, M, 2> {
@@ -76,7 +77,7 @@ public:
  * @class MatrixComponents
  * @tparam T Storage type.
  * @tparam M Number of rows.
- * Matrix component specialization for matrices with 3 columns.
+ * Matrix component specialization for matrices with 3 columns. Column-major.
  */
 template<typename T, std::size_t M>
 class MatrixComponents<T, M, 3> {
@@ -95,7 +96,7 @@ public:
  * @class MatrixComponents
  * @tparam T Storage type.
  * @tparam M Number of rows.
- * Matrix component specialization for matrices with 4 columns.
+ * Matrix component specialization for matrices with 4 columns. Column-major.
  */
 template<typename T, std::size_t M>
 class MatrixComponents<T, M, 4> {
@@ -110,12 +111,14 @@ public:
 	std::array<Vector<T, M>, 4> data;
 };
 
+}
+
 /**
  * @class Matrix
  * @tparam T Storage type.
  * @tparam M Number of rows.
  * @tparam N Number of columns. Defaults to number of rows.
- * A matrix with generic size and type.
+ * A matrix with generic size and type. Column-major.
  */
 template<typename T, std::size_t M, std::size_t N = M>
 class Matrix : public MatrixComponents<T, M, N> {

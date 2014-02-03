@@ -30,6 +30,7 @@ Vector<T, N>& Vector<T, N>::operator=(const Vector<T, N>& other) {
 /**
  * Access a vector element using an index.
  * @param idx Location of element to access.
+ * @return Accessed element.
  */
 template<typename T, std::size_t N>
 T Vector<T, N>::operator[](const std::size_t idx) const {
@@ -39,6 +40,7 @@ T Vector<T, N>::operator[](const std::size_t idx) const {
 /**
  * Access and modify a vector element by index.
  * @param idx Location of element to access.
+ * @return Modified element.
  */
 template<typename T, std::size_t N>
 T& Vector<T, N>::operator[](const std::size_t idx) {
