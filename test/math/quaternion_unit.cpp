@@ -19,19 +19,25 @@ BOOST_AUTO_TEST_CASE(create) {
 	BOOST_CHECK_CLOSE(H_param.y, 2.0f, 1e-4f);
 	BOOST_CHECK_CLOSE(H_param.z, 3.0f, 1e-4f);
 	BOOST_CHECK_CLOSE(H_param.w, 4.0f, 1e-4f);
-	// from axis angle
+}
+
+BOOST_AUTO_TEST_CASE(from_axis_angle) {
 	math::Quaternion H_param2(math::Vector3(1.0f, 0.0f, 0.0f), math::radians(90.0f));
 	BOOST_CHECK_CLOSE(H_param2.x, 0.707106769f, 1e-4f);
 	BOOST_CHECK_SMALL(H_param2.y, 1e-7f);
 	BOOST_CHECK_SMALL(H_param2.z, 1e-7f);
 	BOOST_CHECK_CLOSE(H_param2.w, 0.707106769f, 1e-4f);
-	// from euler angles
+}
+
+BOOST_AUTO_TEST_CASE(from_euler) {
 	math::Quaternion H_param3(math::radians(90.0f), 0.0f, 0.0f);
 	BOOST_CHECK_CLOSE(H_param3.x, 0.707106769f, 1e-4f);
 	BOOST_CHECK_SMALL(H_param3.y, 1e-7f);
 	BOOST_CHECK_SMALL(H_param3.z, 1e-7f);
 	BOOST_CHECK_CLOSE(H_param3.w, 0.707106769f, 1e-4f);
-	// from matrix4
+}
+
+BOOST_AUTO_TEST_CASE(from_matrix4) {
 	// TODO
 }
 
@@ -201,11 +207,10 @@ BOOST_AUTO_TEST_CASE(mult) {
 	H2.w = -200.34f;
 	math::Quaternion H_mult;
 	H_mult = H1 * H2;
-	// TODO
-	/* BOOST_CHECK_CLOSE(H_mult.x, 208.0408f, 1e-4f); */
-	/* BOOST_CHECK_CLOSE(H_mult.y, -1563.795f, 1e-4f); */
-	/* BOOST_CHECK_CLOSE(H_mult.z, -367.64f, 1e-4f); */
-	/* BOOST_CHECK_CLOSE(H_mult.w, -7136.11079999999995f, 1e-4f); */
+	BOOST_CHECK_CLOSE(H_mult.x, -1906.652f, 1e-4f);
+	BOOST_CHECK_CLOSE(H_mult.y, -21359.0246f, 1e-4f);
+	BOOST_CHECK_CLOSE(H_mult.z, 3010.6493f, 1e-4f);
+	BOOST_CHECK_CLOSE(H_mult.w, -5412.7166f, 1e-4f);
 }
 
 BOOST_AUTO_TEST_CASE(mult_eq) {
@@ -221,15 +226,27 @@ BOOST_AUTO_TEST_CASE(mult_eq) {
 	H2.w = -200.34f;
 	math::Quaternion H_mult = H1;
 	H_mult *= H2;
-	// TODO
-	/* BOOST_CHECK_CLOSE(H_mult.x, 208.0408f, 1e-4f); */
-	/* BOOST_CHECK_CLOSE(H_mult.y, -1563.795f, 1e-4f); */
-	/* BOOST_CHECK_CLOSE(H_mult.z, -367.64f, 1e-4f); */
-	/* BOOST_CHECK_CLOSE(H_mult.w, -7136.11079999999995f, 1e-4f); */
+	BOOST_CHECK_CLOSE(H_mult.x, -1906.652f, 1e-4f);
+	BOOST_CHECK_CLOSE(H_mult.y, -21359.0246f, 1e-4f);
+	BOOST_CHECK_CLOSE(H_mult.z, 3010.6493f, 1e-4f);
+	BOOST_CHECK_CLOSE(H_mult.w, -5412.7166f, 1e-4f);
 }
 
 BOOST_AUTO_TEST_CASE(vector3_mult) {
-	// TODO
+	math::Quaternion H;
+	H.x = 0.3651483655f;
+	H.y = 0.5477225184f;
+	H.z = 0.7302967310f;
+	H.w = 0.1825741827f;
+	math::Vector3 V;
+	V.x = 1.0f;
+	V.y = 0.0f;
+	V.z = 0.0f;
+	math::Vector3 V_rot;
+	V_rot = H * V;
+	BOOST_CHECK_CLOSE(V_rot.x, -0.6666666269f, 1e-4f);
+	BOOST_CHECK_CLOSE(V_rot.y, 0.6666666269f, 1e-4f);
+	BOOST_CHECK_CLOSE(V_rot.z, 0.3333333135f, 1e-4f);
 }
 
 BOOST_AUTO_TEST_CASE(scalar_mult) {
