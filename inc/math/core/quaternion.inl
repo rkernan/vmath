@@ -380,6 +380,7 @@ Matrix<T, 4> Quaternion<T>::matrix4(void) const {
 	mat[3][1] = static_cast<T>(0.0);
 	mat[3][2] = static_cast<T>(0.0);
 	mat[3][3] = static_cast<T>(1.0);
+	return mat;
 }
 
 /**

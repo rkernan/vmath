@@ -38,7 +38,28 @@ BOOST_AUTO_TEST_CASE(from_euler) {
 }
 
 BOOST_AUTO_TEST_CASE(from_matrix4) {
-	// TODO
+	math::Matrix4 M;
+	M[0][0] = 0.696367031483999f;
+	M[0][1] = 0.6963627001160001f;
+	M[0][2] = -0.17364002904f;
+	M[0][3] = 0.0f;
+	M[1][0] = -0.62246796936f;
+	M[1][1] = 0.706459172124f;
+	M[1][2] = 0.336820447316f;
+	M[1][3] = 0.0f;
+	M[2][0] = 0.357219116116f;
+	M[2][1] = -0.12646492199f;
+	M[2][2] = 0.925419288444f;
+	M[2][3] = 0.0f;
+	M[3][0] = 0.0f;
+	M[3][1] = 0.0f;
+	M[3][2] = 0.0f;
+	M[3][3] = 1.0f;
+	math::Quaternion H(M);
+	BOOST_CHECK_CLOSE(H.x, 0.126973f, 1e-3f);
+	BOOST_CHECK_CLOSE(H.y, 0.145493f, 1e-3f);
+	BOOST_CHECK_CLOSE(H.z, 0.361453f, 1e-3f);
+	BOOST_CHECK_CLOSE(H.w, 0.912173f, 1e-3f);
 }
 
 BOOST_AUTO_TEST_CASE(copy) {
@@ -431,7 +452,29 @@ BOOST_AUTO_TEST_CASE(to_axis_angle) {
 }
 
 BOOST_AUTO_TEST_CASE(to_matrix4) {
-	// TODO
+	math::Quaternion H;
+	H.x = 0.126973f;
+	H.y = 0.145493f;
+	H.z = 0.361453f;
+	H.w = 0.912173f;
+	math::Matrix4 M;
+	M = H.matrix4();
+	BOOST_CHECK_CLOSE(M[0][0], 0.696367031483999f, 1e-3f);
+	BOOST_CHECK_CLOSE(M[0][1], 0.6963627001160001f, 1e-3f);
+	BOOST_CHECK_CLOSE(M[0][2], -0.17364002904f, 1e-3f);
+	BOOST_CHECK_CLOSE(M[0][3], 0.0f, 1e-3f);
+	BOOST_CHECK_CLOSE(M[1][0], -0.62246796936f, 1e-3f);
+	BOOST_CHECK_CLOSE(M[1][1], 0.706459172124f, 1e-3f);
+	BOOST_CHECK_CLOSE(M[1][2], 0.336820447316f, 1e-3f);
+	BOOST_CHECK_CLOSE(M[1][3], 0.0f, 1e-3f);
+	BOOST_CHECK_CLOSE(M[2][0], 0.357219116116f, 1e-3f);
+	BOOST_CHECK_CLOSE(M[2][1], -0.12646492199f, 1e-3f);
+	BOOST_CHECK_CLOSE(M[2][2], 0.925419288444f, 1e-3f);
+	BOOST_CHECK_CLOSE(M[2][3], 0.0f, 1e-3f);
+	BOOST_CHECK_CLOSE(M[3][0], 0.0f, 1e-3f);
+	BOOST_CHECK_CLOSE(M[3][1], 0.0f, 1e-3f);
+	BOOST_CHECK_CLOSE(M[3][2], 0.0f, 1e-3f);
+	BOOST_CHECK_CLOSE(M[3][3], 1.0f, 1e-3f);
 }
 
 BOOST_AUTO_TEST_CASE(equals) {
