@@ -246,6 +246,7 @@ Vector<T, N>& Vector<T, N>::normalize(void) {
 
 /**
  * Equals helper. Allows for partial specialization of the equality operator.
+ * Specialization for vector with floats.
  * @param V1 Vector to check equality with.
  * @param V2 Vector to check equality with.
  * @return True if they are equal, otherwise false.
@@ -260,6 +261,13 @@ static inline typename std::enable_if<std::is_floating_point<T>::value, bool>::t
 	return equal;
 }
 
+/**
+ * Equals helper. Allows for partial specialization of the equality operator.
+ * Specialization for vector with integers or other.
+ * @param V1 Vector to check equality with.
+ * @param V2 Vector to check equality with.
+ * @return True if they are equal, otherwise false.
+ */
 template<typename T, std::size_t N>
 static inline typename std::enable_if<!std::is_floating_point<T>::value, bool>::type
 		equals_helper(const Vector<T, N>& V1, const Vector<T, N>& V2) {
