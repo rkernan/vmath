@@ -32,17 +32,11 @@ set(SOURCES
 	inc/math/core/swizzle/swizzle3.hpp
 	inc/math/core/swizzle/swizzle4.inl
 	inc/math/core/swizzle/swizzle4.inl
-	inc/math/tuple/axis_angle.hpp
-	inc/math/tuple/axis_angle.inl
-	inc/math/tuple/euler.hpp
-	inc/math/tuple/euler.inl
 	)
 
 # test files
 set(SOURCES_TEST
 	test/math_tester.cpp
-	test/math/axis_angle_unit.cpp
-	test/math/euler_unit.cpp
 	test/math/func_unit.cpp
 	test/math/matrix2x2_unit.cpp
 	test/math/matrix2x3_unit.cpp

@@ -20,17 +20,19 @@ BOOST_AUTO_TEST_CASE(create) {
 	BOOST_CHECK_CLOSE(H_param.z, 3.0f, 1e-4f);
 	BOOST_CHECK_CLOSE(H_param.w, 4.0f, 1e-4f);
 	// from axis angle
-	math::Quaternion H_param2(math::tuple::AxisAngle<float>(math::Vector3(1.0f, 0.0f, 0.0f), math::radians(90.0f)));
+	math::Quaternion H_param2(math::Vector3(1.0f, 0.0f, 0.0f), math::radians(90.0f));
 	BOOST_CHECK_CLOSE(H_param2.x, 0.707106769f, 1e-4f);
 	BOOST_CHECK_SMALL(H_param2.y, 1e-7f);
 	BOOST_CHECK_SMALL(H_param2.z, 1e-7f);
 	BOOST_CHECK_CLOSE(H_param2.w, 0.707106769f, 1e-4f);
 	// from euler angles
-	math::Quaternion H_param3(math::tuple::EulerAngles<float>(math::radians(90.0f), 0.0f, 0.0f));
+	math::Quaternion H_param3(math::radians(90.0f), 0.0f, 0.0f);
 	BOOST_CHECK_CLOSE(H_param3.x, 0.707106769f, 1e-4f);
 	BOOST_CHECK_SMALL(H_param3.y, 1e-7f);
 	BOOST_CHECK_SMALL(H_param3.z, 1e-7f);
 	BOOST_CHECK_CLOSE(H_param3.w, 0.707106769f, 1e-4f);
+	// from matrix4
+	// TODO
 }
 
 BOOST_AUTO_TEST_CASE(copy) {
@@ -65,114 +67,18 @@ BOOST_AUTO_TEST_CASE(members) {
 	H.y = 100.89f;
 	H.z = -18.2f;
 	H.w = 35.62f;
-	BOOST_CHECK_CLOSE(H.x, H.r, 1e-4f);
-	BOOST_CHECK_CLOSE(H.x, H.s, 1e-4f);
-	BOOST_CHECK_CLOSE(H.r, H.s, 1e-4f);
-	BOOST_CHECK_CLOSE(H.y, H.g, 1e-4f);
-	BOOST_CHECK_CLOSE(H.y, H.t, 1e-4f);
-	BOOST_CHECK_CLOSE(H.g, H.t, 1e-4f);
-	BOOST_CHECK_CLOSE(H.z, H.b, 1e-4f);
-	BOOST_CHECK_CLOSE(H.z, H.p, 1e-4f);
-	BOOST_CHECK_CLOSE(H.b, H.p, 1e-4f);
-	BOOST_CHECK_CLOSE(H.w, H.a, 1e-4f);
-	BOOST_CHECK_CLOSE(H.w, H.q, 1e-4f);
-	BOOST_CHECK_CLOSE(H.a, H.q, 1e-4f);
 	BOOST_CHECK_CLOSE(H[0], H.x, 1e-4f);
-	BOOST_CHECK_CLOSE(H[0], H.r, 1e-4f);
-	BOOST_CHECK_CLOSE(H[0], H.s, 1e-4f);
 	BOOST_CHECK_CLOSE(H[1], H.y, 1e-4f);
-	BOOST_CHECK_CLOSE(H[1], H.g, 1e-4f);
-	BOOST_CHECK_CLOSE(H[1], H.t, 1e-4f);
 	BOOST_CHECK_CLOSE(H[2], H.z, 1e-4f);
-	BOOST_CHECK_CLOSE(H[2], H.b, 1e-4f);
-	BOOST_CHECK_CLOSE(H[2], H.p, 1e-4f);
 	BOOST_CHECK_CLOSE(H[3], H.w, 1e-4f);
-	BOOST_CHECK_CLOSE(H[3], H.a, 1e-4f);
-	BOOST_CHECK_CLOSE(H[3], H.q, 1e-4f);
-	H.r = 35.62f;
-	H.g = 20.12f;
-	H.b = 100.89f;
-	H.a = -18.2f;
-	BOOST_CHECK_CLOSE(H.x, H.r, 1e-4f);
-	BOOST_CHECK_CLOSE(H.x, H.s, 1e-4f);
-	BOOST_CHECK_CLOSE(H.r, H.s, 1e-4f);
-	BOOST_CHECK_CLOSE(H.y, H.g, 1e-4f);
-	BOOST_CHECK_CLOSE(H.y, H.t, 1e-4f);
-	BOOST_CHECK_CLOSE(H.g, H.t, 1e-4f);
-	BOOST_CHECK_CLOSE(H.z, H.b, 1e-4f);
-	BOOST_CHECK_CLOSE(H.z, H.p, 1e-4f);
-	BOOST_CHECK_CLOSE(H.b, H.p, 1e-4f);
-	BOOST_CHECK_CLOSE(H.w, H.a, 1e-4f);
-	BOOST_CHECK_CLOSE(H.w, H.q, 1e-4f);
-	BOOST_CHECK_CLOSE(H.a, H.q, 1e-4f);
-	BOOST_CHECK_CLOSE(H[0], H.x, 1e-4f);
-	BOOST_CHECK_CLOSE(H[0], H.r, 1e-4f);
-	BOOST_CHECK_CLOSE(H[0], H.s, 1e-4f);
-	BOOST_CHECK_CLOSE(H[1], H.y, 1e-4f);
-	BOOST_CHECK_CLOSE(H[1], H.g, 1e-4f);
-	BOOST_CHECK_CLOSE(H[1], H.t, 1e-4f);
-	BOOST_CHECK_CLOSE(H[2], H.z, 1e-4f);
-	BOOST_CHECK_CLOSE(H[2], H.b, 1e-4f);
-	BOOST_CHECK_CLOSE(H[2], H.p, 1e-4f);
-	BOOST_CHECK_CLOSE(H[3], H.w, 1e-4f);
-	BOOST_CHECK_CLOSE(H[3], H.a, 1e-4f);
-	BOOST_CHECK_CLOSE(H[3], H.q, 1e-4f);
-	H.s = -18.2f;
-	H.t = 35.62f;
-	H.p = 20.12f;
-	H.a = 100.89f;
-	BOOST_CHECK_CLOSE(H.x, H.r, 1e-4f);
-	BOOST_CHECK_CLOSE(H.x, H.s, 1e-4f);
-	BOOST_CHECK_CLOSE(H.r, H.s, 1e-4f);
-	BOOST_CHECK_CLOSE(H.y, H.g, 1e-4f);
-	BOOST_CHECK_CLOSE(H.y, H.t, 1e-4f);
-	BOOST_CHECK_CLOSE(H.g, H.t, 1e-4f);
-	BOOST_CHECK_CLOSE(H.z, H.b, 1e-4f);
-	BOOST_CHECK_CLOSE(H.z, H.p, 1e-4f);
-	BOOST_CHECK_CLOSE(H.b, H.p, 1e-4f);
-	BOOST_CHECK_CLOSE(H.w, H.a, 1e-4f);
-	BOOST_CHECK_CLOSE(H.w, H.q, 1e-4f);
-	BOOST_CHECK_CLOSE(H.a, H.q, 1e-4f);
-	BOOST_CHECK_CLOSE(H[0], H.x, 1e-4f);
-	BOOST_CHECK_CLOSE(H[0], H.r, 1e-4f);
-	BOOST_CHECK_CLOSE(H[0], H.s, 1e-4f);
-	BOOST_CHECK_CLOSE(H[1], H.y, 1e-4f);
-	BOOST_CHECK_CLOSE(H[1], H.g, 1e-4f);
-	BOOST_CHECK_CLOSE(H[1], H.t, 1e-4f);
-	BOOST_CHECK_CLOSE(H[2], H.z, 1e-4f);
-	BOOST_CHECK_CLOSE(H[2], H.b, 1e-4f);
-	BOOST_CHECK_CLOSE(H[2], H.p, 1e-4f);
-	BOOST_CHECK_CLOSE(H[3], H.w, 1e-4f);
-	BOOST_CHECK_CLOSE(H[3], H.a, 1e-4f);
-	BOOST_CHECK_CLOSE(H[3], H.q, 1e-4f);
 	H[0] = 100.89f;
 	H[1] = -18.2f;
 	H[2] = 35.62f;
 	H[3] = 20.12f;
-	BOOST_CHECK_CLOSE(H.x, H.r, 1e-4f);
-	BOOST_CHECK_CLOSE(H.x, H.s, 1e-4f);
-	BOOST_CHECK_CLOSE(H.r, H.s, 1e-4f);
-	BOOST_CHECK_CLOSE(H.y, H.g, 1e-4f);
-	BOOST_CHECK_CLOSE(H.y, H.t, 1e-4f);
-	BOOST_CHECK_CLOSE(H.g, H.t, 1e-4f);
-	BOOST_CHECK_CLOSE(H.z, H.b, 1e-4f);
-	BOOST_CHECK_CLOSE(H.z, H.p, 1e-4f);
-	BOOST_CHECK_CLOSE(H.b, H.p, 1e-4f);
-	BOOST_CHECK_CLOSE(H.w, H.a, 1e-4f);
-	BOOST_CHECK_CLOSE(H.w, H.q, 1e-4f);
-	BOOST_CHECK_CLOSE(H.a, H.q, 1e-4f);
 	BOOST_CHECK_CLOSE(H[0], H.x, 1e-4f);
-	BOOST_CHECK_CLOSE(H[0], H.r, 1e-4f);
-	BOOST_CHECK_CLOSE(H[0], H.s, 1e-4f);
 	BOOST_CHECK_CLOSE(H[1], H.y, 1e-4f);
-	BOOST_CHECK_CLOSE(H[1], H.g, 1e-4f);
-	BOOST_CHECK_CLOSE(H[1], H.t, 1e-4f);
 	BOOST_CHECK_CLOSE(H[2], H.z, 1e-4f);
-	BOOST_CHECK_CLOSE(H[2], H.b, 1e-4f);
-	BOOST_CHECK_CLOSE(H[2], H.p, 1e-4f);
 	BOOST_CHECK_CLOSE(H[3], H.w, 1e-4f);
-	BOOST_CHECK_CLOSE(H[3], H.a, 1e-4f);
-	BOOST_CHECK_CLOSE(H[3], H.q, 1e-4f);
 	// invalid index
 	BOOST_CHECK_THROW(H[4], std::out_of_range);
 	BOOST_CHECK_THROW(H[4] = 0.0f, std::out_of_range);
@@ -295,10 +201,11 @@ BOOST_AUTO_TEST_CASE(mult) {
 	H2.w = -200.34f;
 	math::Quaternion H_mult;
 	H_mult = H1 * H2;
-	BOOST_CHECK_CLOSE(H_mult.x, 208.0408f, 1e-4f);
-	BOOST_CHECK_CLOSE(H_mult.y, -1563.795f, 1e-4f);
-	BOOST_CHECK_CLOSE(H_mult.z, -367.64f, 1e-4f);
-	BOOST_CHECK_CLOSE(H_mult.w, -7136.11079999999995f, 1e-4f);
+	// TODO
+	/* BOOST_CHECK_CLOSE(H_mult.x, 208.0408f, 1e-4f); */
+	/* BOOST_CHECK_CLOSE(H_mult.y, -1563.795f, 1e-4f); */
+	/* BOOST_CHECK_CLOSE(H_mult.z, -367.64f, 1e-4f); */
+	/* BOOST_CHECK_CLOSE(H_mult.w, -7136.11079999999995f, 1e-4f); */
 }
 
 BOOST_AUTO_TEST_CASE(mult_eq) {
@@ -314,48 +221,15 @@ BOOST_AUTO_TEST_CASE(mult_eq) {
 	H2.w = -200.34f;
 	math::Quaternion H_mult = H1;
 	H_mult *= H2;
-	BOOST_CHECK_CLOSE(H_mult.x, 208.0408f, 1e-4f);
-	BOOST_CHECK_CLOSE(H_mult.y, -1563.795f, 1e-4f);
-	BOOST_CHECK_CLOSE(H_mult.z, -367.64f, 1e-4f);
-	BOOST_CHECK_CLOSE(H_mult.w, -7136.11079999999995f, 1e-4f);
+	// TODO
+	/* BOOST_CHECK_CLOSE(H_mult.x, 208.0408f, 1e-4f); */
+	/* BOOST_CHECK_CLOSE(H_mult.y, -1563.795f, 1e-4f); */
+	/* BOOST_CHECK_CLOSE(H_mult.z, -367.64f, 1e-4f); */
+	/* BOOST_CHECK_CLOSE(H_mult.w, -7136.11079999999995f, 1e-4f); */
 }
 
-BOOST_AUTO_TEST_CASE(div) {
-	math::Quaternion H1;
-	H1.x = 20.12f;
-	H1.y = 100.89f;
-	H1.z = -18.2f;
-	H1.w = 35.62f;
-	math::Quaternion H2;
-	H2.x = 10.34f;
-	H2.y = -15.5f;
-	H2.z = 20.2f;
-	H2.w = -200.34f;
-	math::Quaternion H_div;
-	H_div = H1 / H2;
-	BOOST_CHECK_CLOSE(H_div.x, 1.9458413926499034f, 1e-4f);
-	BOOST_CHECK_CLOSE(H_div.y, -6.509032258064516f, 1e-4f);
-	BOOST_CHECK_CLOSE(H_div.z, -0.900990099009901f, 1e-4f);
-	BOOST_CHECK_CLOSE(H_div.w, -0.17779774383547967f, 1e-4f);
-}
-
-BOOST_AUTO_TEST_CASE(div_eq) {
-	math::Quaternion H1;
-	H1.x = 20.12f;
-	H1.y = 100.89f;
-	H1.z = -18.2f;
-	H1.w = 35.62f;
-	math::Quaternion H2;
-	H2.x = 10.34f;
-	H2.y = -15.5f;
-	H2.z = 20.2f;
-	H2.w = -200.34f;
-	math::Quaternion H_div = H1;
-	H_div /= H2;
-	BOOST_CHECK_CLOSE(H_div.x, 1.9458413926499034f, 1e-4f);
-	BOOST_CHECK_CLOSE(H_div.y, -6.509032258064516f, 1e-4f);
-	BOOST_CHECK_CLOSE(H_div.z, -0.900990099009901f, 1e-4f);
-	BOOST_CHECK_CLOSE(H_div.w, -0.17779774383547967f, 1e-4f);
+BOOST_AUTO_TEST_CASE(vector3_mult) {
+	// TODO
 }
 
 BOOST_AUTO_TEST_CASE(scalar_mult) {
@@ -526,19 +400,21 @@ BOOST_AUTO_TEST_CASE(to_euler_angles) {
 	H.y = 0.145493f;
 	H.z = 0.361453f;
 	H.w = 0.912173f;
-	auto E = H.eulerAngles();
-	BOOST_CHECK_CLOSE(E.pitch(), 0.349062055f, 1e-4f);
-	BOOST_CHECK_CLOSE(E.yaw(), 0.174524635f, 1e-4f);
-	BOOST_CHECK_CLOSE(E.roll(), 0.785396338f, 1e-4f);
+	BOOST_CHECK_CLOSE(H.pitch(), 0.349062055f, 1e-4f);
+	BOOST_CHECK_CLOSE(H.yaw(), 0.174524635f, 1e-4f);
+	BOOST_CHECK_CLOSE(H.roll(), 0.785396338f, 1e-4f);
 }
 
 BOOST_AUTO_TEST_CASE(to_axis_angle) {
-	math::Quaternion H(math::tuple::AxisAngle<float>(math::Vector3(1.0f, 1.0f, 0.0f), math::radians(22.0f)));
-	auto A = H.axisAngle();
-	BOOST_CHECK_CLOSE(A.axis().x, 0.707106829f, 1e-4f);
-	BOOST_CHECK_CLOSE(A.axis().y, 0.707106829f, 1e-4f);
-	BOOST_CHECK_SMALL(A.axis().z, 1e-7f);
-	BOOST_CHECK_CLOSE(A.angle(), math::radians(22.0f), 1e-4f);
+	math::Quaternion H(math::Vector3(1.0f, 1.0f, 0.0f), math::radians(22.0f));
+	BOOST_CHECK_CLOSE(H.axis().x, 0.707106829f, 1e-4f);
+	BOOST_CHECK_CLOSE(H.axis().y, 0.707106829f, 1e-4f);
+	BOOST_CHECK_SMALL(H.axis().z, 1e-7f);
+	BOOST_CHECK_CLOSE(H.angle(), math::radians(22.0f), 1e-4f);
+}
+
+BOOST_AUTO_TEST_CASE(to_matrix4) {
+	// TODO
 }
 
 BOOST_AUTO_TEST_CASE(equals) {
@@ -578,43 +454,6 @@ BOOST_AUTO_TEST_CASE(dot) {
 	BOOST_CHECK_CLOSE(dot, -8859.505f, 1e-4f);
 }
 
-BOOST_AUTO_TEST_CASE(reflect) {
-	math::Quaternion I;
-	I.x = -1.0f;
-	I.y = -1.0f;
-	I.z = 0.0f;
-	I.w = 0.0f;
-	math::Quaternion N;
-	N.x = 1.0f;
-	N.y = 0.0f;
-	N.z = 0.0f;
-	N.w = 0.0f;
-	math::Quaternion R = math::Quaternion::reflect(I, N);
-	BOOST_CHECK_CLOSE(R.x, 1.0f, 1e-4f);
-	BOOST_CHECK_CLOSE(R.y, -1.0f, 1e-4f);
-	BOOST_CHECK_SMALL(R.z, 1e-7f);
-	BOOST_CHECK_SMALL(R.w, 1e-7f);
-}
-
-BOOST_AUTO_TEST_CASE(refract) {
-	math::Quaternion I;
-	I.x = -1.0f;
-	I.y = -1.0f;
-	I.z = 0.0f;
-	I.w = 0.0f;
-	math::Quaternion N;
-	N.x = 1.0f;
-	N.y = 0.0f;
-	N.z = 0.0f;
-	N.w = 0.0f;
-	float eta = 0.2f;
-	math::Quaternion R = math::Quaternion::refract(I, N, eta);
-	BOOST_CHECK_CLOSE(R.x, -1.0f, 1e-4f);
-	BOOST_CHECK_CLOSE(R.y, -0.2f, 1e-4f);
-	BOOST_CHECK_SMALL(R.z, 1e-7f);
-	BOOST_CHECK_SMALL(R.w, 1e-7f);
-}
-
 BOOST_AUTO_TEST_CASE(lerp) {
 	math::Quaternion H1;
 	H1.x = 20.12f;
@@ -635,8 +474,8 @@ BOOST_AUTO_TEST_CASE(lerp) {
 }
 
 BOOST_AUTO_TEST_CASE(slerp) {
-	math::Quaternion H1(math::tuple::AxisAngle<float>(math::Vector3(1.0f, 0.0f, 0.0f), math::radians(20.0f)));
-	math::Quaternion H2(math::tuple::AxisAngle<float>(math::Vector3(1.0f, 0.0f, 0.0f), math::radians(40.0f)));
+	math::Quaternion H1(math::Vector3(1.0f, 0.0f, 0.0f), math::radians(20.0f));
+	math::Quaternion H2(math::Vector3(1.0f, 0.0f, 0.0f), math::radians(40.0f));
 	math::Quaternion Hs = math::Quaternion::slerp(H1, H2, 0.0f);
 	BOOST_CHECK_CLOSE(Hs.x, H1.x, 1e-4f);
 	BOOST_CHECK_CLOSE(Hs.y, H1.y, 1e-4f);
