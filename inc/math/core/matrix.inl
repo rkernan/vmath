@@ -209,14 +209,112 @@ bool Matrix<T, M, N>::operator!=(const Matrix<T, M, N>& other) const {
 }
 
 /**
+ * Calculate the matrix minor.
+ * @param row Row of element to calculate minor for.
+ * @param col Column of element to calculate minor for.
+ * @return Matrix minor of the element at the given position.
+ */
+template<typename T, std::size_t M, std::size_t N>
+template<typename U, typename>
+T Matrix<T, M, N>::minor(const std::size_t row, const std::size_t col) const {
+	Matrix<T, M - 1, N - 1> minor_mat;
+	std::size_t i = (col == 0) ? 1 : 0;
+	std::size_t i_minor = 0;
+	while (i_minor < N - 1) {
+		std::size_t j_minor = 0;
+		std::size_t j = (row == 0) ? 1 : 0;
+		while (j_minor < M - 1) {
+			minor_mat[i_minor][j_minor] = this->data[i][j];
+			j_minor++;
+			j = (j + 1 == row) ? (j + 2) : (j + 1);
+		}
+		i_minor++;
+		i = (i + 1 == col) ? (i + 2) : (i + 1);
+	}
+	return minor_mat.det();
+}
+
+/**
+ * Determinant helper. Allows for partial specialization of the determinant.
+ * @param mat Matrix to calculate the determinant of.
+ * @return Matrix determinant.
+ */
+template<typename T, std::size_t M, std::size_t N>
+static inline T det_helper(const Matrix<T, M, N>& mat) {
+	T det = T();
+	T mod = static_cast<T>(1);
+	for (std::size_t i = 0; i < N; i++) {
+		det += mod * mat.data[0][i] * mat.minor(i, 0);
+		mod = -mod;
+	}
+	return det;
+}
+/**
+ * Determinant helper. Allows for partial specialization of the determinant.
+ * 1x1 matrix specialization.
+ * @param mat Matrix to calculate the determinant of.
+ * @return Matrix determinant.
+ */
+template<typename T>
+static inline T det_helper(const Matrix<T, 1>& mat) {
+	return mat.data[0][0];
+}
+
+/**
+ * Determinant helper. Allows for partial specialization of the determinant.
+ * 2x2 matrix specialization.
+ * @param mat Matrix to calculate the determinant of.
+ * @return Matrix determinant.
+ */
+template<typename T>
+static inline T det_helper(const Matrix<T, 2>& mat) {
+	return (mat.data[0][0] * mat.data[1][1]) - (mat.data[1][0] * mat.data[0][1]);
+}
+
+/**
  * Calculate this matrix determinant.
  * @return Matrix determinant.
  */
 template<typename T, std::size_t M, std::size_t N>
 template<typename U, typename>
 T Matrix<T, M, N>::det(void) const {
-	// TODO
-	return T();
+	return det_helper(*this);
+}
+
+/**
+ * Calculate the matrix of minors.
+ * @return Matrix of minors.
+ */
+template<typename T, std::size_t M, std::size_t N>
+template<typename U, typename>
+Matrix<T, M, N> Matrix<T, M, N>::minors(void) const {
+	Matrix<T, M, N> minor;
+	for (std::size_t i = 0; i < M; i++) {
+		for (std::size_t j = 0; j < N; j++) {
+			minor[j][i] = this->minor(i, j);
+		}
+	}
+	return minor;
+}
+
+/**
+ * Calculate the cofactor matrix.
+ * @return Cofactor matrix.
+ */
+template<typename T, std::size_t M, std::size_t N>
+template<typename U, typename>
+Matrix<T, M, N> Matrix<T, M, N>::cofactor(void) const {
+	Matrix<T, M, N> cofactor(this->minors());
+	T mod_row = -static_cast<T>(1);
+	for (std::size_t i = 0; i < M; i++) {
+		mod_row = -mod_row;
+		T mod_col = mod_row;
+		for (std::size_t j = 0; j < N; j++) {
+			cofactor[j][i] *= mod_col;
+			mod_col = -mod_col;
+		}
+	}
+	return cofactor;
 }
 
 /**
@@ -226,8 +324,7 @@ T Matrix<T, M, N>::det(void) const {
 template<typename T, std::size_t M, std::size_t N>
 template<typename U, typename>
 Matrix<T, M, N> Matrix<T, M, N>::adjugate(void) const {
-	// TODO
-	return Matrix<T, M, N>();
+	return this->cofactor().transpose();
 }
 
 /**

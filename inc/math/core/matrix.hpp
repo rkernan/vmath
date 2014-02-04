@@ -6,6 +6,10 @@
 
 #include "vector.hpp"
 
+#ifdef minor
+#undef minor
+#endif
+
 namespace math {
 namespace core {
 namespace {
@@ -153,7 +157,19 @@ public:
 
 	template<typename U = T,
 		typename = typename std::enable_if<is_square_matrix<M, N>::value && std::is_same<T, U>::value, U>::type>
+	T minor(const std::size_t, const std::size_t) const;
+
+	template<typename U = T,
+		typename = typename std::enable_if<is_square_matrix<M, N>::value && std::is_same<T, U>::value, U>::type>
 	T det(void) const;
+
+	template<typename U = T,
+		typename = typename std::enable_if<is_square_matrix<M, N>::value && std::is_same<T, U>::value, U>::type>
+	Matrix<T, M, N> minors(void) const;
+
+	template<typename U = T,
+		typename = typename std::enable_if<is_square_matrix<M, N>::value && std::is_same<T, U>::value, U>::type>
+	Matrix<T, M, N> cofactor(void) const;
 
 	template<typename U = T,
 		typename = typename std::enable_if<is_square_matrix<M, N>::value && std::is_same<T, U>::value, U>::type>

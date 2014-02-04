@@ -309,6 +309,18 @@ BOOST_AUTO_TEST_CASE(transpose) {
 	BOOST_CHECK_CLOSE(M_trans[1][1], 4.0f, 1e-4f);
 }
 
+BOOST_AUTO_TEST_CASE(minor) {
+	math::Matrix2x2 M;
+	M[0][0] = 1.0f;
+	M[0][1] = 2.0f;
+	M[1][0] = 3.0f;
+	M[1][1] = 4.0f;
+	BOOST_CHECK_CLOSE(M.minor(0, 0), 4.0f, 1e-4f);
+	BOOST_CHECK_CLOSE(M.minor(1, 0), 3.0f, 1e-4f);
+	BOOST_CHECK_CLOSE(M.minor(0, 1), 2.0f, 1e-4f);
+	BOOST_CHECK_CLOSE(M.minor(1, 1), 1.0f, 1e-4f);
+}
+
 BOOST_AUTO_TEST_CASE(det) {
 	math::Matrix2x2 M;
 	M[0][0] = 1.0f;
@@ -321,6 +333,34 @@ BOOST_AUTO_TEST_CASE(det) {
 	M[1][0] = 3.0f;
 	M[1][1] = 4.0f;
 	BOOST_CHECK_SMALL(M.det(), 1e-7f);
+}
+
+BOOST_AUTO_TEST_CASE(minors) {
+	math::Matrix2x2 M;
+	M[0][0] = 1.0f;
+	M[0][1] = 2.0f;
+	M[1][0] = 3.0f;
+	M[1][1] = 4.0f;
+	math::Matrix2x2 M_minors;
+	M_minors = M.minors();
+	BOOST_CHECK_CLOSE(M_minors[0][0], 4.0f, 1e-4f);
+	BOOST_CHECK_CLOSE(M_minors[0][1], 3.0f, 1e-4f);
+	BOOST_CHECK_CLOSE(M_minors[1][0], 2.0f, 1e-4f);
+	BOOST_CHECK_CLOSE(M_minors[1][1], 1.0f, 1e-4f);
+}
+
+BOOST_AUTO_TEST_CASE(cofactor) {
+	math::Matrix2x2 M;
+	M[0][0] = 1.0f;
+	M[0][1] = 2.0f;
+	M[1][0] = 3.0f;
+	M[1][1] = 4.0f;
+	math::Matrix2x2 M_cofactor;
+	M_cofactor = M.cofactor();
+	BOOST_CHECK_CLOSE(M_cofactor[0][0], 4.0f, 1e-4f);
+	BOOST_CHECK_CLOSE(M_cofactor[0][1], -3.0f, 1e-4f);
+	BOOST_CHECK_CLOSE(M_cofactor[1][0], -2.0f, 1e-4f);
+	BOOST_CHECK_CLOSE(M_cofactor[1][1], 1.0f, 1e-4f);
 }
 
 BOOST_AUTO_TEST_CASE(adjugate) {

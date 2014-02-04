@@ -505,6 +505,28 @@ BOOST_AUTO_TEST_CASE(transpose) {
 	BOOST_CHECK_CLOSE(M_trans[2][2], 9.0f, 1e-4f);
 }
 
+BOOST_AUTO_TEST_CASE(minor) {
+	math::Matrix3x3 M;
+	M[0][0] = 1.0f;
+	M[0][1] = 2.0f;
+	M[0][2] = 3.0f;
+	M[1][0] = 4.0f;
+	M[1][1] = 5.0f;
+	M[1][2] = 6.0f;
+	M[2][0] = 7.0f;
+	M[2][1] = 8.0f;
+	M[2][2] = 9.0f;
+	BOOST_CHECK_CLOSE(M.minor(0, 0), -3.0f, 1e-4f);
+	BOOST_CHECK_CLOSE(M.minor(1, 0), -6.0f, 1e-4f);
+	BOOST_CHECK_CLOSE(M.minor(2, 0), -3.0f, 1e-4f);
+	BOOST_CHECK_CLOSE(M.minor(0, 1), -6.0f, 1e-4f);
+	BOOST_CHECK_CLOSE(M.minor(1, 1), -12.0f, 1e-4f);
+	BOOST_CHECK_CLOSE(M.minor(2, 1), -6.0f, 1e-4f);
+	BOOST_CHECK_CLOSE(M.minor(0, 2), -3.0f, 1e-4f);
+	BOOST_CHECK_CLOSE(M.minor(1, 2), -6.0f, 1e-4f);
+	BOOST_CHECK_CLOSE(M.minor(2, 2), -3.0f, 1e-4f);
+}
+
 BOOST_AUTO_TEST_CASE(det) {
 	math::Matrix3x3 M;
 	M[0][0] = 1.0f;
@@ -527,6 +549,54 @@ BOOST_AUTO_TEST_CASE(det) {
 	M[2][1] = 3.0f;
 	M[2][2] = 1.0f;
 	BOOST_CHECK_CLOSE(M.det(), 18.0f, 1e-4f);
+}
+
+BOOST_AUTO_TEST_CASE(minors) {
+	math::Matrix3x3 M;
+	M[0][0] = 1.0f;
+	M[0][1] = 2.0f;
+	M[0][2] = 3.0f;
+	M[1][0] = 4.0f;
+	M[1][1] = 5.0f;
+	M[1][2] = 6.0f;
+	M[2][0] = 7.0f;
+	M[2][1] = 8.0f;
+	M[2][2] = 9.0f;
+	math::Matrix3x3 M_minors;
+	M_minors = M.minors();
+	BOOST_CHECK_CLOSE(M_minors[0][0], -3.0f, 1e-4f);
+	BOOST_CHECK_CLOSE(M_minors[0][1], -6.0f, 1e-4f);
+	BOOST_CHECK_CLOSE(M_minors[0][2], -3.0f, 1e-4f);
+	BOOST_CHECK_CLOSE(M_minors[1][0], -6.0f, 1e-4f);
+	BOOST_CHECK_CLOSE(M_minors[1][1], -12.0f, 1e-4f);
+	BOOST_CHECK_CLOSE(M_minors[1][2], -6.0f, 1e-4f);
+	BOOST_CHECK_CLOSE(M_minors[2][0], -3.0f, 1e-4f);
+	BOOST_CHECK_CLOSE(M_minors[2][1], -6.0f, 1e-4f);
+	BOOST_CHECK_CLOSE(M_minors[2][2], -3.0f, 1e-4f);
+}
+
+BOOST_AUTO_TEST_CASE(cofactor) {
+	math::Matrix3x3 M;
+	M[0][0] = 1.0f;
+	M[0][1] = 2.0f;
+	M[0][2] = 3.0f;
+	M[1][0] = 4.0f;
+	M[1][1] = 5.0f;
+	M[1][2] = 6.0f;
+	M[2][0] = 7.0f;
+	M[2][1] = 8.0f;
+	M[2][2] = 9.0f;
+	math::Matrix3x3 M_cofactor;
+	M_cofactor = M.cofactor();
+	BOOST_CHECK_CLOSE(M_cofactor[0][0], -3.0f, 1e-4f);
+	BOOST_CHECK_CLOSE(M_cofactor[0][1], 6.0f, 1e-4f);
+	BOOST_CHECK_CLOSE(M_cofactor[0][2], -3.0f, 1e-4f);
+	BOOST_CHECK_CLOSE(M_cofactor[1][0], 6.0f, 1e-4f);
+	BOOST_CHECK_CLOSE(M_cofactor[1][1], -12.0f, 1e-4f);
+	BOOST_CHECK_CLOSE(M_cofactor[1][2], 6.0f, 1e-4f);
+	BOOST_CHECK_CLOSE(M_cofactor[2][0], -3.0f, 1e-4f);
+	BOOST_CHECK_CLOSE(M_cofactor[2][1], 6.0f, 1e-4f);
+	BOOST_CHECK_CLOSE(M_cofactor[2][2], -3.0f, 1e-4f);
 }
 
 BOOST_AUTO_TEST_CASE(adjugate) {

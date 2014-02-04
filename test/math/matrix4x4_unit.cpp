@@ -771,6 +771,42 @@ BOOST_AUTO_TEST_CASE(transpose) {
 	BOOST_CHECK_CLOSE(M_trans[3][3], 16.0f, 1e-4f);
 }
 
+BOOST_AUTO_TEST_CASE(minor) {
+	math::Matrix4x4 M;
+	M[0][0] = 1.0f;
+	M[0][1] = 2.0f;
+	M[0][2] = 3.0f;
+	M[0][3] = 4.0f;
+	M[1][0] = 2.0f;
+	M[1][1] = 3.0f;
+	M[1][2] = 4.0f;
+	M[1][3] = 1.0f;
+	M[2][0] = 3.0f;
+	M[2][1] = 4.0f;
+	M[2][2] = 1.0f;
+	M[2][3] = 2.0f;
+	M[3][0] = 4.0f;
+	M[3][1] = 1.0f;
+	M[3][2] = 2.0f;
+	M[3][3] = 3.0f;
+	BOOST_CHECK_CLOSE(M.minor(0, 0), -36.0f, 1e-4f);
+	BOOST_CHECK_CLOSE(M.minor(1, 0), -4.0f, 1e-4f);
+	BOOST_CHECK_CLOSE(M.minor(2, 0), 4.0f, 1e-4f);
+	BOOST_CHECK_CLOSE(M.minor(3, 0), -44.0f, 1e-4f);
+	BOOST_CHECK_CLOSE(M.minor(0, 1), -4.0f, 1e-4f);
+	BOOST_CHECK_CLOSE(M.minor(1, 1), 4.0f, 1e-4f);
+	BOOST_CHECK_CLOSE(M.minor(2, 1), -44.0f, 1e-4f);
+	BOOST_CHECK_CLOSE(M.minor(3, 1), -36.0f, 1e-4f);
+	BOOST_CHECK_CLOSE(M.minor(0, 2), 4.0f, 1e-4f);
+	BOOST_CHECK_CLOSE(M.minor(1, 2), -44.0f, 1e-4f);
+	BOOST_CHECK_CLOSE(M.minor(2, 2), -36.0f, 1e-4f);
+	BOOST_CHECK_CLOSE(M.minor(3, 2), -4.0f, 1e-4f);
+	BOOST_CHECK_CLOSE(M.minor(0, 3), -44.0f, 1e-4f);
+	BOOST_CHECK_CLOSE(M.minor(1, 3), -36.0f, 1e-4f);
+	BOOST_CHECK_CLOSE(M.minor(2, 3), -4.0f, 1e-4f);
+	BOOST_CHECK_CLOSE(M.minor(3, 3), 4.0f, 1e-4f);
+}
+
 BOOST_AUTO_TEST_CASE(det) {
 	math::Matrix4x4 M;
 	M[0][0] = 1.0f;
@@ -807,6 +843,82 @@ BOOST_AUTO_TEST_CASE(det) {
 	M[3][2] = 2.0f;
 	M[3][3] = 3.0f;
 	BOOST_CHECK_CLOSE(M.det(), 160.0f, 1e-4f);
+}
+
+BOOST_AUTO_TEST_CASE(minors) {
+	math::Matrix4x4 M;
+	M[0][0] = 1.0f;
+	M[0][1] = 2.0f;
+	M[0][2] = 3.0f;
+	M[0][3] = 4.0f;
+	M[1][0] = 2.0f;
+	M[1][1] = 3.0f;
+	M[1][2] = 4.0f;
+	M[1][3] = 1.0f;
+	M[2][0] = 3.0f;
+	M[2][1] = 4.0f;
+	M[2][2] = 1.0f;
+	M[2][3] = 2.0f;
+	M[3][0] = 4.0f;
+	M[3][1] = 1.0f;
+	M[3][2] = 2.0f;
+	M[3][3] = 3.0f;
+	math::Matrix4x4 M_minors;
+	M_minors = M.minors();
+	BOOST_CHECK_CLOSE(M_minors[0][0], -36.0f, 1e-4f);
+	BOOST_CHECK_CLOSE(M_minors[0][1], -4.0f, 1e-4f);
+	BOOST_CHECK_CLOSE(M_minors[0][2], 4.0f, 1e-4f);
+	BOOST_CHECK_CLOSE(M_minors[0][3], -44.0f, 1e-4f);
+	BOOST_CHECK_CLOSE(M_minors[1][0], -4.0f, 1e-4f);
+	BOOST_CHECK_CLOSE(M_minors[1][1], 4.0f, 1e-4f);
+	BOOST_CHECK_CLOSE(M_minors[1][2], -44.0f, 1e-4f);
+	BOOST_CHECK_CLOSE(M_minors[1][3], -36.0f, 1e-4f);
+	BOOST_CHECK_CLOSE(M_minors[2][0], 4.0f, 1e-4f);
+	BOOST_CHECK_CLOSE(M_minors[2][1], -44.0f, 1e-4f);
+	BOOST_CHECK_CLOSE(M_minors[2][2], -36.0f, 1e-4f);
+	BOOST_CHECK_CLOSE(M_minors[2][3], -4.0f, 1e-4f);
+	BOOST_CHECK_CLOSE(M_minors[3][0], -44.0f, 1e-4f);
+	BOOST_CHECK_CLOSE(M_minors[3][1], -36.0f, 1e-4f);
+	BOOST_CHECK_CLOSE(M_minors[3][2], -4.0f, 1e-4f);
+	BOOST_CHECK_CLOSE(M_minors[3][3], 4.0f, 1e-4f);
+}
+
+BOOST_AUTO_TEST_CASE(cofactor) {
+	math::Matrix4x4 M;
+	M[0][0] = 1.0f;
+	M[0][1] = 2.0f;
+	M[0][2] = 3.0f;
+	M[0][3] = 4.0f;
+	M[1][0] = 2.0f;
+	M[1][1] = 3.0f;
+	M[1][2] = 4.0f;
+	M[1][3] = 1.0f;
+	M[2][0] = 3.0f;
+	M[2][1] = 4.0f;
+	M[2][2] = 1.0f;
+	M[2][3] = 2.0f;
+	M[3][0] = 4.0f;
+	M[3][1] = 1.0f;
+	M[3][2] = 2.0f;
+	M[3][3] = 3.0f;
+	math::Matrix4x4 M_cofactor;
+	M_cofactor = M.cofactor();
+	BOOST_CHECK_CLOSE(M_cofactor[0][0], -36.0f, 1e-4f);
+	BOOST_CHECK_CLOSE(M_cofactor[0][1], 4.0f, 1e-4f);
+	BOOST_CHECK_CLOSE(M_cofactor[0][2], 4.0f, 1e-4f);
+	BOOST_CHECK_CLOSE(M_cofactor[0][3], 44.0f, 1e-4f);
+	BOOST_CHECK_CLOSE(M_cofactor[1][0], 4.0f, 1e-4f);
+	BOOST_CHECK_CLOSE(M_cofactor[1][1], 4.0f, 1e-4f);
+	BOOST_CHECK_CLOSE(M_cofactor[1][2], 44.0f, 1e-4f);
+	BOOST_CHECK_CLOSE(M_cofactor[1][3], -36.0f, 1e-4f);
+	BOOST_CHECK_CLOSE(M_cofactor[2][0], 4.0f, 1e-4f);
+	BOOST_CHECK_CLOSE(M_cofactor[2][1], 44.0f, 1e-4f);
+	BOOST_CHECK_CLOSE(M_cofactor[2][2], -36.0f, 1e-4f);
+	BOOST_CHECK_CLOSE(M_cofactor[2][3], 4.0f, 1e-4f);
+	BOOST_CHECK_CLOSE(M_cofactor[3][0], 44.0f, 1e-4f);
+	BOOST_CHECK_CLOSE(M_cofactor[3][1], -36.0f, 1e-4f);
+	BOOST_CHECK_CLOSE(M_cofactor[3][2], 4.0f, 1e-4f);
+	BOOST_CHECK_CLOSE(M_cofactor[3][3], 4.0f, 1e-4f);
 }
 
 BOOST_AUTO_TEST_CASE(adjugate) {
@@ -865,22 +977,22 @@ BOOST_AUTO_TEST_CASE(inverse) {
 	M[3][2] = 2.0f;
 	M[3][3] = 3.0f;
 	math::Matrix4x4 M_inv = M.inverse();
-	BOOST_CHECK_CLOSE(M_inv[0][0], -0.255f, 1e-4f);
-	BOOST_CHECK_CLOSE(M_inv[0][1], 0.025f, 1e-4f);
-	BOOST_CHECK_CLOSE(M_inv[0][2], 0.025f, 1e-4f);
-	BOOST_CHECK_CLOSE(M_inv[0][3], 0.275f, 1e-4f);
-	BOOST_CHECK_CLOSE(M_inv[1][0], 0.025f, 1e-4f);
-	BOOST_CHECK_CLOSE(M_inv[1][1], 0.025f, 1e-4f);
-	BOOST_CHECK_CLOSE(M_inv[1][2], 0.275f, 1e-4f);
-	BOOST_CHECK_CLOSE(M_inv[1][3], -0.255f, 1e-4f);
-	BOOST_CHECK_CLOSE(M_inv[2][0], 0.025f, 1e-4f);
-	BOOST_CHECK_CLOSE(M_inv[2][1], 0.275f, 1e-4f);
-	BOOST_CHECK_CLOSE(M_inv[2][2], -0.255, 1e-4f);
-	BOOST_CHECK_CLOSE(M_inv[2][3], 0.025, 1e-4f);
-	BOOST_CHECK_CLOSE(M_inv[3][0], 0.275f, 1e-4f);
-	BOOST_CHECK_CLOSE(M_inv[3][1], -0.255f, 1e-4f);
-	BOOST_CHECK_CLOSE(M_inv[3][2], 0.025f, 1e-4f);
-	BOOST_CHECK_CLOSE(M_inv[3][3], 0.025f, 1e-4f);
+	BOOST_CHECK_CLOSE(M_inv[0][0], -36.0f / 160.0f, 1e-4f);
+	BOOST_CHECK_CLOSE(M_inv[0][1], 4.0f / 160.0f, 1e-4f);
+	BOOST_CHECK_CLOSE(M_inv[0][2], 4.0f / 160.0f, 1e-4f);
+	BOOST_CHECK_CLOSE(M_inv[0][3], 44.0f / 160.0f, 1e-4f);
+	BOOST_CHECK_CLOSE(M_inv[1][0], 4.0f / 160.0f, 1e-4f);
+	BOOST_CHECK_CLOSE(M_inv[1][1], 4.0f / 160.0f, 1e-4f);
+	BOOST_CHECK_CLOSE(M_inv[1][2], 44.0f / 160.0f, 1e-4f);
+	BOOST_CHECK_CLOSE(M_inv[1][3], -36.0f / 160.0f, 1e-4f);
+	BOOST_CHECK_CLOSE(M_inv[2][0], 4.0f / 160.0f, 1e-4f);
+	BOOST_CHECK_CLOSE(M_inv[2][1], 44.0f / 160.0f, 1e-4f);
+	BOOST_CHECK_CLOSE(M_inv[2][2], -36.0f / 160.0f, 1e-4f);
+	BOOST_CHECK_CLOSE(M_inv[2][3], 4.0f / 160.0f, 1e-4f);
+	BOOST_CHECK_CLOSE(M_inv[3][0], 44.0f / 160.0f, 1e-4f);
+	BOOST_CHECK_CLOSE(M_inv[3][1], -36.0f / 160.0f, 1e-4f);
+	BOOST_CHECK_CLOSE(M_inv[3][2], 4.0f / 160.0f, 1e-4f);
+	BOOST_CHECK_CLOSE(M_inv[3][3], 4.0f / 160.0f, 1e-4f);
 }
 
 BOOST_AUTO_TEST_CASE(equals) {
