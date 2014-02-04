@@ -71,6 +71,12 @@ T copysign(const T, const T);
 template<typename T, typename = typename std::enable_if<std::is_floating_point<T>::value, T>::type>
 T lerp(const T, const T, const T);
 
+template<typename T, typename = typename std::enable_if<std::is_arithmetic<T>::value, T>::type>
+T max(const T, const T);
+
+template<typename T, typename = typename std::enable_if<std::is_arithmetic<T>::value, T>::type>
+T min(const T, const T);
+
 }
 
 #include "func.inl"

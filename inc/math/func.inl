@@ -236,4 +236,26 @@ T math::lerp(const T s, const T e, const T t) {
 	return s + ((e - s) * t);
 }
 
+/**
+ * Find the max of two scalars.
+ * @param a First scalar.
+ * @param b Second scalar.
+ * @return The max of a and b.
+ */
+template<typename T, typename>
+T math::max(const T a, const T b) {
+	return (a > b) ? a : b;
+}
+
+/**
+ * Find the min of two scalars.
+ * @param s First scalar.
+ * @param b Second scalar.
+ * @return the min of a and b.
+ */
+template<typename T, typename>
+T math::min(const T a, const T b) {
+	return (a < b) ? a : b;
+}
+
 #endif

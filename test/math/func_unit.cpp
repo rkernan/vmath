@@ -177,4 +177,14 @@ BOOST_AUTO_TEST_CASE_TEMPLATE(lerp, T, float_types) {
 	BOOST_CHECK_CLOSE(math::lerp(static_cast<T>(1.2), static_cast<T>(3.4), static_cast<T>(0.34)), static_cast<T>(1.948), 1e-4f);
 }
 
+BOOST_AUTO_TEST_CASE_TEMPLATE(max, T, float_types) {
+	BOOST_CHECK_CLOSE(math::max(static_cast<T>(1.0), static_cast<T>(2.0)), static_cast<T>(2.0), 1e-4f);
+	BOOST_CHECK_CLOSE(math::max(static_cast<T>(2.0), static_cast<T>(1.0)), static_cast<T>(2.0), 1e-4f);
+}
+
+BOOST_AUTO_TEST_CASE_TEMPLATE(min, T, float_types) {
+	BOOST_CHECK_CLOSE(math::min(static_cast<T>(1.0), static_cast<T>(2.0)), static_cast<T>(1.0), 1e-4f);
+	BOOST_CHECK_CLOSE(math::min(static_cast<T>(2.0), static_cast<T>(1.0)), static_cast<T>(1.0), 1e-4f);
+}
+
 BOOST_AUTO_TEST_SUITE_END()
