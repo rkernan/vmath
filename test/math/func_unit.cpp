@@ -1,11 +1,10 @@
 #define BOOST_TEST_DYN_LINK
 #include <boost/test/unit_test.hpp>
 #include <boost/test/test_case_template.hpp>
-#include <boost/mpl/list.hpp>
 
 #include <math/func.hpp>
 
-typedef boost::mpl::list<float, double, long double> float_types;
+#include "../type_lists.hpp"
 
 BOOST_AUTO_TEST_SUITE(Math_Functions)
 
@@ -35,9 +34,6 @@ BOOST_AUTO_TEST_CASE_TEMPLATE(degrees, T, float_types) {
 BOOST_AUTO_TEST_CASE_TEMPLATE(cos, T, float_types) {
 	BOOST_CHECK_CLOSE(math::cos(static_cast<T>(0.0)), static_cast<T>(1.0), 1e-4f);
 	BOOST_CHECK_CLOSE(math::cos(static_cast<T>(0.25) * static_cast<T>(math::PI)), static_cast<T>(0.70710678118), 1e-4f);
-	// FIXME(rkernan, 2013-12-11) Value always comes to ~4e-8 for float. Works
-	// for double and long double. This seems to be a problem with std::cos,
-	// which this implementation uses.
 	BOOST_CHECK_SMALL(math::cos(static_cast<T>(0.5) * static_cast<T>(math::PI)), static_cast<T>(1e-7));
 	BOOST_CHECK_CLOSE(math::cos(static_cast<T>(0.75) * static_cast<T>(math::PI)), static_cast<T>(-0.70710678118), 1e-4f);
 	BOOST_CHECK_CLOSE(math::cos(static_cast<T>(math::PI)), static_cast<T>(-1.0), 1e-4f);
