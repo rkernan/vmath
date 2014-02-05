@@ -12,66 +12,66 @@ namespace math {
 namespace core {
 
 /**
- * @class Quaternion
+ * @class quaternion
  * @tparam T Storage type.
  * A quaternion rotation.
  */
 template<typename T>
-class Quaternion {
+class quaternion {
 public:
-	Quaternion(void) : x(), y(), z(), w() {}
-	Quaternion(const T& x, const T& y, const T& z, const T& w) : x(x), y(y), z(z), w(w) {}
-	Quaternion(const T&, const T&, const T&);
-	Quaternion(const Vector<T, 3>&, const T&);
-	Quaternion(const Matrix<T, 4>&);
+	quaternion(void) : x(), y(), z(), w() {}
+	quaternion(const T& x, const T& y, const T& z, const T& w) : x(x), y(y), z(z), w(w) {}
+	quaternion(const T&, const T&, const T&);
+	quaternion(const vector<T, 3>&, const T&);
+	quaternion(const matrix<T, 4>&);
 
-	Quaternion<T>& operator=(const Quaternion<T>&);
+	quaternion<T>& operator=(const quaternion<T>&);
 
 	T operator[](const std::size_t) const;
 	T& operator[](const std::size_t);
 
-	Quaternion<T> operator-(void) const;
+	quaternion<T> operator-(void) const;
 
-	Quaternion<T> operator+(const Quaternion<T>&) const;
-	Quaternion<T>& operator+=(const Quaternion<T>&);
-	Quaternion<T> operator-(const Quaternion<T>&) const;
-	Quaternion<T>& operator-=(const Quaternion<T>&);
+	quaternion<T> operator+(const quaternion<T>&) const;
+	quaternion<T>& operator+=(const quaternion<T>&);
+	quaternion<T> operator-(const quaternion<T>&) const;
+	quaternion<T>& operator-=(const quaternion<T>&);
 
-	Quaternion<T> operator*(const Quaternion<T>&) const;
-	Quaternion<T>& operator*=(const Quaternion<T>&);
+	quaternion<T> operator*(const quaternion<T>&) const;
+	quaternion<T>& operator*=(const quaternion<T>&);
 
-	Vector<T, 3> operator*(const Vector<T, 3>&) const;
+	vector<T, 3> operator*(const vector<T, 3>&) const;
 
-	Quaternion<T> operator*(const T&) const;
-	Quaternion<T>& operator*=(const T&);
-	Quaternion<T> operator/(const T&) const;
-	Quaternion<T>& operator/=(const T&);
+	quaternion<T> operator*(const T&) const;
+	quaternion<T>& operator*=(const T&);
+	quaternion<T> operator/(const T&) const;
+	quaternion<T>& operator/=(const T&);
 
 	T mag2(void) const;
 	T mag(void) const;
 
-	Quaternion<T> normal(void) const;
-	Quaternion<T>& normalize(void);
+	quaternion<T> normal(void) const;
+	quaternion<T>& normalize(void);
 
-	Quaternion<T> inverse(void) const;
-	Quaternion<T>& invert(void);
+	quaternion<T> inverse(void) const;
+	quaternion<T>& invert(void);
 
 	T pitch(void) const;
 	T yaw(void) const;
 	T roll(void) const;
 
-	Vector<T, 3> axis(void) const;
+	vector<T, 3> axis(void) const;
 	T angle(void) const;
 
-	Matrix<T, 4> matrix4(void) const;
+	matrix<T, 4> matrix4(void) const;
 
-	bool operator==(const Quaternion<T>&) const;
-	bool operator!=(const Quaternion<T>&) const;
+	bool operator==(const quaternion<T>&) const;
+	bool operator!=(const quaternion<T>&) const;
 
-	static T dot(const Quaternion<T>&, const Quaternion<T>&);
+	static T dot(const quaternion<T>&, const quaternion<T>&);
 
-	static Quaternion<T> lerp(const Quaternion<T>&, const Quaternion<T>&, const T&);
-	static Quaternion<T> slerp(const Quaternion<T>&, const Quaternion<T>&, const T&, const bool=false);
+	static quaternion<T> lerp(const quaternion<T>&, const quaternion<T>&, const T&);
+	static quaternion<T> slerp(const quaternion<T>&, const quaternion<T>&, const T&, const bool=false);
 
 	union {
 		std::array<T, 4> data;

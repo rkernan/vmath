@@ -16,33 +16,33 @@ namespace core {
 namespace {
 
 /**
-* @class VectorComponents
+* @class vector_components
 * @tparam T Storage type.
 * @tparam N Number of vector elements.
 * Definition of the components available in a generic vector.
 */
 template<typename T, std::size_t N>
-class VectorComponents {
+class vector_components {
 public:
-	explicit VectorComponents(void) : data() {}
-	explicit VectorComponents(const std::array<T, N>& data) : data(data) {}
+	explicit vector_components(void) : data() {}
+	explicit vector_components(const std::array<T, N>& data) : data(data) {}
 
 	std::array<T, N> data;
 };
 
 /**
-* @class VectorComponents
+* @class vector_components
 * @tparam T Storage type.
-* Vector component specialization for 2-dimensional vectors.
+* vector component specialization for 2-dimensional vectors.
 */
 template<typename T>
-class VectorComponents<T, 2> {
+class vector_components<T, 2> {
 public:
-	explicit VectorComponents(void) : x(), y() {}
-	explicit VectorComponents(const std::array<T, 2>& data) : data(data) {}
-	explicit VectorComponents(const T& x, const T& y) : x(x), y(y) {}
-	explicit VectorComponents(const VectorComponents<T, 2>&) = default;
-	explicit VectorComponents(VectorComponents<T, 2>&&) = default;
+	explicit vector_components(void) : x(), y() {}
+	explicit vector_components(const std::array<T, 2>& data) : data(data) {}
+	explicit vector_components(const T& x, const T& y) : x(x), y(y) {}
+	explicit vector_components(const vector_components<T, 2>&) = default;
+	explicit vector_components(vector_components<T, 2>&&) = default;
 
 	union {
 		std::array<T, 2> data;
@@ -65,19 +65,19 @@ public:
 };
 
 /**
-* @class VectorComponents
+* @class vector_components
 * @tparam T Storage type.
-* Vector component specialization for 3-dimensional vectors.
+* vector component specialization for 3-dimensional vectors.
 */
 template<typename T>
-class VectorComponents<T, 3> {
+class vector_components<T, 3> {
 public:
-	explicit VectorComponents(void) : x(), y(), z() {}
-	explicit VectorComponents(const std::array<T, 3>& data) : data(data) {}
-	explicit VectorComponents(const T& x, const T& y, const T& z) : x(x), y(y), z(z) {}
-	explicit VectorComponents(const VectorComponents<T, 2>& V, const T& z) : x(V.x), y(V.y), z(z) {}
-	explicit VectorComponents(const VectorComponents<T, 3>&) = default;
-	explicit VectorComponents(VectorComponents<T, 3>&&) = default;
+	explicit vector_components(void) : x(), y(), z() {}
+	explicit vector_components(const std::array<T, 3>& data) : data(data) {}
+	explicit vector_components(const T& x, const T& y, const T& z) : x(x), y(y), z(z) {}
+	explicit vector_components(const vector_components<T, 2>& V, const T& z) : x(V.x), y(V.y), z(z) {}
+	explicit vector_components(const vector_components<T, 3>&) = default;
+	explicit vector_components(vector_components<T, 3>&&) = default;
 
 	union {
 		std::array<T, 3> data;
@@ -100,20 +100,20 @@ public:
 };
 
 /**
-* @class VectorComponents
+* @class vector_components
 * @tparam T Storage type.
-* Vector component specialization for 4-dimensional vectors.
+* vector component specialization for 4-dimensional vectors.
 */
 template<typename T>
-class VectorComponents<T, 4> {
+class vector_components<T, 4> {
 public:
-	explicit VectorComponents(void) : x(), y(), z(), w() {}
-	explicit VectorComponents(const std::array<T, 4>& data) : data(data) {}
-	explicit VectorComponents(const T& x, const T& y, const T& z, const T& w) : x(x), y(y), z(z), w(w) {}
-	explicit VectorComponents(const VectorComponents<T, 2>& V, const T& z, const T& w) : x(V.x), y(V.y), z(z), w(w) {}
-	explicit VectorComponents(const VectorComponents<T, 3>& V, const T& w) : x(V.x), y(V.y), z(V.z), w(w) {}
-	explicit VectorComponents(const VectorComponents<T, 4>&) = default;
-	explicit VectorComponents(VectorComponents<T, 4>&&) = default;
+	explicit vector_components(void) : x(), y(), z(), w() {}
+	explicit vector_components(const std::array<T, 4>& data) : data(data) {}
+	explicit vector_components(const T& x, const T& y, const T& z, const T& w) : x(x), y(y), z(z), w(w) {}
+	explicit vector_components(const vector_components<T, 2>& V, const T& z, const T& w) : x(V.x), y(V.y), z(z), w(w) {}
+	explicit vector_components(const vector_components<T, 3>& V, const T& w) : x(V.x), y(V.y), z(V.z), w(w) {}
+	explicit vector_components(const vector_components<T, 4>&) = default;
+	explicit vector_components(vector_components<T, 4>&&) = default;
 
 	union {
 		std::array<T, 4> data;
@@ -138,56 +138,56 @@ public:
 }
 
 /**
- * @class Vector
+ * @class vector
  * @tparam T Storage type.
  * @tparam N Number of vector elements.
  * A vector with generic size and type.
  */
 template<typename T, std::size_t N>
-class Vector : public VectorComponents<T, N> {
+class vector : public vector_components<T, N> {
 public:
-	using VectorComponents<T, N>::VectorComponents;
+	using vector_components<T, N>::vector_components;
 
-	~Vector(void) = default;
+	~vector(void) = default;
 
-	Vector<T, N>& operator=(const Vector<T, N>&);
+	vector<T, N>& operator=(const vector<T, N>&);
 
 	T operator[](const std::size_t) const;
 	T& operator[](const std::size_t);
 
-	Vector<T, N> operator-(void) const;
-	Vector<T, N> operator+(const Vector<T, N>&) const;
-	Vector<T, N>& operator+=(const Vector<T, N>&);
-	Vector<T, N> operator-(const Vector<T, N>&) const;
-	Vector<T, N>& operator-=(const Vector<T, N>&);
-	Vector<T, N> operator*(const Vector<T, N>&) const;
-	Vector<T, N>& operator*=(const Vector<T, N>&);
-	Vector<T, N> operator/(const Vector<T, N>&) const;
-	Vector<T, N>& operator/=(const Vector<T, N>&);
+	vector<T, N> operator-(void) const;
+	vector<T, N> operator+(const vector<T, N>&) const;
+	vector<T, N>& operator+=(const vector<T, N>&);
+	vector<T, N> operator-(const vector<T, N>&) const;
+	vector<T, N>& operator-=(const vector<T, N>&);
+	vector<T, N> operator*(const vector<T, N>&) const;
+	vector<T, N>& operator*=(const vector<T, N>&);
+	vector<T, N> operator/(const vector<T, N>&) const;
+	vector<T, N>& operator/=(const vector<T, N>&);
 
-	Vector<T, N> operator*(const T&) const;
-	Vector<T, N>& operator*=(const T&);
-	Vector<T, N> operator/(const T&) const;
-	Vector<T, N>& operator/=(const T&);
+	vector<T, N> operator*(const T&) const;
+	vector<T, N>& operator*=(const T&);
+	vector<T, N> operator/(const T&) const;
+	vector<T, N>& operator/=(const T&);
 
 	T mag(void) const;
 	T mag2(void) const;
-	Vector<T, N> normal(void) const;
-	Vector<T, N>& normalize(void);
+	vector<T, N> normal(void) const;
+	vector<T, N>& normalize(void);
 
-	bool operator==(const Vector<T, N>&) const;
-	bool operator!=(const Vector<T, N>&) const;
+	bool operator==(const vector<T, N>&) const;
+	bool operator!=(const vector<T, N>&) const;
 
-	static T dot(const Vector<T, N>&, const Vector<T, N>&);
-	static Vector<T, N> reflect(const Vector<T, N>&, const Vector<T, N>&);
-	static Vector<T, N> refract(const Vector<T, N>&, const Vector<T, N>&, const T&);
-	static Vector<T, N> lerp(const Vector<T, N>&, const Vector<T, N>&, const T&);
+	static T dot(const vector<T, N>&, const vector<T, N>&);
+	static vector<T, N> reflect(const vector<T, N>&, const vector<T, N>&);
+	static vector<T, N> refract(const vector<T, N>&, const vector<T, N>&, const T&);
+	static vector<T, N> lerp(const vector<T, N>&, const vector<T, N>&, const T&);
 
 	template<typename U = T, typename = typename std::enable_if<N == 2 && std::is_same<T, U>::value, U>::type>
-	static T cross(const Vector<T, N>&, const Vector<T, N>&);
+	static T cross(const vector<T, N>&, const vector<T, N>&);
 
 	template<typename U = T, typename = typename std::enable_if<N == 3 && std::is_same<T, U>::value, U>::type>
-	static Vector<T, N> cross(const Vector<T, N>&, const Vector<T, N>&);
+	static vector<T, N> cross(const vector<T, N>&, const vector<T, N>&);
 };
 
 }

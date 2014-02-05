@@ -10,11 +10,11 @@ using namespace math::core;
 
 /**
  * Set this matrix equal to another.
- * @param other Matrix to set equal to.
+ * @param other matrix to set equal to.
  * @return The modified vector.
  */
 template<typename T, std::size_t M, std::size_t N>
-Matrix<T, M, N>& Matrix<T, M, N>::operator=(const Matrix<T, M, N>& other) {
+matrix<T, M, N>& matrix<T, M, N>::operator=(const matrix<T, M, N>& other) {
 	for (std::size_t i = 0; i < N; i++) {
 		this->data[i] = other.data[i];
 	}
@@ -27,7 +27,7 @@ Matrix<T, M, N>& Matrix<T, M, N>::operator=(const Matrix<T, M, N>& other) {
  * @return Accessed element.
  */
 template<typename T, std::size_t M, std::size_t N>
-Vector<T, M> Matrix<T, M, N>::operator[](const std::size_t idx) const {
+vector<T, M> matrix<T, M, N>::operator[](const std::size_t idx) const {
 	return this->data.at(idx);
 }
 
@@ -37,7 +37,7 @@ Vector<T, M> Matrix<T, M, N>::operator[](const std::size_t idx) const {
  * @return Modified element.
  */
 template<typename T, std::size_t M, std::size_t N>
-Vector<T, M>& Matrix<T, M, N>::operator[](const std::size_t idx) {
+vector<T, M>& matrix<T, M, N>::operator[](const std::size_t idx) {
 	return this->data.at(idx);
 }
 
@@ -46,8 +46,8 @@ Vector<T, M>& Matrix<T, M, N>::operator[](const std::size_t idx) {
  * @return The matrix negated.
  */
 template<typename T, std::size_t M, std::size_t N>
-Matrix<T, M, N> Matrix<T, M, N>::operator-(void) const {
-	Matrix<T, M, N> R;
+matrix<T, M, N> matrix<T, M, N>::operator-(void) const {
+	matrix<T, M, N> R;
 	for (std::size_t i = 0; i < N; i++) {
 		R.data[i] = -this->data[i];
 	}
@@ -55,13 +55,13 @@ Matrix<T, M, N> Matrix<T, M, N>::operator-(void) const {
 }
 
 /**
- * Matrix addition.
- * @param W Matrix to add.
+ * matrix addition.
+ * @param W matrix to add.
  * @return The matrix sum.
  */
 template<typename T, std::size_t M, std::size_t N>
-Matrix<T, M, N> Matrix<T, M, N>::operator+(const Matrix<T, M, N>& W) const {
-	Matrix<T, M, N> R;
+matrix<T, M, N> matrix<T, M, N>::operator+(const matrix<T, M, N>& W) const {
+	matrix<T, M, N> R;
 	for (std::size_t i = 0; i < N; i++) {
 		R.data[i] = this->data[i] + W.data[i];
 	}
@@ -69,23 +69,23 @@ Matrix<T, M, N> Matrix<T, M, N>::operator+(const Matrix<T, M, N>& W) const {
 }
 
 /**
- * Matrix addition. Copy the result into this matrix.
- * @param W Matrix to add.
+ * matrix addition. Copy the result into this matrix.
+ * @param W matrix to add.
  * @return The modified matrix (matrix sum).
  */
 template<typename T, std::size_t M, std::size_t N>
-Matrix<T, M, N>& Matrix<T, M, N>::operator+=(const Matrix<T, M, N>& W) {
+matrix<T, M, N>& matrix<T, M, N>::operator+=(const matrix<T, M, N>& W) {
 	return *this = *this + W;
 }
 
 /**
- * Matrix subtraction.
- * @param W Matrix to subtract.
+ * matrix subtraction.
+ * @param W matrix to subtract.
  * @return The matrix difference.
  */
 template<typename T, std::size_t M, std::size_t N>
-Matrix<T, M, N> Matrix<T, M, N>::operator-(const Matrix<T, M, N>& W) const {
-	Matrix<T, M, N> R;
+matrix<T, M, N> matrix<T, M, N>::operator-(const matrix<T, M, N>& W) const {
+	matrix<T, M, N> R;
 	for (std::size_t i = 0; i < N; i++) {
 		R.data[i] = this->data[i] - W.data[i];
 	}
@@ -93,24 +93,24 @@ Matrix<T, M, N> Matrix<T, M, N>::operator-(const Matrix<T, M, N>& W) const {
 }
 
 /**
- * Matrix subtraction. Copy the result into this matrix.
- * @param W Matrix to subtract.
+ * matrix subtraction. Copy the result into this matrix.
+ * @param W matrix to subtract.
  * @return The modified matrix (matrix difference).
  */
 template<typename T, std::size_t M, std::size_t N>
-Matrix<T, M, N>& Matrix<T, M, N>::operator-=(const Matrix<T, M, N>& W) {
+matrix<T, M, N>& matrix<T, M, N>::operator-=(const matrix<T, M, N>& W) {
 	return *this = *this - W;
 }
 
 /**
- * Matrix multiplication.
- * @param W Matrix to multiply by.
- * @return Matrix product.
+ * matrix multiplication.
+ * @param W matrix to multiply by.
+ * @return matrix product.
  */
 template<typename T, std::size_t M, std::size_t N>
 template<std::size_t P>
-Matrix<T, M, P> Matrix<T, M, N>::operator*(const Matrix<T, N, P>& W) const {
-	Matrix<T, M, P> R;
+matrix<T, M, P> matrix<T, M, N>::operator*(const matrix<T, N, P>& W) const {
+	matrix<T, M, P> R;
 	for (std::size_t m = 0; m < M; m++) {
 		for (std::size_t p = 0; p < P; p++) {
 			for (std::size_t n = 0; n < N; n++) {
@@ -124,11 +124,11 @@ Matrix<T, M, P> Matrix<T, M, N>::operator*(const Matrix<T, N, P>& W) const {
 /**
  * Scalar multiplication.
  * @param s Scalar to multiply by.
- * @return Matrix-scalar product.
+ * @return matrix-scalar product.
  */
 template<typename T, std::size_t M, std::size_t N>
-Matrix<T, M, N> Matrix<T, M, N>::operator*(const T& s) const {
-	Matrix<T, M, N> R;
+matrix<T, M, N> matrix<T, M, N>::operator*(const T& s) const {
+	matrix<T, M, N> R;
 	for (std::size_t i = 0; i < N; i++) {
 		R.data[i] = this->data[i] * s;
 	}
@@ -141,18 +141,18 @@ Matrix<T, M, N> Matrix<T, M, N>::operator*(const T& s) const {
  * @return The modified matrix (matrix-scalar product).
  */
 template<typename T, std::size_t M, std::size_t N>
-Matrix<T, M, N>& Matrix<T, M, N>::operator*=(const T& s) {
+matrix<T, M, N>& matrix<T, M, N>::operator*=(const T& s) {
 	return *this = *this * s;
 }
 
 /**
  * Scalar division.
  * @param s Scalar to divide by.
- * @return Matrix-scalar quotient.
+ * @return matrix-scalar quotient.
  */
 template<typename T, std::size_t M, std::size_t N>
-Matrix<T, M, N> Matrix<T, M, N>::operator/(const T& s) const {
-	Matrix<T, M, N> R;
+matrix<T, M, N> matrix<T, M, N>::operator/(const T& s) const {
+	matrix<T, M, N> R;
 	for (std::size_t i = 0; i < N; i++) {
 		R.data[i] = this->data[i] / s;
 	}
@@ -165,17 +165,17 @@ Matrix<T, M, N> Matrix<T, M, N>::operator/(const T& s) const {
  * @return The modified matrix (matrix-scalar quotient).
  */
 template<typename T, std::size_t M, std::size_t N>
-Matrix<T, M, N>& Matrix<T, M, N>::operator/=(const T& s) {
+matrix<T, M, N>& matrix<T, M, N>::operator/=(const T& s) {
 	return *this = *this / s;
 }
 
 /**
  * Traspose this matrix.
- * @return Matrix transpose.
+ * @return matrix transpose.
  */
 template<typename T, std::size_t M, std::size_t N>
-Matrix<T, N, M> Matrix<T, M, N>::transpose(void) const {
-	Matrix<T, N, M> R;
+matrix<T, N, M> matrix<T, M, N>::transpose(void) const {
+	matrix<T, N, M> R;
 	for (std::size_t i = 0; i < N; i++) {
 		for (std::size_t j = 0; j < M; j++) {
 			R.data[j][i] = this->data[i][j];
@@ -186,11 +186,11 @@ Matrix<T, N, M> Matrix<T, M, N>::transpose(void) const {
 
 /**
  * Check matrix equality.
- * @param other Matrix to check equality with.
+ * @param other matrix to check equality with.
  * @return True if they are equal, otherwise false.
  */
 template<typename T, std::size_t M, std::size_t N>
-bool Matrix<T, M, N>::operator==(const Matrix<T, M, N>& other) const {
+bool matrix<T, M, N>::operator==(const matrix<T, M, N>& other) const {
 	bool equal = true;
 	for (std::size_t i = 0; i < N; i++) {
 		equal = equal && this->data[i] == other.data[i];
@@ -200,11 +200,11 @@ bool Matrix<T, M, N>::operator==(const Matrix<T, M, N>& other) const {
 
 /**
  * Check matrix inequality.
- * @param other Matrix to check inequality with.
+ * @param other matrix to check inequality with.
  * @return False if they are equal, otherwise true.
  */
 template<typename T, std::size_t M, std::size_t N>
-bool Matrix<T, M, N>::operator!=(const Matrix<T, M, N>& other) const {
+bool matrix<T, M, N>::operator!=(const matrix<T, M, N>& other) const {
 	return !(*this == other);
 }
 
@@ -212,12 +212,12 @@ bool Matrix<T, M, N>::operator!=(const Matrix<T, M, N>& other) const {
  * Calculate the matrix minor.
  * @param row Row of element to calculate minor for.
  * @param col Column of element to calculate minor for.
- * @return Matrix minor of the element at the given position.
+ * @return matrix minor of the element at the given position.
  */
 template<typename T, std::size_t M, std::size_t N>
 template<typename U, typename>
-T Matrix<T, M, N>::minor(const std::size_t row, const std::size_t col) const {
-	Matrix<T, M - 1, N - 1> minor_mat;
+T matrix<T, M, N>::minor(const std::size_t row, const std::size_t col) const {
+	matrix<T, M - 1, N - 1> minor_mat;
 	std::size_t i = (col == 0) ? 1 : 0;
 	std::size_t i_minor = 0;
 	while (i_minor < N - 1) {
@@ -236,11 +236,11 @@ T Matrix<T, M, N>::minor(const std::size_t row, const std::size_t col) const {
 
 /**
  * Determinant helper. Allows for partial specialization of the determinant.
- * @param mat Matrix to calculate the determinant of.
- * @return Matrix determinant.
+ * @param mat matrix to calculate the determinant of.
+ * @return matrix determinant.
  */
 template<typename T, std::size_t M, std::size_t N>
-static inline T det_helper(const Matrix<T, M, N>& mat) {
+static inline T det_helper(const matrix<T, M, N>& mat) {
 	T det = T();
 	T mod = static_cast<T>(1);
 	for (std::size_t i = 0; i < N; i++) {
@@ -252,43 +252,43 @@ static inline T det_helper(const Matrix<T, M, N>& mat) {
 /**
  * Determinant helper. Allows for partial specialization of the determinant.
  * 1x1 matrix specialization.
- * @param mat Matrix to calculate the determinant of.
- * @return Matrix determinant.
+ * @param mat matrix to calculate the determinant of.
+ * @return matrix determinant.
  */
 template<typename T>
-static inline T det_helper(const Matrix<T, 1>& mat) {
+static inline T det_helper(const matrix<T, 1>& mat) {
 	return mat.data[0][0];
 }
 
 /**
  * Determinant helper. Allows for partial specialization of the determinant.
  * 2x2 matrix specialization.
- * @param mat Matrix to calculate the determinant of.
- * @return Matrix determinant.
+ * @param mat matrix to calculate the determinant of.
+ * @return matrix determinant.
  */
 template<typename T>
-static inline T det_helper(const Matrix<T, 2>& mat) {
+static inline T det_helper(const matrix<T, 2>& mat) {
 	return (mat.data[0][0] * mat.data[1][1]) - (mat.data[1][0] * mat.data[0][1]);
 }
 
 /**
  * Calculate this matrix determinant.
- * @return Matrix determinant.
+ * @return matrix determinant.
  */
 template<typename T, std::size_t M, std::size_t N>
 template<typename U, typename>
-T Matrix<T, M, N>::det(void) const {
+T matrix<T, M, N>::det(void) const {
 	return det_helper(*this);
 }
 
 /**
  * Calculate the matrix of minors.
- * @return Matrix of minors.
+ * @return matrix of minors.
  */
 template<typename T, std::size_t M, std::size_t N>
 template<typename U, typename>
-Matrix<T, M, N> Matrix<T, M, N>::minors(void) const {
-	Matrix<T, M, N> minor;
+matrix<T, M, N> matrix<T, M, N>::minors(void) const {
+	matrix<T, M, N> minor;
 	for (std::size_t i = 0; i < M; i++) {
 		for (std::size_t j = 0; j < N; j++) {
 			minor[j][i] = this->minor(i, j);
@@ -303,8 +303,8 @@ Matrix<T, M, N> Matrix<T, M, N>::minors(void) const {
  */
 template<typename T, std::size_t M, std::size_t N>
 template<typename U, typename>
-Matrix<T, M, N> Matrix<T, M, N>::cofactor(void) const {
-	Matrix<T, M, N> cofactor(this->minors());
+matrix<T, M, N> matrix<T, M, N>::cofactor(void) const {
+	matrix<T, M, N> cofactor(this->minors());
 	T mod_row = -static_cast<T>(1);
 	for (std::size_t i = 0; i < M; i++) {
 		mod_row = -mod_row;
@@ -319,21 +319,21 @@ Matrix<T, M, N> Matrix<T, M, N>::cofactor(void) const {
 
 /**
  * Calculate the matrix adjugate.
- * @return Matrix adjugate.
+ * @return matrix adjugate.
  */
 template<typename T, std::size_t M, std::size_t N>
 template<typename U, typename>
-Matrix<T, M, N> Matrix<T, M, N>::adjugate(void) const {
+matrix<T, M, N> matrix<T, M, N>::adjugate(void) const {
 	return this->cofactor().transpose();
 }
 
 /**
  * Calculate the matrix inverse.
- * @return Matrix inverse.
+ * @return matrix inverse.
  */
 template<typename T, std::size_t M, std::size_t N>
 template<typename U, typename>
-Matrix<T, M, N> Matrix<T, M, N>::inverse(void) const {
+matrix<T, M, N> matrix<T, M, N>::inverse(void) const {
 	return this->adjugate() / this->det();
 }
 

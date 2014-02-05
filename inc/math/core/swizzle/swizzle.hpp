@@ -25,13 +25,13 @@ struct is_assignable_swizzle : std::integral_constant<bool,
 	(N < 4 || (E1 != E4 && E2 != E4 && E3 != E4))> {};
 
 /**
- * @class Swizzle
+ * @class swizzle
  * @tparam T Storage type.
  * @tparam N Storage size.
- * Swizzle members. All swizzles extend this class.
+ * swizzle members. All swizzles extend this class.
  */
 template<typename T, std::size_t N>
-class Swizzle {
+class swizzle {
 protected:
 	std::array<T, N> data;
 };

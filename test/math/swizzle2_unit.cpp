@@ -2,28 +2,29 @@
 #include <boost/test/unit_test.hpp>
 
 #define MATH_CORE_SWIZZLE_ENABLE_ELEMENT_ACCESSORS
-#include <math/types.hpp>
+#include <math/core/vector.hpp>
+#include <math/core/swizzle/swizzle2.hpp>
 
-BOOST_AUTO_TEST_SUITE(Swizzle2)
+BOOST_AUTO_TEST_SUITE(swizzle2)
 
 BOOST_AUTO_TEST_CASE(negate) {
-	math::Vector2 V;
+	math::core::vector<float, 2> V;
 	V.x = 20.12f;
 	V.y = 100.89f;
-	math::Vector2 V_neg;
+	math::core::vector<float, 2> V_neg;
 	V_neg = -V.xx;
 	BOOST_CHECK_CLOSE(V_neg.x, -20.12f, 1e-4f);
 	BOOST_CHECK_CLOSE(V_neg.y, -20.12f, 1e-4f);
 }
 
 BOOST_AUTO_TEST_CASE(add) {
-	math::Vector2 V1;
+	math::core::vector<float, 2> V1;
 	V1.x = 20.12f;
 	V1.y = 100.89f;
-	math::Vector2 V2;
+	math::core::vector<float, 2> V2;
 	V2.x = 10.34f;
 	V2.y = -15.5f;
-	math::Vector2 V_add;
+	math::core::vector<float, 2> V_add;
 	V_add = V1.yx + V2.xx;
 	BOOST_CHECK_CLOSE(V_add.x, 111.23f, 1e-4f);
 	BOOST_CHECK_CLOSE(V_add.y, 30.46f, 1e-4f);
@@ -33,26 +34,26 @@ BOOST_AUTO_TEST_CASE(add) {
 }
 
 BOOST_AUTO_TEST_CASE(add_eq) {
-	math::Vector2 V1;
+	math::core::vector<float, 2> V1;
 	V1.x = 20.12f;
 	V1.y = 100.89f;
-	math::Vector2 V2;
+	math::core::vector<float, 2> V2;
 	V2.x = 10.34f;
 	V2.y = -15.5f;
-	math::Vector2 V_add = V1;
+	math::core::vector<float, 2> V_add = V1;
 	V_add.yx += V2.xx;
 	BOOST_CHECK_CLOSE(V_add.x, 30.46f, 1e-4f);
 	BOOST_CHECK_CLOSE(V_add.y, 111.23f, 1e-4f);
 }
 
 BOOST_AUTO_TEST_CASE(sub) {
-	math::Vector2 V1;
+	math::core::vector<float, 2> V1;
 	V1.x = 20.12f;
 	V1.y = 100.89f;
-	math::Vector2 V2;
+	math::core::vector<float, 2> V2;
 	V2.x = 10.34f;
 	V2.y = -15.5f;
-	math::Vector2 V_sub;
+	math::core::vector<float, 2> V_sub;
 	V_sub = V1.yx - V2.xx;
 	BOOST_CHECK_CLOSE(V_sub.x, 90.55f, 1e-4f);
 	BOOST_CHECK_CLOSE(V_sub.y, 9.78f, 1e-4f);
@@ -62,26 +63,26 @@ BOOST_AUTO_TEST_CASE(sub) {
 }
 
 BOOST_AUTO_TEST_CASE(sub_eq) {
-	math::Vector2 V1;
+	math::core::vector<float, 2> V1;
 	V1.x = 20.12f;
 	V1.y = 100.89f;
-	math::Vector2 V2;
+	math::core::vector<float, 2> V2;
 	V2.x = 10.34f;
 	V2.y = -15.5f;
-	math::Vector2 V_sub = V1;
+	math::core::vector<float, 2> V_sub = V1;
 	V_sub.yx -= V2.xx;
 	BOOST_CHECK_CLOSE(V_sub.x, 9.78f, 1e-4f);
 	BOOST_CHECK_CLOSE(V_sub.y, 90.55f, 1e-4f);
 }
 
 BOOST_AUTO_TEST_CASE(mult) {
-	math::Vector2 V1;
+	math::core::vector<float, 2> V1;
 	V1.x = 20.12f;
 	V1.y = 100.89f;
-	math::Vector2 V2;
+	math::core::vector<float, 2> V2;
 	V2.x = 10.34f;
 	V2.y = -15.5f;
-	math::Vector2 V_mult;
+	math::core::vector<float, 2> V_mult;
 	V_mult = V1.yx * V2.xx;
 	BOOST_CHECK_CLOSE(V_mult.x, 1043.2026f, 1e-4f);
 	BOOST_CHECK_CLOSE(V_mult.y, 208.0408f, 1e-4f);
@@ -91,26 +92,26 @@ BOOST_AUTO_TEST_CASE(mult) {
 }
 
 BOOST_AUTO_TEST_CASE(mult_eq) {
-	math::Vector2 V1;
+	math::core::vector<float, 2> V1;
 	V1.x = 20.12f;
 	V1.y = 100.89f;
-	math::Vector2 V2;
+	math::core::vector<float, 2> V2;
 	V2.x = 10.34f;
 	V2.y = -15.5f;
-	math::Vector2 V_mult = V1;
+	math::core::vector<float, 2> V_mult = V1;
 	V_mult.yx *= V2.xy;
 	BOOST_CHECK_CLOSE(V_mult.x, -311.86f, 1e-4f);
 	BOOST_CHECK_CLOSE(V_mult.y, 1043.2026f, 1e-4f);
 }
 
 BOOST_AUTO_TEST_CASE(div) {
-	math::Vector2 V1;
+	math::core::vector<float, 2> V1;
 	V1.x = 20.0f;
 	V1.y = 40.0f;
-	math::Vector2 V2;
+	math::core::vector<float, 2> V2;
 	V2.x = 2.0f;
 	V2.y = 4.0f;
-	math::Vector2 V_div;
+	math::core::vector<float, 2> V_div;
 	V_div = V1.yx / V2.xx;
 	BOOST_CHECK_CLOSE(V_div.x, 20.0f, 1e-4f);
 	BOOST_CHECK_CLOSE(V_div.y, 10.0f, 1e-4f);
@@ -120,67 +121,67 @@ BOOST_AUTO_TEST_CASE(div) {
 }
 
 BOOST_AUTO_TEST_CASE(div_eq) {
-	math::Vector2 V1;
+	math::core::vector<float, 2> V1;
 	V1.x = 20.0f;
 	V1.y = 40.0f;
-	math::Vector2 V2;
+	math::core::vector<float, 2> V2;
 	V2.x = 2.0f;
 	V2.y = 4.0f;
-	math::Vector2 V_div = V1;
+	math::core::vector<float, 2> V_div = V1;
 	V_div.yx /= V2.xy;
 	BOOST_CHECK_CLOSE(V_div.x, 5.0f, 1e-4f);
 	BOOST_CHECK_CLOSE(V_div.y, 20.0f, 1e-4f);
 }
 
 BOOST_AUTO_TEST_CASE(scalar_mult) {
-	math::Vector2 V;
+	math::core::vector<float, 2> V;
 	V.x = 20.12f;
 	V.y = 100.89f;
 	float s = -34.45f;
-	math::Vector2 V_mult;
+	math::core::vector<float, 2> V_mult;
 	V_mult = V.xx * s;
 	BOOST_CHECK_CLOSE(V_mult.x, -693.134f, 1e-4f);
 	BOOST_CHECK_CLOSE(V_mult.y, -693.134f, 1e-4f);
 }
 
 BOOST_AUTO_TEST_CASE(scalar_mult_eq) {
-	math::Vector2 V;
+	math::core::vector<float, 2> V;
 	V.x = 20.12f;
 	V.y = 100.89f;
 	float s = -34.45f;
-	math::Vector2 V_mult = V;
+	math::core::vector<float, 2> V_mult = V;
 	V_mult.yx *= s;
 	BOOST_CHECK_CLOSE(V_mult.x, -693.134f, 1e-4f);
 	BOOST_CHECK_CLOSE(V_mult.y, -3475.6605f, 1e-4f);
 }
 
 BOOST_AUTO_TEST_CASE(scalar_div) {
-	math::Vector2 V;
+	math::core::vector<float, 2> V;
 	V.x = 20.12f;
 	V.y = 100.89f;
 	float s = -34.45f;
-	math::Vector2 V_div;
+	math::core::vector<float, 2> V_div;
 	V_div = V.xx / s;
 	BOOST_CHECK_CLOSE(V_div.x, -0.5840348330914369f, 1e-4f);
 	BOOST_CHECK_CLOSE(V_div.y, -0.5840348330914369f, 1e-4f);
 }
 
 BOOST_AUTO_TEST_CASE(scalar_div_eq) {
-	math::Vector2 V;
+	math::core::vector<float, 2> V;
 	V.x = 20.12f;
 	V.y = 100.89f;
 	float s = -34.45f;
-	math::Vector2 V_div = V;
+	math::core::vector<float, 2> V_div = V;
 	V_div.yx /= s;
 	BOOST_CHECK_CLOSE(V_div.x, -0.5840348330914369f, 1e-4f);
 	BOOST_CHECK_CLOSE(V_div.y, -2.9285921625544264f, 1e-4f);
 }
 
 BOOST_AUTO_TEST_CASE(access) {
-	math::Vector2 V;
+	math::core::vector<float, 2> V;
 	V.x = 20.12f;
 	V.y = 100.89f;
-	math::Vector2 V2;
+	math::core::vector<float, 2> V2;
 	// 2d swizzles <x,y>
 	auto xx = V.xx;
 	BOOST_CHECK_CLOSE(xx.getE1(), V.x, 1e-4f);
@@ -307,10 +308,10 @@ BOOST_AUTO_TEST_CASE(access) {
 }
 
 BOOST_AUTO_TEST_CASE(assign) {
-	math::Vector2 V2;
+	math::core::vector<float, 2> V2;
 	V2.x = 20.12f;
 	V2.y = 100.89f;
-	math::Vector2 V;
+	math::core::vector<float, 2> V;
 	V.x = 0.0f;
 	V.y = 0.0f;
 	// 2d swizzle assign <x, y> from vector

@@ -9,10 +9,10 @@ namespace math {
 namespace core {
 
 template<typename T, std::size_t N>
-class Vector;
+class vector;
 
 /**
- * @class Swizzle2
+ * @class swizzle2
  * @tparam T Storage type.
  * @tparam N Storage size.
  * @tparam E1 Index of first element.
@@ -20,63 +20,63 @@ class Vector;
  * A 2-dimensional vector swizzle.
  */
 template<typename T, std::size_t N, std::size_t E1, std::size_t E2>
-class Swizzle2 : public Swizzle<T, N> {
+class swizzle2 : public swizzle<T, N> {
 private:
-	inline Vector<T, 2> to_vector2(void) const;
+	inline vector<T, 2> to_vector2(void) const;
 public:
-	operator Vector<T, 2>(void);
+	operator vector<T, 2>(void);
 
 	template<typename U = T,
 		typename = typename std::enable_if<is_assignable_swizzle<2, E1, E2>::value
 		&& std::is_same<T, U>::value, U>::type>
-	Vector<T, 2>& operator=(const Vector<T, 2>&);
+	vector<T, 2>& operator=(const vector<T, 2>&);
 
-	Vector<T, 2> operator-(void) const;
+	vector<T, 2> operator-(void) const;
 
-	Vector<T, 2> operator+(const Vector<T, 2>&) const;
-
-	template<typename U = T,
-		typename = typename std::enable_if<is_assignable_swizzle<2, E1, E2>::value
-		&& std::is_same<T, U>::value, U>::type>
-	Vector<T, 2>& operator+=(const Vector<T, 2>&);
-
-	Vector<T, 2> operator-(const Vector<T, 2>&) const;
+	vector<T, 2> operator+(const vector<T, 2>&) const;
 
 	template<typename U = T,
 		typename = typename std::enable_if<is_assignable_swizzle<2, E1, E2>::value
 		&& std::is_same<T, U>::value, U>::type>
-	Vector<T, 2>& operator-=(const Vector<T, 2>&);
+	vector<T, 2>& operator+=(const vector<T, 2>&);
 
-	Vector<T, 2> operator*(const Vector<T, 2>&) const;
-
-	template<typename U = T,
-		typename = typename std::enable_if<is_assignable_swizzle<2, E1, E2>::value
-		&& std::is_same<T, U>::value, U>::type>
-	Vector<T, 2>& operator*=(const Vector<T, 2>&);
-
-	Vector<T, 2> operator/(const Vector<T, 2>&) const;
+	vector<T, 2> operator-(const vector<T, 2>&) const;
 
 	template<typename U = T,
 		typename = typename std::enable_if<is_assignable_swizzle<2, E1, E2>::value
 		&& std::is_same<T, U>::value, U>::type>
-	Vector<T, 2>& operator/=(const Vector<T, 2>&);
+	vector<T, 2>& operator-=(const vector<T, 2>&);
 
-	Vector<T, 2> operator*(const T&) const;
-
-	template<typename U = T,
-		typename = typename std::enable_if<is_assignable_swizzle<2, E1, E2>::value
-		&& std::is_same<T, U>::value, U>::type>
-	Vector<T, 2>& operator*=(const T&);
-
-	Vector<T, 2> operator/(const T&) const;
+	vector<T, 2> operator*(const vector<T, 2>&) const;
 
 	template<typename U = T,
 		typename = typename std::enable_if<is_assignable_swizzle<2, E1, E2>::value
 		&& std::is_same<T, U>::value, U>::type>
-	Vector<T, 2>& operator/=(const T&);
+	vector<T, 2>& operator*=(const vector<T, 2>&);
 
-	bool operator==(const Vector<T, 2>&) const;
-	bool operator!=(const Vector<T, 2>&) const;
+	vector<T, 2> operator/(const vector<T, 2>&) const;
+
+	template<typename U = T,
+		typename = typename std::enable_if<is_assignable_swizzle<2, E1, E2>::value
+		&& std::is_same<T, U>::value, U>::type>
+	vector<T, 2>& operator/=(const vector<T, 2>&);
+
+	vector<T, 2> operator*(const T&) const;
+
+	template<typename U = T,
+		typename = typename std::enable_if<is_assignable_swizzle<2, E1, E2>::value
+		&& std::is_same<T, U>::value, U>::type>
+	vector<T, 2>& operator*=(const T&);
+
+	vector<T, 2> operator/(const T&) const;
+
+	template<typename U = T,
+		typename = typename std::enable_if<is_assignable_swizzle<2, E1, E2>::value
+		&& std::is_same<T, U>::value, U>::type>
+	vector<T, 2>& operator/=(const T&);
+
+	bool operator==(const vector<T, 2>&) const;
+	bool operator!=(const vector<T, 2>&) const;
 
 #if defined(MATH_CORE_SWIZZLE_ENABLE_ELEMENT_ACCESSORS)
 	T getE1(void) { return this->data[E1]; }

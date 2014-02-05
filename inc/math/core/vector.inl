@@ -16,11 +16,11 @@ using namespace math::core;
 
 /**
  * Set this vector equal to another.
- * @param other Vector to set equal to.
+ * @param other vector to set equal to.
  * @return The modified vector.
  */
 template<typename T, std::size_t N>
-Vector<T, N>& Vector<T, N>::operator=(const Vector<T, N>& other) {
+vector<T, N>& vector<T, N>::operator=(const vector<T, N>& other) {
 	for (std::size_t i = 0; i < N; i++) {
 		this->data[i] = other.data[i];
 	}
@@ -33,7 +33,7 @@ Vector<T, N>& Vector<T, N>::operator=(const Vector<T, N>& other) {
  * @return Accessed element.
  */
 template<typename T, std::size_t N>
-T Vector<T, N>::operator[](const std::size_t idx) const {
+T vector<T, N>::operator[](const std::size_t idx) const {
 	return this->data.at(idx);
 }
 
@@ -43,7 +43,7 @@ T Vector<T, N>::operator[](const std::size_t idx) const {
  * @return Modified element.
  */
 template<typename T, std::size_t N>
-T& Vector<T, N>::operator[](const std::size_t idx) {
+T& vector<T, N>::operator[](const std::size_t idx) {
 	return this->data.at(idx);
 }
 
@@ -52,8 +52,8 @@ T& Vector<T, N>::operator[](const std::size_t idx) {
  * @return The vector negated.
  */
 template<typename T, std::size_t N>
-Vector<T, N> Vector<T, N>::operator-(void) const {
-	Vector<T, N> R;
+vector<T, N> vector<T, N>::operator-(void) const {
+	vector<T, N> R;
 	for (std::size_t i = 0; i < N; i++) {
 		R.data[i] = -this->data[i];
 	}
@@ -62,12 +62,12 @@ Vector<T, N> Vector<T, N>::operator-(void) const {
 
 /**
  * Component-wise addition.
- * @param V Vector to add.
+ * @param V vector to add.
  * @return The component-wise sum.
  */
 template<typename T, std::size_t N>
-Vector<T, N> Vector<T, N>::operator+(const Vector<T, N>& V) const {
-	Vector<T, N> R;
+vector<T, N> vector<T, N>::operator+(const vector<T, N>& V) const {
+	vector<T, N> R;
 	for (std::size_t i = 0; i < N; i++) {
 		R.data[i] = this->data[i] + V.data[i];
 	}
@@ -76,22 +76,22 @@ Vector<T, N> Vector<T, N>::operator+(const Vector<T, N>& V) const {
 
 /**
  * Component-wise addition. Copy the result into this vector.
- * @param V Vector to add.
+ * @param V vector to add.
  * @return The modified vector (component-wise sum).
  */
 template<typename T, std::size_t N>
-Vector<T, N>& Vector<T, N>::operator+=(const Vector<T, N>& V) {
+vector<T, N>& vector<T, N>::operator+=(const vector<T, N>& V) {
 	return *this = *this + V;
 }
 
 /**
  * Component-wise subtraction.
- * @param V Vector to subtract.
+ * @param V vector to subtract.
  * @return The component-wise difference.
  */
 template<typename T, std::size_t N>
-Vector<T, N> Vector<T, N>::operator-(const Vector<T, N>& V) const {
-	Vector<T, N> R;
+vector<T, N> vector<T, N>::operator-(const vector<T, N>& V) const {
+	vector<T, N> R;
 	for (std::size_t i = 0; i < N; i++) {
 		R.data[i] = this->data[i] - V.data[i];
 	}
@@ -100,22 +100,22 @@ Vector<T, N> Vector<T, N>::operator-(const Vector<T, N>& V) const {
 
 /**
  * Component-wise subtraction. Copy the result into this vector.
- * @param V Vector to subtract.
+ * @param V vector to subtract.
  * @return The modified vector (component-wise difference).
  */
 template<typename T, std::size_t N>
-Vector<T, N>& Vector<T, N>::operator-=(const Vector<T, N>& V) {
+vector<T, N>& vector<T, N>::operator-=(const vector<T, N>& V) {
 	return *this = *this - V;
 }
 
 /**
  * Component-wise multiplication.
- * @param V Vector to multiply.
+ * @param V vector to multiply.
  * @return The component-wise product.
  */
 template<typename T, std::size_t N>
-Vector<T, N> Vector<T, N>::operator*(const Vector<T, N>& V) const {
-	Vector<T, N> R;
+vector<T, N> vector<T, N>::operator*(const vector<T, N>& V) const {
+	vector<T, N> R;
 	for (std::size_t i = 0; i < N; i++) {
 		R.data[i] = this->data[i] * V.data[i];
 	}
@@ -124,22 +124,22 @@ Vector<T, N> Vector<T, N>::operator*(const Vector<T, N>& V) const {
 
 /**
  * Component-wise multiplication. Copy the result into this vector.
- * @param V Vector to multiply.
+ * @param V vector to multiply.
  * @return The modified vector (component-wise product).
  */
 template<typename T, std::size_t N>
-Vector<T, N>& Vector<T, N>::operator*=(const Vector<T, N>& V) {
+vector<T, N>& vector<T, N>::operator*=(const vector<T, N>& V) {
 	return *this = *this * V;
 }
 
 /**
  * Component-wise division.
- * @param V Vector to divide by.
+ * @param V vector to divide by.
  * @return The component-wise quotient.
  */
 template<typename T, std::size_t N>
-Vector<T, N> Vector<T, N>::operator/(const Vector<T, N>& V) const {
-	Vector<T, N> R;
+vector<T, N> vector<T, N>::operator/(const vector<T, N>& V) const {
+	vector<T, N> R;
 	for (std::size_t i = 0; i < N; i++) {
 		R.data[i] = this->data[i] / V.data[i];
 	}
@@ -148,22 +148,22 @@ Vector<T, N> Vector<T, N>::operator/(const Vector<T, N>& V) const {
 
 /**
  * Component-wise division. Copy the result into this vector.
- * @param V Vector to divide by.
+ * @param V vector to divide by.
  * @return The modified vector (component-wise quotient).
  */
 template<typename T, std::size_t N>
-Vector<T, N>& Vector<T, N>::operator/=(const Vector<T, N>& V) {
+vector<T, N>& vector<T, N>::operator/=(const vector<T, N>& V) {
 	return *this = *this / V;
 }
 
 /**
  * Scalar multiplication.
  * @param s Scalar to multiply by.
- * @return Vector-scalar product.
+ * @return vector-scalar product.
  */
 template<typename T, std::size_t N>
-Vector<T, N> Vector<T, N>::operator*(const T& s) const {
-	Vector<T, N> R;
+vector<T, N> vector<T, N>::operator*(const T& s) const {
+	vector<T, N> R;
 	for (std::size_t i = 0; i < N; i++) {
 		R.data[i] = this->data[i] * s;
 	}
@@ -173,21 +173,21 @@ Vector<T, N> Vector<T, N>::operator*(const T& s) const {
 /**
  * Scalar multiplication. Copy the result into this vector.
  * @param s Scalar to multiply by.
- * @return Vector-scalar product.
+ * @return vector-scalar product.
  */
 template<typename T, std::size_t N>
-Vector<T, N>& Vector<T, N>::operator*=(const T& s) {
+vector<T, N>& vector<T, N>::operator*=(const T& s) {
 	return *this = *this * s;
 }
 
 /**
  * Scalar division.
  * @param s Scalar to divide by.
- * @return Vector-scalar quotient.
+ * @return vector-scalar quotient.
  */
 template<typename T, std::size_t N>
-Vector<T, N> Vector<T, N>::operator/(const T& s) const {
-	Vector<T, N> R;
+vector<T, N> vector<T, N>::operator/(const T& s) const {
+	vector<T, N> R;
 	for (std::size_t i = 0; i < N; i++) {
 		R.data[i] = this->data[i] / s;
 	}
@@ -197,19 +197,19 @@ Vector<T, N> Vector<T, N>::operator/(const T& s) const {
 /**
  * Scalar division. Copy the result into this vector.
  * @param s Scalar to divide by.
- * @return Vector-scalar quotient.
+ * @return vector-scalar quotient.
  */
 template<typename T, std::size_t N>
-Vector<T, N>& Vector<T, N>::operator/=(const T& s) {
+vector<T, N>& vector<T, N>::operator/=(const T& s) {
 	return *this = *this / s;
 }
 
 /**
  * Calculate the vector length.
- * @return Vector magnitude.
+ * @return vector magnitude.
  */
 template<typename T, std::size_t N>
-T Vector<T, N>::mag(void) const {
+T vector<T, N>::mag(void) const {
 	return math::sqrt(this->mag2());
 }
 
@@ -218,7 +218,7 @@ T Vector<T, N>::mag(void) const {
  * @return Magnitude squared.
  */
 template<typename T, std::size_t N>
-T Vector<T, N>::mag2(void) const {
+T vector<T, N>::mag2(void) const {
 	T mag2 = T();
 	for (std::size_t i = 0; i < N; i++) {
 		mag2 += this->data[i] * this->data[i];
@@ -228,10 +228,10 @@ T Vector<T, N>::mag2(void) const {
 
 /**
  * Calculate the vector normal.
- * @return Vector normal.
+ * @return vector normal.
  */
 template<typename T, std::size_t N>
-Vector<T, N> Vector<T, N>::normal(void) const {
+vector<T, N> vector<T, N>::normal(void) const {
 	return *this / this->mag();
 }
 
@@ -240,20 +240,20 @@ Vector<T, N> Vector<T, N>::normal(void) const {
  * @return The modified vector (vector normal).
  */
 template<typename T, std::size_t N>
-Vector<T, N>& Vector<T, N>::normalize(void) {
+vector<T, N>& vector<T, N>::normalize(void) {
 	return *this = this->normal();
 }
 
 /**
  * Equals helper. Allows for partial specialization of the equality operator.
  * Specialization for vector with floats.
- * @param V1 Vector to check equality with.
- * @param V2 Vector to check equality with.
+ * @param V1 vector to check equality with.
+ * @param V2 vector to check equality with.
  * @return True if they are equal, otherwise false.
  */
 template<typename T, std::size_t N>
 static inline typename std::enable_if<std::is_floating_point<T>::value, bool>::type
-		equals_helper(const Vector<T, N>& V1, const Vector<T, N>& V2) {
+		equals_helper(const vector<T, N>& V1, const vector<T, N>& V2) {
 	bool equal = true;
 	for (std::size_t i = 0; i < N; ++i) {
 		equal = equal && math::equals(V1.data[i], V2.data[i]);
@@ -264,13 +264,13 @@ static inline typename std::enable_if<std::is_floating_point<T>::value, bool>::t
 /**
  * Equals helper. Allows for partial specialization of the equality operator.
  * Specialization for vector with integers or other.
- * @param V1 Vector to check equality with.
- * @param V2 Vector to check equality with.
+ * @param V1 vector to check equality with.
+ * @param V2 vector to check equality with.
  * @return True if they are equal, otherwise false.
  */
 template<typename T, std::size_t N>
 static inline typename std::enable_if<!std::is_floating_point<T>::value, bool>::type
-		equals_helper(const Vector<T, N>& V1, const Vector<T, N>& V2) {
+		equals_helper(const vector<T, N>& V1, const vector<T, N>& V2) {
 	bool equal = true;
 	for (std::size_t i = 0; i < N; ++i) {
 		equal = equal && V1.data[i] == V2.data[i];
@@ -279,33 +279,33 @@ static inline typename std::enable_if<!std::is_floating_point<T>::value, bool>::
 }
 
 /**
- * Check Vector equality.
- * @param other Vector to check equality with.
+ * Check vector equality.
+ * @param other vector to check equality with.
  * @return True if they are equal, otherwise false.
  */
 template<typename T, std::size_t N>
-bool Vector<T, N>::operator==(const Vector<T, N>& other) const {
+bool vector<T, N>::operator==(const vector<T, N>& other) const {
 	return equals_helper(*this, other);
 }
 
 /**
- * Check Vector inequality.
- * @param other Vector to check inequality with.
+ * Check vector inequality.
+ * @param other vector to check inequality with.
  * @return False if they are equal, otherwise true.
  */
 template<typename T, std::size_t N>
-bool Vector<T, N>::operator!=(const Vector<T, N>& other) const {
+bool vector<T, N>::operator!=(const vector<T, N>& other) const {
 	return !(*this == other);
 }
 
 /**
  * Calculate the inner vector product (dot product).
- * @param V1 Vector to take dot product of.
- * @param V2 Vector to take dot product of.
- * @return Vector dot product.
+ * @param V1 vector to take dot product of.
+ * @param V2 vector to take dot product of.
+ * @return vector dot product.
  */
 template<typename T, std::size_t N>
-T Vector<T, N>::dot(const Vector<T, N>& V1, const Vector<T, N>& V2) {
+T vector<T, N>::dot(const vector<T, N>& V1, const vector<T, N>& V2) {
 	T dot = T();
 	for (std::size_t i = 0; i < N; ++i) {
 		dot += V1.data[i] * V2.data[i];
@@ -320,8 +320,8 @@ T Vector<T, N>::dot(const Vector<T, N>& V1, const Vector<T, N>& V2) {
  * @return Reflection of incident over the normal.
  */
 template<typename T, std::size_t N>
-Vector<T, N> Vector<T, N>::reflect(const Vector<T, N>& I, const Vector<T, N>& S) {
-	return I - S * static_cast<T>(2.0) * Vector<T, N>::dot(S, I);
+vector<T, N> vector<T, N>::reflect(const vector<T, N>& I, const vector<T, N>& S) {
+	return I - S * static_cast<T>(2.0) * vector<T, N>::dot(S, I);
 }
 
 /**
@@ -332,11 +332,11 @@ Vector<T, N> Vector<T, N>::reflect(const Vector<T, N>& I, const Vector<T, N>& S)
  * @return Refraction of the indedent over the normal.
  */
 template<typename T, std::size_t N>
-Vector<T, N> Vector<T, N>::refract(const Vector<T, N>& I, const Vector<T, N>& S, const T& eta) {
-	T S_dot_I = Vector<T, N>::dot(S, I);
+vector<T, N> vector<T, N>::refract(const vector<T, N>& I, const vector<T, N>& S, const T& eta) {
+	T S_dot_I = vector<T, N>::dot(S, I);
 	T k = static_cast<T>(1.0) - eta * eta * (static_cast<T>(1.0) - S_dot_I * S_dot_I);
 	if (k < static_cast<T>(0.0)) {
-		return Vector<T, N>();
+		return vector<T, N>();
 	} else {
 		return I * eta - S * (eta * S_dot_I + math::sqrt(k));
 	}
@@ -350,37 +350,37 @@ Vector<T, N> Vector<T, N>::refract(const Vector<T, N>& I, const Vector<T, N>& S,
  * @return Interpolated vector.
  */
 template<typename T, std::size_t N>
-Vector<T, N> Vector<T, N>::lerp(const Vector<T, N>& S, const Vector<T, N>& E, const T& t) {
+vector<T, N> vector<T, N>::lerp(const vector<T, N>& S, const vector<T, N>& E, const T& t) {
 	return S + ((E - S) * t);
 }
 
 /**
  * Calculate the outer vector product (cross product). Only valid for 2d
  * vectors.
- * @param V1 Vector to take outer product of.
- * @param V2 Vector to take outer product of.
+ * @param V1 vector to take outer product of.
+ * @param V2 vector to take outer product of.
  * @return 2-dimensional vector cross product.
  */
 template<typename T, std::size_t N>
 template<typename U, typename>
-T Vector<T, N>::cross(const Vector<T, N>& V1, const Vector<T, N>& V2) {
+T vector<T, N>::cross(const vector<T, N>& V1, const vector<T, N>& V2) {
 	return (V1.x * V2.y) - (V1.y * V2.x);
 }
 
 /**
  * Calculate the outer vector product (cross product). Only valid for 3d
  * vectors.
- * @param V1 Vector to take outer product of.
- * @param V2 Vector to take outer product of.
+ * @param V1 vector to take outer product of.
+ * @param V2 vector to take outer product of.
  * @return 3-dimensional vector cross product.
  */
 template<typename T, std::size_t N>
 template<typename U, typename>
-Vector<T, N> Vector<T, N>::cross(const Vector<T, N>& V1, const Vector<T, N>& V2) {
+vector<T, N> vector<T, N>::cross(const vector<T, N>& V1, const vector<T, N>& V2) {
 	U x = (V1.y * V2.z) - (V1.z * V2.y);
 	U y = (V1.z * V2.x) - (V1.x * V2.z);
 	U z = (V1.x * V2.y) - (V1.y * V2.x);
-	return Vector<U, N>(x, y, z);
+	return vector<U, N>(x, y, z);
 }
 
 #endif
