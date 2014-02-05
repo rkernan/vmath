@@ -183,10 +183,10 @@ public:
 	static vector<T, N> refract(const vector<T, N>&, const vector<T, N>&, const T&);
 	static vector<T, N> lerp(const vector<T, N>&, const vector<T, N>&, const T&);
 
-	template<typename U = T, typename = typename std::enable_if<N == 2 && std::is_same<T, U>::value, U>::type>
+	template<typename U = T, typename = typename std::enable_if<N == 2, U>::type>
 	static T cross(const vector<T, N>&, const vector<T, N>&);
 
-	template<typename U = T, typename = typename std::enable_if<N == 3 && std::is_same<T, U>::value, U>::type>
+	template<typename U = T, typename = typename std::enable_if<N == 3, U>::type>
 	static vector<T, N> cross(const vector<T, N>&, const vector<T, N>&);
 };
 

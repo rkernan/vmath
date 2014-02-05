@@ -1055,4 +1055,114 @@ BOOST_AUTO_TEST_CASE_TEMPLATE(equals, T, float_types) {
 	BOOST_CHECK(M2 != M3);
 }
 
+BOOST_AUTO_TEST_CASE_TEMPLATE(translation, T, float_types) {
+	math::core::vector<T, 3> V(static_cast<T>(1.0), static_cast<T>(2.0), static_cast<T>(3.0));
+	math::core::matrix<T, 4> M(math::core::matrix<T, 4>::translation(V));
+	BOOST_CHECK_CLOSE(M[0][0], static_cast<T>(1.0f), 1e-4f);
+	BOOST_CHECK_SMALL(M[0][1], static_cast<T>(1e-7f));
+	BOOST_CHECK_SMALL(M[0][2], static_cast<T>(1e-7f));
+	BOOST_CHECK_SMALL(M[0][3], static_cast<T>(1e-7f));
+	BOOST_CHECK_SMALL(M[1][0], static_cast<T>(1e-7f));
+	BOOST_CHECK_CLOSE(M[1][1], static_cast<T>(1.0f), 1e-4f);
+	BOOST_CHECK_SMALL(M[1][2], static_cast<T>(1e-7f));
+	BOOST_CHECK_SMALL(M[1][3], static_cast<T>(1e-7f));
+	BOOST_CHECK_SMALL(M[2][0], static_cast<T>(1e-7f));
+	BOOST_CHECK_SMALL(M[2][1], static_cast<T>(1e-7f));
+	BOOST_CHECK_CLOSE(M[2][2], static_cast<T>(1.0f), 1e-4f);
+	BOOST_CHECK_SMALL(M[2][3], static_cast<T>(1e-7f));
+	BOOST_CHECK_CLOSE(M[3][0], V.x, 1e-4f);
+	BOOST_CHECK_CLOSE(M[3][1], V.y, 1e-4f);
+	BOOST_CHECK_CLOSE(M[3][2], V.z, 1e-4f);
+	BOOST_CHECK_CLOSE(M[3][3], static_cast<T>(1.0f), 1e-4f);
+}
+
+BOOST_AUTO_TEST_CASE_TEMPLATE(rotation, T, float_types) {
+	math::core::vector<T, 3> out(static_cast<T>(1.0), static_cast<T>(0.0), static_cast<T>(0.0));
+	math::core::vector<T, 3> up(static_cast<T>(0.0), static_cast<T>(1.0), static_cast<T>(0.0));
+	math::core::matrix<T, 4> M(math::core::matrix<T, 4>::rotation(out, up));
+	BOOST_CHECK_SMALL(M[0][0], static_cast<T>(1e-7));
+	BOOST_CHECK_SMALL(M[0][1], static_cast<T>(1e-7));
+	BOOST_CHECK_CLOSE(M[0][2], static_cast<T>(1.0), 1e-4f);
+	BOOST_CHECK_SMALL(M[0][3], static_cast<T>(1e-7));
+	BOOST_CHECK_CLOSE(M[1][0], up.x, 1e-4f);
+	BOOST_CHECK_CLOSE(M[1][1], up.y, 1e-4f);
+	BOOST_CHECK_CLOSE(M[1][2], up.z, 1e-4f);
+	BOOST_CHECK_SMALL(M[1][3], static_cast<T>(1e-7));
+	BOOST_CHECK_CLOSE(M[2][0], -out.x, 1e-4f);
+	BOOST_CHECK_CLOSE(M[2][1], -out.y, 1e-4f);
+	BOOST_CHECK_CLOSE(M[2][2], -out.z, 1e-4f);
+	BOOST_CHECK_SMALL(M[2][3], static_cast<T>(1e-7));
+	BOOST_CHECK_SMALL(M[3][0], static_cast<T>(1e-7));
+	BOOST_CHECK_SMALL(M[3][1], static_cast<T>(1e-7));
+	BOOST_CHECK_SMALL(M[3][2], static_cast<T>(1e-7));
+	BOOST_CHECK_CLOSE(M[3][3], static_cast<T>(1.0), 1e-4f);
+}
+
+BOOST_AUTO_TEST_CASE_TEMPLATE(scale, T, float_types) {
+	T x_scale = static_cast<T>(2.0);
+	T y_scale = static_cast<T>(3.0);
+	T z_scale = static_cast<T>(4.0);
+	math::core::matrix<T, 4> M(math::core::matrix<T, 4>::scale(x_scale, y_scale, z_scale));
+	BOOST_CHECK_CLOSE(M[0][0], x_scale, 1e-4f);
+	BOOST_CHECK_SMALL(M[0][1], static_cast<T>(1e-7));
+	BOOST_CHECK_SMALL(M[0][2], static_cast<T>(1e-7));
+	BOOST_CHECK_SMALL(M[0][3], static_cast<T>(1e-7));
+	BOOST_CHECK_SMALL(M[1][0], static_cast<T>(1e-7));
+	BOOST_CHECK_CLOSE(M[1][1], y_scale, 1e-4f);
+	BOOST_CHECK_SMALL(M[1][2], static_cast<T>(1e-7));
+	BOOST_CHECK_SMALL(M[1][3], static_cast<T>(1e-7));
+	BOOST_CHECK_SMALL(M[2][0], static_cast<T>(1e-7));
+	BOOST_CHECK_SMALL(M[2][1], static_cast<T>(1e-7));
+	BOOST_CHECK_CLOSE(M[2][2], z_scale, 1e-4f);
+	BOOST_CHECK_SMALL(M[2][3], static_cast<T>(1e-7));
+	BOOST_CHECK_SMALL(M[3][0], static_cast<T>(1e-7));
+	BOOST_CHECK_SMALL(M[3][1], static_cast<T>(1e-7));
+	BOOST_CHECK_SMALL(M[3][2], static_cast<T>(1e-7));
+	BOOST_CHECK_CLOSE(M[3][3], static_cast<T>(1.0), 1e-4f);
+}
+
+BOOST_AUTO_TEST_CASE_TEMPLATE(orthographic, T, float_types) {
+	math::core::matrix<T, 4> M(math::core::matrix<T, 4>::orthographic(
+		static_cast<T>(0.0), static_cast<T>(1920.0), static_cast<T>(0.0),
+		static_cast<T>(1080.0), static_cast<T>(0.1), static_cast<T>(1000.0)));
+	BOOST_CHECK_CLOSE(M[0][0], static_cast<T>(0.001041666667), 1e-4f);
+	BOOST_CHECK_SMALL(M[0][1], static_cast<T>(1e-7));
+	BOOST_CHECK_SMALL(M[0][2], static_cast<T>(1e-7));
+	BOOST_CHECK_SMALL(M[0][3], static_cast<T>(1e-7));
+	BOOST_CHECK_SMALL(M[1][0], static_cast<T>(1e-7));
+	BOOST_CHECK_CLOSE(M[1][1], static_cast<T>(0.001851851852), 1e-4f);
+	BOOST_CHECK_SMALL(M[1][2], static_cast<T>(1e-7));
+	BOOST_CHECK_SMALL(M[1][3], static_cast<T>(1e-7));
+	BOOST_CHECK_SMALL(M[2][0], static_cast<T>(1e-7));
+	BOOST_CHECK_SMALL(M[2][1], static_cast<T>(1e-7));
+	BOOST_CHECK_CLOSE(M[2][2], static_cast<T>(-0.002000200020), 1e-4f);
+	BOOST_CHECK_SMALL(M[2][3], static_cast<T>(1e-7));
+	BOOST_CHECK_CLOSE(M[3][0], static_cast<T>(-1.0), 1e-4f);
+	BOOST_CHECK_CLOSE(M[3][1], static_cast<T>(-1.0), 1e-4f);
+	BOOST_CHECK_CLOSE(M[3][2], static_cast<T>(-1.000200020002), 1e-4f);
+	BOOST_CHECK_CLOSE(M[3][3], static_cast<T>(1.0), 1e-4f);
+}
+
+BOOST_AUTO_TEST_CASE_TEMPLATE(perspective, T, float_types) {
+	math::core::matrix<T, 4> M(math::core::matrix<T, 4>::perspective(
+		static_cast<T>(1.0471975511965976), static_cast<T>(1.77777777777777777777),
+		static_cast<T>(0.1), static_cast<T>(1000.0)));
+	BOOST_CHECK_CLOSE(M[0][0], static_cast<T>(0.9742785792574936), 1e-4f);
+	BOOST_CHECK_SMALL(M[0][1], static_cast<T>(1e-7));
+	BOOST_CHECK_SMALL(M[0][2], static_cast<T>(1e-7));
+	BOOST_CHECK_SMALL(M[0][3], static_cast<T>(1e-7));
+	BOOST_CHECK_SMALL(M[1][0], static_cast<T>(1e-7));
+	BOOST_CHECK_CLOSE(M[1][1], static_cast<T>(1.7320508075688774), 1e-4f);
+	BOOST_CHECK_SMALL(M[1][2], static_cast<T>(1e-7));
+	BOOST_CHECK_SMALL(M[1][3], static_cast<T>(1e-7));
+	BOOST_CHECK_SMALL(M[2][0], static_cast<T>(1e-7));
+	BOOST_CHECK_SMALL(M[2][1], static_cast<T>(1e-7));
+	BOOST_CHECK_CLOSE(M[2][2], static_cast<T>(-1.0002000200020003), 1e-4f);
+	BOOST_CHECK_SMALL(M[2][3], static_cast<T>(1e-7));
+	BOOST_CHECK_SMALL(M[3][0], static_cast<T>(1e-7));
+	BOOST_CHECK_SMALL(M[3][1], static_cast<T>(1e-7));
+	BOOST_CHECK_CLOSE(M[3][2], static_cast<T>(-0.20002000200020004), 1e-4f);
+	BOOST_CHECK_SMALL(M[3][3], static_cast<T>(1e-7));
+}
+
 BOOST_AUTO_TEST_SUITE_END()

@@ -337,4 +337,107 @@ matrix<T, M, N> matrix<T, M, N>::inverse(void) const {
 	return this->adjugate() / this->det();
 }
 
+/**
+ * Create an affine translation matrix.
+ * @param disp Vector displacement.
+ * @return Translation matrix.
+ */
+template<typename T, std::size_t M, std::size_t N>
+template<typename U, typename>
+matrix<T, M, N> matrix<T, M, N>::translation(const vector<T, 3>& disp) {
+	matrix<T, M, N> transform;
+	transform[0][0] = static_cast<T>(1.0);
+	transform[1][1] = static_cast<T>(1.0);
+	transform[2][2] = static_cast<T>(1.0);
+	transform[3][0] = disp.x;
+	transform[3][1] = disp.y;
+	transform[3][2] = disp.z;
+	transform[3][3] = static_cast<T>(1.0);
+	return transform;
+}
+
+/**
+ * Create an affine rotation matrix.
+ * @param out Outwards direction.
+ * @param up Upwards direction.
+ * @return Rotation matrix.
+ */
+template<typename T, std::size_t M, std::size_t N>
+template<typename U, typename>
+matrix<T, M, N> matrix<T, M, N>::rotation(const vector<T, 3>& out, const vector<T, 3>& up) {
+	matrix<T, M, N> transform;
+	vector<T, 3> right(vector<T, 3>::cross(out, up).normal());
+	vector<T, 3> local_up(vector<T, 3>::cross(right, out));
+	transform[0].xyz = right;
+	transform[1].xyz = local_up;
+	transform[2].xyz = -out;
+	transform[3][3] = static_cast<T>(1.0);
+	return transform;
+}
+
+/**
+ * Create an affine scale scale matrix.
+ * @param x_scale Scale in the x-direction.
+ * @param y_scale Scale in the y-direction.
+ * @param z_scale Scale in the z-direction.
+ * @return Scale matrix.
+ */
+template<typename T, std::size_t M, std::size_t N>
+template<typename U, typename>
+matrix<T, M, N> matrix<T, M, N>::scale(const T& x_scale, const T& y_scale, const T& z_scale) {
+	matrix<T, M, N> transform;
+	transform[0][0] = x_scale;
+	transform[1][1] = y_scale;
+	transform[2][2] = z_scale;
+	transform[3][3] = static_cast<T>(1.0);
+	return transform;
+}
+
+/**
+ * Create an otrhographic projection matrix.
+ * @param left
+ * @param right
+ * @param bottom
+ * @param top
+ * @param near The near clipping plane.
+ * @param far The far clipping plane.
+ * @return Projection matrix.
+ */
+template<typename T, std::size_t M, std::size_t N>
+template<typename U, typename>
+matrix<T, M, N> matrix<T, M, N>::orthographic(const T& left, const T& right,
+		const T& bottom, const T& top, const T& near, const T& far) {
+	matrix<T, M, N> proj;
+	proj[0][0] = static_cast<T>(2.0) / (right - left);
+	proj[1][1] = static_cast<T>(2.0) / (top - bottom);
+	proj[2][2] = static_cast<T>(-2.0) / (far - near);
+	proj[3][0] = -((right + left) / (right - left));
+	proj[3][1] = -((top + bottom) / (top - bottom));
+	proj[3][2] = -((far + near) / (far - near));
+	proj[3][3] = static_cast<T>(1.0);
+	return proj;
+}
+
+/**
+ * Create a perspective projection matrix.
+ * @param fov The field of view.
+ * @param aspect The screen's aspect ratio.
+ * @param near The near clipping plane.
+ * @param far The far clipping plane.
+ * @return Projection matrix.
+ */
+template<typename T, std::size_t M, std::size_t N>
+template<typename U, typename>
+matrix<T, M, N> matrix<T, M, N>::perspective(const T& fov, const T& aspect,
+		const T&  near, const T& far) {
+	matrix<T, M, N> proj;
+	T y_scale = static_cast<T>(1.0) / math::tan(fov / static_cast<T>(2.0));
+	T x_scale = y_scale / aspect;
+	proj[0][0] = x_scale;
+	proj[1][1] = y_scale;
+	proj[2][2] = (far + near) / (near - far);
+	proj[3][2] = (static_cast<T>(2.0) * far * near) / (near - far);
+	return proj;
+}
+
 #endif

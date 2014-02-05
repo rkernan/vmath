@@ -156,28 +156,48 @@ public:
 	bool operator!=(const matrix<T, M, N>&) const;
 
 	template<typename U = T,
-		typename = typename std::enable_if<is_square_matrix<M, N>::value && std::is_same<T, U>::value, U>::type>
+		typename = typename std::enable_if<is_square_matrix<M, N>::value, U>::type>
 	T minor(const std::size_t, const std::size_t) const;
 
 	template<typename U = T,
-		typename = typename std::enable_if<is_square_matrix<M, N>::value && std::is_same<T, U>::value, U>::type>
+		typename = typename std::enable_if<is_square_matrix<M, N>::value, U>::type>
 	T det(void) const;
 
 	template<typename U = T,
-		typename = typename std::enable_if<is_square_matrix<M, N>::value && std::is_same<T, U>::value, U>::type>
+		typename = typename std::enable_if<is_square_matrix<M, N>::value, U>::type>
 	matrix<T, M, N> minors(void) const;
 
 	template<typename U = T,
-		typename = typename std::enable_if<is_square_matrix<M, N>::value && std::is_same<T, U>::value, U>::type>
+		typename = typename std::enable_if<is_square_matrix<M, N>::value, U>::type>
 	matrix<T, M, N> cofactor(void) const;
 
 	template<typename U = T,
-		typename = typename std::enable_if<is_square_matrix<M, N>::value && std::is_same<T, U>::value, U>::type>
+		typename = typename std::enable_if<is_square_matrix<M, N>::value, U>::type>
 	matrix<T, M, N> adjugate(void) const;
 
 	template<typename U = T,
-		typename = typename std::enable_if<is_square_matrix<M, N>::value && std::is_same<T, U>::value, U>::type>
+		typename = typename std::enable_if<is_square_matrix<M, N>::value, U>::type>
 	matrix<T, M, N> inverse(void) const;
+
+	template<typename U = T,
+		typename = typename std::enable_if<is_square_matrix<M, N>::value && M == 4, U>::type>
+	static matrix<T, M, N> translation(const vector<T, 3>&);
+
+	template<typename U = T,
+		typename = typename std::enable_if<is_square_matrix<M, N>::value && M == 4, U>::type>
+	static matrix<T, M, N> rotation(const vector<T, 3>&, const vector<T, 3>&);
+
+	template<typename U = T,
+		typename = typename std::enable_if<is_square_matrix<M, N>::value && M == 4, U>::type>
+	static matrix<T, M, N> scale(const T&, const T&, const T&);
+
+	template<typename U = T,
+		typename = typename std::enable_if<is_square_matrix<M, N>::value && M == 4, U>::type>
+	static matrix<T, M, N> orthographic(const T&, const T&, const T&, const T&, const T&, const T&);
+
+	template<typename U = T,
+		typename = typename std::enable_if<is_square_matrix<M, N>::value && M == 4, U>::type>
+	static matrix<T, M, N> perspective(const T&, const T&, const T&, const T&);
 };
 
 }
