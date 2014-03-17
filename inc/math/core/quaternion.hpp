@@ -25,6 +25,8 @@ public:
 	quaternion(const vector<T, 3>&, const T&);
 	quaternion(const matrix<T, 4>&);
 
+	~quaternion(void) = default;
+
 	quaternion<T>& operator=(const quaternion<T>&);
 
 	T operator[](const std::size_t) const;
