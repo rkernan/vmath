@@ -5,9 +5,6 @@
 # ctag files
 tags
 
-# Executables
-math-test
-
 # Compiled Object files
 *.slo
 *.lo
