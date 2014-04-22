@@ -36,7 +36,7 @@ set(SOURCES
 
 # test files
 set(SOURCES_TEST
-	test/math_tester.cpp
+	test/test_runner.cpp
 	test/math/func_unit.cpp
 	test/math/matrix2x2_unit.cpp
 	test/math/matrix2x3_unit.cpp
@@ -56,11 +56,14 @@ set(SOURCES_TEST
 	test/math/vector4_unit.cpp
 	)
 
-add_executable(math_tester
+add_executable(test_suite
 	${SOURCES}
 	${SOURCES_TEST}
 	)
 
 find_package(Boost COMPONENTS unit_test_framework REQUIRED)
 
-target_link_libraries(math_tester ${Boost_LIBRARIES})
+target_link_libraries(test_suite ${Boost_LIBRARIES})
+
+enable_testing()
+add_test(TestSuite test_suite)
