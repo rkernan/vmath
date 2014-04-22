@@ -18,6 +18,8 @@ include_directories(inc)
 
 set(CMAKE_CXX_FLAGS "-std=c++11 -Wall -Wextra -Winline -g -DDEBUG")
 
+set(MATH_INC_DIR inc)
+
 # unit test files
 set(MATH_TEST_UNIT_SRC
 	test/unit/func.cpp
