@@ -56,14 +56,14 @@ set(SOURCES_TEST
 	test/math/vector4_unit.cpp
 	)
 
-add_executable(test_suite
+add_executable(unit_tests
 	${SOURCES}
 	${SOURCES_TEST}
 	)
 
 find_package(Boost COMPONENTS unit_test_framework REQUIRED)
 
-target_link_libraries(test_suite ${Boost_LIBRARIES})
+target_link_libraries(unit_tests ${Boost_LIBRARIES})
 
 enable_testing()
-add_test(TestSuite test_suite)
+add_test(UnitTests unit_tests)
