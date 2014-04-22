@@ -12,7 +12,7 @@
 BOOST_AUTO_TEST_SUITE(matrix4x4)
 
 BOOST_AUTO_TEST_CASE_TEMPLATE(size, T, float_types) {
-	BOOST_WARN(sizeof(math::core::matrix<T, 4>) != 4 * 4 * sizeof(T));
+	BOOST_CHECK(sizeof(math::core::matrix<T, 4>) == 4 * 4 * sizeof(T));
 }
 
 BOOST_AUTO_TEST_CASE_TEMPLATE(create, T, float_types) {
