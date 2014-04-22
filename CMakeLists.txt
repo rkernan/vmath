@@ -18,52 +18,7 @@ include_directories(inc)
 
 set(CMAKE_CXX_FLAGS "-std=c++11 -Wall -Wextra -Winline -g -DDEBUG")
 
-# source files
-set(SOURCES
-	inc/math/func.hpp
-	inc/math/func.inl
-	inc/math/types.hpp
-	inc/math/core/vector.hpp
-	inc/math/core/vector.inl
-	inc/math/core/swizzle/swizzle.hpp
-	inc/math/core/swizzle/swizzle2.hpp
-	inc/math/core/swizzle/swizzle2.inl
-	inc/math/core/swizzle/swizzle3.hpp
-	inc/math/core/swizzle/swizzle3.hpp
-	inc/math/core/swizzle/swizzle4.inl
-	inc/math/core/swizzle/swizzle4.inl
-	)
+set(MATH_TEST_DIR ${CMAKE_CURRENT_SOURCE_DIR}/test)
+set(MATH_INC_DIR ${CMAKE_CURRENT_SOURCE_DIR}/inc)
 
-# test files
-set(SOURCES_TEST
-	test/test_runner.cpp
-	test/math/func_unit.cpp
-	test/math/matrix2x2_unit.cpp
-	test/math/matrix2x3_unit.cpp
-	test/math/matrix2x4_unit.cpp
-	test/math/matrix3x2_unit.cpp
-	test/math/matrix3x3_unit.cpp
-	test/math/matrix3x4_unit.cpp
-	test/math/matrix4x2_unit.cpp
-	test/math/matrix4x3_unit.cpp
-	test/math/matrix4x4_unit.cpp
-	test/math/quaternion_unit.cpp
-	test/math/swizzle2_unit.cpp
-	test/math/swizzle3_unit.cpp
-	test/math/swizzle4_unit.cpp
-	test/math/vector2_unit.cpp
-	test/math/vector3_unit.cpp
-	test/math/vector4_unit.cpp
-	)
-
-add_executable(unit_tests
-	${SOURCES}
-	${SOURCES_TEST}
-	)
-
-find_package(Boost COMPONENTS unit_test_framework REQUIRED)
-
-target_link_libraries(unit_tests ${Boost_LIBRARIES})
-
-enable_testing()
-add_test(UnitTests unit_tests)
+add_subdirectory(${MATH_TEST_DIR})
