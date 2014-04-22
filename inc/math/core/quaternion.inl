@@ -362,7 +362,7 @@ T quaternion<T>::angle(void) const {
  * @return Rotation matrix.
  */
 template<typename T>
-matrix<T, 4> quaternion<T>::matrix4(void) const {
+matrix<T, 4> quaternion<T>::to_matrix(void) const {
 	matrix<T, 4> mat;
 	mat[0][0] = static_cast<T>(1.0) - static_cast<T>(2.0) * (this->y * this->y) - static_cast<T>(2.0) * (this->z * this->z);
 	mat[0][1] = static_cast<T>(2.0) * (this->x * this->y) + static_cast<T>(2.0) * (this->w * this->z);

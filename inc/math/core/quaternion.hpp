@@ -65,7 +65,7 @@ public:
 	vector<T, 3> axis(void) const;
 	T angle(void) const;
 
-	matrix<T, 4> matrix4(void) const;
+	matrix<T, 4> to_matrix(void) const;
 
 	bool operator==(const quaternion<T>&) const;
 	bool operator!=(const quaternion<T>&) const;

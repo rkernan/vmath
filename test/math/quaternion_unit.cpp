@@ -463,7 +463,7 @@ BOOST_AUTO_TEST_CASE_TEMPLATE(to_matrix4, T, float_types) {
 	H.z = static_cast<T>(0.361453);
 	H.w = static_cast<T>(0.912173);
 	math::core::matrix<T, 4> M;
-	M = H.matrix4();
+	M = H.to_matrix();
 	BOOST_CHECK_CLOSE(M[0][0], static_cast<T>(0.696367031483999), 1e-3f);
 	BOOST_CHECK_CLOSE(M[0][1], static_cast<T>(0.6963627001160001), 1e-3f);
 	BOOST_CHECK_CLOSE(M[0][2], static_cast<T>(-0.17364002904), 1e-3f);
