@@ -9,14 +9,14 @@ namespace math {
 namespace core {
 
 /**
+ * Checks that the swizzle contains unique elements and, implicitly, that it is
+ * the same size or smaller than the underlying vector.
  * @struct is_assignable_swizzle
  * @tparam N Number of elements in the swizzle.
  * @tparam E1 Index of first element.
  * @tparam E2 Index of seconds element.
  * @tparam E3 Index of third element. Not required.
  * @tparam E4 Index of fourth element. Not required.
- * Checks that the swizzle contains unique elements and, implicitly, that it is
- * the same size or smaller than the underlying vector.
  */
 template<std::size_t N, std::size_t E1, std::size_t E2, std::size_t E3 = 0, std::size_t E4 = 0>
 struct is_assignable_swizzle : std::integral_constant<bool,
@@ -25,10 +25,10 @@ struct is_assignable_swizzle : std::integral_constant<bool,
 	(N < 4 || (E1 != E4 && E2 != E4 && E3 != E4))> {};
 
 /**
+ * Swizzle members. All swizzles extend this class.
  * @class swizzle
  * @tparam T Storage type.
  * @tparam N Storage size.
- * swizzle members. All swizzles extend this class.
  */
 template<typename T, std::size_t N>
 class swizzle {

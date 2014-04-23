@@ -15,20 +15,20 @@ namespace core {
 namespace {
 
 /**
+ * Checks that the given matrix dimensions make a square matrix.
  * @struct is_square_matrix
  * @param M Number of rows in the matrix.
  * @param N Number of columns in the matrix.
- * Checks that the given matrix dimensions make a square matrix.
  */
 template<std::size_t M, std::size_t N>
 struct is_square_matrix : std::integral_constant<bool, N == M> {};
 
 /**
+ * Definition of the components available in a generic matrix. Column-major.
  * @class matrix_components
  * @tparam T Storage type.
  * @tparam M Number of rows.
  * @tparam N Number of columns.
- * Definition of the components available in a generic matrix. Column-major.
  */
 template<typename T, std::size_t M, std::size_t N>
 class matrix_components {
@@ -42,10 +42,10 @@ public:
 };
 
 /**
+ * Matrix component specialization for column vectors. Column-major.
  * @class matrix_components
  * @tparam T Storage type.
  * @tparam M Number of rows.
- * matrix component specialization for column vectors. Column-major.
  */
 template<typename T, std::size_t M>
 class matrix_components<T, M, 1> {
@@ -60,10 +60,10 @@ public:
 };
 
 /**
+ * Matrix component specialization for matrices with 2 columns. Column-major.
  * @class matrix_components
  * @tparam T Storage type.
  * @tparam M Number of rows.
- * matrix component specialization for matrices with 2 columns. Column-major.
  */
 template<typename T, std::size_t M>
 class matrix_components<T, M, 2> {
@@ -78,10 +78,10 @@ public:
 };
 
 /**
+ * Matrix component specialization for matrices with 3 columns. Column-major.
  * @class matrix_components
  * @tparam T Storage type.
  * @tparam M Number of rows.
- * matrix component specialization for matrices with 3 columns. Column-major.
  */
 template<typename T, std::size_t M>
 class matrix_components<T, M, 3> {
@@ -97,10 +97,10 @@ public:
 };
 
 /**
+ * Matrix component specialization for matrices with 4 columns. Column-major.
  * @class matrix_components
  * @tparam T Storage type.
  * @tparam M Number of rows.
- * matrix component specialization for matrices with 4 columns. Column-major.
  */
 template<typename T, std::size_t M>
 class matrix_components<T, M, 4> {
@@ -118,11 +118,11 @@ public:
 }
 
 /**
+ * A matrix with generic size and type. Column-major.
  * @class matrix
  * @tparam T Storage type.
  * @tparam M Number of rows.
  * @tparam N Number of columns. Defaults to number of rows.
- * A matrix with generic size and type. Column-major.
  */
 template<typename T, std::size_t M, std::size_t N = M>
 class matrix : public matrix_components<T, M, N> {

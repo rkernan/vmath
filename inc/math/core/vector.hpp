@@ -16,10 +16,10 @@ namespace core {
 namespace {
 
 /**
+* Definition of the components available in a generic vector.
 * @class vector_components
 * @tparam T Storage type.
 * @tparam N Number of vector elements.
-* Definition of the components available in a generic vector.
 */
 template<typename T, std::size_t N>
 class vector_components {
@@ -31,9 +31,9 @@ public:
 };
 
 /**
+* Vector component specialization for 2-dimensional vectors.
 * @class vector_components
 * @tparam T Storage type.
-* vector component specialization for 2-dimensional vectors.
 */
 template<typename T>
 class vector_components<T, 2> {
@@ -65,9 +65,9 @@ public:
 };
 
 /**
+* Vector component specialization for 3-dimensional vectors.
 * @class vector_components
 * @tparam T Storage type.
-* vector component specialization for 3-dimensional vectors.
 */
 template<typename T>
 class vector_components<T, 3> {
@@ -100,9 +100,9 @@ public:
 };
 
 /**
+* Vector component specialization for 4-dimensional vectors.
 * @class vector_components
 * @tparam T Storage type.
-* vector component specialization for 4-dimensional vectors.
 */
 template<typename T>
 class vector_components<T, 4> {
@@ -138,10 +138,10 @@ public:
 }
 
 /**
+ * A vector with generic size and type.
  * @class vector
  * @tparam T Storage type.
  * @tparam N Number of vector elements.
- * A vector with generic size and type.
  */
 template<typename T, std::size_t N>
 class vector : public vector_components<T, N> {

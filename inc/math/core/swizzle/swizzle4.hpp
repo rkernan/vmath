@@ -10,6 +10,7 @@ template<typename T, std::size_t N>
 class vector;
 
 /**
+ * A 4-dimensional vector swizzle.
  * @class swizzle4
  * @tparam T Storage type.
  * @tparam N Storage size.
@@ -17,7 +18,6 @@ class vector;
  * @tparam E2 Index of second element.
  * @tparam E3 Index of third element.
  * @tparam E4 Index of fourth element.
- * A 4-dimensional vector swizzle.
  */
 template<typename T, std::size_t N, std::size_t E1, std::size_t E2, std::size_t E3, std::size_t E4>
 class swizzle4 : public swizzle<T, N> {

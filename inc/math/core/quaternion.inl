@@ -11,10 +11,9 @@
 using namespace math::core;
 
 /**
- * Parameterized constructor.
- * Convert axis and angle (in radians) to a quaternion.
+ * Convert axis and angle to a quaternion.
  * @param axis Axis of rotation.
- * @param angle Angle of rotation.
+ * @param angle Angle of rotation in radians.
  */
 template<typename T>
 quaternion<T>::quaternion(const vector<T, 3>& axis, const T& angle) {
@@ -27,8 +26,7 @@ quaternion<T>::quaternion(const vector<T, 3>& axis, const T& angle) {
 }
 
 /**
- * Parameterized constructor.
- * Convert euler angles (in radians) to a quaternion.
+ * Convert euler angles to a quaternion.
  * @param pitch Counter-clockwise x-axis rotation in radians.
  * @param yaw Counter-clockwise y-axis rotation in radians.
  * @param roll Counter-clockwise z-axis rotation in radians.
@@ -52,7 +50,6 @@ quaternion<T>::quaternion(const T& pitch, const T& yaw, const T& roll) {
 }
 
 /**
- * Parameterized constructor.
  * Convert a matrix to a quaternion.
  * @param mat matrix to convert.
  */

@@ -12,9 +12,9 @@ namespace math {
 namespace core {
 
 /**
+ * A quaternion rotation.
  * @class quaternion
  * @tparam T Storage type.
- * A quaternion rotation.
  */
 template<typename T>
 class quaternion {
