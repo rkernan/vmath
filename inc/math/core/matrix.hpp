@@ -12,7 +12,6 @@
 
 namespace math {
 namespace core {
-namespace {
 
 /**
  * Checks that the given matrix dimensions make a square matrix.
@@ -22,6 +21,8 @@ namespace {
  */
 template<std::size_t M, std::size_t N>
 struct is_square_matrix : std::integral_constant<bool, N == M> {};
+
+namespace {
 
 /**
  * Definition of the components available in a generic matrix. Column-major.
