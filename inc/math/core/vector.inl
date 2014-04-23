@@ -10,7 +10,7 @@
 #include <string>
 #include <type_traits>
 
-#include "../func.hpp"
+#include "../functions.hpp"
 
 using namespace math::core;
 

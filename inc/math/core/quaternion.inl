@@ -6,7 +6,7 @@
 #include <ostream>
 
 #include "vector.hpp"
-#include "../func.hpp"
+#include "../functions.hpp"
 
 using namespace math::core;
 

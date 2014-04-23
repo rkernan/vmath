@@ -1,5 +1,5 @@
-#ifndef MATH_FUNC_HPP
-#define MATH_FUNC_HPP
+#ifndef MATH_FUNCIONS_HPP
+#define MATH_FUNCIONS_HPP
 
 #include <cmath>
 #include <type_traits>
@@ -79,6 +79,6 @@ T min(const T, const T);
 
 }
 
-#include "func.inl"
+#include "functions.inl"
 
 #endif

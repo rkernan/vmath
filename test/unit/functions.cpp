@@ -2,7 +2,7 @@
 #include <boost/test/unit_test.hpp>
 #include <boost/test/test_case_template.hpp>
 
-#include <math/func.hpp>
+#include <math/functions.hpp>
 
 #include "../type_lists.hpp"
 

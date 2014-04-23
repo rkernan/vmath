@@ -1,6 +1,6 @@
 set(SOURCES_UnitTests
 	unit_test_runner.cpp
-	unit/func.cpp
+	unit/functions.cpp
 	unit/matrix2x2.cpp
 	unit/matrix2x3.cpp
 	unit/matrix2x4.cpp
