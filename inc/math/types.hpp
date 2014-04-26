@@ -1,9 +1,9 @@
 #ifndef MATH_TYPES_HPP
 #define MATH_TYPES_HPP
 
-#include "core/matrix.hpp"
-#include "core/quaternion.hpp"
-#include "core/vector.hpp"
+#include <math/core/matrix.hpp>
+#include <math/core/quaternion.hpp>
+#include <math/core/vector.hpp>
 
 namespace math {
 

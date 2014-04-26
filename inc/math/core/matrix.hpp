@@ -3,8 +3,9 @@
 
 #include <array>
 #include <cstddef>
+#include <ostream>
 
-#include "vector.hpp"
+#include <math/core/vector.hpp>
 
 #ifdef minor
 #undef minor

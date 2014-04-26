@@ -1,7 +1,7 @@
 #ifndef MATH_CORE_VECTOR_INL
 #define MATH_CORE_VECTOR_INL
 
-#include "vector.hpp"
+#include <math/core/vector.hpp>
 
 #include <array>
 #include <cstddef>
@@ -10,7 +10,7 @@
 #include <string>
 #include <type_traits>
 
-#include "../functions.hpp"
+#include <math/functions.hpp>
 
 using namespace math::core;
 

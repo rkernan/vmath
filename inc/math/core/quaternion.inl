@@ -1,12 +1,12 @@
 #ifndef MATH_CORE_QUATERNION_INL
 #define MATH_CORE_QUATERNION_INL
 
-#include "quaternion.hpp"
+#include <math/core/quaternion.hpp>
 
 #include <ostream>
 
-#include "vector.hpp"
-#include "../functions.hpp"
+#include <math/core/vector.hpp>
+#include <math/functions.hpp>
 
 using namespace math::core;
 

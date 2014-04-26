@@ -6,10 +6,10 @@
 #include <ostream>
 #include <type_traits>
 
-#include "swizzle/swizzle2.hpp"
-#include "swizzle/swizzle3.hpp"
-#include "swizzle/swizzle4.hpp"
-#include "swizzle/swizzle_gen.hpp"
+#include <math/core/swizzle/swizzle2.hpp>
+#include <math/core/swizzle/swizzle3.hpp>
+#include <math/core/swizzle/swizzle4.hpp>
+#include <math/core/swizzle/swizzle_gen.hpp>
 
 namespace math {
 namespace core {

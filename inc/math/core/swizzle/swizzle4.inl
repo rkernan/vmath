@@ -1,9 +1,9 @@
 #ifndef MATH_CORE_SWIZZLE_SWIZZLE4_INL
 #define MATH_CORE_SWIZZLE_SWIZZLE4_INL
 
-#include "swizzle4.hpp"
+#include <math/core/swizzle/swizzle4.hpp>
 
-#include "../vector.hpp"
+#include <math/core/vector.hpp>
 
 using namespace math::core;
 

@@ -4,8 +4,8 @@
 #include <cstddef>
 #include <ostream>
 
-#include "matrix.hpp"
-#include "vector.hpp"
+#include <math/core/matrix.hpp>
+#include <math/core/vector.hpp>
 
 namespace math {
 

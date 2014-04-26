@@ -1,7 +1,7 @@
 #ifndef MATH_CORE_SWIZZLE_SWIZZLE3_HPP
 #define MATH_CORE_SWIZZLE_SWIZZLE3_HPP
 
-#include "swizzle.hpp"
+#include <math/core/swizzle/swizzle.hpp>
 
 namespace math {
 namespace core {

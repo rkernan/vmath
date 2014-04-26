@@ -3,7 +3,7 @@
 
 #include <type_traits>
 
-#include "swizzle.hpp"
+#include <math/core/swizzle/swizzle.hpp>
 
 namespace math {
 namespace core {

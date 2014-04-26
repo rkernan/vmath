@@ -1,10 +1,10 @@
 #ifndef MATH_CORE_MATRIX_INL
 #define MATH_CORE_MATRIX_INL
 
+#include <math/core/matrix.hpp>
+
 #include <array>
 #include <cstddef>
-
-#include "matrix.hpp"
 
 using namespace math::core;
 
