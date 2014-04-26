@@ -79,6 +79,6 @@ T min(const T, const T);
 
 }
 
-#include "functions.inl"
+#include <math/functions.inl>
 
 #endif

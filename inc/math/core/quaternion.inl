@@ -3,10 +3,9 @@
 
 #include <math/core/quaternion.hpp>
 
-#include <ostream>
-
-#include <math/core/vector.hpp>
 #include <math/functions.hpp>
+#include <math/core/matrix.hpp>
+#include <math/core/vector.hpp>
 
 using namespace math::core;
 

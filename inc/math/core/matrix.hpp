@@ -4,7 +4,6 @@
 #include <array>
 #include <cstddef>
 #include <ostream>
-
 #include <math/core/vector.hpp>
 
 #ifdef minor
@@ -205,6 +204,6 @@ public:
 }
 }
 
-#include "matrix.inl"
+#include <math/core/matrix.inl>
 
 #endif

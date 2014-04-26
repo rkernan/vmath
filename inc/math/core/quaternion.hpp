@@ -1,15 +1,18 @@
 #ifndef MATH_CORE_QUATERNION_HPP
 #define MATH_CORE_QUATERNION_HPP
 
+#include <array>
 #include <cstddef>
 #include <ostream>
 
-#include <math/core/matrix.hpp>
-#include <math/core/vector.hpp>
-
 namespace math {
-
 namespace core {
+
+template<typename T, std::size_t N>
+class vector;
+
+template<typename T, std::size_t M, std::size_t N>
+class matrix;
 
 /**
  * A quaternion rotation.
@@ -23,7 +26,7 @@ public:
 	quaternion(const T& x, const T& y, const T& z, const T& w) : x(x), y(y), z(z), w(w) {}
 	quaternion(const T&, const T&, const T&);
 	quaternion(const vector<T, 3>&, const T&);
-	quaternion(const matrix<T, 4>&);
+	quaternion(const matrix<T, 4, 4>&);
 
 	~quaternion(void) = default;
 
@@ -65,7 +68,7 @@ public:
 	vector<T, 3> axis(void) const;
 	T angle(void) const;
 
-	matrix<T, 4> to_matrix(void) const;
+	matrix<T, 4, 4> to_matrix(void) const;
 
 	bool operator==(const quaternion<T>&) const;
 	bool operator!=(const quaternion<T>&) const;
@@ -85,6 +88,6 @@ public:
 }
 }
 
-#include "quaternion.inl"
+#include <math/core/quaternion.inl>
 
 #endif

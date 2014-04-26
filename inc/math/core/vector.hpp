@@ -5,7 +5,6 @@
 #include <cstddef>
 #include <ostream>
 #include <type_traits>
-
 #include <math/core/swizzle/swizzle2.hpp>
 #include <math/core/swizzle/swizzle3.hpp>
 #include <math/core/swizzle/swizzle4.hpp>
@@ -193,6 +192,6 @@ public:
 }
 }
 
-#include "vector.inl"
+#include <math/core/vector.inl>
 
 #endif

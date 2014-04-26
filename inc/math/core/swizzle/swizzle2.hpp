@@ -1,8 +1,6 @@
 #ifndef MATH_CORE_SWIZZLE_SWIZZLE2_HPP
 #define MATH_CORE_SWIZZLE_SWIZZLE2_HPP
 
-#include <type_traits>
-
 #include <math/core/swizzle/swizzle.hpp>
 
 namespace math {
@@ -87,6 +85,6 @@ public:
 }
 }
 
-#include "swizzle2.inl"
+#include <math/core/swizzle/swizzle2.inl>
 
 #endif

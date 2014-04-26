@@ -3,9 +3,6 @@
 
 #include <math/core/matrix.hpp>
 
-#include <array>
-#include <cstddef>
-
 using namespace math::core;
 
 /**

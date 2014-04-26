@@ -3,13 +3,8 @@
 
 #include <math/core/vector.hpp>
 
-#include <array>
-#include <cstddef>
-#include <ostream>
 #include <stdexcept>
 #include <string>
-#include <type_traits>
-
 #include <math/functions.hpp>
 
 using namespace math::core;

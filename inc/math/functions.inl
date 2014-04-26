@@ -1,7 +1,7 @@
 #ifndef MATH_FUNCTIONS_INL
 #define MATH_FUNCTIONS_INL
 
-#include "functions.hpp"
+#include <math/functions.hpp>
 
 #include <cmath>
 

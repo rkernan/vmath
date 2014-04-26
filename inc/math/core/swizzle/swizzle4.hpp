@@ -89,6 +89,6 @@ public:
 }
 }
 
-#include "swizzle4.inl"
+#include <math/core/swizzle/swizzle4.inl>
 
 #endif
