@@ -3,7 +3,6 @@
 
 #include <array>
 #include <cstddef>
-#include <ostream>
 #include <math/core/vector.hpp>
 
 #ifdef minor
