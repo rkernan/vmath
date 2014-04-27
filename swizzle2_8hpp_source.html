@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.7"/>
-<title>math: inc/math/core/swizzle/swizzle2.hpp Source File</title>
+<title>math: math/core/swizzle/swizzle2.hpp Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -80,7 +80,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 
 <div id="nav-path" class="navpath">
   <ul>
-<li class="navelem"><a class="el" href="dir_eb6c8dcc7716375660929920bc21a374.html">inc</a></li><li class="navelem"><a class="el" href="dir_5047a49618daadd2e96b514ff8048b30.html">math</a></li><li class="navelem"><a class="el" href="dir_c705f5a86ca0e61bd944dbbd306b165a.html">core</a></li><li class="navelem"><a class="el" href="dir_f3a9a7ce1159fe2d5e2e0df201f23f50.html">swizzle</a></li>  </ul>
+<li class="navelem"><a class="el" href="dir_296d53ceaeaa7e099814a6def439fe8a.html">math</a></li><li class="navelem"><a class="el" href="dir_62ca1048e069fa9a8cd78dbf1d0fb438.html">core</a></li><li class="navelem"><a class="el" href="dir_61227fc0028ac21b5d031bc185c566b6.html">swizzle</a></li>  </ul>
 </div>
 </div><!-- top -->
 <div class="header">
@@ -91,89 +91,87 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a href="swizzle2_8hpp.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor">#ifndef MATH_CORE_SWIZZLE_SWIZZLE2_HPP</span></div>
 <div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="preprocessor">#define MATH_CORE_SWIZZLE_SWIZZLE2_HPP</span></div>
 <div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;</div>
-<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="preprocessor">#include &lt;type_traits&gt;</span></div>
+<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="swizzle_8hpp.html">math/core/swizzle/swizzle.hpp</a>&gt;</span></div>
 <div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;</div>
-<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="swizzle_8hpp.html">swizzle.hpp</a>&quot;</span></div>
-<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;</div>
-<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="keyword">namespace </span>math {</div>
-<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="keyword">namespace </span>core {</div>
-<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;</div>
-<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="keyword">template</span>&lt;<span class="keyword">typename</span> T, std::<span class="keywordtype">size_t</span> N&gt;</div>
-<div class="line"><a name="l00012"></a><span class="lineno"><a class="line" href="classmath_1_1core_1_1vector.html">   12</a></span>&#160;<span class="keyword">class </span><a class="code" href="classmath_1_1core_1_1vector.html">vector</a>;</div>
-<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;</div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;<span class="keyword">template</span>&lt;<span class="keyword">typename</span> T, std::<span class="keywordtype">size_t</span> N, std::<span class="keywordtype">size_t</span> E1, std::<span class="keywordtype">size_t</span> E2&gt;</div>
-<div class="line"><a name="l00023"></a><span class="lineno"><a class="line" href="classmath_1_1core_1_1swizzle2.html">   23</a></span>&#160;<span class="keyword">class </span><a class="code" href="classmath_1_1core_1_1swizzle2.html">swizzle2</a> : <span class="keyword">public</span> <a class="code" href="classmath_1_1core_1_1swizzle.html">swizzle</a>&lt;T, N&gt; {</div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;<span class="keyword">private</span>:</div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;    <span class="keyword">inline</span> <a class="code" href="classmath_1_1core_1_1vector.html">vector&lt;T, 2&gt;</a> to_vector2(<span class="keywordtype">void</span>) <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;<span class="keyword">public</span>:</div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;    <span class="keyword">operator</span> <a class="code" href="classmath_1_1core_1_1vector.html">vector&lt;T, 2&gt;</a>(void);</div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;</div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;    <span class="keyword">template</span>&lt;<span class="keyword">typename</span> U = T,</div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;        <span class="keyword">typename</span> = <span class="keyword">typename</span> std::enable_if&lt;is_assignable_swizzle&lt;2, E1, E2&gt;::value</div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;        &amp;&amp; std::is_same&lt;T, U&gt;::value, U&gt;::type&gt;</div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;    <a class="code" href="classmath_1_1core_1_1vector.html">vector&lt;T, 2&gt;</a>&amp; <a class="code" href="classmath_1_1core_1_1swizzle2.html#a46f236d0e89f6a688ebdabaac7ada796">operator=</a>(<span class="keyword">const</span> <a class="code" href="classmath_1_1core_1_1vector.html">vector&lt;T, 2&gt;</a>&amp;);</div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="keyword">namespace </span>math {</div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="keyword">namespace </span>core {</div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;</div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="keyword">template</span>&lt;<span class="keyword">typename</span> T, std::<span class="keywordtype">size_t</span> N&gt;</div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="keyword">class </span><a class="code" href="classmath_1_1core_1_1vector.html">vector</a>;</div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;</div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;<span class="keyword">template</span>&lt;<span class="keyword">typename</span> T, std::<span class="keywordtype">size_t</span> N, std::<span class="keywordtype">size_t</span> E1, std::<span class="keywordtype">size_t</span> E2&gt;</div>
+<div class="line"><a name="l00021"></a><span class="lineno"><a class="line" href="classmath_1_1core_1_1swizzle2.html">   21</a></span>&#160;<span class="keyword">class </span><a class="code" href="classmath_1_1core_1_1swizzle2.html">swizzle2</a> : <span class="keyword">public</span> <a class="code" href="classmath_1_1core_1_1swizzle.html">swizzle</a>&lt;T, N&gt; {</div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;<span class="keyword">private</span>:</div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;    <span class="keyword">inline</span> <a class="code" href="classmath_1_1core_1_1vector.html">vector&lt;T, 2&gt;</a> to_vector2(<span class="keywordtype">void</span>) <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;<span class="keyword">public</span>:</div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;    <span class="keyword">operator</span> <a class="code" href="classmath_1_1core_1_1vector.html">vector&lt;T, 2&gt;</a>(void);</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;    <span class="keyword">template</span>&lt;<span class="keyword">typename</span> U = T,</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;        <span class="keyword">typename</span> = <span class="keyword">typename</span> std::enable_if&lt;is_assignable_swizzle&lt;2, E1, E2&gt;::value</div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;        &amp;&amp; std::is_same&lt;T, U&gt;::value, U&gt;::type&gt;</div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;    <a class="code" href="classmath_1_1core_1_1vector.html">vector&lt;T, 2&gt;</a>&amp; <a class="code" href="classmath_1_1core_1_1swizzle2.html#a46f236d0e89f6a688ebdabaac7ada796">operator=</a>(<span class="keyword">const</span> <a class="code" href="classmath_1_1core_1_1vector.html">vector&lt;T, 2&gt;</a>&amp;);</div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;</div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;    <a class="code" href="classmath_1_1core_1_1vector.html">vector&lt;T, 2&gt;</a> <a class="code" href="classmath_1_1core_1_1swizzle2.html#ac271a23ab14ccbbf5d6a18080da7bf33">operator-</a>(<span class="keywordtype">void</span>) <span class="keyword">const</span>;</div>
 <div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;</div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;    <a class="code" href="classmath_1_1core_1_1vector.html">vector&lt;T, 2&gt;</a> <a class="code" href="classmath_1_1core_1_1swizzle2.html#ac271a23ab14ccbbf5d6a18080da7bf33">operator-</a>(<span class="keywordtype">void</span>) <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;    <a class="code" href="classmath_1_1core_1_1vector.html">vector&lt;T, 2&gt;</a> <a class="code" href="classmath_1_1core_1_1swizzle2.html#a836dea3279d3980fbb6983ad16e3a20e">operator+</a>(<span class="keyword">const</span> <a class="code" href="classmath_1_1core_1_1vector.html">vector&lt;T, 2&gt;</a>&amp;) <span class="keyword">const</span>;</div>
 <div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;</div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;    <a class="code" href="classmath_1_1core_1_1vector.html">vector&lt;T, 2&gt;</a> <a class="code" href="classmath_1_1core_1_1swizzle2.html#a836dea3279d3980fbb6983ad16e3a20e">operator+</a>(<span class="keyword">const</span> <a class="code" href="classmath_1_1core_1_1vector.html">vector&lt;T, 2&gt;</a>&amp;) <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;</div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;    <span class="keyword">template</span>&lt;<span class="keyword">typename</span> U = T,</div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;        <span class="keyword">typename</span> = <span class="keyword">typename</span> std::enable_if&lt;is_assignable_swizzle&lt;2, E1, E2&gt;::value</div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;        &amp;&amp; std::is_same&lt;T, U&gt;::value, U&gt;::type&gt;</div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;    <a class="code" href="classmath_1_1core_1_1vector.html">vector&lt;T, 2&gt;</a>&amp; <a class="code" href="classmath_1_1core_1_1swizzle2.html#aa87a9de62544d06a7d80e18cc9eea975">operator+=</a>(<span class="keyword">const</span> <a class="code" href="classmath_1_1core_1_1vector.html">vector&lt;T, 2&gt;</a>&amp;);</div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;    <span class="keyword">template</span>&lt;<span class="keyword">typename</span> U = T,</div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;        <span class="keyword">typename</span> = <span class="keyword">typename</span> std::enable_if&lt;is_assignable_swizzle&lt;2, E1, E2&gt;::value</div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;        &amp;&amp; std::is_same&lt;T, U&gt;::value, U&gt;::type&gt;</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;    <a class="code" href="classmath_1_1core_1_1vector.html">vector&lt;T, 2&gt;</a>&amp; <a class="code" href="classmath_1_1core_1_1swizzle2.html#aa87a9de62544d06a7d80e18cc9eea975">operator+=</a>(<span class="keyword">const</span> <a class="code" href="classmath_1_1core_1_1vector.html">vector&lt;T, 2&gt;</a>&amp;);</div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;    <a class="code" href="classmath_1_1core_1_1vector.html">vector&lt;T, 2&gt;</a> <a class="code" href="classmath_1_1core_1_1swizzle2.html#ac271a23ab14ccbbf5d6a18080da7bf33">operator-</a>(<span class="keyword">const</span> <a class="code" href="classmath_1_1core_1_1vector.html">vector&lt;T, 2&gt;</a>&amp;) <span class="keyword">const</span>;</div>
 <div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;</div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;    <a class="code" href="classmath_1_1core_1_1vector.html">vector&lt;T, 2&gt;</a> <a class="code" href="classmath_1_1core_1_1swizzle2.html#ac271a23ab14ccbbf5d6a18080da7bf33">operator-</a>(<span class="keyword">const</span> <a class="code" href="classmath_1_1core_1_1vector.html">vector&lt;T, 2&gt;</a>&amp;) <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;</div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;    <span class="keyword">template</span>&lt;<span class="keyword">typename</span> U = T,</div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;        <span class="keyword">typename</span> = <span class="keyword">typename</span> std::enable_if&lt;is_assignable_swizzle&lt;2, E1, E2&gt;::value</div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;        &amp;&amp; std::is_same&lt;T, U&gt;::value, U&gt;::type&gt;</div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;    <a class="code" href="classmath_1_1core_1_1vector.html">vector&lt;T, 2&gt;</a>&amp; <a class="code" href="classmath_1_1core_1_1swizzle2.html#af9817ad29228571a996976a06b109bfe">operator-=</a>(<span class="keyword">const</span> <a class="code" href="classmath_1_1core_1_1vector.html">vector&lt;T, 2&gt;</a>&amp;);</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;    <span class="keyword">template</span>&lt;<span class="keyword">typename</span> U = T,</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;        <span class="keyword">typename</span> = <span class="keyword">typename</span> std::enable_if&lt;is_assignable_swizzle&lt;2, E1, E2&gt;::value</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;        &amp;&amp; std::is_same&lt;T, U&gt;::value, U&gt;::type&gt;</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;    <a class="code" href="classmath_1_1core_1_1vector.html">vector&lt;T, 2&gt;</a>&amp; <a class="code" href="classmath_1_1core_1_1swizzle2.html#af9817ad29228571a996976a06b109bfe">operator-=</a>(<span class="keyword">const</span> <a class="code" href="classmath_1_1core_1_1vector.html">vector&lt;T, 2&gt;</a>&amp;);</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;    <a class="code" href="classmath_1_1core_1_1vector.html">vector&lt;T, 2&gt;</a> <a class="code" href="classmath_1_1core_1_1swizzle2.html#a5c9902151fe623b15a7d72f17f3e0279">operator*</a>(<span class="keyword">const</span> <a class="code" href="classmath_1_1core_1_1vector.html">vector&lt;T, 2&gt;</a>&amp;) <span class="keyword">const</span>;</div>
 <div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;</div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;    <a class="code" href="classmath_1_1core_1_1vector.html">vector&lt;T, 2&gt;</a> <a class="code" href="classmath_1_1core_1_1swizzle2.html#a5c9902151fe623b15a7d72f17f3e0279">operator*</a>(<span class="keyword">const</span> <a class="code" href="classmath_1_1core_1_1vector.html">vector&lt;T, 2&gt;</a>&amp;) <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;</div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;    <span class="keyword">template</span>&lt;<span class="keyword">typename</span> U = T,</div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;        <span class="keyword">typename</span> = <span class="keyword">typename</span> std::enable_if&lt;is_assignable_swizzle&lt;2, E1, E2&gt;::value</div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;        &amp;&amp; std::is_same&lt;T, U&gt;::value, U&gt;::type&gt;</div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;    <a class="code" href="classmath_1_1core_1_1vector.html">vector&lt;T, 2&gt;</a>&amp; <a class="code" href="classmath_1_1core_1_1swizzle2.html#a2bf0e10843c4d2c245c6dbea853a13af">operator*=</a>(<span class="keyword">const</span> <a class="code" href="classmath_1_1core_1_1vector.html">vector&lt;T, 2&gt;</a>&amp;);</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;    <span class="keyword">template</span>&lt;<span class="keyword">typename</span> U = T,</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;        <span class="keyword">typename</span> = <span class="keyword">typename</span> std::enable_if&lt;is_assignable_swizzle&lt;2, E1, E2&gt;::value</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;        &amp;&amp; std::is_same&lt;T, U&gt;::value, U&gt;::type&gt;</div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;    <a class="code" href="classmath_1_1core_1_1vector.html">vector&lt;T, 2&gt;</a>&amp; <a class="code" href="classmath_1_1core_1_1swizzle2.html#a2bf0e10843c4d2c245c6dbea853a13af">operator*=</a>(<span class="keyword">const</span> <a class="code" href="classmath_1_1core_1_1vector.html">vector&lt;T, 2&gt;</a>&amp;);</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;    <a class="code" href="classmath_1_1core_1_1vector.html">vector&lt;T, 2&gt;</a> <a class="code" href="classmath_1_1core_1_1swizzle2.html#aa439c349f9181a952d46dbc5172674b3">operator/</a>(<span class="keyword">const</span> <a class="code" href="classmath_1_1core_1_1vector.html">vector&lt;T, 2&gt;</a>&amp;) <span class="keyword">const</span>;</div>
 <div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;</div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;    <a class="code" href="classmath_1_1core_1_1vector.html">vector&lt;T, 2&gt;</a> <a class="code" href="classmath_1_1core_1_1swizzle2.html#aa439c349f9181a952d46dbc5172674b3">operator/</a>(<span class="keyword">const</span> <a class="code" href="classmath_1_1core_1_1vector.html">vector&lt;T, 2&gt;</a>&amp;) <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;</div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;    <span class="keyword">template</span>&lt;<span class="keyword">typename</span> U = T,</div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;        <span class="keyword">typename</span> = <span class="keyword">typename</span> std::enable_if&lt;is_assignable_swizzle&lt;2, E1, E2&gt;::value</div>
-<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;        &amp;&amp; std::is_same&lt;T, U&gt;::value, U&gt;::type&gt;</div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;    <a class="code" href="classmath_1_1core_1_1vector.html">vector&lt;T, 2&gt;</a>&amp; <a class="code" href="classmath_1_1core_1_1swizzle2.html#aa4e37ab157e8aba522327fb0a4661f63">operator/=</a>(<span class="keyword">const</span> <a class="code" href="classmath_1_1core_1_1vector.html">vector&lt;T, 2&gt;</a>&amp;);</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;    <span class="keyword">template</span>&lt;<span class="keyword">typename</span> U = T,</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;        <span class="keyword">typename</span> = <span class="keyword">typename</span> std::enable_if&lt;is_assignable_swizzle&lt;2, E1, E2&gt;::value</div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;        &amp;&amp; std::is_same&lt;T, U&gt;::value, U&gt;::type&gt;</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;    <a class="code" href="classmath_1_1core_1_1vector.html">vector&lt;T, 2&gt;</a>&amp; <a class="code" href="classmath_1_1core_1_1swizzle2.html#aa4e37ab157e8aba522327fb0a4661f63">operator/=</a>(<span class="keyword">const</span> <a class="code" href="classmath_1_1core_1_1vector.html">vector&lt;T, 2&gt;</a>&amp;);</div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;</div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;    <a class="code" href="classmath_1_1core_1_1vector.html">vector&lt;T, 2&gt;</a> <a class="code" href="classmath_1_1core_1_1swizzle2.html#a5c9902151fe623b15a7d72f17f3e0279">operator*</a>(<span class="keyword">const</span> T&amp;) <span class="keyword">const</span>;</div>
 <div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;</div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;    <a class="code" href="classmath_1_1core_1_1vector.html">vector&lt;T, 2&gt;</a> <a class="code" href="classmath_1_1core_1_1swizzle2.html#a5c9902151fe623b15a7d72f17f3e0279">operator*</a>(<span class="keyword">const</span> T&amp;) <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;</div>
-<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;    <span class="keyword">template</span>&lt;<span class="keyword">typename</span> U = T,</div>
-<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;        <span class="keyword">typename</span> = <span class="keyword">typename</span> std::enable_if&lt;is_assignable_swizzle&lt;2, E1, E2&gt;::value</div>
-<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;        &amp;&amp; std::is_same&lt;T, U&gt;::value, U&gt;::type&gt;</div>
-<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;    <a class="code" href="classmath_1_1core_1_1vector.html">vector&lt;T, 2&gt;</a>&amp; <a class="code" href="classmath_1_1core_1_1swizzle2.html#a2bf0e10843c4d2c245c6dbea853a13af">operator*=</a>(<span class="keyword">const</span> T&amp;);</div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;    <span class="keyword">template</span>&lt;<span class="keyword">typename</span> U = T,</div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;        <span class="keyword">typename</span> = <span class="keyword">typename</span> std::enable_if&lt;is_assignable_swizzle&lt;2, E1, E2&gt;::value</div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;        &amp;&amp; std::is_same&lt;T, U&gt;::value, U&gt;::type&gt;</div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;    <a class="code" href="classmath_1_1core_1_1vector.html">vector&lt;T, 2&gt;</a>&amp; <a class="code" href="classmath_1_1core_1_1swizzle2.html#a2bf0e10843c4d2c245c6dbea853a13af">operator*=</a>(<span class="keyword">const</span> T&amp;);</div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;</div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;    <a class="code" href="classmath_1_1core_1_1vector.html">vector&lt;T, 2&gt;</a> <a class="code" href="classmath_1_1core_1_1swizzle2.html#aa439c349f9181a952d46dbc5172674b3">operator/</a>(<span class="keyword">const</span> T&amp;) <span class="keyword">const</span>;</div>
 <div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;</div>
-<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;    <a class="code" href="classmath_1_1core_1_1vector.html">vector&lt;T, 2&gt;</a> <a class="code" href="classmath_1_1core_1_1swizzle2.html#aa439c349f9181a952d46dbc5172674b3">operator/</a>(<span class="keyword">const</span> T&amp;) <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;</div>
-<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;    <span class="keyword">template</span>&lt;<span class="keyword">typename</span> U = T,</div>
-<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;        <span class="keyword">typename</span> = <span class="keyword">typename</span> std::enable_if&lt;is_assignable_swizzle&lt;2, E1, E2&gt;::value</div>
-<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;        &amp;&amp; std::is_same&lt;T, U&gt;::value, U&gt;::type&gt;</div>
-<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;    <a class="code" href="classmath_1_1core_1_1vector.html">vector&lt;T, 2&gt;</a>&amp; <a class="code" href="classmath_1_1core_1_1swizzle2.html#aa4e37ab157e8aba522327fb0a4661f63">operator/=</a>(<span class="keyword">const</span> T&amp;);</div>
-<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;</div>
-<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="classmath_1_1core_1_1swizzle2.html#aba9b10ee8fe9e9a99b2eedf54b2fcded">operator==</a>(<span class="keyword">const</span> <a class="code" href="classmath_1_1core_1_1vector.html">vector&lt;T, 2&gt;</a>&amp;) <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="classmath_1_1core_1_1swizzle2.html#a2553a3a92c4453b5df8a0f18b3b9840c">operator!=</a>(<span class="keyword">const</span> <a class="code" href="classmath_1_1core_1_1vector.html">vector&lt;T, 2&gt;</a>&amp;) <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;</div>
-<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;<span class="preprocessor">#if defined(MATH_CORE_SWIZZLE_ENABLE_ELEMENT_ACCESSORS)</span></div>
-<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;    T getE1(<span class="keywordtype">void</span>) { <span class="keywordflow">return</span> this-&gt;<a class="code" href="classmath_1_1core_1_1swizzle.html#a6ce2b3176681047f7fd6a2d86bf12fc0">data</a>[E1]; }</div>
-<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;    T getE2(<span class="keywordtype">void</span>) { <span class="keywordflow">return</span> this-&gt;<a class="code" href="classmath_1_1core_1_1swizzle.html#a6ce2b3176681047f7fd6a2d86bf12fc0">data</a>[E2]; }</div>
-<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;<span class="preprocessor">#endif</span></div>
-<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;};</div>
-<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;</div>
-<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;}</div>
-<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;}</div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;    <span class="keyword">template</span>&lt;<span class="keyword">typename</span> U = T,</div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;        <span class="keyword">typename</span> = <span class="keyword">typename</span> std::enable_if&lt;is_assignable_swizzle&lt;2, E1, E2&gt;::value</div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;        &amp;&amp; std::is_same&lt;T, U&gt;::value, U&gt;::type&gt;</div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;    <a class="code" href="classmath_1_1core_1_1vector.html">vector&lt;T, 2&gt;</a>&amp; <a class="code" href="classmath_1_1core_1_1swizzle2.html#aa4e37ab157e8aba522327fb0a4661f63">operator/=</a>(<span class="keyword">const</span> T&amp;);</div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;</div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="classmath_1_1core_1_1swizzle2.html#aba9b10ee8fe9e9a99b2eedf54b2fcded">operator==</a>(<span class="keyword">const</span> <a class="code" href="classmath_1_1core_1_1vector.html">vector&lt;T, 2&gt;</a>&amp;) <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="classmath_1_1core_1_1swizzle2.html#a2553a3a92c4453b5df8a0f18b3b9840c">operator!=</a>(<span class="keyword">const</span> <a class="code" href="classmath_1_1core_1_1vector.html">vector&lt;T, 2&gt;</a>&amp;) <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;</div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;<span class="preprocessor">#if defined(MATH_CORE_SWIZZLE_ENABLE_ELEMENT_ACCESSORS)</span></div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;    T getE1(<span class="keywordtype">void</span>) { <span class="keywordflow">return</span> this-&gt;<a class="code" href="classmath_1_1core_1_1swizzle.html#a6ce2b3176681047f7fd6a2d86bf12fc0">data</a>[E1]; }</div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;    T getE2(<span class="keywordtype">void</span>) { <span class="keywordflow">return</span> this-&gt;<a class="code" href="classmath_1_1core_1_1swizzle.html#a6ce2b3176681047f7fd6a2d86bf12fc0">data</a>[E2]; }</div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;};</div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;</div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;}</div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;}</div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;</div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="swizzle2_8inl.html">math/core/swizzle/swizzle2.inl</a>&gt;</span></div>
 <div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;</div>
-<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="swizzle2_8inl.html">swizzle2.inl</a>&quot;</span></div>
-<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;</div>
-<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;<span class="preprocessor">#endif</span></div>
 <div class="ttc" id="classmath_1_1core_1_1swizzle2_html_a46f236d0e89f6a688ebdabaac7ada796"><div class="ttname"><a href="classmath_1_1core_1_1swizzle2.html#a46f236d0e89f6a688ebdabaac7ada796">math::core::swizzle2::operator=</a></div><div class="ttdeci">vector&lt; T, 2 &gt; &amp; operator=(const vector&lt; T, 2 &gt; &amp;)</div><div class="ttdef"><b>Definition:</b> swizzle2.inl:35</div></div>
-<div class="ttc" id="classmath_1_1core_1_1swizzle2_html"><div class="ttname"><a href="classmath_1_1core_1_1swizzle2.html">math::core::swizzle2</a></div><div class="ttdef"><b>Definition:</b> swizzle2.hpp:23</div></div>
+<div class="ttc" id="classmath_1_1core_1_1swizzle2_html"><div class="ttname"><a href="classmath_1_1core_1_1swizzle2.html">math::core::swizzle2</a></div><div class="ttdef"><b>Definition:</b> swizzle2.hpp:21</div></div>
 <div class="ttc" id="classmath_1_1core_1_1swizzle2_html_a2bf0e10843c4d2c245c6dbea853a13af"><div class="ttname"><a href="classmath_1_1core_1_1swizzle2.html#a2bf0e10843c4d2c245c6dbea853a13af">math::core::swizzle2::operator*=</a></div><div class="ttdeci">vector&lt; T, 2 &gt; &amp; operator*=(const vector&lt; T, 2 &gt; &amp;)</div><div class="ttdef"><b>Definition:</b> swizzle2.inl:112</div></div>
 <div class="ttc" id="classmath_1_1core_1_1swizzle2_html_a2553a3a92c4453b5df8a0f18b3b9840c"><div class="ttname"><a href="classmath_1_1core_1_1swizzle2.html#a2553a3a92c4453b5df8a0f18b3b9840c">math::core::swizzle2::operator!=</a></div><div class="ttdeci">bool operator!=(const vector&lt; T, 2 &gt; &amp;) const </div><div class="ttdef"><b>Definition:</b> swizzle2.inl:198</div></div>
 <div class="ttc" id="classmath_1_1core_1_1swizzle2_html_aa439c349f9181a952d46dbc5172674b3"><div class="ttname"><a href="classmath_1_1core_1_1swizzle2.html#aa439c349f9181a952d46dbc5172674b3">math::core::swizzle2::operator/</a></div><div class="ttdeci">vector&lt; T, 2 &gt; operator/(const vector&lt; T, 2 &gt; &amp;) const </div><div class="ttdef"><b>Definition:</b> swizzle2.inl:122</div></div>
@@ -185,14 +183,14 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="ttc" id="classmath_1_1core_1_1swizzle2_html_aba9b10ee8fe9e9a99b2eedf54b2fcded"><div class="ttname"><a href="classmath_1_1core_1_1swizzle2.html#aba9b10ee8fe9e9a99b2eedf54b2fcded">math::core::swizzle2::operator==</a></div><div class="ttdeci">bool operator==(const vector&lt; T, 2 &gt; &amp;) const </div><div class="ttdef"><b>Definition:</b> swizzle2.inl:188</div></div>
 <div class="ttc" id="classmath_1_1core_1_1swizzle_html_a6ce2b3176681047f7fd6a2d86bf12fc0"><div class="ttname"><a href="classmath_1_1core_1_1swizzle.html#a6ce2b3176681047f7fd6a2d86bf12fc0">math::core::swizzle::data</a></div><div class="ttdeci">std::array&lt; T, N &gt; data</div><div class="ttdef"><b>Definition:</b> swizzle.hpp:36</div></div>
 <div class="ttc" id="classmath_1_1core_1_1swizzle2_html_af9817ad29228571a996976a06b109bfe"><div class="ttname"><a href="classmath_1_1core_1_1swizzle2.html#af9817ad29228571a996976a06b109bfe">math::core::swizzle2::operator-=</a></div><div class="ttdeci">vector&lt; T, 2 &gt; &amp; operator-=(const vector&lt; T, 2 &gt; &amp;)</div><div class="ttdef"><b>Definition:</b> swizzle2.inl:90</div></div>
-<div class="ttc" id="classmath_1_1core_1_1vector_html"><div class="ttname"><a href="classmath_1_1core_1_1vector.html">math::core::vector</a></div><div class="ttdef"><b>Definition:</b> swizzle2.hpp:12</div></div>
+<div class="ttc" id="classmath_1_1core_1_1vector_html"><div class="ttname"><a href="classmath_1_1core_1_1vector.html">math::core::vector</a></div><div class="ttdef"><b>Definition:</b> quaternion.hpp:11</div></div>
 <div class="ttc" id="classmath_1_1core_1_1swizzle2_html_a5c9902151fe623b15a7d72f17f3e0279"><div class="ttname"><a href="classmath_1_1core_1_1swizzle2.html#a5c9902151fe623b15a7d72f17f3e0279">math::core::swizzle2::operator*</a></div><div class="ttdeci">vector&lt; T, 2 &gt; operator*(const vector&lt; T, 2 &gt; &amp;) const </div><div class="ttdef"><b>Definition:</b> swizzle2.inl:100</div></div>
 <div class="ttc" id="classmath_1_1core_1_1swizzle_html"><div class="ttname"><a href="classmath_1_1core_1_1swizzle.html">math::core::swizzle</a></div><div class="ttdef"><b>Definition:</b> swizzle.hpp:34</div></div>
 <div class="ttc" id="classmath_1_1core_1_1swizzle2_html_ac271a23ab14ccbbf5d6a18080da7bf33"><div class="ttname"><a href="classmath_1_1core_1_1swizzle2.html#ac271a23ab14ccbbf5d6a18080da7bf33">math::core::swizzle2::operator-</a></div><div class="ttdeci">vector&lt; T, 2 &gt; operator-(void) const </div><div class="ttdef"><b>Definition:</b> swizzle2.inl:46</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Wed Apr 23 2014 18:08:08 for math by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sat Apr 26 2014 22:07:04 for math by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.7
 </small></address>
