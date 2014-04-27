@@ -249,7 +249,7 @@ T math::max(const T a, const T b) {
 
 /**
  * Find the min of two scalars.
- * @param s First scalar.
+ * @param a First scalar.
  * @param b Second scalar.
  * @return the min of a and b.
  */
