@@ -53,7 +53,7 @@ quaternion<T>::quaternion(const T& pitch, const T& yaw, const T& roll) {
  * @param mat matrix to convert.
  */
 template<typename T>
-quaternion<T>::quaternion(const matrix<T, 4>& mat) {
+quaternion<T>::quaternion(const matrix<T, 4, 4>& mat) {
 	T x = math::sqrt(math::max(static_cast<T>(0.0),
 		static_cast<T>(1.0) + mat[0][0] - mat[1][1] - mat[2][2])) / static_cast<T>(2.0);
 	T y = math::sqrt(math::max(static_cast<T>(0.0),
@@ -359,7 +359,7 @@ T quaternion<T>::angle(void) const {
  */
 template<typename T>
 matrix<T, 4> quaternion<T>::to_matrix(void) const {
-	matrix<T, 4> mat;
+	matrix<T, 4, 4> mat;
 	mat[0][0] = static_cast<T>(1.0) - static_cast<T>(2.0) * (this->y * this->y) - static_cast<T>(2.0) * (this->z * this->z);
 	mat[0][1] = static_cast<T>(2.0) * (this->x * this->y) + static_cast<T>(2.0) * (this->w * this->z);
 	mat[0][2] = static_cast<T>(2.0) * (this->x * this->z) - static_cast<T>(2.0) * (this->w * this->y);
