@@ -1,11 +1,10 @@
 cmake_minimum_required(VERSION 2.8 FATAL_ERROR)
-project("math" CXX)
+project("math")
 
 enable_testing()
 
-include_directories("${CMAKE_CURRENT_SOURCE_DIR}/inc")
-
 option(BUILD_DOCUMENTATION "Build HTML documentation using Doxygen." ON)
+
 if(BUILD_DOCUMENTATION)
 	find_package(Doxygen)
 	if(NOT DOXYGEN_FOUND)
@@ -17,7 +16,6 @@ if(BUILD_DOCUMENTATION)
 	set(DOXYGEN_OUTPUT_DIR "${PROJECT_BINARY_DIR}/doc")
 
 	configure_file(Doxyfile.in "${PROJECT_BINARY_DIR}/Doxyfile" @ONLY)
-
 	add_custom_command(
 		OUTPUT ${DOXYGEN_OUTPUT_DIR}
 		COMMAND ${DOXYGEN_EXECUTABLE} ${DOXYFILE}
@@ -25,7 +23,8 @@ if(BUILD_DOCUMENTATION)
 		)
 
 	add_custom_target(doc DEPENDS ${DOXYGEN_OUTPUT_DIR})
-
 endif()
+
+include_directories("${CMAKE_CURRENT_SOURCE_DIR}/inc")
 
 add_subdirectory(test)

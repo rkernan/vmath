@@ -23,8 +23,7 @@ add_executable(unit_tests
 	${SOURCES_UnitTests}
 )
 
-# TODO Set flags in a more cross-platform-friendly way.
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11 -Wall -Wextra -Winline")
+add_definitions("-std=c++11")
 
 find_package(Boost COMPONENTS unit_test_framework REQUIRED)
 target_link_libraries(unit_tests ${Boost_LIBRARIES})
