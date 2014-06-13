@@ -220,7 +220,12 @@ T math::copysign(const T x, const T y) {
 	if (math::equals(y, static_cast<T>(0.0L))) {
 		return static_cast<T>(0.0L);
 	} else {
+#if defined(_WIN32)
+		return static_cast<T>(copysign(
+			static_cast<long double>(x), static_cast<long double>(y)));
+#else
 		return std::copysign(x, y);
+#endif
 	}
 }
 

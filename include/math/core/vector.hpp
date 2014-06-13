@@ -22,8 +22,10 @@ namespace {
 template<typename T, std::size_t N>
 class vector_components {
 public:
-	explicit vector_components(void) : data() {}
+	vector_components(void) : data() {}
 	explicit vector_components(const std::array<T, N>& data) : data(data) {}
+	vector_components(const vector_components<T, N>&) = default;
+	vector_components(vector_components<T, N>&&) = default;
 
 	std::array<T, N> data;
 };
@@ -36,11 +38,11 @@ public:
 template<typename T>
 class vector_components<T, 2> {
 public:
-	explicit vector_components(void) : x(), y() {}
+	vector_components(void) : x(), y() {}
 	explicit vector_components(const std::array<T, 2>& data) : data(data) {}
 	explicit vector_components(const T& x, const T& y) : x(x), y(y) {}
-	explicit vector_components(const vector_components<T, 2>&) = default;
-	explicit vector_components(vector_components<T, 2>&&) = default;
+	vector_components(const vector_components<T, 2>&) = default;
+	vector_components(vector_components<T, 2>&&) = default;
 
 	union {
 		std::array<T, 2> data;
@@ -70,12 +72,12 @@ public:
 template<typename T>
 class vector_components<T, 3> {
 public:
-	explicit vector_components(void) : x(), y(), z() {}
+	vector_components(void) : x(), y(), z() {}
 	explicit vector_components(const std::array<T, 3>& data) : data(data) {}
 	explicit vector_components(const T& x, const T& y, const T& z) : x(x), y(y), z(z) {}
 	explicit vector_components(const vector_components<T, 2>& V, const T& z) : x(V.x), y(V.y), z(z) {}
-	explicit vector_components(const vector_components<T, 3>&) = default;
-	explicit vector_components(vector_components<T, 3>&&) = default;
+	vector_components(const vector_components<T, 3>&) = default;
+	vector_components(vector_components<T, 3>&&) = default;
 
 	union {
 		std::array<T, 3> data;
@@ -105,13 +107,13 @@ public:
 template<typename T>
 class vector_components<T, 4> {
 public:
-	explicit vector_components(void) : x(), y(), z(), w() {}
+	vector_components(void) : x(), y(), z(), w() {}
 	explicit vector_components(const std::array<T, 4>& data) : data(data) {}
 	explicit vector_components(const T& x, const T& y, const T& z, const T& w) : x(x), y(y), z(z), w(w) {}
 	explicit vector_components(const vector_components<T, 2>& V, const T& z, const T& w) : x(V.x), y(V.y), z(z), w(w) {}
 	explicit vector_components(const vector_components<T, 3>& V, const T& w) : x(V.x), y(V.y), z(V.z), w(w) {}
-	explicit vector_components(const vector_components<T, 4>&) = default;
-	explicit vector_components(vector_components<T, 4>&&) = default;
+	vector_components(const vector_components<T, 4>&) = default;
+	vector_components(vector_components<T, 4>&) = default;
 
 	union {
 		std::array<T, 4> data;
@@ -144,7 +146,20 @@ public:
 template<typename T, std::size_t N>
 class vector : public vector_components<T, N> {
 public:
+#if defined(_WIN32)
+	vector(void) : vector_components<T, N>() {}
+	explicit vector(const std::array<T, N>& data) : vector_components<T, N>(data) {}
+	explicit vector(const T& x, const T& y) : vector_components<T, N>(x, y) {}
+	explicit vector(const T& x, const T& y, const T& z) : vector_components<T, N>(x, y, z) {}
+	explicit vector(const T& x, const T& y, const T&z, const T& w) : vector_components<T, N>(x, y, z, w) {}
+	explicit vector(const vector_components<T, 2>& orig, const T& z) : vector_components<T, N>(orig, z) {}
+	explicit vector(const vector_components<T, 2>& orig, const T& z, const T& w) : vector_components<T, N>(orig, z, w) {}
+	explicit vector(const vector_components<T, 3>& orig, const T& w) : vector_components<T, N>(orig, w) {}
+	vector(const vector<T, N>& orig) : vector_components<T, N>(orig) {}
+	vector(vector<T, N>&& orig) : vector_components<T, N>(orig) {}
+#else
 	using vector_components<T, N>::vector_components;
+#endif
 
 	~vector(void) = default;
 

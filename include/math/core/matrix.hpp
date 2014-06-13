@@ -33,10 +33,10 @@ namespace {
 template<typename T, std::size_t M, std::size_t N>
 class matrix_components {
 public:
-	explicit matrix_components(void) : data() {}
+	matrix_components(void) : data() {}
 	explicit matrix_components(const std::array<vector<T, M>, N>& data) : data(data) {}
-	explicit matrix_components(const matrix_components<T, M, N>&) = default;
-	explicit matrix_components(matrix_components<T, M, N>&&) = default;
+	matrix_components(const matrix_components<T, M, N>&) = default;
+	matrix_components(matrix_components<T, M, N>&&) = default;
 
 	std::array<vector<T, M>, N> data;
 };
@@ -50,11 +50,11 @@ public:
 template<typename T, std::size_t M>
 class matrix_components<T, M, 1> {
 public:
-	explicit matrix_components(void) : data() {}
+	matrix_components(void) : data() {}
 	explicit matrix_components(const std::array<vector<T, M>, 1>& data) : data(data) {}
 	explicit matrix_components(const vector<T, M>& V) : data({{V}}) {}
-	explicit matrix_components(const matrix_components<T, M, 1>&) = default;
-	explicit matrix_components(matrix_components<T, M, 1>&&) = default;
+	matrix_components(const matrix_components<T, M, 1>&) = default;
+	matrix_components(matrix_components<T, M, 1>&&) = default;
 
 	std::array<vector<T, M>, 1> data;
 };
@@ -68,11 +68,11 @@ public:
 template<typename T, std::size_t M>
 class matrix_components<T, M, 2> {
 public:
-	explicit matrix_components(void) : data() {}
+	matrix_components(void) : data() {}
 	explicit matrix_components(const std::array<vector<T, M>, 2>& data) : data(data) {}
 	explicit matrix_components(const vector<T, M>& V1, const vector<T, M>& V2) : data({{V1, V2}}) {}
-	explicit matrix_components(const matrix_components<T, M, 2>&) = default;
-	explicit matrix_components(matrix_components<T, M, 2>&&) = default;
+	matrix_components(const matrix_components<T, M, 2>&) = default;
+	matrix_components(matrix_components<T, M, 2>&&) = default;
 
 	std::array<vector<T, M>, 2> data;
 };
@@ -86,12 +86,15 @@ public:
 template<typename T, std::size_t M>
 class matrix_components<T, M, 3> {
 public:
-	explicit matrix_components(void) : data() {}
+	matrix_components(void) : data() {}
 	explicit matrix_components(const std::array<vector<T, M>, 3>& data) : data(data) {}
-	explicit matrix_components(const vector<T, M>& V1, const vector<T, M>& V2, const vector<T, M>& V3) :
+	explicit matrix_components(
+			const vector<T, M>& V1,
+			const vector<T, M>& V2,
+			const vector<T, M>& V3) :
 		data({{V1, V2, V3}}) {}
-	explicit matrix_components(const matrix_components<T, M, 3>&) = default;
-	explicit matrix_components(matrix_components<T, M, 3>&&) = default;
+	matrix_components(const matrix_components<T, M, 3>&) = default;
+	matrix_components(matrix_components<T, M, 3>&&) = default;
 
 	std::array<vector<T, M>, 3> data;
 };
@@ -105,12 +108,16 @@ public:
 template<typename T, std::size_t M>
 class matrix_components<T, M, 4> {
 public:
-	explicit matrix_components(void) : data() {}
+	matrix_components(void) : data() {}
 	explicit matrix_components(const std::array<vector<T, M>, 4>& data) : data(data) {}
-	explicit matrix_components(const vector<T, M>& V1, const vector<T, M>& V2, const vector<T, M>& V3, const vector<T, M>& V4) :
+	explicit matrix_components(
+			const vector<T, M>& V1,
+			const vector<T, M>& V2,
+			const vector<T, M>& V3,
+			const vector<T, M>& V4) :
 		data({{V1, V2, V3, V4}}) {}
-	explicit matrix_components(const matrix_components<T, M, 4>&) = default;
-	explicit matrix_components(matrix_components<T, M, 4>&&) = default;
+	matrix_components(const matrix_components<T, M, 4>&) = default;
+	matrix_components(matrix_components<T, M, 4>&&) = default;
 
 	std::array<vector<T, M>, 4> data;
 };
@@ -127,7 +134,28 @@ public:
 template<typename T, std::size_t M, std::size_t N = M>
 class matrix : public matrix_components<T, M, N> {
 public:
+#if defined(_WIN32)
+	matrix(void) : matrix_components<T, M, N>() {}
+	explicit matrix(const std::array<vector<T, M>, N>& data) : matrix_components<T, M, N>(data) {}
+	explicit matrix(const vector<T, M>& V) : matrix_components<T, M, N>(V) {}
+	explicit matrix(const vector<T, M>& V1, const vector<T, M>& V2)
+		: matrix_components<T, M, N>(V1, V2) {}
+	explicit matrix(
+			const vector<T, M>& V1,
+			const vector<T, M>& V2,
+			const vector<T, M>& V3)
+		: matrix_components<T, M, N>(V1, V2, V3) {}
+	explicit matrix(
+			const vector<T, M>& V1,
+			const vector<T, M>& V2,
+			const vector<T, M>& V3,
+			const vector<T, M>& V4)
+		: matrix_components<T, M, N>(V1, V2, V3, V4) {}
+	matrix(const matrix<T, M, N>& orig) : matrix_components<T, M, N>(orig) {}
+	matrix(matrix<T, M, N>&& orig) : matrix_components<T, M, N>(orig) {}
+#else
 	using matrix_components<T, M, N>::matrix_components;
+#endif
 
 	~matrix(void) = default;
 
