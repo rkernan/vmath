@@ -113,7 +113,7 @@ public:
 	explicit vector_components(const vector_components<T, 2>& V, const T& z, const T& w) : x(V.x), y(V.y), z(z), w(w) {}
 	explicit vector_components(const vector_components<T, 3>& V, const T& w) : x(V.x), y(V.y), z(V.z), w(w) {}
 	vector_components(const vector_components<T, 4>&) = default;
-	vector_components(vector_components<T, 4>&) = default;
+	vector_components(vector_components<T, 4>&&) = default;
 
 	union {
 		std::array<T, 4> data;
