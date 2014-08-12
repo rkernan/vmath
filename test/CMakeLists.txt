@@ -1,4 +1,4 @@
-set(SOURCES_UnitTests
+set(SOURCES
 	unit_test_runner.cpp
 	unit/functions.cpp
 	unit/matrix2x2.cpp
@@ -20,7 +20,7 @@ set(SOURCES_UnitTests
 )
 
 add_executable(unit_tests
-	${SOURCES_UnitTests}
+	${SOURCES}
 )
 
 add_definitions("-std=c++11")
