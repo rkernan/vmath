@@ -14,7 +14,7 @@ namespace math {
  * @return True if they are equivalent, otherwise false.
  */
 template<typename T, typename>
-bool math::equals(const T a, const T b) {
+bool equals(const T a, const T b) {
 	static const T epsilon = static_cast<T>(0.00001L);
 	return math::equals<T>(a, b, epsilon);
 }
@@ -27,7 +27,7 @@ bool math::equals(const T a, const T b) {
  * @return True if they are equivalent, otherwise false.
  */
 template<typename T, typename>
-bool math::equals(const T a, const T b, const T epsilon) {
+bool equals(const T a, const T b, const T epsilon) {
 	// TODO This breaks with certain edge cases.
 	return math::abs(a - b) < epsilon;
 }
@@ -38,7 +38,7 @@ bool math::equals(const T a, const T b, const T epsilon) {
  * @return The given degrees in radians.
  */
 template<typename T, typename>
-T math::radians(const T degrees) {
+T radians(const T degrees) {
 	static const T PI_OVER_180 = static_cast<T>(math::PI / 180.0L);
 	return degrees * PI_OVER_180;
 }
@@ -49,7 +49,7 @@ T math::radians(const T degrees) {
  * @return The given radians in degrees.
  */
 template<typename T, typename>
-T math::degrees(const T radians) {
+T degrees(const T radians) {
 	static const T PI_UNDER_180 = static_cast<T>(180.0L / math::PI);
 	return radians * PI_UNDER_180;
 }
@@ -60,7 +60,7 @@ T math::degrees(const T radians) {
  * @return Cosine.
  */
 template<typename T, typename>
-T math::cos(const T s) {
+T cos(const T s) {
 	return std::cos(s);
 }
 
@@ -70,7 +70,7 @@ T math::cos(const T s) {
  * @return Sine.
  */
 template<typename T, typename>
-T math::sin(const T s) {
+T sin(const T s) {
 	return std::sin(s);
 }
 
@@ -80,7 +80,7 @@ T math::sin(const T s) {
  * @return Tangent.
  */
 template<typename T, typename>
-T math::tan(const T s) {
+T tan(const T s) {
 	return std::tan(s);
 }
 
@@ -90,7 +90,7 @@ T math::tan(const T s) {
  * @return Arccosine.
  */
 template<typename T, typename>
-T math::acos(const T s) {
+T acos(const T s) {
 	return std::acos(s);
 }
 
@@ -100,7 +100,7 @@ T math::acos(const T s) {
  * @return Arcsine.
  */
 template<typename T, typename>
-T math::asin(const T s) {
+T asin(const T s) {
 	return std::asin(s);
 }
 
@@ -110,7 +110,7 @@ T math::asin(const T s) {
  * @return Arctangent.
  */
 template<typename T, typename>
-T math::atan(const T s) {
+T atan(const T s) {
 	return std::atan(s);
 }
 
@@ -121,7 +121,7 @@ T math::atan(const T s) {
  * @return The angle in radians between the given point and the positive x-axis.
  */
 template<typename T, typename>
-T math::atan2(const T y, const T x) {
+T atan2(const T y, const T x) {
 	// TODO When y = x = 0 a domain error occurs.
 	return std::atan2(y, x);
 }
@@ -133,7 +133,7 @@ T math::atan2(const T y, const T x) {
  * @return Scalar to the exponent.
  */
 template<typename T, typename>
-T math::pow(const T s, const T e) {
+T pow(const T s, const T e) {
 	return std::pow(s, e);
 }
 
@@ -143,7 +143,7 @@ T math::pow(const T s, const T e) {
  * @return Square root of the scalar.
  */
 template<typename T, typename>
-T math::sqrt(const T s) {
+T sqrt(const T s) {
 	return std::sqrt(s);
 }
 
@@ -153,7 +153,7 @@ T math::sqrt(const T s) {
  * @return Rounded scalar.
  */
 template<typename T, typename>
-T math::ceil(const T s) {
+T ceil(const T s) {
 	return std::ceil(s);
 }
 
@@ -163,7 +163,7 @@ T math::ceil(const T s) {
  * @return Rounded scalar.
  */
 template<typename T, typename>
-T math::floor(const T s) {
+T floor(const T s) {
 	return std::floor(s);
 }
 
@@ -173,7 +173,7 @@ T math::floor(const T s) {
  * @return Rounded scalar.
  */
 template<typename T, typename>
-T math::round(const T s) {
+T round(const T s) {
 	return (s < static_cast<T>(0.0L)) ? math::ceil(s - static_cast<T>(0.5L)) : math::floor(s + static_cast<T>(0.5L));
 }
 
@@ -183,7 +183,7 @@ T math::round(const T s) {
  * @return Truncated scalar.
  */
 template<typename T, typename>
-T math::trunc(const T s) {
+T trunc(const T s) {
 	return (s < static_cast<T>(0.0L)) ? math::ceil(s) : math::floor(s);
 }
 
@@ -195,7 +195,7 @@ T math::trunc(const T s) {
  * @return Clamped scalar.
  */
 template<typename T, typename>
-T math::clamp(const T s, const T lo, const T hi) {
+T clamp(const T s, const T lo, const T hi) {
 	return (s <= lo) ? lo : ((s >= hi) ? hi : s);
 }
 
@@ -205,7 +205,7 @@ T math::clamp(const T s, const T lo, const T hi) {
  * @return Absolute value of scalar.
  */
 template<typename T, typename>
-T math::abs(const T s) {
+T abs(const T s) {
 	return (s < static_cast<T>(0.0L)) ? -s : s;
 }
 
@@ -216,7 +216,7 @@ T math::abs(const T s) {
  * @return Number with the given magnitude and sign.
  */
 template<typename T, typename>
-T math::copysign(const T x, const T y) {
+T copysign(const T x, const T y) {
 	if (math::equals(y, static_cast<T>(0.0L))) {
 		return static_cast<T>(0.0L);
 	} else {
@@ -237,7 +237,7 @@ T math::copysign(const T x, const T y) {
  * @return Interpolated scalar.
  */
 template<typename T, typename>
-T math::lerp(const T s, const T e, const T t) {
+T lerp(const T s, const T e, const T t) {
 	return s + ((e - s) * t);
 }
 
@@ -248,7 +248,7 @@ T math::lerp(const T s, const T e, const T t) {
  * @return The max of a and b.
  */
 template<typename T, typename>
-T math::max(const T a, const T b) {
+T max(const T a, const T b) {
 	return (a > b) ? a : b;
 }
 
@@ -259,7 +259,7 @@ T math::max(const T a, const T b) {
  * @return the min of a and b.
  */
 template<typename T, typename>
-T math::min(const T a, const T b) {
+T min(const T a, const T b) {
 	return (a < b) ? a : b;
 }
 
