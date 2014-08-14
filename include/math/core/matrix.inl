@@ -3,7 +3,8 @@
 
 #include <math/core/matrix.hpp>
 
-using namespace math::core;
+namespace math {
+namespace core {
 
 /**
  * Set this matrix equal to another.
@@ -436,5 +437,8 @@ matrix<T, M, N> matrix<T, M, N>::perspective(const T& fov, const T& aspect,
 	proj[3][2] = (static_cast<T>(2.0) * far * near) / (near - far);
 	return proj;
 }
+
+} // namespace core
+} // namespace math
 
 #endif

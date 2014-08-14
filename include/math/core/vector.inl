@@ -7,7 +7,8 @@
 #include <string>
 #include <math/functions.hpp>
 
-using namespace math::core;
+namespace math {
+namespace core {
 
 /**
  * Set this vector equal to another.
@@ -377,5 +378,8 @@ vector<T, N> vector<T, N>::cross(const vector<T, N>& V1, const vector<T, N>& V2)
 	U z = (V1.x * V2.y) - (V1.y * V2.x);
 	return vector<U, N>(x, y, z);
 }
+
+} // namespace core
+} // namespace math
 
 #endif

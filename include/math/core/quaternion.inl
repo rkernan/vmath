@@ -7,7 +7,8 @@
 #include <math/core/matrix.hpp>
 #include <math/core/vector.hpp>
 
-using namespace math::core;
+namespace math {
+namespace core {
 
 /**
  * Convert axis and angle to a quaternion.
@@ -469,5 +470,8 @@ quaternion<T> quaternion<T>::slerp(const quaternion<T>& S, const quaternion<T>& 
 	T angle = math::acos(d);
 	return (S * math::sin(angle * (static_cast<T>(1.0) - t)) + H * (math::sin(angle * t))) / math::sin(angle);
 }
+
+} // namespace core
+} // namespace math
 
 #endif

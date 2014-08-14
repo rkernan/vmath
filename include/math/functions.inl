@@ -5,7 +5,7 @@
 
 #include <cmath>
 
-using namespace math;
+namespace math {
 
 /**
  * Determine if two floats are equivalent within a default tolerance.
@@ -262,5 +262,7 @@ template<typename T, typename>
 T math::min(const T a, const T b) {
 	return (a < b) ? a : b;
 }
+
+} // namespace math
 
 #endif

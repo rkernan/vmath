@@ -5,7 +5,8 @@
 
 #include <math/core/vector.hpp>
 
-using namespace math::core;
+namespace math {
+namespace core {
 
 /**
  * Convert from a swizzle to a vector.
@@ -198,5 +199,8 @@ template<typename T, std::size_t N, std::size_t E1, std::size_t E2>
 bool swizzle2<T, N, E1, E2>::operator!=(const vector<T, 2>& V) const {
 	return this->to_vector2() != V;
 }
+
+} // namespace core
+} // namespace math
 
 #endif
