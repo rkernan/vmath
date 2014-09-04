@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.7"/>
-<title>math: math/functions.hpp Source File</title>
+<title>Math: math/functions.hpp Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -22,8 +22,9 @@
  <tbody>
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
-   <div id="projectname">math
+   <div id="projectname">Math
    </div>
+   <div id="projectbrief">A vector math library.</div>
   </td>
  </tr>
  </tbody>
@@ -36,9 +37,9 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </script>
   <div id="navrow1" class="tabs">
     <ul class="tablist">
-      <li><a href="index.html"><span>Main&#160;Page</span></a></li>
+      <li><a href="index.html"><span>Introduction</span></a></li>
       <li><a href="namespaces.html"><span>Namespaces</span></a></li>
-      <li><a href="annotated.html"><span>Classes</span></a></li>
+      <li><a href="annotated.html"><span>Data&#160;Structures</span></a></li>
       <li class="current"><a href="files.html"><span>Files</span></a></li>
       <li>
         <div id="MSearchBox" class="MSearchBoxInactive">
@@ -61,7 +62,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow2" class="tabs2">
     <ul class="tablist">
       <li><a href="files.html"><span>File&#160;List</span></a></li>
-      <li><a href="globals.html"><span>File&#160;Members</span></a></li>
     </ul>
   </div>
 <!-- window showing the filter options -->
@@ -69,7 +69,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Macros</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Pages</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -88,7 +88,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="title">functions.hpp</div>  </div>
 </div><!--header-->
 <div class="contents">
-<a href="functions_8hpp.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor">#ifndef MATH_FUNCIONS_HPP</span></div>
+<div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor">#ifndef MATH_FUNCIONS_HPP</span></div>
 <div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="preprocessor">#define MATH_FUNCIONS_HPP</span></div>
 <div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;</div>
 <div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="preprocessor">#include &lt;cmath&gt;</span></div>
@@ -96,112 +96,84 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;</div>
 <div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="keyword">namespace </span>math {</div>
 <div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;</div>
-<div class="line"><a name="l00009"></a><span class="lineno"><a class="line" href="namespacemath.html#a05e35fbeaf09ede67c466cf02592efed">    9</a></span>&#160;<span class="keyword">const</span> <span class="keywordtype">long</span> <span class="keywordtype">double</span> <a class="code" href="namespacemath.html#a05e35fbeaf09ede67c466cf02592efed">PI</a> = <a class="code" href="namespacemath.html#a29b5d8c6229836cc23b2c464c9115e9c">std::acos</a>(-1.0L);</div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="keyword">const</span> <span class="keywordtype">long</span> <span class="keywordtype">double</span> PI = std::acos(-1.0L);</div>
 <div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;</div>
 <div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;template&lt;typename T, typename = typename std::enable_if&lt;std::is_floating_point&lt;T&gt;::value, T&gt;::type&gt;</div>
-<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="keywordtype">bool</span> <a class="code" href="namespacemath.html#a35574f80f855cebaf3272e0c3fb6a763">equals</a>(<span class="keyword">const</span> T, <span class="keyword">const</span> T);</div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="keywordtype">bool</span> equals(<span class="keyword">const</span> T, <span class="keyword">const</span> T);</div>
 <div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;</div>
 <div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;template&lt;typename T, typename = typename std::enable_if&lt;std::is_floating_point&lt;T&gt;::value, T&gt;::type&gt;</div>
-<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="keywordtype">bool</span> <a class="code" href="namespacemath.html#a35574f80f855cebaf3272e0c3fb6a763">equals</a>(<span class="keyword">const</span> T, <span class="keyword">const</span> T, <span class="keyword">const</span> T);</div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="keywordtype">bool</span> equals(<span class="keyword">const</span> T, <span class="keyword">const</span> T, <span class="keyword">const</span> T);</div>
 <div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;</div>
 <div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;template&lt;typename T, typename = typename std::enable_if&lt;std::is_floating_point&lt;T&gt;::value, T&gt;::type&gt;</div>
-<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;T <a class="code" href="namespacemath.html#a3d04f797c8a5a3ba6fab295a81338848">radians</a>(<span class="keyword">const</span> T);</div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;T radians(<span class="keyword">const</span> T);</div>
 <div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;</div>
 <div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;template&lt;typename T, typename = typename std::enable_if&lt;std::is_floating_point&lt;T&gt;::value, T&gt;::type&gt;</div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;T <a class="code" href="namespacemath.html#a921812f597ac1a49080c57069faf4932">degrees</a>(<span class="keyword">const</span> T);</div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;T degrees(<span class="keyword">const</span> T);</div>
 <div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;</div>
 <div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;template&lt;typename T, typename = typename std::enable_if&lt;std::is_floating_point&lt;T&gt;::value, T&gt;::type&gt;</div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;T <a class="code" href="namespacemath.html#aeb1e7dcc87f61ef1a8009355c8525e30">cos</a>(<span class="keyword">const</span> T);</div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;T cos(<span class="keyword">const</span> T);</div>
 <div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;</div>
 <div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;template&lt;typename T, typename = typename std::enable_if&lt;std::is_floating_point&lt;T&gt;::value, T&gt;::type&gt;</div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;T <a class="code" href="namespacemath.html#a1f6ceb22c9449b0a1b1fd752b627f520">sin</a>(<span class="keyword">const</span> T);</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;T sin(<span class="keyword">const</span> T);</div>
 <div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;</div>
 <div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;template&lt;typename T, typename = typename std::enable_if&lt;std::is_floating_point&lt;T&gt;::value, T&gt;::type&gt;</div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;T <a class="code" href="namespacemath.html#ad909168b46b313e757cccbd7bacd6c43">tan</a>(<span class="keyword">const</span> T);</div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;T tan(<span class="keyword">const</span> T);</div>
 <div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;</div>
 <div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;template&lt;typename T, typename = typename std::enable_if&lt;std::is_floating_point&lt;T&gt;::value, T&gt;::type&gt;</div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;T <a class="code" href="namespacemath.html#a29b5d8c6229836cc23b2c464c9115e9c">acos</a>(<span class="keyword">const</span> T);</div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;T acos(<span class="keyword">const</span> T);</div>
 <div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;</div>
 <div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;template&lt;typename T, typename = typename std::enable_if&lt;std::is_floating_point&lt;T&gt;::value, T&gt;::type&gt;</div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;T <a class="code" href="namespacemath.html#a4456d4113576c9babc1fe4389e72a93f">asin</a>(<span class="keyword">const</span> T);</div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;T asin(<span class="keyword">const</span> T);</div>
 <div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;</div>
 <div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;template&lt;typename T, typename = typename std::enable_if&lt;std::is_floating_point&lt;T&gt;::value, T&gt;::type&gt;</div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;T <a class="code" href="namespacemath.html#a4705b78d429cc5eaedb218628b29d384">atan</a>(<span class="keyword">const</span> T);</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;T atan(<span class="keyword">const</span> T);</div>
 <div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;</div>
 <div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;template&lt;typename T, typename = typename std::enable_if&lt;std::is_floating_point&lt;T&gt;::value, T&gt;::type&gt;</div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;T <a class="code" href="namespacemath.html#a5ea3cf88cf6c4d99f404b7db83900bfd">atan2</a>(<span class="keyword">const</span> T, <span class="keyword">const</span> T);</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;T atan2(<span class="keyword">const</span> T, <span class="keyword">const</span> T);</div>
 <div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;</div>
 <div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;template&lt;typename T, typename = typename std::enable_if&lt;std::is_floating_point&lt;T&gt;::value, T&gt;::type&gt;</div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;T <a class="code" href="namespacemath.html#af2f10c6db07eaaf4ad5e741e95059a37">pow</a>(<span class="keyword">const</span> T, <span class="keyword">const</span> T);</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;T pow(<span class="keyword">const</span> T, <span class="keyword">const</span> T);</div>
 <div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;</div>
 <div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;template&lt;typename T, typename = typename std::enable_if&lt;std::is_floating_point&lt;T&gt;::value, T&gt;::type&gt;</div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;T <a class="code" href="namespacemath.html#ac99ab6bc04d5e7ea846b6902c38baeb0">sqrt</a>(<span class="keyword">const</span> T);</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;T sqrt(<span class="keyword">const</span> T);</div>
 <div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;</div>
 <div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;template&lt;typename T, typename = typename std::enable_if&lt;std::is_floating_point&lt;T&gt;::value, T&gt;::type&gt;</div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;T <a class="code" href="namespacemath.html#abb4b198219e12b60e420f382746836c7">ceil</a>(<span class="keyword">const</span> T);</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;T ceil(<span class="keyword">const</span> T);</div>
 <div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;</div>
 <div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;template&lt;typename T, typename = typename std::enable_if&lt;std::is_floating_point&lt;T&gt;::value, T&gt;::type&gt;</div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;T <a class="code" href="namespacemath.html#a9e4000a4c4215425e42e4f1470767c99">floor</a>(<span class="keyword">const</span> T);</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;T floor(<span class="keyword">const</span> T);</div>
 <div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;</div>
 <div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;template&lt;typename T, typename = typename std::enable_if&lt;std::is_floating_point&lt;T&gt;::value, T&gt;::type&gt;</div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;T <a class="code" href="namespacemath.html#a286b2a472a887f84bcbf698f0edcae20">round</a>(<span class="keyword">const</span> T);</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;T round(<span class="keyword">const</span> T);</div>
 <div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;</div>
 <div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;template&lt;typename T, typename = typename std::enable_if&lt;std::is_floating_point&lt;T&gt;::value, T&gt;::type&gt;</div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;T <a class="code" href="namespacemath.html#afd56ffadc0a9e801b95d5afa3bb05231">trunc</a>(<span class="keyword">const</span> T);</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;T trunc(<span class="keyword">const</span> T);</div>
 <div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;</div>
 <div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;template&lt;typename T, typename = typename std::enable_if&lt;std::is_floating_point&lt;T&gt;::value, T&gt;::type&gt;</div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;T <a class="code" href="namespacemath.html#a6073b8313a02d05522cced26a6901873">clamp</a>(<span class="keyword">const</span> T, <span class="keyword">const</span> T, <span class="keyword">const</span> T);</div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;T clamp(<span class="keyword">const</span> T, <span class="keyword">const</span> T, <span class="keyword">const</span> T);</div>
 <div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;</div>
 <div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;template&lt;typename T, typename = typename std::enable_if&lt;std::is_floating_point&lt;T&gt;::value, T&gt;::type&gt;</div>
-<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;T <a class="code" href="namespacemath.html#a73a498127c47b4727afcc18634a4345a">abs</a>(<span class="keyword">const</span> T);</div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;T abs(<span class="keyword">const</span> T);</div>
 <div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;</div>
 <div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;template&lt;typename T, typename = typename std::enable_if&lt;std::is_floating_point&lt;T&gt;::value, T&gt;::type&gt;</div>
-<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;T <a class="code" href="namespacemath.html#a7ca958664ac8872046b65ceec3d40787">copysign</a>(<span class="keyword">const</span> T, <span class="keyword">const</span> T);</div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;T copysign(<span class="keyword">const</span> T, <span class="keyword">const</span> T);</div>
 <div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;</div>
 <div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;template&lt;typename T, typename = typename std::enable_if&lt;std::is_floating_point&lt;T&gt;::value, T&gt;::type&gt;</div>
-<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;T <a class="code" href="namespacemath.html#ad106971d35100fa92b07f224403fbf77">lerp</a>(<span class="keyword">const</span> T, <span class="keyword">const</span> T, <span class="keyword">const</span> T);</div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;T lerp(<span class="keyword">const</span> T, <span class="keyword">const</span> T, <span class="keyword">const</span> T);</div>
 <div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;</div>
 <div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;template&lt;typename T, typename = typename std::enable_if&lt;std::is_arithmetic&lt;T&gt;::value, T&gt;::type&gt;</div>
-<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;T <a class="code" href="namespacemath.html#ab94612e0de6f1f9269388eb013c714b3">max</a>(<span class="keyword">const</span> T, <span class="keyword">const</span> T);</div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;T max(<span class="keyword">const</span> T, <span class="keyword">const</span> T);</div>
 <div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;</div>
 <div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;template&lt;typename T, typename = typename std::enable_if&lt;std::is_arithmetic&lt;T&gt;::value, T&gt;::type&gt;</div>
-<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;T <a class="code" href="namespacemath.html#aaab2a3e0ee0f4b6733ebd6a54b596049">min</a>(<span class="keyword">const</span> T, <span class="keyword">const</span> T);</div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;T min(<span class="keyword">const</span> T, <span class="keyword">const</span> T);</div>
 <div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;</div>
 <div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;}</div>
 <div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;</div>
-<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="functions_8inl.html">math/functions.inl</a>&gt;</span></div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;<span class="preprocessor">#include &lt;math/functions.inl&gt;</span></div>
 <div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;</div>
 <div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;<span class="preprocessor">#endif</span></div>
-<div class="ttc" id="namespacemath_html_aeb1e7dcc87f61ef1a8009355c8525e30"><div class="ttname"><a href="namespacemath.html#aeb1e7dcc87f61ef1a8009355c8525e30">math::cos</a></div><div class="ttdeci">T cos(const T)</div><div class="ttdef"><b>Definition:</b> functions.inl:63</div></div>
-<div class="ttc" id="namespacemath_html_a4705b78d429cc5eaedb218628b29d384"><div class="ttname"><a href="namespacemath.html#a4705b78d429cc5eaedb218628b29d384">math::atan</a></div><div class="ttdeci">T atan(const T)</div><div class="ttdef"><b>Definition:</b> functions.inl:113</div></div>
-<div class="ttc" id="namespacemath_html_a921812f597ac1a49080c57069faf4932"><div class="ttname"><a href="namespacemath.html#a921812f597ac1a49080c57069faf4932">math::degrees</a></div><div class="ttdeci">T degrees(const T)</div><div class="ttdef"><b>Definition:</b> functions.inl:52</div></div>
-<div class="ttc" id="namespacemath_html_a6073b8313a02d05522cced26a6901873"><div class="ttname"><a href="namespacemath.html#a6073b8313a02d05522cced26a6901873">math::clamp</a></div><div class="ttdeci">T clamp(const T, const T, const T)</div><div class="ttdef"><b>Definition:</b> functions.inl:198</div></div>
-<div class="ttc" id="namespacemath_html_a05e35fbeaf09ede67c466cf02592efed"><div class="ttname"><a href="namespacemath.html#a05e35fbeaf09ede67c466cf02592efed">math::PI</a></div><div class="ttdeci">const long double PI</div><div class="ttdef"><b>Definition:</b> functions.hpp:9</div></div>
-<div class="ttc" id="namespacemath_html_a29b5d8c6229836cc23b2c464c9115e9c"><div class="ttname"><a href="namespacemath.html#a29b5d8c6229836cc23b2c464c9115e9c">math::acos</a></div><div class="ttdeci">T acos(const T)</div><div class="ttdef"><b>Definition:</b> functions.inl:93</div></div>
-<div class="ttc" id="namespacemath_html_ad106971d35100fa92b07f224403fbf77"><div class="ttname"><a href="namespacemath.html#ad106971d35100fa92b07f224403fbf77">math::lerp</a></div><div class="ttdeci">T lerp(const T, const T, const T)</div><div class="ttdef"><b>Definition:</b> functions.inl:235</div></div>
-<div class="ttc" id="functions_8inl_html"><div class="ttname"><a href="functions_8inl.html">functions.inl</a></div></div>
-<div class="ttc" id="namespacemath_html_a73a498127c47b4727afcc18634a4345a"><div class="ttname"><a href="namespacemath.html#a73a498127c47b4727afcc18634a4345a">math::abs</a></div><div class="ttdeci">T abs(const T)</div><div class="ttdef"><b>Definition:</b> functions.inl:208</div></div>
-<div class="ttc" id="namespacemath_html_af2f10c6db07eaaf4ad5e741e95059a37"><div class="ttname"><a href="namespacemath.html#af2f10c6db07eaaf4ad5e741e95059a37">math::pow</a></div><div class="ttdeci">T pow(const T, const T)</div><div class="ttdef"><b>Definition:</b> functions.inl:136</div></div>
-<div class="ttc" id="namespacemath_html_ab94612e0de6f1f9269388eb013c714b3"><div class="ttname"><a href="namespacemath.html#ab94612e0de6f1f9269388eb013c714b3">math::max</a></div><div class="ttdeci">T max(const T, const T)</div><div class="ttdef"><b>Definition:</b> functions.inl:246</div></div>
-<div class="ttc" id="namespacemath_html_a7ca958664ac8872046b65ceec3d40787"><div class="ttname"><a href="namespacemath.html#a7ca958664ac8872046b65ceec3d40787">math::copysign</a></div><div class="ttdeci">T copysign(const T, const T)</div><div class="ttdef"><b>Definition:</b> functions.inl:219</div></div>
-<div class="ttc" id="namespacemath_html_a1f6ceb22c9449b0a1b1fd752b627f520"><div class="ttname"><a href="namespacemath.html#a1f6ceb22c9449b0a1b1fd752b627f520">math::sin</a></div><div class="ttdeci">T sin(const T)</div><div class="ttdef"><b>Definition:</b> functions.inl:73</div></div>
-<div class="ttc" id="namespacemath_html_ad909168b46b313e757cccbd7bacd6c43"><div class="ttname"><a href="namespacemath.html#ad909168b46b313e757cccbd7bacd6c43">math::tan</a></div><div class="ttdeci">T tan(const T)</div><div class="ttdef"><b>Definition:</b> functions.inl:83</div></div>
-<div class="ttc" id="namespacemath_html_afd56ffadc0a9e801b95d5afa3bb05231"><div class="ttname"><a href="namespacemath.html#afd56ffadc0a9e801b95d5afa3bb05231">math::trunc</a></div><div class="ttdeci">T trunc(const T)</div><div class="ttdef"><b>Definition:</b> functions.inl:186</div></div>
-<div class="ttc" id="namespacemath_html_a3d04f797c8a5a3ba6fab295a81338848"><div class="ttname"><a href="namespacemath.html#a3d04f797c8a5a3ba6fab295a81338848">math::radians</a></div><div class="ttdeci">T radians(const T)</div><div class="ttdef"><b>Definition:</b> functions.inl:41</div></div>
-<div class="ttc" id="namespacemath_html_a9e4000a4c4215425e42e4f1470767c99"><div class="ttname"><a href="namespacemath.html#a9e4000a4c4215425e42e4f1470767c99">math::floor</a></div><div class="ttdeci">T floor(const T)</div><div class="ttdef"><b>Definition:</b> functions.inl:166</div></div>
-<div class="ttc" id="namespacemath_html_a286b2a472a887f84bcbf698f0edcae20"><div class="ttname"><a href="namespacemath.html#a286b2a472a887f84bcbf698f0edcae20">math::round</a></div><div class="ttdeci">T round(const T)</div><div class="ttdef"><b>Definition:</b> functions.inl:176</div></div>
-<div class="ttc" id="namespacemath_html_a4456d4113576c9babc1fe4389e72a93f"><div class="ttname"><a href="namespacemath.html#a4456d4113576c9babc1fe4389e72a93f">math::asin</a></div><div class="ttdeci">T asin(const T)</div><div class="ttdef"><b>Definition:</b> functions.inl:103</div></div>
-<div class="ttc" id="namespacemath_html_a35574f80f855cebaf3272e0c3fb6a763"><div class="ttname"><a href="namespacemath.html#a35574f80f855cebaf3272e0c3fb6a763">math::equals</a></div><div class="ttdeci">bool equals(const T, const T)</div><div class="ttdef"><b>Definition:</b> functions.inl:17</div></div>
-<div class="ttc" id="namespacemath_html_ac99ab6bc04d5e7ea846b6902c38baeb0"><div class="ttname"><a href="namespacemath.html#ac99ab6bc04d5e7ea846b6902c38baeb0">math::sqrt</a></div><div class="ttdeci">T sqrt(const T)</div><div class="ttdef"><b>Definition:</b> functions.inl:146</div></div>
-<div class="ttc" id="namespacemath_html_abb4b198219e12b60e420f382746836c7"><div class="ttname"><a href="namespacemath.html#abb4b198219e12b60e420f382746836c7">math::ceil</a></div><div class="ttdeci">T ceil(const T)</div><div class="ttdef"><b>Definition:</b> functions.inl:156</div></div>
-<div class="ttc" id="namespacemath_html_aaab2a3e0ee0f4b6733ebd6a54b596049"><div class="ttname"><a href="namespacemath.html#aaab2a3e0ee0f4b6733ebd6a54b596049">math::min</a></div><div class="ttdeci">T min(const T, const T)</div><div class="ttdef"><b>Definition:</b> functions.inl:257</div></div>
-<div class="ttc" id="namespacemath_html_a5ea3cf88cf6c4d99f404b7db83900bfd"><div class="ttname"><a href="namespacemath.html#a5ea3cf88cf6c4d99f404b7db83900bfd">math::atan2</a></div><div class="ttdeci">T atan2(const T, const T)</div><div class="ttdef"><b>Definition:</b> functions.inl:124</div></div>
 </div><!-- fragment --></div><!-- contents -->
-<!-- start footer part -->
-<hr class="footer"/><address class="footer"><small>
-Generated on Sat Apr 26 2014 22:07:04 for math by &#160;<a href="http://www.doxygen.org/index.html">
-<img class="footer" src="doxygen.png" alt="doxygen"/>
-</a> 1.8.7
-</small></address>
+<address class="footer">
+</address>
 </body>
 </html>

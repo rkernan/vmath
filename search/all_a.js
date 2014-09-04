@@ -1,5 +1,7 @@
 var searchData=
 [
-  ['normal',['normal',['../classmath_1_1core_1_1quaternion.html#ae187373bf27c38369b967d7774316797',1,'math::core::quaternion::normal()'],['../classmath_1_1core_1_1vector.html#a45ed56294656534c3c4b2df6e6cb0724',1,'math::core::vector::normal()']]],
-  ['normalize',['normalize',['../classmath_1_1core_1_1quaternion.html#aab345c34db18d838b4296ed62c21ad18',1,'math::core::quaternion::normalize()'],['../classmath_1_1core_1_1vector.html#aac27f291c91500c634ac9a229e6c0df6',1,'math::core::vector::normalize()']]]
+  ['reflect',['reflect',['../classmath_1_1core_1_1vector.html#abf8be5457a4470179185c6905a10f3be',1,'math::core::vector']]],
+  ['refract',['refract',['../classmath_1_1core_1_1vector.html#ad30872030305f77065aad1e7a4a198e0',1,'math::core::vector']]],
+  ['roll',['roll',['../classmath_1_1core_1_1quaternion.html#aa4ed80e5c019e03bb6c6c6fca5892603',1,'math::core::quaternion']]],
+  ['rotation',['rotation',['../classmath_1_1core_1_1matrix.html#a9f091571611ab91e3840d06a6e2e5ac2',1,'math::core::matrix']]]
 ];

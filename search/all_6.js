@@ -1,4 +1,6 @@
 var searchData=
 [
-  ['g',['g',['../classmath_1_1core_1_1anonymous__namespace_02vector_8hpp_03_1_1vector__components_3_01T_00_012_01_4.html#a6c95beb3b3098651f61a8d684b515ce7',1,'math::core::anonymous_namespace{vector.hpp}::vector_components&lt; T, 2 &gt;::g()'],['../classmath_1_1core_1_1anonymous__namespace_02vector_8hpp_03_1_1vector__components_3_01T_00_013_01_4.html#a13d1af2571391bb2478e38fb297d9e0e',1,'math::core::anonymous_namespace{vector.hpp}::vector_components&lt; T, 3 &gt;::g()'],['../classmath_1_1core_1_1anonymous__namespace_02vector_8hpp_03_1_1vector__components_3_01T_00_014_01_4.html#abfd00de8344a1bd64f5b2244b0f0393e',1,'math::core::anonymous_namespace{vector.hpp}::vector_components&lt; T, 4 &gt;::g()']]]
+  ['notitle',['notitle',['../index.html',1,'']]],
+  ['normal',['normal',['../classmath_1_1core_1_1quaternion.html#aa7fcf761d55309b906abf00610c38382',1,'math::core::quaternion::normal()'],['../classmath_1_1core_1_1vector.html#a024addd59207aa0d42589514f9cdd97c',1,'math::core::vector::normal()']]],
+  ['normalize',['normalize',['../classmath_1_1core_1_1quaternion.html#a5453c45cf11fe24ee8b18edd44a0265b',1,'math::core::quaternion::normalize()'],['../classmath_1_1core_1_1vector.html#a3a02317ab9ede9f874af2ac264a756dc',1,'math::core::vector::normalize()']]]
 ];

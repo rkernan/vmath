@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['quaternion',['quaternion',['../classmath_1_1core_1_1quaternion.html#a9103839c786961dad6fdf71d25775dce',1,'math::core::quaternion::quaternion(void)'],['../classmath_1_1core_1_1quaternion.html#a5cc23b3dd6e0b7afd92cf706d19d519d',1,'math::core::quaternion::quaternion(const T &amp;x, const T &amp;y, const T &amp;z, const T &amp;w)'],['../classmath_1_1core_1_1quaternion.html#abacae3c3af50a587941fd0ce2218ae32',1,'math::core::quaternion::quaternion(const T &amp;, const T &amp;, const T &amp;)'],['../classmath_1_1core_1_1quaternion.html#ad876b3ed47e8f97f2062b8796492403f',1,'math::core::quaternion::quaternion(const vector&lt; T, 3 &gt; &amp;, const T &amp;)'],['../classmath_1_1core_1_1quaternion.html#a7bf6b1235c0eca5fba39434fb71a78c7',1,'math::core::quaternion::quaternion(const matrix&lt; T, 4, 4 &gt; &amp;)']]]
+  ['scale',['scale',['../classmath_1_1core_1_1matrix.html#a27d71dc0d316c7ffb64a8e95275df57e',1,'math::core::matrix']]],
+  ['slerp',['slerp',['../classmath_1_1core_1_1quaternion.html#a90219fb227175fdf8d63fd2b34fc066e',1,'math::core::quaternion']]]
 ];
