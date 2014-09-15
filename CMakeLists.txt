@@ -2,6 +2,10 @@ cmake_minimum_required(VERSION 2.8 FATAL_ERROR)
 
 project("math")
 
+set(MATH_VERSION_MAJOR "1")
+set(MATH_VERSION_MINOR "0")
+set(MATH_VERSION "${MATH_VERSION_MAJOR}.${MATH_VERSION_MINOR}")
+
 include("${CMAKE_CURRENT_SOURCE_DIR}/cmake/Config.cmake")
 
 set(MATH_INCLUDE_DIR "${CMAKE_CURRENT_SOURCE_DIR}/include")
