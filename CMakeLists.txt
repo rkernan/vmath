@@ -2,34 +2,12 @@ cmake_minimum_required(VERSION 2.8 FATAL_ERROR)
 
 project("math")
 
-enable_testing()
+include("${CMAKE_CURRENT_SOURCE_DIR}/cmake/Config.cmake")
 
-option(BUILD_DOCUMENTATION "Build HTML documentation using Doxygen." ON)
+set(MATH_INCLUDE_DIR "${CMAKE_CURRENT_SOURCE_DIR}/include")
+include_directories(${MATH_INCLUDE_DIR})
 
-if(BUILD_DOCUMENTATION)
-	find_package(Doxygen)
-	if(NOT DOXYGEN_FOUND)
-		message(FATAL_ERROR "Doxygen not found. Required to build documentation.")
-	endif()
-
-	set(DOXYFILE_IN "${CMAKE_CURRENT_SOURCE_DIR}/Doxyfile.in")
-	set(DOXYFILE "${PROJECT_BINARY_DIR}/Doxyfile")
-	set(DOXYGEN_OUTPUT_DIR "${PROJECT_BINARY_DIR}/doc")
-
-	configure_file(Doxyfile.in "${PROJECT_BINARY_DIR}/Doxyfile" @ONLY)
-	add_custom_command(
-		OUTPUT ${DOXYGEN_OUTPUT_DIR}
-		COMMAND ${DOXYGEN_EXECUTABLE} ${DOXYFILE}
-		COMMENT "Generating documentation"
-		)
-
-	add_custom_target(doc DEPENDS ${DOXYGEN_OUTPUT_DIR})
-endif()
-
-include_directories("${CMAKE_CURRENT_SOURCE_DIR}/include")
-
-set(INCDIR "${CMAKE_CURRENT_SOURCE_DIR}/include")
-
+set(INCDIR ${MATH_INCLUDE_DIR})
 set(HEADERS
 	"${INCDIR}/math/functions.hpp"
 	"${INCDIR}/math/functions.inl"
@@ -50,4 +28,10 @@ set(HEADERS
 	"${INCDIR}/math/core/swizzle/swizzle_gen.hpp"
 	)
 
-add_subdirectory(test)
+if(MATH_BUILD_DOC)
+	add_subdirectory(doc)
+endif()
+
+if(MATH_BUILD_TESTS)
+	add_subdirectory(test)
+endif()

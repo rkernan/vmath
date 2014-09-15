@@ -16,9 +16,6 @@ tags
 # Random
 .DS_Store
 
-# documentation
-doc/
-
 #--------------------
 # Windows (Visual Studio)
 #--------------------

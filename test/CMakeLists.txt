@@ -23,9 +23,9 @@ add_executable(unit_tests
 	${SOURCES}
 )
 
-add_definitions("-std=c++11")
-
 find_package(Boost COMPONENTS unit_test_framework REQUIRED)
 target_link_libraries(unit_tests ${Boost_LIBRARIES})
+
+enable_testing()
 
 add_test(UnitTests unit_tests)
