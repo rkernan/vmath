@@ -1,0 +1,25 @@
+var NAVTREEINDEX1 =
+{
+"singletonmath_1_1core_1_1vector.html#a5d388df1e29a05abd3481a67c4356a03":[1,0,0,0,10,20],
+"singletonmath_1_1core_1_1vector.html#a7a26a5838125ba088faa9f159fe4b263":[1,0,0,0,10,10],
+"singletonmath_1_1core_1_1vector.html#a84b7f6d471c252e91efec998450ce9d7":[1,0,0,0,10,9],
+"singletonmath_1_1core_1_1vector.html#a884099a2a32121f9a97ef8859b4cb8db":[1,0,0,0,10,17],
+"singletonmath_1_1core_1_1vector.html#ac2377882f7f4922a962ffef13b5e73e6":[1,0,0,0,10,14],
+"singletonmath_1_1core_1_1vector.html#ac7f4b3301b8a831e0757e9ef332c373a":[1,0,0,0,10,16],
+"singletonmath_1_1core_1_1vector.html#ad233d9bdebe0d4ae609444171dbcb68b":[1,0,0,0,10,0],
+"singletonmath_1_1core_1_1vector.html#aed0109f8179d0fe76e9795386df87091":[1,0,0,0,10,1],
+"singletonmath_1_1core_1_1vector.html#af708932168d41d0c1f0f7e3ef4e8643c":[1,0,0,0,10,21],
+"structmath_1_1core_1_1is__assignable__swizzle.html":[1,0,0,0,2],
+"structmath_1_1core_1_1is__square__matrix.html":[1,0,0,0,3],
+"swizzle2_8hpp_source.html":[2,0,0,0,0,1],
+"swizzle2_8inl_source.html":[2,0,0,0,0,2],
+"swizzle3_8hpp_source.html":[2,0,0,0,0,3],
+"swizzle3_8inl_source.html":[2,0,0,0,0,4],
+"swizzle4_8hpp_source.html":[2,0,0,0,0,5],
+"swizzle4_8inl_source.html":[2,0,0,0,0,6],
+"swizzle_8hpp_source.html":[2,0,0,0,0,0],
+"swizzle__gen_8hpp_source.html":[2,0,0,0,0,7],
+"types_8hpp_source.html":[2,0,0,3],
+"vector_8hpp_source.html":[2,0,0,0,5],
+"vector_8inl_source.html":[2,0,0,0,6]
+};
