@@ -25,11 +25,13 @@ public:
 	quaternion(const T& x, const T& y, const T& z, const T& w) : x(x), y(y), z(z), w(w) {}
 	quaternion(const T&, const T&, const T&);
 	quaternion(const vector<T, 3>&, const T&);
-	quaternion(const matrix<T, 4, 4>&);
+	explicit quaternion(const matrix<T, 4, 4>&);
+	quaternion(const quaternion&) = default;
+	quaternion<T>& operator=(const quaternion<T>&) = default;
+	quaternion(quaternion&&) = default;
 
 	~quaternion(void) = default;
 
-	quaternion<T>& operator=(const quaternion<T>&);
 
 	T operator[](const std::size_t) const;
 	T& operator[](const std::size_t);
@@ -75,7 +77,7 @@ public:
 	static T dot(const quaternion<T>&, const quaternion<T>&);
 
 	static quaternion<T> lerp(const quaternion<T>&, const quaternion<T>&, const T&);
-	static quaternion<T> slerp(const quaternion<T>&, const quaternion<T>&, const T&, const bool=false);
+	static quaternion<T> slerp(const quaternion<T>&, const quaternion<T>&, const T&, const bool = false);
 
 	union {
 		std::array<T, 4> data;

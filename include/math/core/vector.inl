@@ -11,19 +11,6 @@ namespace math {
 namespace core {
 
 /**
- * Set this vector equal to another.
- * @param other vector to set equal to.
- * @return The modified vector.
- */
-template<typename T, std::size_t N>
-vector<T, N>& vector<T, N>::operator=(const vector<T, N>& other) {
-	for (std::size_t i = 0; i < N; i++) {
-		this->data[i] = other.data[i];
-	}
-	return *this;
-}
-
-/**
  * Access a vector element using an index.
  * @param idx Location of element to access.
  * @return Accessed element.

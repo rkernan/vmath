@@ -71,20 +71,6 @@ quaternion<T>::quaternion(const matrix<T, 4, 4>& mat) {
 }
 
 /**
- * Set this quaternion equal to another.
- * @param other quaternion to set equal to.
- * @return The modified vector.
- */
-template<typename T>
-quaternion<T>& quaternion<T>::operator=(const quaternion<T>& other) {
-	this->x = other.x;
-	this->y = other.y;
-	this->z = other.z;
-	this->w = other.w;
-	return *this;
-}
-
-/**
  * Access a quaternion element using an index.
  * @param idx Location of element to access.
  * @return Accessed element.

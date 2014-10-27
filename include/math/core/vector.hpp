@@ -25,6 +25,7 @@ public:
 	vector_components(void) : data() {}
 	explicit vector_components(const std::array<T, N>& data) : data(data) {}
 	vector_components(const vector_components<T, N>&) = default;
+	vector_components<T, N>& operator=(const vector_components<T, N>&) = default;
 	vector_components(vector_components<T, N>&&) = default;
 
 	std::array<T, N> data;
@@ -42,6 +43,7 @@ public:
 	explicit vector_components(const std::array<T, 2>& data) : data(data) {}
 	explicit vector_components(const T& x, const T& y) : x(x), y(y) {}
 	vector_components(const vector_components<T, 2>&) = default;
+	vector_components<T, 2>& operator=(const vector_components<T, 2>&) = default;
 	vector_components(vector_components<T, 2>&&) = default;
 
 	union {
@@ -77,6 +79,7 @@ public:
 	explicit vector_components(const T& x, const T& y, const T& z) : x(x), y(y), z(z) {}
 	explicit vector_components(const vector_components<T, 2>& V, const T& z) : x(V.x), y(V.y), z(z) {}
 	vector_components(const vector_components<T, 3>&) = default;
+	vector_components<T, 3>& operator=(const vector_components<T, 3>&) = default;
 	vector_components(vector_components<T, 3>&&) = default;
 
 	union {
@@ -113,6 +116,7 @@ public:
 	explicit vector_components(const vector_components<T, 2>& V, const T& z, const T& w) : x(V.x), y(V.y), z(z), w(w) {}
 	explicit vector_components(const vector_components<T, 3>& V, const T& w) : x(V.x), y(V.y), z(V.z), w(w) {}
 	vector_components(const vector_components<T, 4>&) = default;
+	vector_components<T, 4>& operator=(const vector_components<T, 4>&) = default;
 	vector_components(vector_components<T, 4>&&) = default;
 
 	union {
@@ -162,8 +166,6 @@ public:
 #endif
 
 	~vector(void) = default;
-
-	vector<T, N>& operator=(const vector<T, N>&);
 
 	T operator[](const std::size_t) const;
 	T& operator[](const std::size_t);

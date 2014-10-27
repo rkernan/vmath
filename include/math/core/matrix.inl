@@ -7,19 +7,6 @@ namespace math {
 namespace core {
 
 /**
- * Set this matrix equal to another.
- * @param other matrix to set equal to.
- * @return The modified vector.
- */
-template<typename T, std::size_t M, std::size_t N>
-matrix<T, M, N>& matrix<T, M, N>::operator=(const matrix<T, M, N>& other) {
-	for (std::size_t i = 0; i < N; i++) {
-		this->data[i] = other.data[i];
-	}
-	return *this;
-}
-
-/**
  * Access a matrix element using an index.
  * @param idx Location of element to access.
  * @return Accessed element.
