@@ -41,7 +41,7 @@ class vector_components<T, 2> {
 public:
 	vector_components(void) : x(), y() {}
 	explicit vector_components(const std::array<T, 2>& data) : data(data) {}
-	explicit vector_components(const T& x, const T& y) : x(x), y(y) {}
+	vector_components(const T& x, const T& y) : x(x), y(y) {}
 	vector_components(const vector_components<T, 2>&) = default;
 	vector_components<T, 2>& operator=(const vector_components<T, 2>&) = default;
 	vector_components(vector_components<T, 2>&&) = default;
@@ -76,8 +76,8 @@ class vector_components<T, 3> {
 public:
 	vector_components(void) : x(), y(), z() {}
 	explicit vector_components(const std::array<T, 3>& data) : data(data) {}
-	explicit vector_components(const T& x, const T& y, const T& z) : x(x), y(y), z(z) {}
-	explicit vector_components(const vector_components<T, 2>& V, const T& z) : x(V.x), y(V.y), z(z) {}
+	vector_components(const T& x, const T& y, const T& z) : x(x), y(y), z(z) {}
+	vector_components(const vector_components<T, 2>& V, const T& z) : x(V.x), y(V.y), z(z) {}
 	vector_components(const vector_components<T, 3>&) = default;
 	vector_components<T, 3>& operator=(const vector_components<T, 3>&) = default;
 	vector_components(vector_components<T, 3>&&) = default;
@@ -112,9 +112,9 @@ class vector_components<T, 4> {
 public:
 	vector_components(void) : x(), y(), z(), w() {}
 	explicit vector_components(const std::array<T, 4>& data) : data(data) {}
-	explicit vector_components(const T& x, const T& y, const T& z, const T& w) : x(x), y(y), z(z), w(w) {}
-	explicit vector_components(const vector_components<T, 2>& V, const T& z, const T& w) : x(V.x), y(V.y), z(z), w(w) {}
-	explicit vector_components(const vector_components<T, 3>& V, const T& w) : x(V.x), y(V.y), z(V.z), w(w) {}
+	vector_components(const T& x, const T& y, const T& z, const T& w) : x(x), y(y), z(z), w(w) {}
+	vector_components(const vector_components<T, 2>& V, const T& z, const T& w) : x(V.x), y(V.y), z(z), w(w) {}
+	vector_components(const vector_components<T, 3>& V, const T& w) : x(V.x), y(V.y), z(V.z), w(w) {}
 	vector_components(const vector_components<T, 4>&) = default;
 	vector_components<T, 4>& operator=(const vector_components<T, 4>&) = default;
 	vector_components(vector_components<T, 4>&&) = default;
