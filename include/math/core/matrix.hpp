@@ -139,28 +139,7 @@ public:
 template<typename T, std::size_t M, std::size_t N = M>
 class matrix : public matrix_components<T, M, N> {
 public:
-#if defined(_WIN32)
-	matrix(void) : matrix_components<T, M, N>() {}
-	explicit matrix(const std::array<vector<T, M>, N>& data) : matrix_components<T, M, N>(data) {}
-	explicit matrix(const vector<T, M>& V) : matrix_components<T, M, N>(V) {}
-	explicit matrix(const vector<T, M>& V1, const vector<T, M>& V2)
-		: matrix_components<T, M, N>(V1, V2) {}
-	explicit matrix(
-			const vector<T, M>& V1,
-			const vector<T, M>& V2,
-			const vector<T, M>& V3)
-		: matrix_components<T, M, N>(V1, V2, V3) {}
-	explicit matrix(
-			const vector<T, M>& V1,
-			const vector<T, M>& V2,
-			const vector<T, M>& V3,
-			const vector<T, M>& V4)
-		: matrix_components<T, M, N>(V1, V2, V3, V4) {}
-	matrix(const matrix<T, M, N>& orig) : matrix_components<T, M, N>(orig) {}
-	matrix(matrix<T, M, N>&& orig) : matrix_components<T, M, N>(orig) {}
-#else
 	using matrix_components<T, M, N>::matrix_components;
-#endif
 
 	~matrix(void) = default;
 
