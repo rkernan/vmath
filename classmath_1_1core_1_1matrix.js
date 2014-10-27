@@ -18,7 +18,6 @@ var classmath_1_1core_1_1matrix =
     [ "operator-=", "classmath_1_1core_1_1matrix.html#ae597adf7d3102c559f1ed6f71da33825", null ],
     [ "operator/", "classmath_1_1core_1_1matrix.html#ab8c99b45ad2d81d13ced62513277af78", null ],
     [ "operator/=", "classmath_1_1core_1_1matrix.html#a434e45a7e87ca7fa69a6aac82a29eaaf", null ],
-    [ "operator=", "classmath_1_1core_1_1matrix.html#a988d10c5d768ca34dc5f0c5e6d1abbe5", null ],
     [ "operator==", "classmath_1_1core_1_1matrix.html#a3401b2c9771a7050359b18d32ee59e6d", null ],
     [ "operator[]", "classmath_1_1core_1_1matrix.html#a511a8c8e1f240c57eb5736705b62584c", null ],
     [ "operator[]", "classmath_1_1core_1_1matrix.html#ab4fb20dd7048203fa3abcb5f9c2067e3", null ],

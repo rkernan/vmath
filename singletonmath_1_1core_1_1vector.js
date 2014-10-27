@@ -19,7 +19,6 @@ var singletonmath_1_1core_1_1vector =
     [ "operator/", "singletonmath_1_1core_1_1vector.html#ac7f4b3301b8a831e0757e9ef332c373a", null ],
     [ "operator/=", "singletonmath_1_1core_1_1vector.html#a884099a2a32121f9a97ef8859b4cb8db", null ],
     [ "operator/=", "singletonmath_1_1core_1_1vector.html#a2bf84403b4fd7367c883a714d884b0f2", null ],
-    [ "operator=", "singletonmath_1_1core_1_1vector.html#a449ea393a0f6e4f2d99ee02e217c5ac6", null ],
     [ "operator==", "singletonmath_1_1core_1_1vector.html#a5d388df1e29a05abd3481a67c4356a03", null ],
     [ "operator[]", "singletonmath_1_1core_1_1vector.html#af708932168d41d0c1f0f7e3ef4e8643c", null ],
     [ "operator[]", "singletonmath_1_1core_1_1vector.html#a17250ae1223173507c6d372bb8c40ce1", null ]

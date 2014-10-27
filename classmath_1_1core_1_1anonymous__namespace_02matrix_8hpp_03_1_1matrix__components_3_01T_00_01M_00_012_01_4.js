@@ -5,5 +5,6 @@ var classmath_1_1core_1_1anonymous__namespace_02matrix_8hpp_03_1_1matrix__compon
     [ "matrix_components", "classmath_1_1core_1_1anonymous__namespace_02matrix_8hpp_03_1_1matrix__components_3_01T_00_01M_00_012_01_4.html#acd834820b22cef142c4b8bcb4b207fe5", null ],
     [ "matrix_components", "classmath_1_1core_1_1anonymous__namespace_02matrix_8hpp_03_1_1matrix__components_3_01T_00_01M_00_012_01_4.html#afdcf39acea3aa3d62107828107f8cd6f", null ],
     [ "matrix_components", "classmath_1_1core_1_1anonymous__namespace_02matrix_8hpp_03_1_1matrix__components_3_01T_00_01M_00_012_01_4.html#a773d9609595aca6e63f56671b89b956c", null ],
+    [ "operator=", "classmath_1_1core_1_1anonymous__namespace_02matrix_8hpp_03_1_1matrix__components_3_01T_00_01M_00_012_01_4.html#a2fb6ade3762de9bf1288ca937d856d7e", null ],
     [ "data", "classmath_1_1core_1_1anonymous__namespace_02matrix_8hpp_03_1_1matrix__components_3_01T_00_01M_00_012_01_4.html#ac1dd2be84bbf5b59b5ce04fd1491aa5a", null ]
 ];

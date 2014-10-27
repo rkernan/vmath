@@ -17,7 +17,7 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 ".html",
-"singletonmath_1_1core_1_1vector.html#a5d388df1e29a05abd3481a67c4356a03"
+"singletonmath_1_1core_1_1vector.html#a0cdf9c1e6ab4f95bf573342f2b8589d7"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

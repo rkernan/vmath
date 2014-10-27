@@ -7,6 +7,7 @@ var classmath_1_1core_1_1anonymous__namespace_02vector_8hpp_03_1_1vector__compon
     [ "vector_components", "classmath_1_1core_1_1anonymous__namespace_02vector_8hpp_03_1_1vector__components_3_01T_00_014_01_4.html#af407c025dd0b56b600b337048f7fdb0c", null ],
     [ "vector_components", "classmath_1_1core_1_1anonymous__namespace_02vector_8hpp_03_1_1vector__components_3_01T_00_014_01_4.html#ac123d70c8489fed597f60310a1ff5b00", null ],
     [ "vector_components", "classmath_1_1core_1_1anonymous__namespace_02vector_8hpp_03_1_1vector__components_3_01T_00_014_01_4.html#a203a3e5e5fc09f5a6876d10bba279b0e", null ],
+    [ "operator=", "classmath_1_1core_1_1anonymous__namespace_02vector_8hpp_03_1_1vector__components_3_01T_00_014_01_4.html#a4fcedc2760346ba1482cda17ff2df8a9", null ],
     [ "a", "classmath_1_1core_1_1anonymous__namespace_02vector_8hpp_03_1_1vector__components_3_01T_00_014_01_4.html#a36eede4e8dbc5a1fca46f6442c5c2122", null ],
     [ "b", "classmath_1_1core_1_1anonymous__namespace_02vector_8hpp_03_1_1vector__components_3_01T_00_014_01_4.html#aec98ee3efc01dfee64562ffc5ee48ac4", null ],
     [ "data", "classmath_1_1core_1_1anonymous__namespace_02vector_8hpp_03_1_1vector__components_3_01T_00_014_01_4.html#a34f6a38e1fc2e6c1f776c0ec7424649b", null ],
