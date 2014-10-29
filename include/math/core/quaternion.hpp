@@ -29,6 +29,7 @@ public:
 	quaternion(const quaternion&) = default;
 	quaternion<T>& operator=(const quaternion<T>&) = default;
 	quaternion(quaternion&&) = default;
+	quaternion<T>& operator=(quaternion<T>&&) = default;
 
 	~quaternion(void) = default;
 

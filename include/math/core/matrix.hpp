@@ -36,8 +36,9 @@ public:
 	matrix_components(void) : data() {}
 	explicit matrix_components(const std::array<vector<T, M>, N>& data) : data(data) {}
 	matrix_components(const matrix_components<T, M, N>&) = default;
-	matrix_components& operator=(const matrix_components&) = default;
+	matrix_components<T, M, N>& operator=(const matrix_components&) = default;
 	matrix_components(matrix_components<T, M, N>&&) = default;
+	matrix_components<T, M, N>& operator=(matrix_components<T, M, N>&&) = default;
 
 	std::array<vector<T, M>, N> data;
 };
@@ -57,6 +58,7 @@ public:
 	matrix_components(const matrix_components<T, M, 1>&) = default;
 	matrix_components<T, M, 1>& operator=(const matrix_components<T, M, 1>&) = default;
 	matrix_components(matrix_components<T, M, 1>&&) = default;
+	matrix_components<T, M, 1>& operator=(matrix_components<T, M, 1>&&) = default;
 
 	std::array<vector<T, M>, 1> data;
 };
@@ -76,6 +78,7 @@ public:
 	matrix_components(const matrix_components<T, M, 2>&) = default;
 	matrix_components<T, M, 2>& operator=(const matrix_components<T, M, 2>&) = default;
 	matrix_components(matrix_components<T, M, 2>&&) = default;
+	matrix_components<T, M, 2>& operator=(matrix_components<T, M, 2>&&) = default;
 
 	std::array<vector<T, M>, 2> data;
 };
@@ -99,6 +102,7 @@ public:
 	matrix_components(const matrix_components<T, M, 3>&) = default;
 	matrix_components<T, M, 3>& operator=(const matrix_components<T, M, 3>&) = default;
 	matrix_components(matrix_components<T, M, 3>&&) = default;
+	matrix_components<T, M, 3>& operator=(matrix_components<T, M, 3>&&) = default;
 
 	std::array<vector<T, M>, 3> data;
 };
@@ -123,6 +127,7 @@ public:
 	matrix_components(const matrix_components<T, M, 4>&) = default;
 	matrix_components<T, M, 4>& operator=(const matrix_components<T, M, 4>&) = default;
 	matrix_components(matrix_components<T, M, 4>&&) = default;
+	matrix_components<T, M, 4>& operator=(matrix_components<T, M, 4>&&) = default;
 
 	std::array<vector<T, M>, 4> data;
 };

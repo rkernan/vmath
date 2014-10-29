@@ -27,6 +27,7 @@ public:
 	vector_components(const vector_components<T, N>&) = default;
 	vector_components<T, N>& operator=(const vector_components<T, N>&) = default;
 	vector_components(vector_components<T, N>&&) = default;
+	vector_components<T, N>& operator=(vector_components<T, N>&&) = default;
 
 	std::array<T, N> data;
 };
@@ -45,6 +46,7 @@ public:
 	vector_components(const vector_components<T, 2>&) = default;
 	vector_components<T, 2>& operator=(const vector_components<T, 2>&) = default;
 	vector_components(vector_components<T, 2>&&) = default;
+	vector_components<T, 2>& operator=(vector_components<T, 2>&&) = default;
 
 	union {
 		std::array<T, 2> data;
@@ -81,6 +83,7 @@ public:
 	vector_components(const vector_components<T, 3>&) = default;
 	vector_components<T, 3>& operator=(const vector_components<T, 3>&) = default;
 	vector_components(vector_components<T, 3>&&) = default;
+	vector_components<T, 3>& operator=(vector_components<T, 3>&&) = default;
 
 	union {
 		std::array<T, 3> data;
@@ -118,6 +121,7 @@ public:
 	vector_components(const vector_components<T, 4>&) = default;
 	vector_components<T, 4>& operator=(const vector_components<T, 4>&) = default;
 	vector_components(vector_components<T, 4>&&) = default;
+	vector_components<T, 4>& operator=(vector_components<T, 4>&&) = default;
 
 	union {
 		std::array<T, 4> data;
