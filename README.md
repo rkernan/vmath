@@ -1,5 +1,5 @@
 # Math
-[![Build Status](https://travis-ci.org/kernan/math.svg?branch=master)](https://travis.ci.org/kernan/math)
+[![Build Status](https://travis-ci.org/kernan/math.svg?branch=master)](https://travis-ci.org/kernan/math)
 
 ## Introduction
 
