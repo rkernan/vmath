@@ -23,9 +23,6 @@ add_executable(unit_tests
 	${SOURCES}
 )
 
-set_property(TARGET unit_tests PROPERTY CXX_STANDARD 11)
-set_property(TARGET unit_tests PROPERTY CXX_STANDARD_REQUIRE ON)
-
 find_package(Boost COMPONENTS unit_test_framework REQUIRED)
 target_link_libraries(unit_tests ${Boost_LIBRARIES})
 
