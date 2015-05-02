@@ -8,6 +8,7 @@ compiler:
 
 install:
     - sudo apt-get install libboost-dev
+    - sudo apt-get install doxygen
 
 script:
     - mkdir build
