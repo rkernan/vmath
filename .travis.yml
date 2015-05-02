@@ -1,0 +1,17 @@
+sudo: required
+language: cpp
+os: linux
+
+compiler:
+    - clang
+    - gcc
+
+install:
+    - sudo apt-get install libboost-dev
+
+script:
+    - mkdir build
+    - cd build
+    - cmake ..
+    - make
+    - make test
