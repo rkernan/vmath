@@ -7,9 +7,12 @@ compiler:
     - gcc
 
 install:
-    - sudo apt-get update
-    - sudo apt-get install libboost-dev libboost-test-dev
-    - sudo apt-get install doxygen graphviz
+    - sudo add-apt-repository ppa:smspillaz/cmake-master;
+      sudo apt-get install cmake;
+      sudo add-apt-repository ppa:ubuntu-toolchain-r/test;
+      sudo pat-get install gcc;
+      sudo apt-get install libboost-dev libboost-test-dev;
+      sudo apt-get install doxygen graphviz;
 
 script:
     - mkdir build
