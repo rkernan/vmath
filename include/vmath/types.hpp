@@ -1,11 +1,11 @@
-#ifndef MATH_TYPES_HPP
-#define MATH_TYPES_HPP
+#ifndef VMATH_TYPES_HPP
+#define VMATH_TYPES_HPP
 
-#include <math/core/matrix.hpp>
-#include <math/core/quaternion.hpp>
-#include <math/core/vector.hpp>
+#include <vmath/core/matrix.hpp>
+#include <vmath/core/quaternion.hpp>
+#include <vmath/core/vector.hpp>
 
-namespace math {
+namespace vmath {
 
 typedef core::matrix<float, 2>    matrix2x2;
 typedef core::matrix<float, 2, 3> matrix2x3;

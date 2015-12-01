@@ -1,13 +1,13 @@
-#ifndef MATH_CORE_QUATERNION_INL
-#define MATH_CORE_QUATERNION_INL
+#ifndef VMATH_CORE_QUATERNION_INL
+#define VMATH_CORE_QUATERNION_INL
 
-#include <math/core/quaternion.hpp>
+#include <vmath/core/quaternion.hpp>
 
-#include <math/functions.hpp>
-#include <math/core/matrix.hpp>
-#include <math/core/vector.hpp>
+#include <vmath/functions.hpp>
+#include <vmath/core/matrix.hpp>
+#include <vmath/core/vector.hpp>
 
-namespace math {
+namespace vmath {
 namespace core {
 
 /**
@@ -18,11 +18,11 @@ namespace core {
 template<typename T>
 quaternion<T>::quaternion(const vector<T, 3>& axis, const T& angle) {
 	T half_angle = angle / static_cast<T>(2.0);
-	vector<T, 3> N =  axis.normal() * math::sin(half_angle);
+	vector<T, 3> N =  axis.normal() * vmath::sin(half_angle);
 	this->x = N.x;
 	this->y = N.y;
 	this->z = N.z;
-	this->w = math::cos(half_angle);
+	this->w = vmath::cos(half_angle);
 }
 
 /**
@@ -36,12 +36,12 @@ quaternion<T>::quaternion(const T& pitch, const T& yaw, const T& roll) {
 	T half_pitch = pitch / static_cast<T>(2.0);
 	T half_yaw = yaw / static_cast<T>(2.0);
 	T half_roll = roll / static_cast<T>(2.0);
-	T sinp = math::sin(half_pitch);
-	T siny = math::sin(half_yaw);
-	T sinr = math::sin(half_roll);
-	T cosp = math::cos(half_pitch);
-	T cosy = math::cos(half_yaw);
-	T cosr = math::cos(half_roll);
+	T sinp = vmath::sin(half_pitch);
+	T siny = vmath::sin(half_yaw);
+	T sinr = vmath::sin(half_roll);
+	T cosp = vmath::cos(half_pitch);
+	T cosy = vmath::cos(half_yaw);
+	T cosr = vmath::cos(half_roll);
 	this->w = cosp * cosy * cosr + sinp * siny * sinr;
 	this->x = sinp * cosy * cosr - cosp * siny * sinr;
 	this->y = cosp * siny * cosr + sinp * cosy * sinr;
@@ -55,17 +55,17 @@ quaternion<T>::quaternion(const T& pitch, const T& yaw, const T& roll) {
  */
 template<typename T>
 quaternion<T>::quaternion(const matrix<T, 4, 4>& mat) {
-	T x = math::sqrt(math::max(static_cast<T>(0.0),
+	T x = vmath::sqrt(vmath::max(static_cast<T>(0.0),
 		static_cast<T>(1.0) + mat[0][0] - mat[1][1] - mat[2][2])) / static_cast<T>(2.0);
-	T y = math::sqrt(math::max(static_cast<T>(0.0),
+	T y = vmath::sqrt(vmath::max(static_cast<T>(0.0),
 		static_cast<T>(1.0) - mat[0][0] + mat[1][1] - mat[2][2])) / static_cast<T>(2.0);
-	T z = math::sqrt(math::max(static_cast<T>(0.0),
+	T z = vmath::sqrt(vmath::max(static_cast<T>(0.0),
 		static_cast<T>(1.0) - mat[0][0] - mat[1][1] + mat[2][2])) / static_cast<T>(2.0);
-	T w = math::sqrt(math::max(static_cast<T>(0.0),
+	T w = vmath::sqrt(vmath::max(static_cast<T>(0.0),
 		static_cast<T>(1.0) + mat[0][0] + mat[1][1] + mat[2][2])) / static_cast<T>(2.0);
-	this->x = math::copysign(x, mat[1][2] - mat[2][1]);
-	this->y = math::copysign(y, mat[2][0] - mat[0][2]);
-	this->z = math::copysign(z, mat[0][1] - mat[1][0]);
+	this->x = vmath::copysign(x, mat[1][2] - mat[2][1]);
+	this->y = vmath::copysign(y, mat[2][0] - mat[0][2]);
+	this->z = vmath::copysign(z, mat[0][1] - mat[1][0]);
 	this->w = w;
 	this->normalize();
 }
@@ -254,7 +254,7 @@ T quaternion<T>::mag2(void) const {
  */
 template<typename T>
 T quaternion<T>::mag(void) const {
-	return math::sqrt(this->mag2());
+	return vmath::sqrt(this->mag2());
 }
 
 /**
@@ -299,7 +299,7 @@ quaternion<T>& quaternion<T>::invert(void) {
  */
 template<typename T>
 T quaternion<T>::pitch(void) const {
-	return math::atan2(2.0f * (this->y * this->z + this->w * this->x),
+	return vmath::atan2(2.0f * (this->y * this->z + this->w * this->x),
 		this->w * this->w - this->x * this->x - this->y * this->y + this->z * this->z);
 }
 
@@ -309,7 +309,7 @@ T quaternion<T>::pitch(void) const {
  */
 template<typename T>
 T quaternion<T>::yaw(void) const {
-	return math::asin(-2.0f * (this->x * this->z - this-> w * this->y));
+	return vmath::asin(-2.0f * (this->x * this->z - this-> w * this->y));
 }
 
 /**
@@ -318,7 +318,7 @@ T quaternion<T>::yaw(void) const {
  */
 template<typename T>
 T quaternion<T>::roll(void) const {
-	return math::atan2(2.0f * (this->x * this->y + this->w * this->z),
+	return vmath::atan2(2.0f * (this->x * this->y + this->w * this->z),
 		this->w * this->w + this->x * this->x - this->y * this->y - this->z * this->z);
 }
 
@@ -337,7 +337,7 @@ vector<T, 3> quaternion<T>::axis(void) const {
  */
 template<typename T>
 T quaternion<T>::angle(void) const {
-	return math::acos(this->w) * static_cast<T>(2.0);
+	return vmath::acos(this->w) * static_cast<T>(2.0);
 }
 
 /**
@@ -376,7 +376,7 @@ matrix<T, 4> quaternion<T>::to_matrix(void) const {
 template<typename T>
 static inline typename std::enable_if<std::is_floating_point<T>::value, bool>::type
 		equals_helper(const quaternion<T>& H1, const quaternion<T>& H2) {
-	return math::equals(H1.x, H2.x) && math::equals(H1.y, H2.y) && math::equals(H1.z, H2.z) && math::equals(H1.w, H2.w);
+	return vmath::equals(H1.x, H2.x) && vmath::equals(H1.y, H2.y) && vmath::equals(H1.z, H2.z) && vmath::equals(H1.w, H2.w);
 }
 
 /**
@@ -453,11 +453,11 @@ quaternion<T> quaternion<T>::slerp(const quaternion<T>& S, const quaternion<T>& 
 	} else {
 		H = E;
 	}
-	T angle = math::acos(d);
-	return (S * math::sin(angle * (static_cast<T>(1.0) - t)) + H * (math::sin(angle * t))) / math::sin(angle);
+	T angle = vmath::acos(d);
+	return (S * vmath::sin(angle * (static_cast<T>(1.0) - t)) + H * (vmath::sin(angle * t))) / vmath::sin(angle);
 }
 
-} // namespace core
-} // namespace math
+}
+}
 
 #endif

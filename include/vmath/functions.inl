@@ -1,11 +1,11 @@
-#ifndef MATH_FUNCTIONS_INL
-#define MATH_FUNCTIONS_INL
+#ifndef VMATH_FUNCTIONS_INL
+#define VMATH_FUNCTIONS_INL
 
-#include <math/functions.hpp>
+#include <vmath/functions.hpp>
 
 #include <cmath>
 
-namespace math {
+namespace vmath {
 
 /**
  * Determine if two floats are equivalent within a default tolerance.
@@ -16,7 +16,7 @@ namespace math {
 template<typename T, typename>
 bool equals(const T a, const T b) {
 	static const T epsilon = static_cast<T>(0.00001L);
-	return math::equals<T>(a, b, epsilon);
+	return vmath::equals<T>(a, b, epsilon);
 }
 
 /**
@@ -29,7 +29,7 @@ bool equals(const T a, const T b) {
 template<typename T, typename>
 bool equals(const T a, const T b, const T epsilon) {
 	// TODO This breaks with certain edge cases.
-	return math::abs(a - b) < epsilon;
+	return vmath::abs(a - b) < epsilon;
 }
 
 /**
@@ -39,7 +39,7 @@ bool equals(const T a, const T b, const T epsilon) {
  */
 template<typename T, typename>
 T radians(const T degrees) {
-	static const T PI_OVER_180 = static_cast<T>(math::PI / 180.0L);
+	static const T PI_OVER_180 = static_cast<T>(vmath::PI / 180.0L);
 	return degrees * PI_OVER_180;
 }
 
@@ -50,7 +50,7 @@ T radians(const T degrees) {
  */
 template<typename T, typename>
 T degrees(const T radians) {
-	static const T PI_UNDER_180 = static_cast<T>(180.0L / math::PI);
+	static const T PI_UNDER_180 = static_cast<T>(180.0L / vmath::PI);
 	return radians * PI_UNDER_180;
 }
 
@@ -174,7 +174,7 @@ T floor(const T s) {
  */
 template<typename T, typename>
 T round(const T s) {
-	return (s < static_cast<T>(0.0L)) ? math::ceil(s - static_cast<T>(0.5L)) : math::floor(s + static_cast<T>(0.5L));
+	return (s < static_cast<T>(0.0L)) ? vmath::ceil(s - static_cast<T>(0.5L)) : vmath::floor(s + static_cast<T>(0.5L));
 }
 
 /**
@@ -184,7 +184,7 @@ T round(const T s) {
  */
 template<typename T, typename>
 T trunc(const T s) {
-	return (s < static_cast<T>(0.0L)) ? math::ceil(s) : math::floor(s);
+	return (s < static_cast<T>(0.0L)) ? vmath::ceil(s) : vmath::floor(s);
 }
 
 /**
@@ -217,7 +217,7 @@ T abs(const T s) {
  */
 template<typename T, typename>
 T copysign(const T x, const T y) {
-	if (math::equals(y, static_cast<T>(0.0L))) {
+	if (vmath::equals(y, static_cast<T>(0.0L))) {
 		return static_cast<T>(0.0L);
 	} else {
 #if defined(_WIN32)
@@ -263,6 +263,6 @@ T min(const T a, const T b) {
 	return (a < b) ? a : b;
 }
 
-} // namespace math
+}
 
 #endif

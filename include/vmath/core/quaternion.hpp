@@ -1,10 +1,10 @@
-#ifndef MATH_CORE_QUATERNION_HPP
-#define MATH_CORE_QUATERNION_HPP
+#ifndef VMATH_CORE_QUATERNION_HPP
+#define VMATH_CORE_QUATERNION_HPP
 
 #include <array>
 #include <cstddef>
 
-namespace math {
+namespace vmath {
 namespace core {
 
 template<typename T, std::size_t N>
@@ -90,6 +90,6 @@ public:
 }
 }
 
-#include <math/core/quaternion.inl>
+#include <vmath/core/quaternion.inl>
 
 #endif

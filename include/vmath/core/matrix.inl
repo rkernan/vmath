@@ -1,9 +1,9 @@
-#ifndef MATH_CORE_MATRIX_INL
-#define MATH_CORE_MATRIX_INL
+#ifndef VMATH_CORE_MATRIX_INL
+#define VMATH_CORE_MATRIX_INL
 
-#include <math/core/matrix.hpp>
+#include <vmath/core/matrix.hpp>
 
-namespace math {
+namespace vmath {
 namespace core {
 
 /**
@@ -416,7 +416,7 @@ template<typename U, typename>
 matrix<T, M, N> matrix<T, M, N>::perspective(const T& fov, const T& aspect,
 		const T&  near, const T& far) {
 	matrix<T, M, N> proj;
-	T y_scale = static_cast<T>(1.0) / math::tan(fov / static_cast<T>(2.0));
+	T y_scale = static_cast<T>(1.0) / vmath::tan(fov / static_cast<T>(2.0));
 	T x_scale = y_scale / aspect;
 	proj[0][0] = x_scale;
 	proj[1][1] = y_scale;
@@ -425,7 +425,7 @@ matrix<T, M, N> matrix<T, M, N>::perspective(const T& fov, const T& aspect,
 	return proj;
 }
 
-} // namespace core
-} // namespace math
+}
+}
 
 #endif

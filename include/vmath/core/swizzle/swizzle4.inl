@@ -1,11 +1,11 @@
-#ifndef MATH_CORE_SWIZZLE_SWIZZLE4_INL
-#define MATH_CORE_SWIZZLE_SWIZZLE4_INL
+#ifndef VMATH_CORE_SWIZZLE_SWIZZLE4_INL
+#define VMATH_CORE_SWIZZLE_SWIZZLE4_INL
 
-#include <math/core/swizzle/swizzle4.hpp>
+#include <Vmath/core/swizzle/swizzle4.hpp>
 
-#include <math/core/vector.hpp>
+#include <Vmath/core/vector.hpp>
 
-namespace math {
+namespace vmath {
 namespace core {
 
 /**
@@ -202,7 +202,7 @@ bool swizzle4<T, N, E1, E2, E3, E4>::operator!=(const vector<T, 4>& V) const {
 	return this->to_vector4() != V;
 }
 
-} // namespace core
-} // namespace math
+}
+}
 
 #endif
