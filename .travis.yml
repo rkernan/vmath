@@ -21,6 +21,6 @@ install:
 script:
     - mkdir build
     - cd build
-    - cmake -DMATH_BUILD_DOC=OFF ..
+    - cmake -DVMATH_BUILD_DOC=OFF ..
     - make
     - make test
