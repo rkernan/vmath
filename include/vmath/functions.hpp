@@ -1,10 +1,10 @@
-#ifndef MATH_FUNCIONS_HPP
-#define MATH_FUNCIONS_HPP
+#ifndef VMATH_FUNCIONS_HPP
+#define VMATH_FUNCIONS_HPP
 
 #include <cmath>
 #include <type_traits>
 
-namespace math {
+namespace vmath {
 
 const long double PI = std::acos(-1.0L);
 
@@ -79,6 +79,6 @@ T min(const T, const T);
 
 }
 
-#include <math/functions.inl>
+#include <vmath/functions.inl>
 
 #endif

@@ -1,13 +1,13 @@
-#ifndef MATH_CORE_VECTOR_INL
-#define MATH_CORE_VECTOR_INL
+#ifndef VMATH_CORE_VECTOR_INL
+#define VMATH_CORE_VECTOR_INL
 
-#include <math/core/vector.hpp>
+#include <vmath/core/vector.hpp>
 
 #include <stdexcept>
 #include <string>
-#include <math/functions.hpp>
+#include <vmath/functions.hpp>
 
-namespace math {
+namespace vmath {
 namespace core {
 
 /**
@@ -193,7 +193,7 @@ vector<T, N>& vector<T, N>::operator/=(const T& s) {
  */
 template<typename T, std::size_t N>
 T vector<T, N>::mag(void) const {
-	return math::sqrt(this->mag2());
+	return vmath::sqrt(this->mag2());
 }
 
 /**
@@ -239,7 +239,7 @@ static inline typename std::enable_if<std::is_floating_point<T>::value, bool>::t
 		equals_helper(const vector<T, N>& V1, const vector<T, N>& V2) {
 	bool equal = true;
 	for (std::size_t i = 0; i < N; ++i) {
-		equal = equal && math::equals(V1.data[i], V2.data[i]);
+		equal = equal && vmath::equals(V1.data[i], V2.data[i]);
 	}
 	return equal;
 }
@@ -321,7 +321,7 @@ vector<T, N> vector<T, N>::refract(const vector<T, N>& I, const vector<T, N>& S,
 	if (k < static_cast<T>(0.0)) {
 		return vector<T, N>();
 	} else {
-		return I * eta - S * (eta * S_dot_I + math::sqrt(k));
+		return I * eta - S * (eta * S_dot_I + vmath::sqrt(k));
 	}
 }
 
@@ -366,7 +366,7 @@ vector<T, N> vector<T, N>::cross(const vector<T, N>& V1, const vector<T, N>& V2)
 	return vector<U, N>(x, y, z);
 }
 
-} // namespace core
-} // namespace math
+}
+}
 
 #endif

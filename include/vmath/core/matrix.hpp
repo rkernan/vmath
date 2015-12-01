@@ -1,15 +1,15 @@
-#ifndef MATH_CORE_MATRIX_HPP
-#define MATH_CORE_MATRIX_HPP
+#ifndef VMATH_CORE_MATRIX_HPP
+#define VMATH_CORE_MATRIX_HPP
 
 #include <array>
 #include <cstddef>
-#include <math/core/vector.hpp>
+#include <vmath/core/vector.hpp>
 
 #ifdef minor
 #undef minor
 #endif
 
-namespace math {
+namespace vmath {
 namespace core {
 
 /**
@@ -218,6 +218,6 @@ public:
 }
 }
 
-#include <math/core/matrix.inl>
+#include <vmath/core/matrix.inl>
 
 #endif

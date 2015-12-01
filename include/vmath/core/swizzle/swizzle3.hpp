@@ -1,9 +1,9 @@
-#ifndef MATH_CORE_SWIZZLE_SWIZZLE3_HPP
-#define MATH_CORE_SWIZZLE_SWIZZLE3_HPP
+#ifndef VMATH_CORE_SWIZZLE_SWIZZLE3_HPP
+#define VMATH_CORE_SWIZZLE_SWIZZLE3_HPP
 
-#include <math/core/swizzle/swizzle.hpp>
+#include <vmath/core/swizzle/swizzle.hpp>
 
-namespace math {
+namespace vmath {
 namespace core {
 
 template<typename T, std::size_t N>
@@ -77,7 +77,7 @@ public:
 	bool operator==(const vector<T, 3>&) const;
 	bool operator!=(const vector<T, 3>&) const;
 
-#if defined(MATH_CORE_SWIZZLE_ENABLE_ELEMENT_ACCESSORS)
+#if defined(VMATH_CORE_SWIZZLE_ENABLE_ELEMENT_ACCESSORS)
 	T getE1(void) { return this->data[E1]; }
 	T getE2(void) { return this->data[E2]; }
 	T getE3(void) { return this->data[E3]; }
@@ -87,6 +87,6 @@ public:
 }
 }
 
-#include <math/core/swizzle/swizzle3.inl>
+#include <vmath/core/swizzle/swizzle3.inl>
 
 #endif

@@ -1,11 +1,11 @@
-#ifndef MATH_CORE_SWIZZLE_SWIZZLE_HPP
-#define MATH_CORE_SWIZZLE_SWIZZLE_HPP
+#ifndef VMATH_CORE_SWIZZLE_SWIZZLE_HPP
+#define VMATH_CORE_SWIZZLE_SWIZZLE_HPP
 
 #include <array>
 #include <cstddef>
 #include <type_traits>
 
-namespace math {
+namespace vmath {
 namespace core {
 
 /**
