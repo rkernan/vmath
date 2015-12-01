@@ -1,28 +1,25 @@
 sudo: false
 language: cpp
 os: linux
-
 branches:
-    only:
-        - master
-        - develop
-
-addons:
-    apt:
-        sources:
-            - ubuntu-toolchain-r-test
-        packages:
-            - g++-4.8
-            - libboost-dev
-            - libboost-test-dev
-
+  only:
+    - master
+    - develop
 compiler:
-    - clang
-    - gcc
-
+  - clang
+  - gcc
+addons:
+  apt:
+    sources:
+      - ubuntu-toolchain-r-test
+    packages:
+      - libboost-dev
+      - libboost-test-dev
+      - g++-4.8
+      - clang
 script:
-    - mkdir build
-    - cd build
-    - cmake -DVMATH_BUILD_DOC=OFF ..
-    - make
-    - make test
+  - mkdir build
+  - cd build
+  - cmake -DVMATH_BUILD_DOC=OFF ..
+  - make
+  - make test
