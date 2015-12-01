@@ -1,7 +1,7 @@
 #define BOOST_TEST_DYN_LINK
 #include <boost/test/unit_test.hpp>
 
-#define MATH_CORE_SWIZZLE_ENABLE_ELEMENT_ACCESSORS
+#define VMATH_CORE_SWIZZLE_ENABLE_ELEMENT_ACCESSORS
 #include <vmath/core/vector.hpp>
 #include <vmath/core/swizzle/swizzle4.hpp>
 
