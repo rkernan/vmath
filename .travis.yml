@@ -17,6 +17,8 @@ addons:
       - libboost-test-dev
       - g++-4.8
       - clang
+install:
+  - [ "$CXX" = "g++" ] && export CSS="g++-4.8"
 script:
   - mkdir build
   - cd build
