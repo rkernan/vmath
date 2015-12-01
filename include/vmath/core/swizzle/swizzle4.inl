@@ -1,9 +1,9 @@
 #ifndef VMATH_CORE_SWIZZLE_SWIZZLE4_INL
 #define VMATH_CORE_SWIZZLE_SWIZZLE4_INL
 
-#include <Vmath/core/swizzle/swizzle4.hpp>
+#include <vmath/core/swizzle/swizzle4.hpp>
 
-#include <Vmath/core/vector.hpp>
+#include <vmath/core/vector.hpp>
 
 namespace vmath {
 namespace core {
