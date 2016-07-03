@@ -14,77 +14,301 @@ template<typename T, std::size_t M, std::size_t N>
 class matrix;
 
 /**
- * A quaternion rotation.
- * @class quaternion
- * @tparam T Storage type.
+ * \brief A quaternion rotation
+ * \tparam T Storage type
  */
 template<typename T>
-class quaternion {
+class Quaternion {
 public:
-	quaternion(void) : x(), y(), z(), w() {}
-	quaternion(const T& x, const T& y, const T& z, const T& w) : x(x), y(y), z(z), w(w) {}
-	quaternion(const T&, const T&, const T&);
-	quaternion(const vector<T, 3>&, const T&);
-	explicit quaternion(const matrix<T, 4, 4>&);
-	quaternion(const quaternion&) = default;
-	quaternion<T>& operator=(const quaternion<T>&) = default;
-	quaternion(quaternion&&) = default;
-	quaternion<T>& operator=(quaternion<T>&&) = default;
-
-	~quaternion(void) = default;
-
-
-	T operator[](const std::size_t) const;
-	T& operator[](const std::size_t);
-
-	quaternion<T> operator-(void) const;
-
-	quaternion<T> operator+(const quaternion<T>&) const;
-	quaternion<T>& operator+=(const quaternion<T>&);
-	quaternion<T> operator-(const quaternion<T>&) const;
-	quaternion<T>& operator-=(const quaternion<T>&);
-
-	quaternion<T> operator*(const quaternion<T>&) const;
-	quaternion<T>& operator*=(const quaternion<T>&);
-
-	vector<T, 3> operator*(const vector<T, 3>&) const;
-
-	quaternion<T> operator*(const T&) const;
-	quaternion<T>& operator*=(const T&);
-	quaternion<T> operator/(const T&) const;
-	quaternion<T>& operator/=(const T&);
-
-	T mag2(void) const;
-	T mag(void) const;
-
-	quaternion<T> normal(void) const;
-	quaternion<T>& normalize(void);
-
-	quaternion<T> inverse(void) const;
-	quaternion<T>& invert(void);
-
-	T pitch(void) const;
-	T yaw(void) const;
-	T roll(void) const;
-
-	vector<T, 3> axis(void) const;
-	T angle(void) const;
-
-	matrix<T, 4, 4> to_matrix(void) const;
-
-	bool operator==(const quaternion<T>&) const;
-	bool operator!=(const quaternion<T>&) const;
-
-	static T dot(const quaternion<T>&, const quaternion<T>&);
-
-	static quaternion<T> lerp(const quaternion<T>&, const quaternion<T>&, const T&);
-	static quaternion<T> slerp(const quaternion<T>&, const quaternion<T>&, const T&, const bool = false);
-
+	// FIXME This relies on undefined behavior
 	union {
 		std::array<T, 4> data;
 		// axis coords
 		struct { T x, y, z, w; };
 	};
+
+	/**
+	 * \brief Construct a zero quaternion
+	 */
+	Quaternion() : x(), y(), z(), w() {}
+
+	/**
+	 * \brief Construct a quaternion by value
+	 * \param[in] x X coordinate value
+	 * \param[in] y Y coordinate value
+	 * \param[in] z Z coordinate value
+	 * \param[in] w W coordinate value
+	 */
+	Quaternion(const T& x, const T& y, const T& z, const T& w) : x(x), y(y), z(z), w(w) {}
+
+	/**
+	 * \brief Construct a quaternion from euler angles
+	 * \param[in] pitch Counter-clockwise x-axis rotation in radians
+	 * \param[in] yaw Counter-clockwise y-axis rotation in radians
+	 * \param[in] roll Counter-clockwise z-axis rotation in radians
+	 */
+	Quaternion(const T& pitch, const T& yaw, const T& roll);
+
+	/**
+	 * \brief Construct a quaternion from an axis and angle
+	 * \param[in] axis Axis of rotation
+	 * \param[in] angle Angle of rotation in radians
+	 */
+	Quaternion(const vector<T, 3>& axis, const T& angle);
+
+	/**
+	 * \brief Construct a quaternion from a rotation matrix
+	 * \param[in] mat Matrix to convert
+	 */
+	explicit Quaternion(const matrix<T, 4, 4>& mat);
+
+	/**
+	 * \brief Copy constructor
+	 * \param[in] other Quaternion to copy
+	 */
+	Quaternion(const Quaternion& other) = default;
+
+	/**
+	 * \brief Copy assignment operator
+	 * \param[in] other Quaternion to copy
+	 * \return Reference to self
+	 */
+	Quaternion<T>& operator=(const Quaternion<T>& other) = default;
+
+	/**
+	 * \brief Move constructor
+	 * \param[in] other Quaternion to move
+	 * \return Reference to self
+	 */
+	Quaternion(Quaternion&& other) = default;
+
+	/**
+	 * \brief Move assignment operator
+	 * \param[in] other Quaternion to move
+	 * \return Reference to self
+	 */
+	Quaternion<T>& operator=(Quaternion<T>&& other) = default;
+
+	/**
+	 * \brief Destructor
+	 */
+	~Quaternion() = default;
+
+	/**
+	 * \brief Access a quaternion element by index
+	 * \param[in] idx Index of element
+	 * \return Accessed element
+	 */
+	T operator[](const std::size_t idx) const;
+
+	/**
+	 * \brief Access and modify a quaternion element by index
+	 * \param[in] idx Location of element
+	 * \return Modified element
+	 */
+	T& operator[](const std::size_t idx);
+
+	/**
+	 * \brief Negate a quaternion
+	 * \return Quaternion negated
+	 */
+	Quaternion<T> operator-() const;
+
+	/**
+	 * \brief Component-wise addition operator
+	 * \param[in] h Quaternion to add
+	 * \return Component-wise sum
+	 */
+	Quaternion<T> operator+(const Quaternion<T>& h) const;
+
+	/**
+	 * \brief Component-wise addition operator with assignment
+	 * \param[in] h Quaternion to add
+	 * \return Reference to self
+	 */
+	Quaternion<T>& operator+=(const Quaternion<T>& h);
+
+	/**
+	 * \brief Component-wise subtraction operator
+	 * \param[in] h Quaternion to subtract
+	 * \return Component-wise difference
+	 */
+	Quaternion<T> operator-(const Quaternion<T>& h) const;
+
+	/**
+	 * \brief Component-wise subtraction operator with assignment
+	 * \param[in] h Quaternion to subtract
+	 * \return Reference to self
+	 */
+	Quaternion<T>& operator-=(const Quaternion<T>& h);
+
+	/**
+	 * \brief Quaternion multiplication operator
+	 * \param[in] h Quaternion to multiply by
+	 * \return Combined quaternion rotation
+	 *
+	 * Combines this quaternion with another.
+	 */
+	Quaternion<T> operator*(const Quaternion<T>& h) const;
+
+	/**
+	 * \brief Quaternion multiplication assignment operator
+	 * \param[in] h Quaternion to multiply by
+	 * \return Reference to this
+	 *
+	 * Combines this Quaternion with another.
+	 */
+	Quaternion<T>& operator*=(const Quaternion<T>& h);
+
+	/**
+	 * \brief Quaternion vector multiplication operator
+	 * \param v Vector to rotate
+	 * \return Rotated vector
+	 *
+	 * Rotates a vector by this quaternion.
+	 */
+	vector<T, 3> operator*(const vector<T, 3>& v) const;
+
+	/**
+	 * \brief Scalar multiplication operator
+	 * \param[in] s Scalar to multiply by
+	 * \return Quaternion-scalar product
+	 */
+	Quaternion<T> operator*(const T& s) const;
+
+	/**
+	 * \brief Scalar multiplication assignment operator
+	 * \param[in] s Scalar to multiply by
+	 * \return Reference to self
+	 */
+	Quaternion<T>& operator*=(const T& s);
+
+	/**
+	 * \brief Scalar division operator
+	 * \param[in] s Scalar to divide by
+	 * \return Quaternion-scalar quotient
+	 */
+	Quaternion<T> operator/(const T& s) const;
+
+	/**
+	 * \brief Scalar division assignment operator
+	 * \param[in] s Scalar to divide by
+	 * \return Reference to self
+	 */
+	Quaternion<T>& operator/=(const T& s);
+
+	/**
+	 * \brief Calculate the magnitude squared
+	 * \return Magnitude squared
+	 */
+	T mag2() const;
+
+	/**
+	 * \brief Calculate the magnitude
+	 * \return Magnitude
+	 */
+	T mag() const;
+
+	/**
+	 * \brief Calculate this quaternion normal
+	 * \return Quaternion normal
+	 */
+	Quaternion<T> normal() const;
+
+	/**
+	 * \brief Normalize this quaternion
+	 * \return Reference to self
+	 */
+	Quaternion<T>& normalize();
+
+	/**
+	 * \brief Calculate the inverse of this quaternion
+	 * \return Quaternion inverse
+	 */
+	Quaternion<T> inverse() const;
+
+	/**
+	 * \brief Invert this quaternion
+	 * \return Reference to self
+	 */
+	Quaternion<T>& invert();
+
+	/**
+	 * \brief Calculate euler x-axis value
+	 * \return Euler x-axis value (pitch) in radians
+	 */
+	T pitch() const;
+
+	/**
+	 * \brief Calculate euler y-axis value
+	 * \return Euler y-axis value (yaw) in radians
+	 */
+	T yaw() const;
+
+	/**
+	 * \brief Calculate euler z-axis value
+	 * \return Euler z-axis value (roll) in radians
+	 */
+	T roll() const;
+
+	/**
+	 * \brief Calculate the axis of rotation
+	 * \return Axis of rotation
+	 */
+	vector<T, 3> axis() const;
+
+	/**
+	 * \brief Calculate the angle of rotation
+	 * \return Angle of rotation in radians
+	 */
+	T angle() const;
+
+	/**
+	 * \brief Calculate the rotation matrix
+	 * \return Rotation matrix
+	 */
+	matrix<T, 4, 4> to_matrix() const;
+
+	/**
+	 * \brief Check quaternion equality
+	 * \param[in] other Quaternion to check equality with
+	 * \return True if they are equal, otherwise false
+	 */
+	bool operator==(const Quaternion<T>& other) const;
+
+	/**
+	 * \brief Check quaternion inequality
+	 * \param[in] other Quaternion to check inequality with
+	 * \return False if they are equal, otherwise true
+	 */
+	bool operator!=(const Quaternion<T>& other) const;
+
+	/**
+	 * \brief Calculate the inner quaternion product (dot product)
+	 * \param[in] h1 Quaternion to take dot product of
+	 * \param[in] h2 Quaternion to take dot product of
+	 * \return Quaternion dot product.
+	 */
+	static T dot(const Quaternion<T>& h1, const Quaternion<T>& h2);
+
+	/**
+	 * \brief Linearly interpolate between two quaternions
+	 * \param[in] start Start quaternion
+	 * \param[in] end End quaternion
+	 * \param[in] t Value to interpolate by
+	 * \return Interpolated quaternion
+	 */
+	static Quaternion<T> lerp(const Quaternion<T>& start, const Quaternion<T>& end, const T& t);
+
+	/**
+	 * \brief Spherically interpolate between two quaternions
+	 * \param[in] start Start quaternion
+	 * \param[in] end End quaternion
+	 * \param[in] t Value to interpolate by
+	 * \param[in] shortest Take the shortest path there, default true
+	 * \return Interpolated quaternion
+	 */
+	static Quaternion<T> slerp(const Quaternion<T>& start, const Quaternion<T>& end, const T& t, const bool shortest = true);
 };
 
 }

@@ -6,161 +6,98 @@
 namespace vmath {
 namespace core {
 
-/**
- * Access a matrix element using an index.
- * @param idx Location of element to access.
- * @return Accessed element.
- */
 template<typename T, std::size_t M, std::size_t N>
-vector<T, M> matrix<T, M, N>::operator[](const std::size_t idx) const {
+vector<T, M> Matrix<T, M, N>::operator[](const std::size_t idx) const {
 	return this->data.at(idx);
 }
 
-/**
- * Add and modify a vector element by index.
- * @param idx Location of element to access.
- * @return Modified element.
- */
 template<typename T, std::size_t M, std::size_t N>
-vector<T, M>& matrix<T, M, N>::operator[](const std::size_t idx) {
+vector<T, M>& Matrix<T, M, N>::operator[](const std::size_t idx) {
 	return this->data.at(idx);
 }
 
-/**
- * Negate a matrix.
- * @return The matrix negated.
- */
 template<typename T, std::size_t M, std::size_t N>
-matrix<T, M, N> matrix<T, M, N>::operator-(void) const {
-	matrix<T, M, N> R;
+Matrix<T, M, N> Matrix<T, M, N>::operator-() const {
+	Matrix<T, M, N> R;
 	for (std::size_t i = 0; i < N; i++) {
 		R.data[i] = -this->data[i];
 	}
 	return R;
 }
 
-/**
- * matrix addition.
- * @param W matrix to add.
- * @return The matrix sum.
- */
 template<typename T, std::size_t M, std::size_t N>
-matrix<T, M, N> matrix<T, M, N>::operator+(const matrix<T, M, N>& W) const {
-	matrix<T, M, N> R;
+Matrix<T, M, N> Matrix<T, M, N>::operator+(const Matrix<T, M, N>& w) const {
+	Matrix<T, M, N> res;
 	for (std::size_t i = 0; i < N; i++) {
-		R.data[i] = this->data[i] + W.data[i];
+		res.data[i] = this->data[i] + w.data[i];
 	}
-	return R;
+	return res;
 }
 
-/**
- * matrix addition. Copy the result into this matrix.
- * @param W matrix to add.
- * @return The modified matrix (matrix sum).
- */
 template<typename T, std::size_t M, std::size_t N>
-matrix<T, M, N>& matrix<T, M, N>::operator+=(const matrix<T, M, N>& W) {
-	return *this = *this + W;
+Matrix<T, M, N>& Matrix<T, M, N>::operator+=(const Matrix<T, M, N>& w) {
+	return *this = *this + w;
 }
 
-/**
- * matrix subtraction.
- * @param W matrix to subtract.
- * @return The matrix difference.
- */
 template<typename T, std::size_t M, std::size_t N>
-matrix<T, M, N> matrix<T, M, N>::operator-(const matrix<T, M, N>& W) const {
-	matrix<T, M, N> R;
+Matrix<T, M, N> Matrix<T, M, N>::operator-(const Matrix<T, M, N>& w) const {
+	Matrix<T, M, N> res;
 	for (std::size_t i = 0; i < N; i++) {
-		R.data[i] = this->data[i] - W.data[i];
+		res.data[i] = this->data[i] - w.data[i];
 	}
-	return R;
+	return res;
 }
 
-/**
- * matrix subtraction. Copy the result into this matrix.
- * @param W matrix to subtract.
- * @return The modified matrix (matrix difference).
- */
 template<typename T, std::size_t M, std::size_t N>
-matrix<T, M, N>& matrix<T, M, N>::operator-=(const matrix<T, M, N>& W) {
-	return *this = *this - W;
+Matrix<T, M, N>& Matrix<T, M, N>::operator-=(const Matrix<T, M, N>& w) {
+	return *this = *this - w;
 }
 
-/**
- * matrix multiplication.
- * @param W matrix to multiply by.
- * @return matrix product.
- */
 template<typename T, std::size_t M, std::size_t N>
 template<std::size_t P>
-matrix<T, M, P> matrix<T, M, N>::operator*(const matrix<T, N, P>& W) const {
-	matrix<T, M, P> R;
+Matrix<T, M, P> Matrix<T, M, N>::operator*(const Matrix<T, N, P>& w) const {
+	Matrix<T, M, P> res;
 	for (std::size_t m = 0; m < M; m++) {
 		for (std::size_t p = 0; p < P; p++) {
 			for (std::size_t n = 0; n < N; n++) {
-				R[p][m] += this->data[n][m] * W[p][n];
+				res[p][m] += this->data[n][m] * w[p][n];
 			}
 		}
 	}
-	return R;
+	return res;
 }
 
-/**
- * Scalar multiplication.
- * @param s Scalar to multiply by.
- * @return matrix-scalar product.
- */
 template<typename T, std::size_t M, std::size_t N>
-matrix<T, M, N> matrix<T, M, N>::operator*(const T& s) const {
-	matrix<T, M, N> R;
+Matrix<T, M, N> Matrix<T, M, N>::operator*(const T& s) const {
+	Matrix<T, M, N> res;
 	for (std::size_t i = 0; i < N; i++) {
-		R.data[i] = this->data[i] * s;
+		res.data[i] = this->data[i] * s;
 	}
-	return R;
+	return res;
 }
 
-/**
- * Scalar multiplication. Copy the result into this matrix.
- * @param s Scalar to multiply by.
- * @return The modified matrix (matrix-scalar product).
- */
 template<typename T, std::size_t M, std::size_t N>
-matrix<T, M, N>& matrix<T, M, N>::operator*=(const T& s) {
+Matrix<T, M, N>& Matrix<T, M, N>::operator*=(const T& s) {
 	return *this = *this * s;
 }
 
-/**
- * Scalar division.
- * @param s Scalar to divide by.
- * @return matrix-scalar quotient.
- */
 template<typename T, std::size_t M, std::size_t N>
-matrix<T, M, N> matrix<T, M, N>::operator/(const T& s) const {
-	matrix<T, M, N> R;
+Matrix<T, M, N> Matrix<T, M, N>::operator/(const T& s) const {
+	Matrix<T, M, N> res;
 	for (std::size_t i = 0; i < N; i++) {
-		R.data[i] = this->data[i] / s;
+		res.data[i] = this->data[i] / s;
 	}
-	return R;
+	return res;
 }
 
-/**
- * Scalar division. Copy the result into this matrix.
- * @param s Scalar to divide by.
- * @return The modified matrix (matrix-scalar quotient).
- */
 template<typename T, std::size_t M, std::size_t N>
-matrix<T, M, N>& matrix<T, M, N>::operator/=(const T& s) {
+Matrix<T, M, N>& Matrix<T, M, N>::operator/=(const T& s) {
 	return *this = *this / s;
 }
 
-/**
- * Traspose this matrix.
- * @return matrix transpose.
- */
 template<typename T, std::size_t M, std::size_t N>
-matrix<T, N, M> matrix<T, M, N>::transpose(void) const {
-	matrix<T, N, M> R;
+Matrix<T, N, M> Matrix<T, M, N>::transpose() const {
+	Matrix<T, N, M> R;
 	for (std::size_t i = 0; i < N; i++) {
 		for (std::size_t j = 0; j < M; j++) {
 			R.data[j][i] = this->data[i][j];
@@ -169,13 +106,8 @@ matrix<T, N, M> matrix<T, M, N>::transpose(void) const {
 	return R;
 }
 
-/**
- * Check matrix equality.
- * @param other matrix to check equality with.
- * @return True if they are equal, otherwise false.
- */
 template<typename T, std::size_t M, std::size_t N>
-bool matrix<T, M, N>::operator==(const matrix<T, M, N>& other) const {
+bool Matrix<T, M, N>::operator==(const Matrix<T, M, N>& other) const {
 	bool equal = true;
 	for (std::size_t i = 0; i < N; i++) {
 		equal = equal && this->data[i] == other.data[i];
@@ -183,26 +115,15 @@ bool matrix<T, M, N>::operator==(const matrix<T, M, N>& other) const {
 	return equal;
 }
 
-/**
- * Check matrix inequality.
- * @param other matrix to check inequality with.
- * @return False if they are equal, otherwise true.
- */
 template<typename T, std::size_t M, std::size_t N>
-bool matrix<T, M, N>::operator!=(const matrix<T, M, N>& other) const {
+bool Matrix<T, M, N>::operator!=(const Matrix<T, M, N>& other) const {
 	return !(*this == other);
 }
 
-/**
- * Calculate the matrix minor.
- * @param row Row of element to calculate minor for.
- * @param col Column of element to calculate minor for.
- * @return matrix minor of the element at the given position.
- */
 template<typename T, std::size_t M, std::size_t N>
 template<typename U, typename>
-T matrix<T, M, N>::minor(const std::size_t row, const std::size_t col) const {
-	matrix<T, M - 1, N - 1> minor_mat;
+T Matrix<T, M, N>::minor(const std::size_t row, const std::size_t col) const {
+	Matrix<T, M - 1, N - 1> minor_mat;
 	std::size_t i = (col == 0) ? 1 : 0;
 	std::size_t i_minor = 0;
 	while (i_minor < N - 1) {
@@ -220,12 +141,12 @@ T matrix<T, M, N>::minor(const std::size_t row, const std::size_t col) const {
 }
 
 /**
- * Determinant helper. Allows for partial specialization of the determinant.
- * @param mat matrix to calculate the determinant of.
- * @return matrix determinant.
+ * \brief Calculate the Matrix determinant of a generic size Matrix
+ * \param[in] mat Matrix to calculate the determinant of
+ * \return Matrix determinant
  */
 template<typename T, std::size_t M, std::size_t N>
-static inline T det_helper(const matrix<T, M, N>& mat) {
+static inline T det_helper(const Matrix<T, M, N>& mat) {
 	T det = T();
 	T mod = static_cast<T>(1);
 	for (std::size_t i = 0; i < N; i++) {
@@ -235,45 +156,35 @@ static inline T det_helper(const matrix<T, M, N>& mat) {
 	return det;
 }
 /**
- * Determinant helper. Allows for partial specialization of the determinant.
- * 1x1 matrix specialization.
- * @param mat matrix to calculate the determinant of.
- * @return matrix determinant.
+ * \brief Calculate the Matrix determinant of a 1x1 Matrix
+ * \param[in] mat Matrix to calculate the determinant of
+ * \return Matrix determinant
  */
 template<typename T>
-static inline T det_helper(const matrix<T, 1>& mat) {
+static inline T det_helper(const Matrix<T, 1>& mat) {
 	return mat.data[0][0];
 }
 
 /**
- * Determinant helper. Allows for partial specialization of the determinant.
- * 2x2 matrix specialization.
- * @param mat matrix to calculate the determinant of.
- * @return matrix determinant.
+ * \brief Calculate the Matrix determinant of a 2x2 Matrix
+ * \param[in] mat Matrix to calculate the determinant of
+ * \return Matrix determinant
  */
 template<typename T>
-static inline T det_helper(const matrix<T, 2>& mat) {
+static inline T det_helper(const Matrix<T, 2>& mat) {
 	return (mat.data[0][0] * mat.data[1][1]) - (mat.data[1][0] * mat.data[0][1]);
 }
 
-/**
- * Calculate this matrix determinant.
- * @return matrix determinant.
- */
 template<typename T, std::size_t M, std::size_t N>
 template<typename U, typename>
-T matrix<T, M, N>::det(void) const {
+T Matrix<T, M, N>::det() const {
 	return det_helper(*this);
 }
 
-/**
- * Calculate the matrix of minors.
- * @return matrix of minors.
- */
 template<typename T, std::size_t M, std::size_t N>
 template<typename U, typename>
-matrix<T, M, N> matrix<T, M, N>::minors(void) const {
-	matrix<T, M, N> minor;
+Matrix<T, M, N> Matrix<T, M, N>::minors() const {
+	Matrix<T, M, N> minor;
 	for (std::size_t i = 0; i < M; i++) {
 		for (std::size_t j = 0; j < N; j++) {
 			minor[j][i] = this->minor(i, j);
@@ -282,14 +193,10 @@ matrix<T, M, N> matrix<T, M, N>::minors(void) const {
 	return minor;
 }
 
-/**
- * Calculate the cofactor matrix.
- * @return Cofactor matrix.
- */
 template<typename T, std::size_t M, std::size_t N>
 template<typename U, typename>
-matrix<T, M, N> matrix<T, M, N>::cofactor(void) const {
-	matrix<T, M, N> cofactor(this->minors());
+Matrix<T, M, N> Matrix<T, M, N>::cofactor() const {
+	Matrix<T, M, N> cofactor(this->minors());
 	T mod_row = -static_cast<T>(1);
 	for (std::size_t i = 0; i < M; i++) {
 		mod_row = -mod_row;
@@ -302,35 +209,22 @@ matrix<T, M, N> matrix<T, M, N>::cofactor(void) const {
 	return cofactor;
 }
 
-/**
- * Calculate the matrix adjugate.
- * @return matrix adjugate.
- */
 template<typename T, std::size_t M, std::size_t N>
 template<typename U, typename>
-matrix<T, M, N> matrix<T, M, N>::adjugate(void) const {
+Matrix<T, M, N> Matrix<T, M, N>::adjugate() const {
 	return this->cofactor().transpose();
 }
 
-/**
- * Calculate the matrix inverse.
- * @return matrix inverse.
- */
 template<typename T, std::size_t M, std::size_t N>
 template<typename U, typename>
-matrix<T, M, N> matrix<T, M, N>::inverse(void) const {
+Matrix<T, M, N> Matrix<T, M, N>::inverse() const {
 	return this->adjugate() / this->det();
 }
 
-/**
- * Create an affine translation matrix.
- * @param disp Vector displacement.
- * @return Translation matrix.
- */
 template<typename T, std::size_t M, std::size_t N>
 template<typename U, typename>
-matrix<T, M, N> matrix<T, M, N>::translation(const vector<T, 3>& disp) {
-	matrix<T, M, N> transform;
+Matrix<T, M, N> Matrix<T, M, N>::translation(const vector<T, 3>& disp) {
+	Matrix<T, M, N> transform;
 	transform[0][0] = static_cast<T>(1.0);
 	transform[1][1] = static_cast<T>(1.0);
 	transform[2][2] = static_cast<T>(1.0);
@@ -341,16 +235,10 @@ matrix<T, M, N> matrix<T, M, N>::translation(const vector<T, 3>& disp) {
 	return transform;
 }
 
-/**
- * Create an affine rotation matrix.
- * @param out Outwards direction.
- * @param up Upwards direction.
- * @return Rotation matrix.
- */
 template<typename T, std::size_t M, std::size_t N>
 template<typename U, typename>
-matrix<T, M, N> matrix<T, M, N>::rotation(const vector<T, 3>& out, const vector<T, 3>& up) {
-	matrix<T, M, N> transform;
+Matrix<T, M, N> Matrix<T, M, N>::rotation(const vector<T, 3>& out, const vector<T, 3>& up) {
+	Matrix<T, M, N> transform;
 	vector<T, 3> right(vector<T, 3>::cross(out, up).normal());
 	vector<T, 3> local_up(vector<T, 3>::cross(right, out));
 	transform[0].xyz = right;
@@ -360,17 +248,10 @@ matrix<T, M, N> matrix<T, M, N>::rotation(const vector<T, 3>& out, const vector<
 	return transform;
 }
 
-/**
- * Create an affine scale scale matrix.
- * @param x_scale Scale in the x-direction.
- * @param y_scale Scale in the y-direction.
- * @param z_scale Scale in the z-direction.
- * @return Scale matrix.
- */
 template<typename T, std::size_t M, std::size_t N>
 template<typename U, typename>
-matrix<T, M, N> matrix<T, M, N>::scale(const T& x_scale, const T& y_scale, const T& z_scale) {
-	matrix<T, M, N> transform;
+Matrix<T, M, N> Matrix<T, M, N>::scale(const T& x_scale, const T& y_scale, const T& z_scale) {
+	Matrix<T, M, N> transform;
 	transform[0][0] = x_scale;
 	transform[1][1] = y_scale;
 	transform[2][2] = z_scale;
@@ -378,21 +259,10 @@ matrix<T, M, N> matrix<T, M, N>::scale(const T& x_scale, const T& y_scale, const
 	return transform;
 }
 
-/**
- * Create an otrhographic projection matrix.
- * @param left
- * @param right
- * @param bottom
- * @param top
- * @param near The near clipping plane.
- * @param far The far clipping plane.
- * @return Projection matrix.
- */
 template<typename T, std::size_t M, std::size_t N>
 template<typename U, typename>
-matrix<T, M, N> matrix<T, M, N>::orthographic(const T& left, const T& right,
-		const T& bottom, const T& top, const T& near, const T& far) {
-	matrix<T, M, N> proj;
+Matrix<T, M, N> Matrix<T, M, N>::orthographic(const T& left, const T& right, const T& bottom, const T& top, const T& near, const T& far) {
+	Matrix<T, M, N> proj;
 	proj[0][0] = static_cast<T>(2.0) / (right - left);
 	proj[1][1] = static_cast<T>(2.0) / (top - bottom);
 	proj[2][2] = static_cast<T>(-2.0) / (far - near);
@@ -403,19 +273,10 @@ matrix<T, M, N> matrix<T, M, N>::orthographic(const T& left, const T& right,
 	return proj;
 }
 
-/**
- * Create a perspective projection matrix.
- * @param fov The field of view.
- * @param aspect The screen's aspect ratio.
- * @param near The near clipping plane.
- * @param far The far clipping plane.
- * @return Projection matrix.
- */
 template<typename T, std::size_t M, std::size_t N>
 template<typename U, typename>
-matrix<T, M, N> matrix<T, M, N>::perspective(const T& fov, const T& aspect,
-		const T&  near, const T& far) {
-	matrix<T, M, N> proj;
+Matrix<T, M, N> Matrix<T, M, N>::perspective(const T& fov, const T& aspect, const T&  near, const T& far) {
+	Matrix<T, M, N> proj;
 	T y_scale = static_cast<T>(1.0) / vmath::tan(fov / static_cast<T>(2.0));
 	T x_scale = y_scale / aspect;
 	proj[0][0] = x_scale;

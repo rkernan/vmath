@@ -1,7 +1,7 @@
 #ifndef VMATH_CORE_QUATERNION_INL
 #define VMATH_CORE_QUATERNION_INL
 
-#include <vmath/core/quaternion.hpp>
+#include <vmath/core/Quaternion.hpp>
 
 #include <vmath/functions.hpp>
 #include <vmath/core/matrix.hpp>
@@ -10,29 +10,8 @@
 namespace vmath {
 namespace core {
 
-/**
- * Convert axis and angle to a quaternion.
- * @param axis Axis of rotation.
- * @param angle Angle of rotation in radians.
- */
 template<typename T>
-quaternion<T>::quaternion(const vector<T, 3>& axis, const T& angle) {
-	T half_angle = angle / static_cast<T>(2.0);
-	vector<T, 3> N =  axis.normal() * vmath::sin(half_angle);
-	this->x = N.x;
-	this->y = N.y;
-	this->z = N.z;
-	this->w = vmath::cos(half_angle);
-}
-
-/**
- * Convert euler angles to a quaternion.
- * @param pitch Counter-clockwise x-axis rotation in radians.
- * @param yaw Counter-clockwise y-axis rotation in radians.
- * @param roll Counter-clockwise z-axis rotation in radians.
- */
-template<typename T>
-quaternion<T>::quaternion(const T& pitch, const T& yaw, const T& roll) {
+Quaternion<T>::quaternion(const T& pitch, const T& yaw, const T& roll) {
 	T half_pitch = pitch / static_cast<T>(2.0);
 	T half_yaw = yaw / static_cast<T>(2.0);
 	T half_roll = roll / static_cast<T>(2.0);
@@ -49,12 +28,18 @@ quaternion<T>::quaternion(const T& pitch, const T& yaw, const T& roll) {
 	this->normalize();
 }
 
-/**
- * Convert a matrix to a quaternion.
- * @param mat matrix to convert.
- */
 template<typename T>
-quaternion<T>::quaternion(const matrix<T, 4, 4>& mat) {
+Quaternion<T>::quaternion(const vector<T, 3>& axis, const T& angle) {
+	T half_angle = angle / static_cast<T>(2.0);
+	vector<T, 3> N =  axis.normal() * vmath::sin(half_angle);
+	this->x = N.x;
+	this->y = N.y;
+	this->z = N.z;
+	this->w = vmath::cos(half_angle);
+}
+
+template<typename T>
+Quaternion<T>::quaternion(const matrix<T, 4, 4>& mat) {
 	T x = vmath::sqrt(vmath::max(static_cast<T>(0.0),
 		static_cast<T>(1.0) + mat[0][0] - mat[1][1] - mat[2][2])) / static_cast<T>(2.0);
 	T y = vmath::sqrt(vmath::max(static_cast<T>(0.0),
@@ -70,282 +55,164 @@ quaternion<T>::quaternion(const matrix<T, 4, 4>& mat) {
 	this->normalize();
 }
 
-/**
- * Access a quaternion element using an index.
- * @param idx Location of element to access.
- * @return Accessed element.
- */
 template<typename T>
-T quaternion<T>::operator[](const std::size_t idx) const {
+T Quaternion<T>::operator[](const std::size_t idx) const {
 	return this->data.at(idx);
 }
 
-/**
- * Access and modify a quaternion element using an index.
- * @param idx Location of element to access.
- * @return Modified element.
- */
 template<typename T>
-T& quaternion<T>::operator[](const std::size_t idx) {
+T& Quaternion<T>::operator[](const std::size_t idx) {
 	return this->data.at(idx);
 }
 
-/**
- * Negate a quaternion.
- * @return The quaternion negated.
- */
 template<typename T>
-quaternion<T> quaternion<T>::operator-(void) const {
+Quaternion<T> quaternion<T>::operator-() const {
 	T x = -this->x;
 	T y = -this->y;
 	T z = -this->z;
 	T w = -this->w;
-	return quaternion<T>(x, y, z, w);
+	return Quaternion<T>(x, y, z, w);
 }
 
-/**
- * Component-wise addition.
- * @param H quaternion to add.
- * @return The component-wise sum.
- */
 template<typename T>
-quaternion<T> quaternion<T>::operator+(const quaternion<T>& H) const {
-	T x = this->x + H.x;
-	T y = this->y + H.y;
-	T z = this->z + H.z;
-	T w = this->w + H.w;
-	return quaternion<T>(x, y, z, w);
+Quaternion<T> quaternion<T>::operator+(const quaternion<T>& h) const {
+	T x = this->x + h.x;
+	T y = this->y + h.y;
+	T z = this->z + h.z;
+	T w = this->w + h.w;
+	return Quaternion<T>(x, y, z, w);
 }
 
-/**
- * Component-wise addition. Copy the result into this quaternion.
- * @param H quaternion to add.
- * @return The modified quaternion (component-wise sum).
- */
 template<typename T>
-quaternion<T>& quaternion<T>::operator+=(const quaternion<T>& H) {
-	return *this = *this + H;
+Quaternion<T>& quaternion<T>::operator+=(const quaternion<T>& h) {
+	return *this = *this + h;
 }
 
-/**
- * Component-wise subtraction.
- * @param H quaternion to subtract.
- * @return The component-wise difference.
- */
 template<typename T>
-quaternion<T> quaternion<T>::operator-(const quaternion<T>& H) const {
-	T x = this->x - H.x;
-	T y = this->y - H.y;
-	T z = this->z - H.z;
-	T w = this->w - H.w;
-	return quaternion<T>(x, y, z, w);
+Quaternion<T> quaternion<T>::operator-(const quaternion<T>& h) const {
+	T x = this->x - h.x;
+	T y = this->y - h.y;
+	T z = this->z - h.z;
+	T w = this->w - h.w;
+	return Quaternion<T>(x, y, z, w);
 }
 
-/**
- * Component-wise subtraction.
- * @param H quaternion to subtract.
- * @return The modified quaternion (compnent-wise difference).
- */
 template<typename T>
-quaternion<T>& quaternion<T>::operator-=(const quaternion<T>& H) {
-	return *this = *this - H;
+Quaternion<T>& quaternion<T>::operator-=(const quaternion<T>& h) {
+	return *this = *this - h;
 }
 
-/**
- * Multiply another quaternion by this one.
- * @param H quaternion to multiply.
- * @return The combined quaternion rotation.
- */
 template<typename T>
-quaternion<T> quaternion<T>::operator*(const quaternion<T>& H) const {
-	T x = (this->w * H.x) + (this->x * H.w) + (this->y * H.z) - (this->z * H.y);
-	T y = (this->w * H.y) + (this->y * H.w) + (this->z * H.x) - (this->x * H.z);
-	T z = (this->w * H.z) + (this->z * H.w) + (this->x * H.y) - (this->y * H.x);
-	T w = (this->w * H.w) - (this->x * H.x) - (this->y * H.y) - (this->z * H.z);
-	return quaternion<T>(x, y, z, w);
+Quaternion<T> quaternion<T>::operator*(const quaternion<T>& h) const {
+	T x = (this->w * h.x) + (this->x * h.w) + (this->y * h.z) - (this->z * h.y);
+	T y = (this->w * h.y) + (this->y * h.w) + (this->z * h.x) - (this->x * h.z);
+	T z = (this->w * h.z) + (this->z * h.w) + (this->x * h.y) - (this->y * h.x);
+	T w = (this->w * h.w) - (this->x * h.x) - (this->y * h.y) - (this->z * h.z);
+	return Quaternion<T>(x, y, z, w);
 }
 
-/**
- * Multiply another quaternion by this one and set this quaternion equal to the
- * result.
- * @param H quaternion to multiply.
- * @return The combined quaternion rotation.
- */
 template<typename T>
-quaternion<T>& quaternion<T>::operator*=(const quaternion<T>& H) {
-	return *this = *this * H;
+Quaternion<T>& quaternion<T>::operator*=(const quaternion<T>& h) {
+	return *this = *this * h;
 }
 
-/**
- * Apply this quaternion rotation to a vector.
- * @param V vector to rotate.
- * @return The rotated vector.
- */
 template<typename T>
-vector<T, 3> quaternion<T>::operator*(const vector<T, 3>& V) const {
-	vector<T, 3> N = V.normal();
-	quaternion vQ(N.x, N.y, N.z, 0.0f);
-	quaternion cQ(this->inverse());
-	quaternion rQ(vQ * cQ);
-	rQ = *this * rQ;
-	return vector<T, 3>(rQ.x, rQ.y, rQ.z);
+vector<T, 3> Quaternion<T>::operator*(const vector<T, 3>& v) const {
+	vector<T, 3> n = v.normal();
+	Quaternion vq(n.x, n.y, n.z, 0.0f);
+	Quaternion cq(this->inverse());
+	Quaternion rq(vq * cq);
+	rQ = *this * rq;
+	return vector<T, 3>(rq.x, rq.y, rq.z);
 }
 
-/**
- * Scalar multiplication.
- * @param s Scalar to multiply by.
- * @return quaternion-scalar product.
- */
 template<typename T>
-quaternion<T> quaternion<T>::operator*(const T& s) const {
+Quaternion<T> quaternion<T>::operator*(const T& s) const {
 	T x = this->x * s;
 	T y = this->y * s;
 	T z = this->z * s;
 	T w = this->w * s;
-	return quaternion<T>(x, y, z, w);
+	return Quaternion<T>(x, y, z, w);
 }
 
-/**
- * Scalar multiplication. Copy the result into this quaternion.
- * @param s Scalar to multiply by.
- * @return The modified quaternion (quaternion-scalar product).
- */
 template<typename T>
-quaternion<T>& quaternion<T>::operator*=(const T& s) {
+Quaternion<T>& quaternion<T>::operator*=(const T& s) {
 	return *this = *this * s;
 }
 
-/**
- * Scalar division.
- * @param s Scalar to divide by.
- * @return quaternion-scalar quotient.
- */
 template<typename T>
-quaternion<T> quaternion<T>::operator/(const T& s) const {
+Quaternion<T> quaternion<T>::operator/(const T& s) const {
 	T x = this->x / s;
 	T y = this->y / s;
 	T z = this->z / s;
 	T w = this->w / s;
-	return quaternion<T>(x, y, z, w);
+	return Quaternion<T>(x, y, z, w);
 }
 
-/**
- * Scalar division. Copy the result into this quaternion.
- * @param s Scalar to divide by.
- * @return The modified quaternion (quaternion-scalar quotient).
- */
 template<typename T>
-quaternion<T>& quaternion<T>::operator/=(const T& s) {
+Quaternion<T>& quaternion<T>::operator/=(const T& s) {
 	return *this = *this / s;
 }
 
-/**
- * Calculate the magnitude squared.
- * @return Magnitude squared.
- */
 template<typename T>
-T quaternion<T>::mag2(void) const {
+T Quaternion<T>::mag2() const {
 	return (this->x * this->x) + (this->y * this->y) + (this->z * this->z) + (this->w * this->w);
 }
 
-/**
- * Calculate the magnitude.
- * @return Magnitude.
- */
 template<typename T>
-T quaternion<T>::mag(void) const {
+T Quaternion<T>::mag() const {
 	return vmath::sqrt(this->mag2());
 }
 
-/**
- * Calculate the quaternion normal.
- * @return quaternion normal.
- */
 template<typename T>
-quaternion<T> quaternion<T>::normal(void) const {
+Quaternion<T> quaternion<T>::normal() const {
 	return *this / this->mag();
 }
 
-/**
- * Normalize a quaternion.
- * @return The modified quaternion (quaternion normal).
- */
 template<typename T>
-quaternion<T>& quaternion<T>::normalize(void) {
+Quaternion<T>& quaternion<T>::normalize() {
 	return *this = this->normal();
 }
 
-/**
- * Calculate the inverse of this quaternion.
- * @return quaternion inverse.
- */
 template<typename T>
-quaternion<T> quaternion<T>::inverse(void) const {
-	return quaternion<T>(-this->x, -this->y, -this->z, this->w) / this->mag2();
+Quaternion<T> quaternion<T>::inverse() const {
+	return Quaternion<T>(-this->x, -this->y, -this->z, this->w) / this->mag2();
 }
 
-/**
- * Invert this quaternion.
- * @return The modified quaternion.
- */
 template<typename T>
-quaternion<T>& quaternion<T>::invert(void) {
+Quaternion<T>& quaternion<T>::invert() {
 	return *this = this->inverse();
 }
 
-/**
- * Convert quaternion to euler angle.
- * @return Euler x-axis value (pitch).
- */
 template<typename T>
-T quaternion<T>::pitch(void) const {
+T Quaternion<T>::pitch() const {
 	return vmath::atan2(2.0f * (this->y * this->z + this->w * this->x),
 		this->w * this->w - this->x * this->x - this->y * this->y + this->z * this->z);
 }
 
-/**
- * Convert quaternion to euler angle.
- * @return Euler y-axis value (yaw).
- */
 template<typename T>
-T quaternion<T>::yaw(void) const {
+T Quaternion<T>::yaw() const {
 	return vmath::asin(-2.0f * (this->x * this->z - this-> w * this->y));
 }
 
-/**
- * Convert quaternion to euler angle.
- * @return Euler z-axis value (roll).
- */
 template<typename T>
-T quaternion<T>::roll(void) const {
+T Quaternion<T>::roll() const {
 	return vmath::atan2(2.0f * (this->x * this->y + this->w * this->z),
 		this->w * this->w + this->x * this->x - this->y * this->y - this->z * this->z);
 }
 
-/**
- * Convert quaternion to axis angle.
- * @return Axis of rotation.
- */
 template<typename T>
-vector<T, 3> quaternion<T>::axis(void) const {
+vector<T, 3> Quaternion<T>::axis() const {
 	return vector<T, 3>(this->x, this->y, this->z).normal();
 }
 
-/**
- * Convert quaternion to axis angle.
- * @return Angle of rotation.
- */
 template<typename T>
-T quaternion<T>::angle(void) const {
+T Quaternion<T>::angle() const {
 	return vmath::acos(this->w) * static_cast<T>(2.0);
 }
 
-/**
- * Convert quaternion to matrix.
- * @return Rotation matrix.
- */
 template<typename T>
-matrix<T, 4> quaternion<T>::to_matrix(void) const {
+matrix<T, 4> Quaternion<T>::to_matrix() const {
 	matrix<T, 4, 4> mat;
 	mat[0][0] = static_cast<T>(1.0) - static_cast<T>(2.0) * (this->y * this->y) - static_cast<T>(2.0) * (this->z * this->z);
 	mat[0][1] = static_cast<T>(2.0) * (this->x * this->y) + static_cast<T>(2.0) * (this->w * this->z);
@@ -367,94 +234,60 @@ matrix<T, 4> quaternion<T>::to_matrix(void) const {
 }
 
 /**
- * Equals helper. Allows for partial specialization of the equality operator.
- * Specialization for quaternions containing floats.
- * @param H1 quaternion to check equality with.
- * @param H2 quaternion to check equality with.
- * @return True if they are equal, otherwise false.
+ * \brief Specialization for quaternions containing floats
+ * \param[in] h1 Quaternion to check equality with
+ * \param[in] h2 Quaternion to check equality with
+ * \return True if they are equal, otherwise false
  */
 template<typename T>
-static inline typename std::enable_if<std::is_floating_point<T>::value, bool>::type
-		equals_helper(const quaternion<T>& H1, const quaternion<T>& H2) {
-	return vmath::equals(H1.x, H2.x) && vmath::equals(H1.y, H2.y) && vmath::equals(H1.z, H2.z) && vmath::equals(H1.w, H2.w);
+static inline typename std::enable_if<std::is_floating_point<T>::value, bool>::type equals_helper(const Quaternion<T>& h1, const quaternion<T>& h2) {
+	// FIXME Can't specify error
+	return vmath::equals(h1.x, h2.x) && vmath::equals(h1.y, h2.y) && vmath::equals(h1.z, h2.z) && vmath::equals(h1.w, h2.w);
 }
 
 /**
- * Equals helper. Allows for partial specialization of the equality operator.
- * Specialization for quaternions containing integers or other.
- * @param H1 quaternion to check equality with.
- * @param H2 quaternion to check equality with.
- * @return True if they are equal, otherwise false.
+ * \brief Specialization for quaternions containing integers or other
+ * \param[in] h1 Quaternion to check equality with
+ * \param[in] h2 Quaternion to check equality with
+ * \return True if they are equal, otherwise false
  */
 template<typename T>
-static inline typename std::enable_if<!std::is_floating_point<T>::value, bool>::type
-		equals_helper(const quaternion<T>& H1, const quaternion<T>& H2) {
-	return H1.x == H2.x && H1.y == H2.y && H1.z == H2.z && H1.w == H2.w;
+static inline typename std::enable_if<!std::is_floating_point<T>::value, bool>::type equals_helper(const Quaternion<T>& h1, const quaternion<T>& h2) {
+	return h1.x == h2.x && h1.y == h2.y && h1.z == h2.z && h1.w == h2.w;
 }
 
-/**
- * Check quaternion equality.
- * @param other quaternion to check equality with.
- * @return True if they are equals, otherwise false.
- */
 template<typename T>
-bool quaternion<T>::operator==(const quaternion<T>& other) const {
+bool Quaternion<T>::operator==(const quaternion<T>& other) const {
 	return equals_helper(*this, other);
 }
 
-/**
- * Check quaternion inequality.
- * @param other quaternion to check inequality with.
- * @return False if they are equal, otherwise true.
- */
 template<typename T>
-bool quaternion<T>::operator!=(const quaternion<T>& other) const {
+bool Quaternion<T>::operator!=(const quaternion<T>& other) const {
 	return !(*this == other);
 }
 
-/**
- * Calculate the inner quaternion product (dot product).
- * @param H1 quaternion to take dot product of.
- * @param H2 quaternion to take dot product of.
- * @return quaternion dot product.
- */
 template<typename T>
-T quaternion<T>::dot(const quaternion<T>& H1, const quaternion<T>& H2) {
-	return (H1.x * H2.x) + (H1.y * H2.y) + (H1.z * H2.z) + (H1.w * H2.w);
+T Quaternion<T>::dot(const quaternion<T>& h1, const quaternion<T>& h2) {
+	return (h1.x * h2.x) + (h1.y * h2.y) + (h1.z * h2.z) + (h1.w * h2.w);
 }
 
-/**
- * Linearly interpolate between two quaternions.
- * @param S Start quaternion.
- * @param E End quaternion.
- * @param t Value to interpolate by.
- * @return Interpolated quaternion.
- */
 template<typename T>
-quaternion<T> quaternion<T>::lerp(const quaternion<T>& S, const quaternion<T>& E, const T& t) {
-	return S + ((E - S) * t);
+Quaternion<T> quaternion<T>::lerp(const quaternion<T>& start, const quaternion<T>& end, const T& t) {
+	return start + ((end - start) * t);
 }
 
-/**
- * Spherically interpolate between two quaternions.
- * @param S Start quaternion.
- * @param E End quaternion.
- * @param t Value to interpolate by.
- * @param shortest Take the shortest path there. Defaults to true.
- * @return Interpolated quaternion.
- */
 template<typename T>
-quaternion<T> quaternion<T>::slerp(const quaternion<T>& S, const quaternion<T>& E, const T& t, const bool shortest) {
-	T d = quaternion<T>::dot(S, E);
-	quaternion<T> H;
+Quaternion<T> quaternion<T>::slerp(const quaternion<T>& start, const quaternion<T>& end, const T& t, const bool shortest) {
+	T d = Quaternion<T>::dot(start, end);
+	Quaternion<T> h;
 	if (d < static_cast<T>(0.0) && shortest) {
 		d = -d;
-		H = -E;
+		h = -end;
 	} else {
-		H = E;
+		h = end;
 	}
 	T angle = vmath::acos(d);
-	return (S * vmath::sin(angle * (static_cast<T>(1.0) - t)) + H * (vmath::sin(angle * t))) / vmath::sin(angle);
+	return (start * vmath::sin(angle * (static_cast<T>(1.0) - t)) + h * (vmath::sin(angle * t))) / vmath::sin(angle);
 }
 
 }

@@ -3,20 +3,15 @@
 
 #include <array>
 #include <cstddef>
-#include <vmath/core/vector.hpp>
-
-#ifdef minor
-#undef minor
-#endif
+#include <vmath/core/Vector.hpp>
 
 namespace vmath {
 namespace core {
 
 /**
- * Checks that the given matrix dimensions make a square matrix.
- * @struct is_square_matrix
- * @param M Number of rows in the matrix.
- * @param N Number of columns in the matrix.
+ * \brief Checks that the given matrix dimensions make a square matrix
+ * \tparam M Number of rows in the matrix
+ * \tparam N Number of columns in the matrix
  */
 template<std::size_t M, std::size_t N>
 struct is_square_matrix : std::integral_constant<bool, N == M> {};
@@ -24,195 +19,485 @@ struct is_square_matrix : std::integral_constant<bool, N == M> {};
 namespace {
 
 /**
- * Definition of the components available in a generic matrix. Column-major.
- * @class matrix_components
- * @tparam T Storage type.
- * @tparam M Number of rows.
- * @tparam N Number of columns.
+ * \brief Column-major definition of the components available in a generic matrix
+ * \tparam T Storage type
+ * \tparam M Number of rows
+ * \tparam N Number of columns
  */
 template<typename T, std::size_t M, std::size_t N>
-class matrix_components {
+class MatrixComponents {
 public:
-	matrix_components(void) : data() {}
-	explicit matrix_components(const std::array<vector<T, M>, N>& data) : data(data) {}
-	matrix_components(const matrix_components<T, M, N>&) = default;
-	matrix_components<T, M, N>& operator=(const matrix_components&) = default;
-	matrix_components(matrix_components<T, M, N>&&) = default;
-	matrix_components<T, M, N>& operator=(matrix_components<T, M, N>&&) = default;
+	std::array<Vector<T, M>, N> data;
 
-	std::array<vector<T, M>, N> data;
+	/**
+	 * \brief Constructor a zero matrix
+	 */
+	MatrixComponents() : data() {}
+	
+	/**
+	 * \brief Construct a matrix from a 2-dimensional array
+	 * \param[in] data Array to construct from
+	 */
+	explicit MatrixComponents(const std::array<Vector<T, M>, N>& data) : data(data) {}
+
+	/**
+	 * \brief Copy constructor
+	 * \param[in] other Matrix component to copy
+	 */
+	MatrixComponents(const MatrixComponents<T, M, N>& other) = default;
+
+	/**
+	 * \brief Copy assignment operator
+	 * \param[in] other Matrix component to copy
+	 * \return Reference to self
+	 */
+	MatrixComponents<T, M, N>& operator=(const MatrixComponents& other) = default;
+
+	/**
+	 * \brief Move constructor
+	 * \param[in] other Matrix component to move
+	 */
+	MatrixComponents(MatrixComponents<T, M, N>&& other) = default;
+
+	/**
+	 * \brief Move assignment operator
+	 * \param[in] other Matrix component to move
+	 * \return Reference to self
+	 */
+	MatrixComponents<T, M, N>& operator=(MatrixComponents<T, M, N>&& other) = default;
 };
 
 /**
- * Matrix component specialization for column vectors. Column-major.
- * @class matrix_components
- * @tparam T Storage type.
- * @tparam M Number of rows.
+ * \brief Column-major matrix component specialization for column Vectors
+ * \tparam T Storage type.
+ * \tparam M Number of rows.
  */
 template<typename T, std::size_t M>
-class matrix_components<T, M, 1> {
+class MatrixComponents<T, M, 1> {
 public:
-	matrix_components(void) : data() {}
-	explicit matrix_components(const std::array<vector<T, M>, 1>& data) : data(data) {}
-	explicit matrix_components(const vector<T, M>& V) : data({{V}}) {}
-	matrix_components(const matrix_components<T, M, 1>&) = default;
-	matrix_components<T, M, 1>& operator=(const matrix_components<T, M, 1>&) = default;
-	matrix_components(matrix_components<T, M, 1>&&) = default;
-	matrix_components<T, M, 1>& operator=(matrix_components<T, M, 1>&&) = default;
+	std::array<Vector<T, M>, 1> data;
 
-	std::array<vector<T, M>, 1> data;
+	/**
+	 * \brief Construct a zero column matrix
+	 */
+	MatrixComponents() : data() {}
+
+	explicit MatrixComponents(const std::array<Vector<T, M>, 1>& data) : data(data) {}
+
+	explicit MatrixComponents(const Vector<T, M>& v) : data({{v}}) {}
+
+	/**
+	 * \brief Copy constructor
+	 * \param[in] other Column matrix component to copy
+	 */
+	MatrixComponents(const MatrixComponents<T, M, 1>& other) = default;
+
+	/**
+	 * \brief Copy assignment operator
+	 * \param[in] other Column matrix component to copy
+	 * \return Reference to self
+	 */
+	MatrixComponents<T, M, 1>& operator=(const MatrixComponents<T, M, 1>& other) = default;
+
+	/**
+	 * \brief Move constructor
+	 * \param[in] other Column matrix component to move
+	 */
+	MatrixComponents(MatrixComponents<T, M, 1>&& other) = default;
+
+	/**
+	 * \brief Move assignment operator
+	 * \param[in] other Column matrix component to move
+	 * \return Reference to self
+	 */
+	MatrixComponents<T, M, 1>& operator=(MatrixComponents<T, M, 1>&& other) = default;
 };
 
 /**
- * Matrix component specialization for matrices with 2 columns. Column-major.
- * @class matrix_components
- * @tparam T Storage type.
- * @tparam M Number of rows.
+ * \brief Column-major matrix component specialization for matrices with 2 columns
+ * \tparam T Storage type
+ * \tparam M Number of rows
  */
 template<typename T, std::size_t M>
-class matrix_components<T, M, 2> {
+class MatrixComponents<T, M, 2> {
 public:
-	matrix_components(void) : data() {}
-	explicit matrix_components(const std::array<vector<T, M>, 2>& data) : data(data) {}
-	matrix_components(const vector<T, M>& V1, const vector<T, M>& V2) : data({{V1, V2}}) {}
-	matrix_components(const matrix_components<T, M, 2>&) = default;
-	matrix_components<T, M, 2>& operator=(const matrix_components<T, M, 2>&) = default;
-	matrix_components(matrix_components<T, M, 2>&&) = default;
-	matrix_components<T, M, 2>& operator=(matrix_components<T, M, 2>&&) = default;
+	std::array<Vector<T, M>, 2> data;
 
-	std::array<vector<T, M>, 2> data;
+	/**
+	 * \brief Construct a zero 2 column matrix
+	 */
+	MatrixComponents() : data() {}
+
+	/**
+	 * \brief Construct a 2 column matrix from a 2-dimensional array
+	 * \param[in] data Array to construct from
+	 */
+	explicit MatrixComponents(const std::array<Vector<T, M>, 2>& data) : data(data) {}
+
+	/**
+	 * \brief Construct a 2 column matrix from 2 Vectors
+	 * \param[in] v1 First column as Vector
+	 * \param[in] v2 Second column as Vector
+	 */
+	MatrixComponents(const Vector<T, M>& v1, const Vector<T, M>& v2) : data({{v1, v2}}) {}
+
+	/**
+	 * \brief Copy constructor
+	 * \param[in] other 2 column matrix component to copy
+	 */
+	MatrixComponents(const MatrixComponents<T, M, 2>& other) = default;
+
+	/**
+	 * \brief Copy assignment operator
+	 * \param[in] other 2 column matrix component to copy
+	 * \return Reference to self
+	 */
+	MatrixComponents<T, M, 2>& operator=(const MatrixComponents<T, M, 2>& other) = default;
+
+	/**
+	 * \brief Move constructor
+	 * \param[in] other 2 column matrix component to move
+	 */
+	MatrixComponents(MatrixComponents<T, M, 2>&& other) = default;
+
+	/**
+	 * \brief Move assignment operator
+	 * \param[in] other 2 column matrix component to move
+	 * \return Reference to self
+	 */
+	MatrixComponents<T, M, 2>& operator=(MatrixComponents<T, M, 2>&& other) = default;
 };
 
 /**
- * Matrix component specialization for matrices with 3 columns. Column-major.
- * @class matrix_components
- * @tparam T Storage type.
- * @tparam M Number of rows.
+ * \brief Column-major matrix component specialization for matrices with 3 columns
+ * \tparam T Storage type
+ * \tparam M Number of rows
  */
 template<typename T, std::size_t M>
-class matrix_components<T, M, 3> {
+class MatrixComponents<T, M, 3> {
 public:
-	matrix_components(void) : data() {}
-	explicit matrix_components(const std::array<vector<T, M>, 3>& data) : data(data) {}
-	matrix_components(
-			const vector<T, M>& V1,
-			const vector<T, M>& V2,
-			const vector<T, M>& V3) :
-		data({{V1, V2, V3}}) {}
-	matrix_components(const matrix_components<T, M, 3>&) = default;
-	matrix_components<T, M, 3>& operator=(const matrix_components<T, M, 3>&) = default;
-	matrix_components(matrix_components<T, M, 3>&&) = default;
-	matrix_components<T, M, 3>& operator=(matrix_components<T, M, 3>&&) = default;
+	std::array<Vector<T, M>, 3> data;
 
-	std::array<vector<T, M>, 3> data;
+	/**
+	 * \brief Construct a zero 3 column matrix
+	 */
+	MatrixComponents() : data() {}
+
+	/**
+	 * \brief Construct a 3 column matrix from a 2-dimensional array
+	 * \param[in] data Array to construct from
+	 */
+	explicit MatrixComponents(const std::array<Vector<T, M>, 3>& data) : data(data) {}
+
+	/**
+	 * \brief Construct a 3-column matrix from Vector
+	 * \param[in] v1 First column as Vector
+	 * \param[in] v1 Second column as Vector
+	 * \param[in] v3 Third column as Vector
+	 */
+	MatrixComponents(const Vector<T, M>& v1, const Vector<T, M>& v2, const Vector<T, M>& v3) : data({{v1, v2, v3}}) {}
+
+	/**
+	 * \brief Copy constructor
+	 * \param[in] other 3 column matrix component to copy
+	 */
+	MatrixComponents(const MatrixComponents<T, M, 3>& other) = default;
+
+	/**
+	 * \brief Copy assignment operator
+	 * \param[in] other 3 column matrix component to copy
+	 * \return Reference to self
+	 */
+	MatrixComponents<T, M, 3>& operator=(const MatrixComponents<T, M, 3>& other) = default;
+
+	/**
+	 * \brief Move constructor
+	 * \param[in] other 3 column matrix component to move
+	 */
+	MatrixComponents(MatrixComponents<T, M, 3>&& other) = default;
+
+	/**
+	 * \brief Move assignment operator
+	 * \param[in] other 3 column matrix component to move
+	 * \return Reference to self
+	 */
+	MatrixComponents<T, M, 3>& operator=(MatrixComponents<T, M, 3>&& other) = default;
 };
 
 /**
- * Matrix component specialization for matrices with 4 columns. Column-major.
- * @class matrix_components
- * @tparam T Storage type.
- * @tparam M Number of rows.
+ * \brief Column-major matrix component specialization for matrices with 4 columns
+ * \tparam T Storage type
+ * \tparam M Number of rows
  */
 template<typename T, std::size_t M>
-class matrix_components<T, M, 4> {
+class MatrixComponents<T, M, 4> {
 public:
-	matrix_components(void) : data() {}
-	explicit matrix_components(const std::array<vector<T, M>, 4>& data) : data(data) {}
-	matrix_components(
-			const vector<T, M>& V1,
-			const vector<T, M>& V2,
-			const vector<T, M>& V3,
-			const vector<T, M>& V4) :
-		data({{V1, V2, V3, V4}}) {}
-	matrix_components(const matrix_components<T, M, 4>&) = default;
-	matrix_components<T, M, 4>& operator=(const matrix_components<T, M, 4>&) = default;
-	matrix_components(matrix_components<T, M, 4>&&) = default;
-	matrix_components<T, M, 4>& operator=(matrix_components<T, M, 4>&&) = default;
+	std::array<Vector<T, M>, 4> data;
 
-	std::array<vector<T, M>, 4> data;
+	/**
+	 * \brief Construct a zero 4 column matrix
+	 */
+	MatrixComponents() : data() {}
+
+	/**
+	 * \brief Construct a 4 column matrix from a 2-dimensional array
+	 * \param[in] data Array to construct from
+	 */
+	explicit MatrixComponents(const std::array<Vector<T, M>, 4>& data) : data(data) {}
+
+	/**
+	 * \brief Construct a 4 column matrix from Vectors
+	 * \param[in] v1 First column as Vector
+	 * \param[in] v2 Second column as Vector
+	 * \param[in] v3 Third column as Vector
+	 * \param[in] v4 Fourth column as Vector
+	 */
+	MatrixComponents(const Vector<T, M>& v1, const Vector<T, M>& v2, const Vector<T, M>& v3, const Vector<T, M>& v4) : data({{v1, v2, v3, v4}}) {}
+
+	/**
+	 * \brief Copy constructor
+	 * \param[in] other 4 column matrix component to copy
+	 */
+	MatrixComponents(const MatrixComponents<T, M, 4>& other) = default;
+
+	/**
+	 * \brief Copy assignment operator
+	 * \param[in] other 4 column matrix component to copy
+	 * \return Reference to self
+	 */
+	MatrixComponents<T, M, 4>& operator=(const MatrixComponents<T, M, 4>& other) = default;
+
+	/**
+	 * \brief Move constructor
+	 * \param[in] other 4 column matrix component to move
+	 */
+	MatrixComponents(MatrixComponents<T, M, 4>&& other) = default;
+
+	/**
+	 * \brief Move assignment operator
+	 * \param[in] other 4 column matrix component to move
+	 * \return Reference to self
+	 */
+	MatrixComponents<T, M, 4>& operator=(MatrixComponents<T, M, 4>&& other) = default;
 };
 
 }
 
 /**
- * A matrix with generic size and type. Column-major.
- * @class matrix
- * @tparam T Storage type.
- * @tparam M Number of rows.
- * @tparam N Number of columns. Defaults to number of rows.
+ * \brief A column-major Matrix with generic size and type
+ * \tparam T Storage type.
+ * \tparam M Number of rows.
+ * \tparam N Number of columns. Defaults to number of rows.
  */
 template<typename T, std::size_t M, std::size_t N = M>
-class matrix : public matrix_components<T, M, N> {
+class Matrix : public MatrixComponents<T, M, N> {
 public:
-	using matrix_components<T, M, N>::matrix_components;
+	using MatrixComponents<T, M, N>::MatrixComponents;
 
-	~matrix(void) = default;
+	/**
+	 * \brief Destructor
+	 */
+	~Matrix() = default;
 
-	vector<T, M> operator[](const std::size_t) const;
-	vector<T, M>& operator[](const std::size_t);
+	/**
+	 * \brief Access a matrix element using an index
+	 * \param[in] idx Location of element to access
+	 * \return Accessed element
+	 */
+	Vector<T, M> operator[](const std::size_t idx) const;
 
-	matrix<T, M, N> operator-(void) const;
-	matrix<T, M, N> operator+(const matrix<T, M, N>&) const;
-	matrix<T, M, N>& operator+=(const matrix<T, M, N>&);
-	matrix<T, M, N> operator-(const matrix<T, M, N>&) const;
-	matrix<T, M, N>& operator-=(const matrix<T, M, N>&);
+	/**
+	 * \brief Access and modify a matrix element by index
+	 * \param[in] idx Location of element to access
+	 * \return Modified element
+	 */
+	Vector<T, M>& operator[](const std::size_t idx);
 
+	/**
+	 * \brief Matrix negation operator
+	 * \return Negated matrix
+	 */
+	Matrix<T, M, N> operator-() const;
+
+	/**
+	 * \brief Matrix addition operator
+	 * \param[in] w Matrix to add
+	 * \return Matrix sum
+	 */
+	Matrix<T, M, N> operator+(const Matrix<T, M, N>& w) const;
+
+	/**
+	 * \brief Matrix addition assignment operator
+	 * \param[in] w Matrix to add
+	 * \return Reference to self
+	 */
+	Matrix<T, M, N>& operator+=(const Matrix<T, M, N>& w);
+
+	/**
+	 * \brief Matrix subtraction operator
+	 * \param w Matrix to subtract
+	 * \return Matrix difference
+	 */
+	Matrix<T, M, N> operator-(const Matrix<T, M, N>& w) const;
+
+	/**
+	 * \brief Matrix subtraction assignment operator
+	 * \param w Matrix to subtract
+	 * \return Reference to self
+	 */
+	Matrix<T, M, N>& operator-=(const Matrix<T, M, N>& w);
+
+	/**
+	 * \brief Matrix multiplication operator
+	 * \tparam P The number of columns in the result
+	 * \param[in] w Matrix to multiply by
+	 * \return Matrix product
+	 */
 	template<std::size_t P>
-	matrix<T, M, P> operator*(const matrix<T, N, P>&) const;
+	Matrix<T, M, P> operator*(const Matrix<T, N, P>& w) const;
 
-	matrix<T, M, N> operator*(const T&) const;
-	matrix<T, M, N>& operator*=(const T&);
-	matrix<T, M, N> operator/(const T&) const;
-	matrix<T, M, N>& operator/=(const T&);
+	/**
+	 * \brief Scalar multiplication operator
+	 * \param[in] s Scalar to multiply by
+	 * \return Matrix-scalar product
+	 */
+	Matrix<T, M, N> operator*(const T& s) const;
 
-	matrix<T, N, M> transpose(void) const;
+	/**
+	 * \brief Scalar multiplication assignment operator
+	 * \param[in] s Scalar to multiply by
+	 * \return Reference to self
+	 */
+	Matrix<T, M, N>& operator*=(const T& s);
 
-	bool operator==(const matrix<T, M, N>&) const;
-	bool operator!=(const matrix<T, M, N>&) const;
+	/**
+	 * \brief Scalar division operator
+	 * \param[in] s Scalar to divide by
+	 * \return Matrix-scalar quotient
+	 */
+	Matrix<T, M, N> operator/(const T& s) const;
 
-	template<typename U = T,
-		typename = typename std::enable_if<is_square_matrix<M, N>::value, U>::type>
-	T minor(const std::size_t, const std::size_t) const;
+	/**
+	 * \brief Scalar division assignment operator
+	 * \param[in] s Scalar to divide by
+	 * \return Reference to self
+	 */
+	Matrix<T, M, N>& operator/=(const T& s);
 
-	template<typename U = T,
-		typename = typename std::enable_if<is_square_matrix<M, N>::value, U>::type>
-	T det(void) const;
+	/**
+	 * \brief Calculate the transpose matrix
+	 * \return Matrix transpose
+	 */
+	Matrix<T, N, M> transpose() const;
 
-	template<typename U = T,
-		typename = typename std::enable_if<is_square_matrix<M, N>::value, U>::type>
-	matrix<T, M, N> minors(void) const;
+	/**
+	 * \brief Check matrix equality
+	 * \param[in] other Matrix to check equality with
+	 * \return True if they are equal, otherwise false
+	 */
+	bool operator==(const Matrix<T, M, N>& other) const;
 
-	template<typename U = T,
-		typename = typename std::enable_if<is_square_matrix<M, N>::value, U>::type>
-	matrix<T, M, N> cofactor(void) const;
+	/**
+	 * \brief Check Matrix inequality
+	 * \param[in] other Matrix to check inequality with
+	 * \return False if they are equal, otherwise true
+	 */
+	bool operator!=(const Matrix<T, M, N>& other) const;
 
-	template<typename U = T,
-		typename = typename std::enable_if<is_square_matrix<M, N>::value, U>::type>
-	matrix<T, M, N> adjugate(void) const;
+	/**
+	 * \brief Calculate the minor matrix
+	 * \param[in] row Row of element to calculate minor for
+	 * \param[in] col Column of element to calculate minor for
+	 * \return Matrix minor of the element at the given position
+	 */
+	template<typename U = T, typename = typename std::enable_if<is_square_matrix<M, N>::value, U>::type>
+	T minor(const std::size_t row, const std::size_t col) const;
 
-	template<typename U = T,
-		typename = typename std::enable_if<is_square_matrix<M, N>::value, U>::type>
-	matrix<T, M, N> inverse(void) const;
+	/**
+	 * \brief Calculate the determinant matrix
+	 * \return Matrix determinant.
+	 */
+	template<typename U = T, typename = typename std::enable_if<is_square_matrix<M, N>::value, U>::type>
+	T det() const;
 
-	template<typename U = T,
-		typename = typename std::enable_if<is_square_matrix<M, N>::value && M == 4, U>::type>
-	static matrix<T, M, N> translation(const vector<T, 3>&);
+	/**
+	 * \brief Calculate the matrix of minors.
+	 * \return Matrix of minors.
+	 */
+	template<typename U = T, typename = typename std::enable_if<is_square_matrix<M, N>::value, U>::type>
+	Matrix<T, M, N> minors() const;
 
-	template<typename U = T,
-		typename = typename std::enable_if<is_square_matrix<M, N>::value && M == 4, U>::type>
-	static matrix<T, M, N> rotation(const vector<T, 3>&, const vector<T, 3>&);
+	/**
+	 * \brief Calculate the cofactor matrix
+	 * \return Cofactor matrix
+	 */
+	template<typename U = T, typename = typename std::enable_if<is_square_matrix<M, N>::value, U>::type>
+	Matrix<T, M, N> cofactor() const;
 
-	template<typename U = T,
-		typename = typename std::enable_if<is_square_matrix<M, N>::value && M == 4, U>::type>
-	static matrix<T, M, N> scale(const T&, const T&, const T&);
+	/**
+	 * \brief Calculate the matrix adjugate
+	 * \return Matrix adjugate
+	 */
+	template<typename U = T, typename = typename std::enable_if<is_square_matrix<M, N>::value, U>::type>
+	Matrix<T, M, N> adjugate() const;
 
-	template<typename U = T,
-		typename = typename std::enable_if<is_square_matrix<M, N>::value && M == 4, U>::type>
-	static matrix<T, M, N> orthographic(const T&, const T&, const T&, const T&, const T&, const T&);
+	/**
+	 * \brief Calculate the matrix inverse
+	 * \return Matrix inverse
+	 */
+	template<typename U = T, typename = typename std::enable_if<is_square_matrix<M, N>::value, U>::type>
+	Matrix<T, M, N> inverse() const;
 
-	template<typename U = T,
-		typename = typename std::enable_if<is_square_matrix<M, N>::value && M == 4, U>::type>
-	static matrix<T, M, N> perspective(const T&, const T&, const T&, const T&);
+	/**
+	 * \brief Create an affine translation matrix
+	 * \param[in] disp Vector displacement
+	 * \return Translation matrix
+	 */
+	template<typename U = T, typename = typename std::enable_if<is_square_matrix<M, N>::value && M == 4, U>::type>
+	static Matrix<T, M, N> translation(const Vector<T, 3>& disp);
+
+	/**
+	 * \brief Create an affine rotation matrix
+	 * \param[in] out Outwards direction
+	 * \param[in] up Upwards direction
+	 * \return Rotation matrix
+	 */
+	template<typename U = T, typename = typename std::enable_if<is_square_matrix<M, N>::value && M == 4, U>::type>
+	static Matrix<T, M, N> rotation(const Vector<T, 3>& out, const Vector<T, 3>& up);
+
+	/**
+	 * \brief Create an affine scale scale matrix
+	 * \param[in] x_scale Scale in the x-direction
+	 * \param[in] y_scale Scale in the y-direction
+	 * \param[in] z_scale Scale in the z-direction
+	 * \return Scale matrix
+	 */
+	template<typename U = T, typename = typename std::enable_if<is_square_matrix<M, N>::value && M == 4, U>::type>
+	static Matrix<T, M, N> scale(const T& x_scale, const T& y_scale, const T& z_scale);
+
+	/**
+	 * \brief Create an otrhographic projection matrix
+	 * \param[in] left
+	 * \param[in] right
+	 * \param[in] bottom
+	 * \param[in] top
+	 * \param[in] near The near clipping plane
+	 * \param[in] far The far clipping plane
+	 * \return Projection matrix
+	 */
+	template<typename U = T, typename = typename std::enable_if<is_square_matrix<M, N>::value && M == 4, U>::type>
+	static Matrix<T, M, N> orthographic(const T& left, const T& right, const T& bottom, const T& top, const T& near, const T& far);
+
+	/**
+	 * \brief Create a perspective projection matrix
+	 * \param[in] fov The field of view
+	 * \param[in] aspect The screen's aspect ratio
+	 * \param[in] near The near clipping plane
+	 * \param[in] far The far clipping plane
+	 * \return Projection matrix
+	 */
+	template<typename U = T, typename = typename std::enable_if<is_square_matrix<M, N>::value && M == 4, U>::type>
+	static Matrix<T, M, N> perspective(const T& fov, const T& aspect, const T& near, const T& far);
 };
 
 }
