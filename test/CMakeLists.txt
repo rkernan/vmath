@@ -9,11 +9,7 @@ set(SOURCES
 	unit/matrix3x4.cpp
 	unit/matrix4x2.cpp
 	unit/matrix4x3.cpp
-	unit/matrix4x4.cpp
 	unit/quaternion.cpp
-	unit/swizzle2.cpp
-	unit/swizzle3.cpp
-	unit/swizzle4.cpp
 	unit/vector2.cpp
 	unit/vector3.cpp
 	unit/vector4.cpp

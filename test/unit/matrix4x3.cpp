@@ -31,10 +31,10 @@ BOOST_AUTO_TEST_CASE_TEMPLATE(create, T, float_types) {
 	BOOST_CHECK_SMALL(M_default[2][2], static_cast<T>(1e-7));
 	BOOST_CHECK_SMALL(M_default[2][3], static_cast<T>(1e-7));
 	// parameterized static_cast<T>(constructor
-	std::array<vmath::core::vector<T, 4>, 3> data = {{
-			vmath::core::vector<T, 4>(static_cast<T>(1.0), static_cast<T>(2.0), static_cast<T>(3.0), static_cast<T>(4.0)),
-			vmath::core::vector<T, 4>(static_cast<T>(5.0), static_cast<T>(6.0), static_cast<T>(7.0), static_cast<T>(8.0)),
-			vmath::core::vector<T, 4>(static_cast<T>(9.0), static_cast<T>(10.0), static_cast<T>(11.0), static_cast<T>(12.0))
+	std::array<vmath::core::Vector<T, 4>, 3> data = {{
+			vmath::core::Vector<T, 4>(static_cast<T>(1.0), static_cast<T>(2.0), static_cast<T>(3.0), static_cast<T>(4.0)),
+			vmath::core::Vector<T, 4>(static_cast<T>(5.0), static_cast<T>(6.0), static_cast<T>(7.0), static_cast<T>(8.0)),
+			vmath::core::Vector<T, 4>(static_cast<T>(9.0), static_cast<T>(10.0), static_cast<T>(11.0), static_cast<T>(12.0))
 		}};
 	vmath::core::Matrix<T, 4, 3> M_param(data);
 	BOOST_CHECK_CLOSE(M_param[0][0], static_cast<T>(1.0), 1e-4f);
@@ -50,9 +50,9 @@ BOOST_AUTO_TEST_CASE_TEMPLATE(create, T, float_types) {
 	BOOST_CHECK_CLOSE(M_param[2][2], static_cast<T>(11.0), 1e-4f);
 	BOOST_CHECK_CLOSE(M_param[2][3], static_cast<T>(12.0), 1e-4f);
 	// static_cast<T>(parameterized constructor
-	vmath::core::vector<T, 4> col1(static_cast<T>(1.0), static_cast<T>(2.0), static_cast<T>(3.0), static_cast<T>(4.0));
-	vmath::core::vector<T, 4> col2(static_cast<T>(5.0), static_cast<T>(6.0), static_cast<T>(7.0), static_cast<T>(8.0));
-	vmath::core::vector<T, 4> col3(static_cast<T>(9.0), static_cast<T>(10.0), static_cast<T>(11.0), static_cast<T>(12.0));
+	vmath::core::Vector<T, 4> col1(static_cast<T>(1.0), static_cast<T>(2.0), static_cast<T>(3.0), static_cast<T>(4.0));
+	vmath::core::Vector<T, 4> col2(static_cast<T>(5.0), static_cast<T>(6.0), static_cast<T>(7.0), static_cast<T>(8.0));
+	vmath::core::Vector<T, 4> col3(static_cast<T>(9.0), static_cast<T>(10.0), static_cast<T>(11.0), static_cast<T>(12.0));
 	vmath::core::Matrix<T, 4, 3> M_param2(col1, col2, col3);
 	BOOST_CHECK_CLOSE(M_param2[0][0], static_cast<T>(1.0), 1e-4f);
 	BOOST_CHECK_CLOSE(M_param2[0][1], static_cast<T>(2.0), 1e-4f);
@@ -128,9 +128,9 @@ BOOST_AUTO_TEST_CASE_TEMPLATE(move, T, float_types) {
 
 BOOST_AUTO_TEST_CASE_TEMPLATE(members, T, float_types) {
 	vmath::core::Matrix<T, 4, 3> M;
-	M[0] = vmath::core::vector<T, 4>(static_cast<T>(1.0), static_cast<T>(2.0), static_cast<T>(3.0), static_cast<T>(4.0));
-	M[1] = vmath::core::vector<T, 4>(static_cast<T>(5.0), static_cast<T>(6.0), static_cast<T>(7.0), static_cast<T>(8.0));
-	M[2] = vmath::core::vector<T, 4>(static_cast<T>(9.0), static_cast<T>(10.0), static_cast<T>(11.0), static_cast<T>(12.0));
+	M[0] = vmath::core::Vector<T, 4>(static_cast<T>(1.0), static_cast<T>(2.0), static_cast<T>(3.0), static_cast<T>(4.0));
+	M[1] = vmath::core::Vector<T, 4>(static_cast<T>(5.0), static_cast<T>(6.0), static_cast<T>(7.0), static_cast<T>(8.0));
+	M[2] = vmath::core::Vector<T, 4>(static_cast<T>(9.0), static_cast<T>(10.0), static_cast<T>(11.0), static_cast<T>(12.0));
 	BOOST_CHECK_CLOSE(M[0][0], static_cast<T>(1.0), 1e-4f);
 	BOOST_CHECK_CLOSE(M[0][1], static_cast<T>(2.0), 1e-4f);
 	BOOST_CHECK_CLOSE(M[0][2], static_cast<T>(3.0), 1e-4f);
@@ -145,7 +145,7 @@ BOOST_AUTO_TEST_CASE_TEMPLATE(members, T, float_types) {
 	BOOST_CHECK_CLOSE(M[2][3], static_cast<T>(12.0), 1e-4f);
 	// invalid indec
 	BOOST_CHECK_THROW(M[3], std::out_of_range);
-	BOOST_CHECK_THROW((M[3] = vmath::core::vector<T, 4>()), std::out_of_range);
+	BOOST_CHECK_THROW((M[3] = vmath::core::Vector<T, 4>()), std::out_of_range);
 }
 
 BOOST_AUTO_TEST_CASE_TEMPLATE(assign, T, float_types) {

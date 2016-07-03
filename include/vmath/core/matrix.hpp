@@ -3,7 +3,10 @@
 
 #include <array>
 #include <cstddef>
-#include <vmath/core/Vector.hpp>
+#include <vmath/core/vector.hpp>
+
+// FIXME need to undefine minor macro
+#undef minor
 
 namespace vmath {
 namespace core {

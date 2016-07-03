@@ -3,6 +3,7 @@
 
 #include <vmath/core/vector.hpp>
 
+#include <cmath>
 #include <stdexcept>
 #include <string>
 #include <vmath/functions.hpp>
@@ -115,7 +116,7 @@ Vector<T, N>& Vector<T, N>::operator/=(const T& s) {
 
 template<typename T, std::size_t N>
 T Vector<T, N>::mag() const {
-	return vmath::sqrt(this->mag2());
+	return std::sqrt(this->mag2());
 }
 
 template<typename T, std::size_t N>
@@ -186,12 +187,12 @@ static inline typename std::enable_if<!std::is_floating_point<T>::value, bool>::
 
 template<typename T, std::size_t N>
 bool Vector<T, N>::operator==(const Vector<T, N>& other) const {
-	return this->equals(*this, other);
+	return equals_helper(*this, other);
 }
 
 template<typename T, std::size_t N>
 bool Vector<T, N>::operator!=(const Vector<T, N>& other) const {
-	return !(this->equals(*this, other));
+	return !(*this == other);
 }
 
 template<typename T, std::size_t N>
@@ -215,7 +216,7 @@ Vector<T, N> Vector<T, N>::refract(const Vector<T, N>& incident, const Vector<T,
 	if (k < static_cast<T>(0.0)) {
 		return Vector<T, N>();
 	} else {
-		return incident * eta - surface_normal * (eta * s_dot_i + vmath::sqrt(k));
+		return incident * eta - surface_normal * (eta * s_dot_i + std::sqrt(k));
 	}
 }
 

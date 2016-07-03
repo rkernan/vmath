@@ -8,10 +8,10 @@ namespace vmath {
 namespace core {
 
 template<typename T, std::size_t N>
-class vector;
+class Vector;
 
 template<typename T, std::size_t M, std::size_t N>
-class matrix;
+class Matrix;
 
 /**
  * \brief A quaternion rotation
@@ -54,13 +54,13 @@ public:
 	 * \param[in] axis Axis of rotation
 	 * \param[in] angle Angle of rotation in radians
 	 */
-	Quaternion(const vector<T, 3>& axis, const T& angle);
+	Quaternion(const Vector<T, 3>& axis, const T& angle);
 
 	/**
-	 * \brief Construct a quaternion from a rotation matrix
+	 * \brief Construct a quaternion from a rotation Matrix
 	 * \param[in] mat Matrix to convert
 	 */
-	explicit Quaternion(const matrix<T, 4, 4>& mat);
+	explicit Quaternion(const Matrix<T, 4, 4>& mat);
 
 	/**
 	 * \brief Copy constructor
@@ -161,13 +161,13 @@ public:
 	Quaternion<T>& operator*=(const Quaternion<T>& h);
 
 	/**
-	 * \brief Quaternion vector multiplication operator
+	 * \brief Quaternion Vector multiplication operator
 	 * \param v Vector to rotate
-	 * \return Rotated vector
+	 * \return Rotated Vector
 	 *
-	 * Rotates a vector by this quaternion.
+	 * Rotates a Vector by this quaternion.
 	 */
-	vector<T, 3> operator*(const vector<T, 3>& v) const;
+	Vector<T, 3> operator*(const Vector<T, 3>& v) const;
 
 	/**
 	 * \brief Scalar multiplication operator
@@ -255,7 +255,7 @@ public:
 	 * \brief Calculate the axis of rotation
 	 * \return Axis of rotation
 	 */
-	vector<T, 3> axis() const;
+	Vector<T, 3> axis() const;
 
 	/**
 	 * \brief Calculate the angle of rotation
@@ -264,10 +264,10 @@ public:
 	T angle() const;
 
 	/**
-	 * \brief Calculate the rotation matrix
-	 * \return Rotation matrix
+	 * \brief Calculate the rotation Matrix
+	 * \return Rotation Matrix
 	 */
-	matrix<T, 4, 4> to_matrix() const;
+	Matrix<T, 4, 4> to_matrix() const;
 
 	/**
 	 * \brief Check quaternion equality

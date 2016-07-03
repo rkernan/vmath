@@ -3,16 +3,18 @@
 
 #include <vmath/core/matrix.hpp>
 
+#include <cmath>
+
 namespace vmath {
 namespace core {
 
 template<typename T, std::size_t M, std::size_t N>
-vector<T, M> Matrix<T, M, N>::operator[](const std::size_t idx) const {
+Vector<T, M> Matrix<T, M, N>::operator[](const std::size_t idx) const {
 	return this->data.at(idx);
 }
 
 template<typename T, std::size_t M, std::size_t N>
-vector<T, M>& Matrix<T, M, N>::operator[](const std::size_t idx) {
+Vector<T, M>& Matrix<T, M, N>::operator[](const std::size_t idx) {
 	return this->data.at(idx);
 }
 
@@ -223,7 +225,7 @@ Matrix<T, M, N> Matrix<T, M, N>::inverse() const {
 
 template<typename T, std::size_t M, std::size_t N>
 template<typename U, typename>
-Matrix<T, M, N> Matrix<T, M, N>::translation(const vector<T, 3>& disp) {
+Matrix<T, M, N> Matrix<T, M, N>::translation(const Vector<T, 3>& disp) {
 	Matrix<T, M, N> transform;
 	transform[0][0] = static_cast<T>(1.0);
 	transform[1][1] = static_cast<T>(1.0);
@@ -237,10 +239,10 @@ Matrix<T, M, N> Matrix<T, M, N>::translation(const vector<T, 3>& disp) {
 
 template<typename T, std::size_t M, std::size_t N>
 template<typename U, typename>
-Matrix<T, M, N> Matrix<T, M, N>::rotation(const vector<T, 3>& out, const vector<T, 3>& up) {
+Matrix<T, M, N> Matrix<T, M, N>::rotation(const Vector<T, 3>& out, const Vector<T, 3>& up) {
 	Matrix<T, M, N> transform;
-	vector<T, 3> right(vector<T, 3>::cross(out, up).normal());
-	vector<T, 3> local_up(vector<T, 3>::cross(right, out));
+	Vector<T, 3> right(Vector<T, 3>::cross(out, up).normal());
+	Vector<T, 3> local_up(Vector<T, 3>::cross(right, out));
 	transform[0].xyz = right;
 	transform[1].xyz = local_up;
 	transform[2].xyz = -out;
@@ -277,7 +279,7 @@ template<typename T, std::size_t M, std::size_t N>
 template<typename U, typename>
 Matrix<T, M, N> Matrix<T, M, N>::perspective(const T& fov, const T& aspect, const T&  near, const T& far) {
 	Matrix<T, M, N> proj;
-	T y_scale = static_cast<T>(1.0) / vmath::tan(fov / static_cast<T>(2.0));
+	T y_scale = static_cast<T>(1.0) / std::tan(fov / static_cast<T>(2.0));
 	T x_scale = y_scale / aspect;
 	proj[0][0] = x_scale;
 	proj[1][1] = y_scale;

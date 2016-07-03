@@ -352,11 +352,6 @@ public:
 	 */
 	Vector<T, N>& operator+=(const Vector<T, N>& v);
 
-	friend Vector<T, N> operator+(Vector<T, N> lhs, const Vector<T, N>& rhs) {
-		lhs += rhs;
-		return lhs;
-	}
-
 	/**
 	 * \brief Component-wise subtraction operator
 	 * \param[in] v Vector to subtract
@@ -371,17 +366,12 @@ public:
 	 */
 	Vector<T, N>& operator-=(const Vector<T, N>& v);
 
-	friend Vector<T, N> operator-(Vector<T, N> lhs, const Vector<T, N>& rhs) {
-		lhs -= rhs;
-		return lhs;
-	}
-
 	/**
 	 * \brief Component-wise multiplication operator
 	 * \param[in] v Vector to multiply
 	 * \return The component-wise product
 	 */
-	Nector<T, N> operator*(const Vector<T, N>& v) const;
+	Vector<T, N> operator*(const Vector<T, N>& v) const;
 	
 	/**
 	 * \brief Component-wise multiplication assignment operator
@@ -389,11 +379,6 @@ public:
 	 * \return Reference to self
 	 */
 	Vector<T, N>& operator*=(const Vector<T, N>& v);
-
-	friend Vector<T, N> operator*(Vector<T, N> lhs, const Vector<T, N>& rhs) {
-		lhs *= rhs;
-		return lhs;
-	}
 
 	/**
 	 * \brief Component-wise division operator
@@ -409,11 +394,6 @@ public:
 	 */
 	Vector<T, N>& operator/=(const Vector<T, N>& v);
 
-	friend Vector<T, N> operator/(Vector<T, N> lhs, const Vector<T, N>& rhs) {
-		lhs /= rhs;
-		return lhs;
-	}
-
 	/**
 	 * \brief Scalar multiplication operator
 	 * \param[in] s Scalar to multiply by
@@ -428,11 +408,6 @@ public:
 	 */
 	Vector<T, N>& operator*=(const T& s);
 
-	friend Vector<T, N> operator/(Vector<T, N> lhs, const T& rhs) {
-		lhs *= rhs;
-		return lhs;
-	}
-
 	/**
 	 * \brief Scalar division operator
 	 * \param[in] s Scalar to divide by
@@ -446,11 +421,6 @@ public:
 	 * \return Reference to self
 	 */
 	Vector<T, N>& operator/=(const T& s);
-
-	friend Vector<T, N> operator/(Vector<T, N> lhs, const T& rhs) {
-		lhs /= rhs;
-		return lhs;
-	}
 
 	/**
 	 * \brief Calculate the vector magnitude
@@ -482,7 +452,7 @@ public:
 	 * \param[in] other Vector to check equality with
 	 * \return True if equal, else false
 	 */
-	bool equals(const Vector<T, N>& other) const;
+	/* bool equals(const Vector<T, N>& other) const; */
 
 	/**
 	 * \brief Check vector equality
@@ -490,8 +460,8 @@ public:
 	 * \param[in] epsilon Floating point comparison tolerance
 	 * \return True if equal, else false
 	 */
-	template<typename U, typename = typename std::enable_if<std::is_floating_point<U>::value, U>::type>
-	bool equals(const Vector<T, N>& other, T epsilon) const;
+	/* template<typename U, typename = typename std::enable_if<std::is_floating_point<U>::value, U>::type> */
+	/* bool equals(const Vector<T, N>& other, T epsilon) const; */
 
 	/**
 	 * \brief Equality operator
