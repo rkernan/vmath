@@ -32,4 +32,4 @@ the core may be found
 
 ## License
 
-MIT License. Copyright (c) 2013-2015 Robert Kernan.
+MIT License. Copyright (c) 2013-2016 Robert Kernan.
