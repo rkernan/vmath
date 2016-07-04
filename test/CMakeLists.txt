@@ -1,27 +1,11 @@
-set(SOURCES
-	unit_test_runner.cpp
-	unit/functions.cpp
-	unit/matrix2x2.cpp
-	unit/matrix2x3.cpp
-	unit/matrix2x4.cpp
-	unit/matrix3x2.cpp
-	unit/matrix3x3.cpp
-	unit/matrix3x4.cpp
-	unit/matrix4x2.cpp
-	unit/matrix4x3.cpp
-	unit/quaternion.cpp
-	unit/vector2.cpp
-	unit/vector3.cpp
-	unit/vector4.cpp
-)
-
-add_executable(unit_tests
-	${SOURCES}
-)
-
 find_package(Boost COMPONENTS unit_test_framework REQUIRED)
-target_link_libraries(unit_tests ${Boost_LIBRARIES})
+add_definitions(-DBOOST_TEST_MAIN -DBOOST_TEST_DYN_LINK)
 
-enable_testing()
+file(GLOB TEST_SRCS RELATIVE ${CMAKE_CURRENT_SOURCE_DIR} *.cpp)
 
-add_test(UnitTests unit_tests)
+foreach(test_src ${TEST_SRCS})
+    get_filename_component(test_name ${test_src} NAME_WE)
+    add_executable(${test_name} ${test_src})
+    target_link_libraries(${test_name} ${Boost_LIBRARIES})
+    add_test(${test_name} ${test_name})
+endforeach()

@@ -1,12 +1,10 @@
-#define BOOST_TEST_DYN_LINK
-#include <boost/test/unit_test.hpp>
 #include <boost/test/test_case_template.hpp>
+#include <boost/test/unit_test.hpp>
 
 #include <vmath/functions.hpp>
+#include "type_lists.hpp"
 
-#include "../type_lists.hpp"
-
-BOOST_AUTO_TEST_SUITE(Math_Functions)
+BOOST_AUTO_TEST_SUITE(functions)
 
 BOOST_AUTO_TEST_CASE_TEMPLATE(pi, T, float_types) {
 	BOOST_CHECK_CLOSE(static_cast<T>(vmath::PI), static_cast<T>(3.14159265358979323846), 1e-4f);

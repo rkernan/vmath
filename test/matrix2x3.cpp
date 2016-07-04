@@ -1,13 +1,10 @@
+#include <boost/test/test_case_template.hpp>
+#include <boost/test/unit_test.hpp>
+
 #include <array>
 #include <stdexcept>
-
-#define BOOST_TEST_DYN_LINK
-#include <boost/test/unit_test.hpp>
-#include <boost/test/test_case_template.hpp>
-
 #include <vmath/core/matrix.hpp>
-
-#include "../type_lists.hpp"
+#include "type_lists.hpp"
 
 BOOST_AUTO_TEST_SUITE(matrix2x3)
 
