@@ -1,15 +1,19 @@
-set(VMATH_DOXYGEN_SOURCE_DIR "${CMAKE_CURRENT_SOURCE_DIR}")
-set(VMATH_DOXYGEN_BINARY_DIR "${CMAKE_CURRENT_BINARY_DIR}")
-set(VMATH_DOXYGEN_DOXYFILE_IN "${VMATH_DOXYGEN_SOURCE_DIR}/Doxyfile.in")
-set(VMATH_DOXYGEN_DOXYFILE "${VMATH_DOXYGEN_BINARY_DIR}/Doxyfile")
-
 find_package(Doxygen)
-if(NOT DOXYGEN_FOUND)
-	message(FATAL_ERROR "Doxygen not found. Required to build documentation.")
+option(BUILD_DOCUMENTATION "Build HTML base API documentation (requires Doxygen)" ${DOXYGEN_FOUND})
+
+if (BUILD_DOCUMENTATION)
+    set(DOXYFILE_IN "${CMAKE_CURRENT_SOURCE_DIR}/Doxyfile.in")
+    set(DOXYFILE "${CMAKE_CURRENT_BINARY_DIR}/Doxyfile}")
+
+    if(NOT DOXYGEN_FOUND)
+        message(FATAL_ERROR "Doxygen is required to build the documentation")
+    endif()
+
+    configure_file(${DOXYFILE_IN} ${DOXYFILE} @ONLY)
+    add_custom_target(
+        doc ${DOXYGEN_EXECUTABLE} ${DOXYFILE}
+        WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}
+        COMMENT "Generating HTML documentation" VERBATIM
+    )
 endif()
 
-configure_file(${VMATH_DOXYGEN_DOXYFILE_IN} ${VMATH_DOXYGEN_DOXYFILE} @ONLY)
-
-add_custom_target(doc ALL ${DOXYGEN_EXECUTABLE} ${VMATH_DOXYGEN_DOXYFILE}
-	WORKING_DIRECTORY ${VMATH_DOXYGEN_BINARY_DIR}
-	COMMENT "Generating HTML documentation" VERBATIM)
