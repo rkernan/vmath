@@ -1,41 +1,19 @@
-cmake_minimum_required(VERSION 2.8 FATAL_ERROR)
+cmake_minimum_required(VERSION 3.5)
 
-project("vmath")
+set(VERSION_MAJOR 1 CACHE STRING "Project major version number")
+set(VERSION_MINOR 0 CACHE STRING "Project minor version number")
+set(VERSION_PATCH 0 CACHE STRING "Project match version number")
+mark_as_advanced(VERSION_MAJOR VERSION_MINOR VERSION_PATCH)
 
-set(VMATH_VERSION_MAJOR "1")
-set(VMATH_VERSION_MINOR "0")
-set(VMATH_VERSION "${VMATH_VERSION_MAJOR}.${VMATH_VERSION_MINOR}")
+project("vmath" VERSION ${VERSION_MAJOR}.${VERSION_MINOR}.${VERSION_PATCH} LANGUAGES CXX)
+message(STATUS "Project Version: ${PROJECT_VERSION}")
 
-include("${CMAKE_CURRENT_SOURCE_DIR}/cmake/config.cmake")
+set(CMAKE_CXX_STANDARD 14)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-set(VMATH_INCLUDE_DIR "${CMAKE_CURRENT_SOURCE_DIR}/include")
-include_directories(${VMATH_INCLUDE_DIR})
+include_directories(${CMAKE_CURRENT_SOURCE_DIR}/src)
 
-set(INCDIR ${VMATH_INCLUDE_DIR})
-set(HEADERS
-	"${INCDIR}/vmath/functions.hpp"
-	"${INCDIR}/vmath/functions.inl"
-	"${INCDIR}/vmath/types.hpp"
-	"${INCDIR}/vmath/core/matrix.hpp"
-	"${INCDIR}/vmath/core/matrix.inl"
-	"${INCDIR}/vmath/core/quaternion.hpp"
-	"${INCDIR}/vmath/core/quaternion.inl"
-	"${INCDIR}/vmath/core/vector.hpp"
-	"${INCDIR}/vmath/core/vector.inl"
-	"${INCDIR}/vmath/core/swizzle/swizzle.hpp"
-	"${INCDIR}/vmath/core/swizzle/swizzle2.hpp"
-	"${INCDIR}/vmath/core/swizzle/swizzle2.inl"
-	"${INCDIR}/vmath/core/swizzle/swizzle3.hpp"
-	"${INCDIR}/vmath/core/swizzle/swizzle3.inl"
-	"${INCDIR}/vmath/core/swizzle/swizzle4.hpp"
-	"${INCDIR}/vmath/core/swizzle/swizzle4.inl"
-	"${INCDIR}/vmath/core/swizzle/swizzle_gen.hpp"
-	)
+add_subdirectory(doc)
 
-if(VMATH_BUILD_DOC)
-	add_subdirectory(doc)
-endif()
-
-if(VMATH_BUILD_TESTS)
-	add_subdirectory(test)
-endif()
+enable_testing()
+add_subdirectory(test)
