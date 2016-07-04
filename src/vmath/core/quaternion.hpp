@@ -39,7 +39,7 @@ public:
 	 * \param[in] z Z coordinate value
 	 * \param[in] w W coordinate value
 	 */
-	Quaternion(const T& x, const T& y, const T& z, const T& w) : x(x), y(y), z(z), w(w) {}
+	Quaternion(const T x, const T y, const T z, const T w) : x(x), y(y), z(z), w(w) {}
 
 	/**
 	 * \brief Construct a quaternion from euler angles
@@ -47,14 +47,14 @@ public:
 	 * \param[in] yaw Counter-clockwise y-axis rotation in radians
 	 * \param[in] roll Counter-clockwise z-axis rotation in radians
 	 */
-	Quaternion(const T& pitch, const T& yaw, const T& roll);
+	Quaternion(const T pitch, const T yaw, const T roll);
 
 	/**
 	 * \brief Construct a quaternion from an axis and angle
 	 * \param[in] axis Axis of rotation
 	 * \param[in] angle Angle of rotation in radians
 	 */
-	Quaternion(const Vector<T, 3>& axis, const T& angle);
+	Quaternion(const Vector<T, 3>& axis, const T angle);
 
 	/**
 	 * \brief Construct a quaternion from a rotation Matrix
@@ -115,13 +115,6 @@ public:
 	Quaternion<T> operator-() const;
 
 	/**
-	 * \brief Component-wise addition operator
-	 * \param[in] h Quaternion to add
-	 * \return Component-wise sum
-	 */
-	Quaternion<T> operator+(const Quaternion<T>& h) const;
-
-	/**
 	 * \brief Component-wise addition operator with assignment
 	 * \param[in] h Quaternion to add
 	 * \return Reference to self
@@ -129,11 +122,15 @@ public:
 	Quaternion<T>& operator+=(const Quaternion<T>& h);
 
 	/**
-	 * \brief Component-wise subtraction operator
-	 * \param[in] h Quaternion to subtract
-	 * \return Component-wise difference
+	 * \brief Component-wise addition operator
+	 * \param[in] lhs Quaternion to add to
+	 * \param[in] rhs Quaternion to add
+	 * \return Component-wise sum
 	 */
-	Quaternion<T> operator-(const Quaternion<T>& h) const;
+	friend Quaternion<T> operator+(Quaternion<T> lhs, const Quaternion<T>& rhs) {
+		lhs += rhs;
+		return lhs;
+	}
 
 	/**
 	 * \brief Component-wise subtraction operator with assignment
@@ -143,13 +140,15 @@ public:
 	Quaternion<T>& operator-=(const Quaternion<T>& h);
 
 	/**
-	 * \brief Quaternion multiplication operator
-	 * \param[in] h Quaternion to multiply by
-	 * \return Combined quaternion rotation
-	 *
-	 * Combines this quaternion with another.
+	 * \brief Component-wise subtraction operator
+	 * \param[in] lhs Quaternion to subtract from
+	 * \param[in] rhs Quaternion to subtract
+	 * \return Component-wise difference
 	 */
-	Quaternion<T> operator*(const Quaternion<T>& h) const;
+	friend Quaternion<T> operator-(Quaternion<T> lhs, const Quaternion<T>& rhs) {
+		lhs -= rhs;
+		return lhs;
+	}
 
 	/**
 	 * \brief Quaternion multiplication assignment operator
@@ -161,41 +160,61 @@ public:
 	Quaternion<T>& operator*=(const Quaternion<T>& h);
 
 	/**
+	 * \brief Component-wise subtraction operator
+	 * \param[in] lhs Quaternion to multiply
+	 * \param[in] rhs Quaternion to multiply by
+	 * \return Component-wise difference
+	 */
+	friend Quaternion<T> operator*(Quaternion<T> lhs, const Quaternion<T>& rhs) {
+		lhs *= rhs;
+		return lhs;
+	}
+
+	/**
 	 * \brief Quaternion Vector multiplication operator
 	 * \param v Vector to rotate
 	 * \return Rotated Vector
 	 *
 	 * Rotates a Vector by this quaternion.
 	 */
+	// TODO friend?
 	Vector<T, 3> operator*(const Vector<T, 3>& v) const;
-
-	/**
-	 * \brief Scalar multiplication operator
-	 * \param[in] s Scalar to multiply by
-	 * \return Quaternion-scalar product
-	 */
-	Quaternion<T> operator*(const T& s) const;
 
 	/**
 	 * \brief Scalar multiplication assignment operator
 	 * \param[in] s Scalar to multiply by
 	 * \return Reference to self
 	 */
-	Quaternion<T>& operator*=(const T& s);
+	Quaternion<T>& operator*=(const T s);
 
 	/**
-	 * \brief Scalar division operator
-	 * \param[in] s Scalar to divide by
-	 * \return Quaternion-scalar quotient
+	 * \brief Scalar multiplication operator
+	 * \param[in] h Quaternion to multiply
+	 * \param[in] s Scalar to multiply by
+	 * \return Quaternion-scalar product
 	 */
-	Quaternion<T> operator/(const T& s) const;
+	friend Quaternion<T> operator*(Quaternion<T> h, const T s) {
+		h *= s;
+		return h;
+	}
 
 	/**
 	 * \brief Scalar division assignment operator
 	 * \param[in] s Scalar to divide by
 	 * \return Reference to self
 	 */
-	Quaternion<T>& operator/=(const T& s);
+	Quaternion<T>& operator/=(const T s);
+
+	/**
+	 * \brief Scalar division operator
+	 * \param[in] h Quaternion to divide
+	 * \param[in] s Scalar to divide by
+	 * \return Quaternion-scalar quotient
+	 */
+	friend Quaternion<T> operator/(Quaternion<T> h, const T s) {
+		h /= s;
+		return h;
+	}
 
 	/**
 	 * \brief Calculate the magnitude squared
@@ -270,18 +289,31 @@ public:
 	Matrix<T, 4, 4> to_matrix() const;
 
 	/**
-	 * \brief Check quaternion equality
+	 * \brief Check quaternion equality operator
 	 * \param[in] other Quaternion to check equality with
 	 * \return True if they are equal, otherwise false
 	 */
-	bool operator==(const Quaternion<T>& other) const;
+	bool equals(const Quaternion<T>& other) const;
 
 	/**
-	 * \brief Check quaternion inequality
-	 * \param[in] other Quaternion to check inequality with
+	 * \brief Check quaternion equality operator
+	 * \param[in] lhs Quaternion to check equality
+	 * \param[in] rhs Quaternion to check equality with
+	 * \return True if they are equal, otherwise false
+	 */
+	friend bool operator==(const Quaternion<T>& lhs, const Quaternion<T>& rhs) {
+		return lhs.equals(rhs);
+	}
+
+	/**
+	 * \brief Check quaternion inequality operator
+	 * \param[in] lhs Quaternion to check inequality
+	 * \param[in] rhs Quaternion to check inequality with
 	 * \return False if they are equal, otherwise true
 	 */
-	bool operator!=(const Quaternion<T>& other) const;
+	friend bool operator!=(const Quaternion<T>& lhs, const Quaternion<T>& rhs) {
+		return !lhs.equals(rhs);
+	}
 
 	/**
 	 * \brief Calculate the inner quaternion product (dot product)
@@ -298,7 +330,7 @@ public:
 	 * \param[in] t Value to interpolate by
 	 * \return Interpolated quaternion
 	 */
-	static Quaternion<T> lerp(const Quaternion<T>& start, const Quaternion<T>& end, const T& t);
+	static Quaternion<T> lerp(const Quaternion<T>& start, const Quaternion<T>& end, const T t);
 
 	/**
 	 * \brief Spherically interpolate between two quaternions
@@ -308,7 +340,7 @@ public:
 	 * \param[in] shortest Take the shortest path there, default true
 	 * \return Interpolated quaternion
 	 */
-	static Quaternion<T> slerp(const Quaternion<T>& start, const Quaternion<T>& end, const T& t, const bool shortest = true);
+	static Quaternion<T> slerp(const Quaternion<T>& start, const Quaternion<T>& end, const T t, const bool shortest = true);
 };
 
 }

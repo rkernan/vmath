@@ -28,31 +28,19 @@ Matrix<T, M, N> Matrix<T, M, N>::operator-() const {
 }
 
 template<typename T, std::size_t M, std::size_t N>
-Matrix<T, M, N> Matrix<T, M, N>::operator+(const Matrix<T, M, N>& w) const {
-	Matrix<T, M, N> res;
-	for (std::size_t i = 0; i < N; i++) {
-		res.data[i] = this->data[i] + w.data[i];
-	}
-	return res;
-}
-
-template<typename T, std::size_t M, std::size_t N>
 Matrix<T, M, N>& Matrix<T, M, N>::operator+=(const Matrix<T, M, N>& w) {
-	return *this = *this + w;
-}
-
-template<typename T, std::size_t M, std::size_t N>
-Matrix<T, M, N> Matrix<T, M, N>::operator-(const Matrix<T, M, N>& w) const {
-	Matrix<T, M, N> res;
 	for (std::size_t i = 0; i < N; i++) {
-		res.data[i] = this->data[i] - w.data[i];
+		this->data[i] = this->data[i] + w.data[i];
 	}
-	return res;
+	return *this;
 }
 
 template<typename T, std::size_t M, std::size_t N>
 Matrix<T, M, N>& Matrix<T, M, N>::operator-=(const Matrix<T, M, N>& w) {
-	return *this = *this - w;
+	for (std::size_t i = 0; i < N; i++) {
+		this->data[i] = this->data[i] - w.data[i];
+	}
+	return *this;
 }
 
 template<typename T, std::size_t M, std::size_t N>
@@ -70,31 +58,19 @@ Matrix<T, M, P> Matrix<T, M, N>::operator*(const Matrix<T, N, P>& w) const {
 }
 
 template<typename T, std::size_t M, std::size_t N>
-Matrix<T, M, N> Matrix<T, M, N>::operator*(const T& s) const {
-	Matrix<T, M, N> res;
+Matrix<T, M, N>& Matrix<T, M, N>::operator*=(const T s) {
 	for (std::size_t i = 0; i < N; i++) {
-		res.data[i] = this->data[i] * s;
+		this->data[i] = this->data[i] * s;
 	}
-	return res;
+	return *this;
 }
 
 template<typename T, std::size_t M, std::size_t N>
-Matrix<T, M, N>& Matrix<T, M, N>::operator*=(const T& s) {
-	return *this = *this * s;
-}
-
-template<typename T, std::size_t M, std::size_t N>
-Matrix<T, M, N> Matrix<T, M, N>::operator/(const T& s) const {
-	Matrix<T, M, N> res;
+Matrix<T, M, N>& Matrix<T, M, N>::operator/=(const T s) {
 	for (std::size_t i = 0; i < N; i++) {
-		res.data[i] = this->data[i] / s;
+		this->data[i] = this->data[i] / s;
 	}
-	return res;
-}
-
-template<typename T, std::size_t M, std::size_t N>
-Matrix<T, M, N>& Matrix<T, M, N>::operator/=(const T& s) {
-	return *this = *this / s;
+	return *this;
 }
 
 template<typename T, std::size_t M, std::size_t N>
@@ -109,17 +85,12 @@ Matrix<T, N, M> Matrix<T, M, N>::transpose() const {
 }
 
 template<typename T, std::size_t M, std::size_t N>
-bool Matrix<T, M, N>::operator==(const Matrix<T, M, N>& other) const {
+bool Matrix<T, M, N>::equals(const Matrix<T, M, N>& other) const {
 	bool equal = true;
 	for (std::size_t i = 0; i < N; i++) {
 		equal = equal && this->data[i] == other.data[i];
 	}
 	return equal;
-}
-
-template<typename T, std::size_t M, std::size_t N>
-bool Matrix<T, M, N>::operator!=(const Matrix<T, M, N>& other) const {
-	return !(*this == other);
 }
 
 template<typename T, std::size_t M, std::size_t N>
@@ -252,7 +223,7 @@ Matrix<T, M, N> Matrix<T, M, N>::rotation(const Vector<T, 3>& out, const Vector<
 
 template<typename T, std::size_t M, std::size_t N>
 template<typename U, typename>
-Matrix<T, M, N> Matrix<T, M, N>::scale(const T& x_scale, const T& y_scale, const T& z_scale) {
+Matrix<T, M, N> Matrix<T, M, N>::scale(const T x_scale, const T y_scale, const T z_scale) {
 	Matrix<T, M, N> transform;
 	transform[0][0] = x_scale;
 	transform[1][1] = y_scale;
@@ -263,7 +234,7 @@ Matrix<T, M, N> Matrix<T, M, N>::scale(const T& x_scale, const T& y_scale, const
 
 template<typename T, std::size_t M, std::size_t N>
 template<typename U, typename>
-Matrix<T, M, N> Matrix<T, M, N>::orthographic(const T& left, const T& right, const T& bottom, const T& top, const T& near, const T& far) {
+Matrix<T, M, N> Matrix<T, M, N>::orthographic(const T left, const T right, const T bottom, const T top, const T near, const T far) {
 	Matrix<T, M, N> proj;
 	proj[0][0] = static_cast<T>(2.0) / (right - left);
 	proj[1][1] = static_cast<T>(2.0) / (top - bottom);
@@ -277,7 +248,7 @@ Matrix<T, M, N> Matrix<T, M, N>::orthographic(const T& left, const T& right, con
 
 template<typename T, std::size_t M, std::size_t N>
 template<typename U, typename>
-Matrix<T, M, N> Matrix<T, M, N>::perspective(const T& fov, const T& aspect, const T&  near, const T& far) {
+Matrix<T, M, N> Matrix<T, M, N>::perspective(const T fov, const T aspect, const T  near, const T far) {
 	Matrix<T, M, N> proj;
 	T y_scale = static_cast<T>(1.0) / std::tan(fov / static_cast<T>(2.0));
 	T x_scale = y_scale / aspect;

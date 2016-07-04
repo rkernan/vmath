@@ -1,12 +1,10 @@
 #ifndef VMATH_GLSL_TYPES_HPP
 #define VMATH_GLSL_TYPES_HPP
 
-#include <vmath/core/Matrix.hpp>
-#include <vmath/core/Vector.hpp>
+#include <vmath/core/matrix.hpp>
+#include <vmath/core/vector.hpp>
 
 namespace vmath {
-
-// TODO quaternion typedef
 
 typedef core::Matrix<float, 2>    mat2x2;
 typedef core::Matrix<float, 2, 3> mat2x3;

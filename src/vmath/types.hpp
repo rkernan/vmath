@@ -1,9 +1,9 @@
 #ifndef VMATH_TYPES_HPP
 #define VMATH_TYPES_HPP
 
-#include <vmath/core/Matrix.hpp>
-#include <vmath/core/Quaternion.hpp>
-#include <vmath/core/Vector.hpp>
+#include <vmath/core/matrix.hpp>
+#include <vmath/core/quaternion.hpp>
+#include <vmath/core/vector.hpp>
 
 namespace vmath {
 

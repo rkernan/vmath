@@ -323,13 +323,6 @@ public:
 	Matrix<T, M, N> operator-() const;
 
 	/**
-	 * \brief Matrix addition operator
-	 * \param[in] w Matrix to add
-	 * \return Matrix sum
-	 */
-	Matrix<T, M, N> operator+(const Matrix<T, M, N>& w) const;
-
-	/**
 	 * \brief Matrix addition assignment operator
 	 * \param[in] w Matrix to add
 	 * \return Reference to self
@@ -337,18 +330,33 @@ public:
 	Matrix<T, M, N>& operator+=(const Matrix<T, M, N>& w);
 
 	/**
-	 * \brief Matrix subtraction operator
-	 * \param w Matrix to subtract
-	 * \return Matrix difference
+	 * \brief Matrix addition operator
+	 * \param[in] lhs Matrix to add to
+	 * \param[in] rhs Matrix to add
+	 * \return Matrix sum
 	 */
-	Matrix<T, M, N> operator-(const Matrix<T, M, N>& w) const;
+	friend Matrix<T, M, N> operator+(Matrix<T, M, N>& lhs, const Matrix<T, M, N>& rhs) {
+		lhs += rhs;
+		return lhs;
+	}
 
 	/**
 	 * \brief Matrix subtraction assignment operator
-	 * \param w Matrix to subtract
+	 * \param[in] w Matrix to subtract
 	 * \return Reference to self
 	 */
 	Matrix<T, M, N>& operator-=(const Matrix<T, M, N>& w);
+
+	/**
+	 * \brief Matrix subtraction operator
+	 * \param[in] lhs Matrix to subtract from
+	 * \param[in] rhs Matrix to subtract
+	 * \return Matrix difference
+	 */
+	friend Matrix<T, M, N> operator-(Matrix<T, M, N>& lhs, const Matrix<T, M, N>& rhs) {
+		lhs -= rhs;
+		return lhs;
+	}
 
 	/**
 	 * \brief Matrix multiplication operator
@@ -360,32 +368,40 @@ public:
 	Matrix<T, M, P> operator*(const Matrix<T, N, P>& w) const;
 
 	/**
-	 * \brief Scalar multiplication operator
-	 * \param[in] s Scalar to multiply by
-	 * \return Matrix-scalar product
-	 */
-	Matrix<T, M, N> operator*(const T& s) const;
-
-	/**
 	 * \brief Scalar multiplication assignment operator
 	 * \param[in] s Scalar to multiply by
 	 * \return Reference to self
 	 */
-	Matrix<T, M, N>& operator*=(const T& s);
+	Matrix<T, M, N>& operator*=(const T s);
 
 	/**
-	 * \brief Scalar division operator
-	 * \param[in] s Scalar to divide by
-	 * \return Matrix-scalar quotient
+	 * \brief Scalar multiplication operator
+	 * \param[in] w Matrix to multiply
+	 * \param[in] s Scalar to multiply by
+	 * \return Matrix-scalar product
 	 */
-	Matrix<T, M, N> operator/(const T& s) const;
+	friend Matrix<T, M, N> operator*(Matrix<T, M, N> w, const T s) {
+		w *= s;
+		return w;
+	}
 
 	/**
 	 * \brief Scalar division assignment operator
 	 * \param[in] s Scalar to divide by
 	 * \return Reference to self
 	 */
-	Matrix<T, M, N>& operator/=(const T& s);
+	Matrix<T, M, N>& operator/=(const T s);
+
+	/**
+	 * \brief Scalar division operator
+	 * \param[in] w Matrix to divide
+	 * \param[in] s Scalar to divide by
+	 * \return Matrix-scalar quotient
+	 */
+	friend Matrix<T, M, N> operator/(Matrix<T, M, N> w, const T s) {
+		w /= s;
+		return w;
+	}
 
 	/**
 	 * \brief Calculate the transpose matrix
@@ -398,14 +414,25 @@ public:
 	 * \param[in] other Matrix to check equality with
 	 * \return True if they are equal, otherwise false
 	 */
-	bool operator==(const Matrix<T, M, N>& other) const;
+	bool equals(const Matrix<T, M, N>& other) const;
 
 	/**
-	 * \brief Check Matrix inequality
+	 * \brief Check matrix equality operator
+	 * \param[in] other Matrix to check equality with
+	 * \return True if they are equal, otherwise false
+	 */
+	friend bool operator==(const Matrix<T, M, N>& lhs, const Matrix<T, M, N>& rhs) {
+		return lhs.equals(rhs);
+	}
+
+	/**
+	 * \brief Check Matrix inequality operator
 	 * \param[in] other Matrix to check inequality with
 	 * \return False if they are equal, otherwise true
 	 */
-	bool operator!=(const Matrix<T, M, N>& other) const;
+	friend bool operator!=(const Matrix<T, M, N>& lhs, const Matrix<T, M, N>& rhs) {
+		return !lhs.equals(rhs);
+	}
 
 	/**
 	 * \brief Calculate the minor matrix
@@ -476,7 +503,7 @@ public:
 	 * \return Scale matrix
 	 */
 	template<typename U = T, typename = typename std::enable_if<is_square_matrix<M, N>::value && M == 4, U>::type>
-	static Matrix<T, M, N> scale(const T& x_scale, const T& y_scale, const T& z_scale);
+	static Matrix<T, M, N> scale(const T x_scale, const T y_scale, const T z_scale);
 
 	/**
 	 * \brief Create an otrhographic projection matrix
@@ -489,7 +516,7 @@ public:
 	 * \return Projection matrix
 	 */
 	template<typename U = T, typename = typename std::enable_if<is_square_matrix<M, N>::value && M == 4, U>::type>
-	static Matrix<T, M, N> orthographic(const T& left, const T& right, const T& bottom, const T& top, const T& near, const T& far);
+	static Matrix<T, M, N> orthographic(const T left, const T right, const T bottom, const T top, const T near, const T far);
 
 	/**
 	 * \brief Create a perspective projection matrix
@@ -500,7 +527,7 @@ public:
 	 * \return Projection matrix
 	 */
 	template<typename U = T, typename = typename std::enable_if<is_square_matrix<M, N>::value && M == 4, U>::type>
-	static Matrix<T, M, N> perspective(const T& fov, const T& aspect, const T& near, const T& far);
+	static Matrix<T, M, N> perspective(const T fov, const T aspect, const T near, const T far);
 };
 
 }

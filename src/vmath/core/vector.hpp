@@ -339,13 +339,6 @@ public:
 	Vector<T, N> operator-() const;
 
 	/**
-	 * \brief Component-wise addition operator
-	 * \param[in] v Vector to add
-	 * \return The component-wise sum
-	 */
-	Vector<T, N> operator+(const Vector<T, N>& v) const;
-
-	/**
 	 * \brief Component-wise addition assignment operator
 	 * \param[in] v Vector to add
 	 * \return Reference to self
@@ -353,11 +346,15 @@ public:
 	Vector<T, N>& operator+=(const Vector<T, N>& v);
 
 	/**
-	 * \brief Component-wise subtraction operator
-	 * \param[in] v Vector to subtract
-	 * \return The component-wise difference
+	 * \brief Component-wise addition operator
+	 * \param[in] lhs Vector to add to
+	 * \param[in] rhs Vector to add
+	 * \return The component-wise sum
 	 */
-	Vector<T, N> operator-(const Vector<T, N>& v) const;
+	friend Vector<T, N> operator+(Vector<T, N> lhs, const Vector<T, N>& rhs) {
+		lhs += rhs;
+		return lhs;
+	}
 
 	/**
 	 * \brief Component-wise subtraction assignment operator
@@ -367,11 +364,15 @@ public:
 	Vector<T, N>& operator-=(const Vector<T, N>& v);
 
 	/**
-	 * \brief Component-wise multiplication operator
-	 * \param[in] v Vector to multiply
-	 * \return The component-wise product
+	 * \brief Component-wise subtraction operator
+	 * \param[in] lhs Vector to subtract from
+	 * \param[in] rhs Vector to subtract
+	 * \return The component-wise difference
 	 */
-	Vector<T, N> operator*(const Vector<T, N>& v) const;
+	friend Vector<T, N> operator-(Vector<T, N> lhs, const Vector<T, N>& rhs) {
+		lhs -= rhs;
+		return lhs;
+	}
 	
 	/**
 	 * \brief Component-wise multiplication assignment operator
@@ -381,11 +382,15 @@ public:
 	Vector<T, N>& operator*=(const Vector<T, N>& v);
 
 	/**
-	 * \brief Component-wise division operator
-	 * \param[in] v Vector to divide by
-	 * \return The component-wise quotient
+	 * \brief Component-wise multiplication operator
+	 * \param[in] lhs Vector to multiply
+	 * \param[in] rhs Vector to multiply by
+	 * \return The component-wise product
 	 */
-	Vector<T, N> operator/(const Vector<T, N>& v) const;
+	friend Vector<T, N> operator*(Vector<T, N> lhs, const Vector<T, N>& rhs) {
+		lhs *= rhs;
+		return lhs;
+	}
 
 	/**
 	 * \brief Component-wise division assignment operator
@@ -395,11 +400,15 @@ public:
 	Vector<T, N>& operator/=(const Vector<T, N>& v);
 
 	/**
-	 * \brief Scalar multiplication operator
-	 * \param[in] s Scalar to multiply by
-	 * \return Vector-scalar product
+	 * \brief Component-wise division operator
+	 * \param[in] lhs Vector to divide
+	 * \param[in] rhs Vector to divide by
+	 * \return The component-wise quotient
 	 */
-	Vector<T, N> operator*(const T& s) const;
+	friend Vector<T, N> operator/(Vector<T, N> lhs, const Vector<T, N>& rhs) {
+		lhs /= rhs;
+		return lhs;
+	}
 
 	/**
 	 * \brief Scalar multiplication assignment operator
@@ -409,11 +418,15 @@ public:
 	Vector<T, N>& operator*=(const T& s);
 
 	/**
-	 * \brief Scalar division operator
-	 * \param[in] s Scalar to divide by
-	 * \return Vector-scalar quotient
+	 * \brief Scalar multiplication operator
+	 * \param[in] v Vector to multiply
+	 * \param[in] s Scalar to multiply by
+	 * \return Vector-scalar product
 	 */
-	Vector<T, N> operator/(const T& s) const;
+	friend Vector<T, N> operator*(Vector<T, N> v, const T& s) {
+		v *= s;
+		return v;
+	}
 
 	/**
 	 * \brief Scalar division assignment operator
@@ -421,6 +434,17 @@ public:
 	 * \return Reference to self
 	 */
 	Vector<T, N>& operator/=(const T& s);
+
+	/**
+	 * \brief Scalar division operator
+	 * \param[in] v Vector to divide
+	 * \param[in] s Scalar to divide by
+	 * \return Vector-scalar quotient
+	 */
+	friend Vector<T, N> operator/(Vector<T, N> v, const T& s) {
+		v /= s;
+		return v;
+	}
 
 	/**
 	 * \brief Calculate the vector magnitude
@@ -446,13 +470,12 @@ public:
 	 */
 	Vector<T, N>& normalize();
 
-	// TODO
-	/**
+	/*
 	 * \brief Check vector equality
 	 * \param[in] other Vector to check equality with
 	 * \return True if equal, else false
 	 */
-	/* bool equals(const Vector<T, N>& other) const; */
+	bool equals(const Vector<T, N>& other) const;
 
 	/**
 	 * \brief Check vector equality
@@ -460,22 +483,29 @@ public:
 	 * \param[in] epsilon Floating point comparison tolerance
 	 * \return True if equal, else false
 	 */
-	/* template<typename U, typename = typename std::enable_if<std::is_floating_point<U>::value, U>::type> */
-	/* bool equals(const Vector<T, N>& other, T epsilon) const; */
+	// TODO
 
 	/**
 	 * \brief Equality operator
-	 * \param[in] other Vector to check equality with
+	 * \param[in] lhs Vector to check equality
+	 * \param[in] rhs Vector to check equality with
 	 * \return True if equal, else false
 	 */
-	bool operator==(const Vector<T, N>& other) const;
+	friend bool operator==(const Vector<T, N>& lhs, const Vector<T, N>& rhs) {
+		return lhs.equals(rhs);
+	}
 
 	/**
 	 * \brief Inequality operator
-	 * \param[in] other Vector to check inequality with
+	 * \param[in] lhs Vector to check inequality
+	 * \param[in] rhs Vector to check inequality with
 	 * \return False if equal, else true
 	 */
-	bool operator!=(const Vector<T, N>& other) const;
+	friend bool operator!=(const Vector<T, N>& lhs, const Vector<T, N>& rhs) {
+		return !(lhs.equals(rhs));
+	}
+
+	// TODO < <= > >=
 
 	/**
 	 * \brief Calculate the inner vector product (dot product)

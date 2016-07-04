@@ -12,7 +12,7 @@ namespace vmath {
 namespace core {
 
 template<typename T>
-Quaternion<T>::Quaternion(const T& pitch, const T& yaw, const T& roll) {
+Quaternion<T>::Quaternion(const T pitch, const T yaw, const T roll) {
 	T half_pitch = pitch / static_cast<T>(2.0);
 	T half_yaw = yaw / static_cast<T>(2.0);
 	T half_roll = roll / static_cast<T>(2.0);
@@ -30,7 +30,7 @@ Quaternion<T>::Quaternion(const T& pitch, const T& yaw, const T& roll) {
 }
 
 template<typename T>
-Quaternion<T>::Quaternion(const Vector<T, 3>& axis, const T& angle) {
+Quaternion<T>::Quaternion(const Vector<T, 3>& axis, const T angle) {
 	T half_angle = angle / static_cast<T>(2.0);
 	Vector<T, 3> N =  axis.normal() * std::sin(half_angle);
 	this->x = N.x;
@@ -76,45 +76,30 @@ Quaternion<T> Quaternion<T>::operator-() const {
 }
 
 template<typename T>
-Quaternion<T> Quaternion<T>::operator+(const Quaternion<T>& h) const {
-	T x = this->x + h.x;
-	T y = this->y + h.y;
-	T z = this->z + h.z;
-	T w = this->w + h.w;
-	return Quaternion<T>(x, y, z, w);
-}
-
-template<typename T>
 Quaternion<T>& Quaternion<T>::operator+=(const Quaternion<T>& h) {
-	return *this = *this + h;
-}
-
-template<typename T>
-Quaternion<T> Quaternion<T>::operator-(const Quaternion<T>& h) const {
-	T x = this->x - h.x;
-	T y = this->y - h.y;
-	T z = this->z - h.z;
-	T w = this->w - h.w;
-	return Quaternion<T>(x, y, z, w);
+	this->x += h.x;
+	this->y += h.y;
+	this->z += h.z;
+	this->w += h.w;
+	return *this;
 }
 
 template<typename T>
 Quaternion<T>& Quaternion<T>::operator-=(const Quaternion<T>& h) {
-	return *this = *this - h;
-}
-
-template<typename T>
-Quaternion<T> Quaternion<T>::operator*(const Quaternion<T>& h) const {
-	T x = (this->w * h.x) + (this->x * h.w) + (this->y * h.z) - (this->z * h.y);
-	T y = (this->w * h.y) + (this->y * h.w) + (this->z * h.x) - (this->x * h.z);
-	T z = (this->w * h.z) + (this->z * h.w) + (this->x * h.y) - (this->y * h.x);
-	T w = (this->w * h.w) - (this->x * h.x) - (this->y * h.y) - (this->z * h.z);
-	return Quaternion<T>(x, y, z, w);
+	this->x -= h.x;
+	this->y -= h.y;
+	this->z -= h.z;
+	this->w -= h.w;
+	return *this;
 }
 
 template<typename T>
 Quaternion<T>& Quaternion<T>::operator*=(const Quaternion<T>& h) {
-	return *this = *this * h;
+	T x = (this->w * h.x) + (this->x * h.w) + (this->y * h.z) - (this->z * h.y);
+	T y = (this->w * h.y) + (this->y * h.w) + (this->z * h.x) - (this->x * h.z);
+	T z = (this->w * h.z) + (this->z * h.w) + (this->x * h.y) - (this->y * h.x);
+	T w = (this->w * h.w) - (this->x * h.x) - (this->y * h.y) - (this->z * h.z);
+	return *this = Quaternion<T>(x, y, z, w);
 }
 
 template<typename T>
@@ -128,31 +113,21 @@ Vector<T, 3> Quaternion<T>::operator*(const Vector<T, 3>& v) const {
 }
 
 template<typename T>
-Quaternion<T> Quaternion<T>::operator*(const T& s) const {
+Quaternion<T>& Quaternion<T>::operator*=(const T s) {
 	T x = this->x * s;
 	T y = this->y * s;
 	T z = this->z * s;
 	T w = this->w * s;
-	return Quaternion<T>(x, y, z, w);
+	return *this = Quaternion<T>(x, y, z, w);
 }
 
 template<typename T>
-Quaternion<T>& Quaternion<T>::operator*=(const T& s) {
-	return *this = *this * s;
-}
-
-template<typename T>
-Quaternion<T> Quaternion<T>::operator/(const T& s) const {
+Quaternion<T>& Quaternion<T>::operator/=(const T s) {
 	T x = this->x / s;
 	T y = this->y / s;
 	T z = this->z / s;
 	T w = this->w / s;
-	return Quaternion<T>(x, y, z, w);
-}
-
-template<typename T>
-Quaternion<T>& Quaternion<T>::operator/=(const T& s) {
-	return *this = *this / s;
+	return *this = Quaternion<T>(x, y, z, w);
 }
 
 template<typename T>
@@ -242,7 +217,7 @@ Matrix<T, 4> Quaternion<T>::to_matrix() const {
  */
 template<typename T>
 static inline typename std::enable_if<std::is_floating_point<T>::value, bool>::type equals_helper(const Quaternion<T>& h1, const Quaternion<T>& h2) {
-	// FIXME Can't specify error
+	// FIXME Can't specify epsilon
 	return vmath::equals(h1.x, h2.x) && vmath::equals(h1.y, h2.y) && vmath::equals(h1.z, h2.z) && vmath::equals(h1.w, h2.w);
 }
 
@@ -258,13 +233,8 @@ static inline typename std::enable_if<!std::is_floating_point<T>::value, bool>::
 }
 
 template<typename T>
-bool Quaternion<T>::operator==(const Quaternion<T>& other) const {
+bool Quaternion<T>::equals(const Quaternion<T>& other) const {
 	return equals_helper(*this, other);
-}
-
-template<typename T>
-bool Quaternion<T>::operator!=(const Quaternion<T>& other) const {
-	return !(*this == other);
 }
 
 template<typename T>
@@ -273,12 +243,12 @@ T Quaternion<T>::dot(const Quaternion<T>& h1, const Quaternion<T>& h2) {
 }
 
 template<typename T>
-Quaternion<T> Quaternion<T>::lerp(const Quaternion<T>& start, const Quaternion<T>& end, const T& t) {
+Quaternion<T> Quaternion<T>::lerp(const Quaternion<T>& start, const Quaternion<T>& end, const T t) {
 	return start + ((end - start) * t);
 }
 
 template<typename T>
-Quaternion<T> Quaternion<T>::slerp(const Quaternion<T>& start, const Quaternion<T>& end, const T& t, const bool shortest) {
+Quaternion<T> Quaternion<T>::slerp(const Quaternion<T>& start, const Quaternion<T>& end, const T t, const bool shortest) {
 	T d = Quaternion<T>::dot(start, end);
 	Quaternion<T> h;
 	if (d < static_cast<T>(0.0) && shortest) {

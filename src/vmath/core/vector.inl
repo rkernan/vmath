@@ -31,87 +31,51 @@ Vector<T, N> Vector<T, N>::operator-() const {
 }
 
 template<typename T, std::size_t N>
-Vector<T, N> Vector<T, N>::operator+(const Vector<T, N>& v) const {
-	Vector<T, N> res;
-	for (std::size_t i = 0; i < N; i++) {
-		res.data[i] = this->data[i] + v.data[i];
-	}
-	return res;
-}
-
-template<typename T, std::size_t N>
 Vector<T, N>& Vector<T, N>::operator+=(const Vector<T, N>& v) {
-	return *this = *this + v;
-}
-
-template<typename T, std::size_t N>
-Vector<T, N> Vector<T, N>::operator-(const Vector<T, N>& v) const {
-	Vector<T, N> res;
 	for (std::size_t i = 0; i < N; i++) {
-		res.data[i] = this->data[i] - v.data[i];
+		this->data[i] = this->data[i] + v.data[i];
 	}
-	return res;
+	return *this;
 }
 
 template<typename T, std::size_t N>
 Vector<T, N>& Vector<T, N>::operator-=(const Vector<T, N>& v) {
-	return *this = *this - v;
-}
-
-template<typename T, std::size_t N>
-Vector<T, N> Vector<T, N>::operator*(const Vector<T, N>& v) const {
-	Vector<T, N> res;
 	for (std::size_t i = 0; i < N; i++) {
-		res.data[i] = this->data[i] * v.data[i];
+		this->data[i] = this->data[i] - v.data[i];
 	}
-	return res;
+	return *this;
 }
 
 template<typename T, std::size_t N>
 Vector<T, N>& Vector<T, N>::operator*=(const Vector<T, N>& v) {
-	return *this = *this * v;
-}
-
-template<typename T, std::size_t N>
-Vector<T, N> Vector<T, N>::operator/(const Vector<T, N>& v) const {
-	Vector<T, N> res;
 	for (std::size_t i = 0; i < N; i++) {
-		res.data[i] = this->data[i] / v.data[i];
+		this->data[i] = this->data[i] * v.data[i];
 	}
-	return res;
+	return *this;
 }
 
 template<typename T, std::size_t N>
 Vector<T, N>& Vector<T, N>::operator/=(const Vector<T, N>& v) {
-	return *this = *this / v;
-}
-
-template<typename T, std::size_t N>
-Vector<T, N> Vector<T, N>::operator*(const T& s) const {
-	Vector<T, N> res;
 	for (std::size_t i = 0; i < N; i++) {
-		res.data[i] = this->data[i] * s;
+		this->data[i] = this->data[i] / v.data[i];
 	}
-	return res;
+	return *this;
 }
 
 template<typename T, std::size_t N>
 Vector<T, N>& Vector<T, N>::operator*=(const T& s) {
-	return *this = *this * s;
-}
-
-template<typename T, std::size_t N>
-Vector<T, N> Vector<T, N>::operator/(const T& s) const {
-	Vector<T, N> res;
 	for (std::size_t i = 0; i < N; i++) {
-		res.data[i] = this->data[i] / s;
+		this->data[i] = this->data[i] * s;
 	}
-	return res;
+	return *this;
 }
 
 template<typename T, std::size_t N>
 Vector<T, N>& Vector<T, N>::operator/=(const T& s) {
-	return *this = *this / s;
+	for (std::size_t i = 0; i < N; i++) {
+		this->data[i] = this->data[i] / s;
+	}
+	return *this;
 }
 
 template<typename T, std::size_t N>
@@ -169,30 +133,9 @@ static inline typename std::enable_if<!std::is_floating_point<T>::value, bool>::
 	return equal;
 }
 
-// TODO
-/* template<typename T, std::size_t N> */
-/* bool Vector<T, N>::equals(const Vector<T, N>& other) const { */
-
-/* } */
-
-/* template<typename T, std::size_t N> */
-/* template<typename U, typename = typename std::enable_if<std::is_floating_point<U>::value, U>::type> */
-/* bool Vector<T, N>::equals(const Vector<T, N>& other, T epsilon) const { */
-/* 	bool equiv = true; */
-/* 	for (std::size_t i = 0; i < N; i++) { */
-/* 		equiv = equiv && vmath::equals(this->data[i], other.data[i], epsilon); */
-/* 	} */
-/* 	return equiv; */
-/* } */
-
 template<typename T, std::size_t N>
-bool Vector<T, N>::operator==(const Vector<T, N>& other) const {
+bool Vector<T, N>::equals(const Vector<T, N>& other) const {
 	return equals_helper(*this, other);
-}
-
-template<typename T, std::size_t N>
-bool Vector<T, N>::operator!=(const Vector<T, N>& other) const {
-	return !(*this == other);
 }
 
 template<typename T, std::size_t N>
