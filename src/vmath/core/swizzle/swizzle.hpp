@@ -8,7 +8,7 @@
 namespace vmath {
 namespace core {
 
-/**
+/*!
  * \brief Checks that the swizzle contains unique elements and, implicitly, that it is
  *        the same size or smaller than the underlying vector
  * \tparam N Number of elements in the swizzle
@@ -23,8 +23,8 @@ struct is_assignable_swizzle : std::integral_constant<bool,
 	(N < 3 || (E1 != E3 && E2 != E3)) &&
 	(N < 4 || (E1 != E4 && E2 != E4 && E3 != E4))> {};
 
-/**
- * \breif Base swizzle type
+/*!
+ * \brief Base swizzle type
  * \tparam T Storage type
  * \tparam N Storage size
  */

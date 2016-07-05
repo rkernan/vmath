@@ -63,7 +63,7 @@ Vector<T, N>& Vector<T, N>::operator/=(const Vector<T, N>& v) {
 }
 
 template<typename T, std::size_t N>
-Vector<T, N>& Vector<T, N>::operator*=(const T& s) {
+Vector<T, N>& Vector<T, N>::operator*=(const T s) {
 	for (std::size_t i = 0; i < N; i++) {
 		this->data[i] = this->data[i] * s;
 	}
@@ -71,7 +71,7 @@ Vector<T, N>& Vector<T, N>::operator*=(const T& s) {
 }
 
 template<typename T, std::size_t N>
-Vector<T, N>& Vector<T, N>::operator/=(const T& s) {
+Vector<T, N>& Vector<T, N>::operator/=(const T s) {
 	for (std::size_t i = 0; i < N; i++) {
 		this->data[i] = this->data[i] / s;
 	}
@@ -102,7 +102,7 @@ Vector<T, N>& Vector<T, N>::normalize() {
 	return *this = this->normal();
 }
 
-/**
+/*!
  * \brief Equality helper for floating point equality
  * \param[in] V1 Vector to check equality with
  * \param[in] V2 Vector to check equality with
@@ -118,7 +118,7 @@ static inline typename std::enable_if<std::is_floating_point<T>::value, bool>::t
 	return equal;
 }
 
-/**
+/*!
  * \brief Equality helper for non-floating point equality
  * \param[in] V1 Vector to check equality with.
  * \param[in] V2 Vector to check equality with.
@@ -153,7 +153,7 @@ Vector<T, N> Vector<T, N>::reflect(const Vector<T, N>& incident, const Vector<T,
 }
 
 template<typename T, std::size_t N>
-Vector<T, N> Vector<T, N>::refract(const Vector<T, N>& incident, const Vector<T, N>& surface_normal, const T& eta) {
+Vector<T, N> Vector<T, N>::refract(const Vector<T, N>& incident, const Vector<T, N>& surface_normal, const T eta) {
 	T s_dot_i = Vector<T, N>::dot(surface_normal, incident);
 	T k = static_cast<T>(1.0) - eta * eta * (static_cast<T>(1.0) - s_dot_i * s_dot_i);
 	if (k < static_cast<T>(0.0)) {
@@ -164,7 +164,7 @@ Vector<T, N> Vector<T, N>::refract(const Vector<T, N>& incident, const Vector<T,
 }
 
 template<typename T, std::size_t N>
-Vector<T, N> Vector<T, N>::lerp(const Vector<T, N>& start, const Vector<T, N>& end, const T& t) {
+Vector<T, N> Vector<T, N>::lerp(const Vector<T, N>& start, const Vector<T, N>& end, const T t) {
 	return start + ((end - start) * t);
 }
 

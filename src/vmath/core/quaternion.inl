@@ -209,7 +209,7 @@ Matrix<T, 4> Quaternion<T>::to_matrix() const {
 	return mat;
 }
 
-/**
+/*!
  * \brief Specialization for Quaternions containing floats
  * \param[in] h1 Quaternion to check equality with
  * \param[in] h2 Quaternion to check equality with
@@ -221,7 +221,7 @@ static inline typename std::enable_if<std::is_floating_point<T>::value, bool>::t
 	return vmath::equals(h1.x, h2.x) && vmath::equals(h1.y, h2.y) && vmath::equals(h1.z, h2.z) && vmath::equals(h1.w, h2.w);
 }
 
-/**
+/*!
  * \brief Specialization for Quaternions containing integers or other
  * \param[in] h1 Quaternion to check equality with
  * \param[in] h2 Quaternion to check equality with

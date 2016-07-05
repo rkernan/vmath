@@ -10,7 +10,7 @@ namespace vmath {
 
 const long double PI = std::acos(-1.0L);
 
-/**
+/*!
  * \brief Determine if two floats are equivalent within a default tolerance
  * \param[in] a Float to compare
  * \param[in] b Float to compare
@@ -19,7 +19,7 @@ const long double PI = std::acos(-1.0L);
 template<typename T, typename = typename std::enable_if<std::is_floating_point<T>::value, T>::type>
 bool equals(const T a, const T b);
 
-/**
+/*!
  * \brief Determine if two float are equivalent within a given epsilon
  * \param[in] a Float to compare
  * \param[in] b Float to compare
@@ -29,7 +29,7 @@ bool equals(const T a, const T b);
 template<typename T, typename = typename std::enable_if<std::is_floating_point<T>::value, T>::type>
 bool equals(const T a, const T b, const T epsilon);
 
-/**
+/*!
  * \brief Convert degrees to radians
  * \param[in] degrees Degrees to convert
  * \return The given degrees in radians
@@ -37,7 +37,7 @@ bool equals(const T a, const T b, const T epsilon);
 template<typename T, typename = typename std::enable_if<std::is_floating_point<T>::value, T>::type>
 T radians(const T degrees);
 
-/**
+/*!
  * \brief Convert radians to degrees
  * \param[in] radians Radians to convert
  * \return The given radians in degrees
@@ -45,7 +45,7 @@ T radians(const T degrees);
 template<typename T, typename = typename std::enable_if<std::is_floating_point<T>::value, T>::type>
 T degrees(const T radians);
 
-/**
+/*!
  * \brief Clamp into a range
  * \param[in] s Scalar to clamp
  * \param[in] lo Lowest number included in the range
@@ -55,7 +55,7 @@ T degrees(const T radians);
 template<typename T, typename = typename std::enable_if<std::is_floating_point<T>::value, T>::type>
 T clamp(const T s, const T lo, const T hi);
 
-/**
+/*!
  * \brief Linearly interpolate scalars
  * \param[in] s Start value
  * \param[in] e End value

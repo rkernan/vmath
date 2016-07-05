@@ -113,7 +113,7 @@ T Matrix<T, M, N>::minor(const std::size_t row, const std::size_t col) const {
 	return minor_mat.det();
 }
 
-/**
+/*!
  * \brief Calculate the Matrix determinant of a generic size Matrix
  * \param[in] mat Matrix to calculate the determinant of
  * \return Matrix determinant
@@ -128,7 +128,7 @@ static inline T det_helper(const Matrix<T, M, N>& mat) {
 	}
 	return det;
 }
-/**
+/*!
  * \brief Calculate the Matrix determinant of a 1x1 Matrix
  * \param[in] mat Matrix to calculate the determinant of
  * \return Matrix determinant
@@ -138,7 +138,7 @@ static inline T det_helper(const Matrix<T, 1>& mat) {
 	return mat.data[0][0];
 }
 
-/**
+/*!
  * \brief Calculate the Matrix determinant of a 2x2 Matrix
  * \param[in] mat Matrix to calculate the determinant of
  * \return Matrix determinant
