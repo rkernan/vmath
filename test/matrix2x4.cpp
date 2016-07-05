@@ -116,7 +116,7 @@ BOOST_AUTO_TEST_CASE_TEMPLATE(members, T, float_types) {
 	BOOST_CHECK_THROW((M[4] = vmath::core::Vector<T, 2>()), std::out_of_range);
 }
 
-BOOST_AUTO_TEST_CASE_TEMPLATE(assign, T, float_types) {
+BOOST_AUTO_TEST_CASE_TEMPLATE(assign_op, T, float_types) {
 	vmath::core::Matrix<T, 2, 4> M;
 	M[0][0] = static_cast<T>(1.0);
 	M[0][1] = static_cast<T>(2.0);
@@ -138,7 +138,7 @@ BOOST_AUTO_TEST_CASE_TEMPLATE(assign, T, float_types) {
 	BOOST_CHECK_CLOSE(M_assign[3][1], static_cast<T>(8.0), 1e-4f);
 }
 
-BOOST_AUTO_TEST_CASE_TEMPLATE(negate, T, float_types) {
+BOOST_AUTO_TEST_CASE_TEMPLATE(negate_op, T, float_types) {
 	vmath::core::Matrix<T, 2, 4> M;
 	M[0][0] = static_cast<T>(1.0);
 	M[0][1] = static_cast<T>(2.0);
@@ -160,7 +160,7 @@ BOOST_AUTO_TEST_CASE_TEMPLATE(negate, T, float_types) {
 	BOOST_CHECK_CLOSE(M_neg[3][1], static_cast<T>(-8.0), 1e-4f);
 }
 
-BOOST_AUTO_TEST_CASE_TEMPLATE(matrix_add, T, float_types) {
+BOOST_AUTO_TEST_CASE_TEMPLATE(matrix_add_op, T, float_types) {
 	vmath::core::Matrix<T, 2, 4> M1;
 	M1[0][0] = static_cast<T>(1.0);
 	M1[0][1] = static_cast<T>(2.0);
@@ -191,7 +191,7 @@ BOOST_AUTO_TEST_CASE_TEMPLATE(matrix_add, T, float_types) {
 	BOOST_CHECK_CLOSE(M_add[3][1], static_cast<T>(9.0), 1e-4f);
 }
 
-BOOST_AUTO_TEST_CASE_TEMPLATE(matrix_add_eq, T, float_types) {
+BOOST_AUTO_TEST_CASE_TEMPLATE(matrix_add_eq_op, T, float_types) {
 	vmath::core::Matrix<T, 2, 4> M1;
 	M1[0][0] = static_cast<T>(1.0);
 	M1[0][1] = static_cast<T>(2.0);
@@ -222,7 +222,7 @@ BOOST_AUTO_TEST_CASE_TEMPLATE(matrix_add_eq, T, float_types) {
 	BOOST_CHECK_CLOSE(M_add[3][1], static_cast<T>(9.0), 1e-4f);
 }
 
-BOOST_AUTO_TEST_CASE_TEMPLATE(matrix_sub, T, float_types) {
+BOOST_AUTO_TEST_CASE_TEMPLATE(matrix_sub_op, T, float_types) {
 	vmath::core::Matrix<T, 2, 4> M1;
 	M1[0][0] = static_cast<T>(1.0);
 	M1[0][1] = static_cast<T>(2.0);
@@ -253,7 +253,7 @@ BOOST_AUTO_TEST_CASE_TEMPLATE(matrix_sub, T, float_types) {
 	BOOST_CHECK_CLOSE(M_sub[3][1], static_cast<T>(7.0), 1e-4f);
 }
 
-BOOST_AUTO_TEST_CASE_TEMPLATE(matrix_sub_eq, T, float_types) {
+BOOST_AUTO_TEST_CASE_TEMPLATE(matrix_sub_eq_op, T, float_types) {
 	vmath::core::Matrix<T, 2, 4> M1;
 	M1[0][0] = static_cast<T>(1.0);
 	M1[0][1] = static_cast<T>(2.0);
@@ -284,7 +284,7 @@ BOOST_AUTO_TEST_CASE_TEMPLATE(matrix_sub_eq, T, float_types) {
 	BOOST_CHECK_CLOSE(M_sub[3][1], static_cast<T>(7.0), 1e-4f);
 }
 
-BOOST_AUTO_TEST_CASE_TEMPLATE(matrix_mult, T, float_types) {
+BOOST_AUTO_TEST_CASE_TEMPLATE(matrix_mult_op, T, float_types) {
 	vmath::core::Matrix<T, 2, 4> M;
 	M[0][0] = static_cast<T>(1.0);
 	M[0][1] = static_cast<T>(2.0);
@@ -359,7 +359,7 @@ BOOST_AUTO_TEST_CASE_TEMPLATE(matrix_mult, T, float_types) {
 	BOOST_CHECK_CLOSE(M_sum2x4[3][1], static_cast<T>(300.0), 1e-4f);
 }
 
-BOOST_AUTO_TEST_CASE_TEMPLATE(scalar_mult, T, float_types) {
+BOOST_AUTO_TEST_CASE_TEMPLATE(scalar_mult_op, T, float_types) {
 	vmath::core::Matrix<T, 2, 4> M;
 	M[0][0] = static_cast<T>(1.0);
 	M[0][1] = static_cast<T>(2.0);
@@ -382,7 +382,7 @@ BOOST_AUTO_TEST_CASE_TEMPLATE(scalar_mult, T, float_types) {
 	BOOST_CHECK_CLOSE(M_mult[3][1], static_cast<T>(16.0), 1e-4f);
 }
 
-BOOST_AUTO_TEST_CASE_TEMPLATE(scalar_mult_eq, T, float_types) {
+BOOST_AUTO_TEST_CASE_TEMPLATE(scalar_mult_eq_op, T, float_types) {
 	vmath::core::Matrix<T, 2, 4> M;
 	M[0][0] = static_cast<T>(1.0);
 	M[0][1] = static_cast<T>(2.0);
@@ -405,7 +405,7 @@ BOOST_AUTO_TEST_CASE_TEMPLATE(scalar_mult_eq, T, float_types) {
 	BOOST_CHECK_CLOSE(M_mult[3][1], static_cast<T>(16.0), 1e-4f);
 }
 
-BOOST_AUTO_TEST_CASE_TEMPLATE(scalar_div, T, float_types) {
+BOOST_AUTO_TEST_CASE_TEMPLATE(scalar_div_op, T, float_types) {
 	vmath::core::Matrix<T, 2, 4> M;
 	M[0][0] = static_cast<T>(2.0);
 	M[0][1] = static_cast<T>(4.0);
@@ -428,7 +428,7 @@ BOOST_AUTO_TEST_CASE_TEMPLATE(scalar_div, T, float_types) {
 	BOOST_CHECK_CLOSE(M_div[3][1], static_cast<T>(8.0), 1e-4f);
 }
 
-BOOST_AUTO_TEST_CASE_TEMPLATE(scalar_div_eq, T, float_types) {
+BOOST_AUTO_TEST_CASE_TEMPLATE(scalar_div_eq_op, T, float_types) {
 	vmath::core::Matrix<T, 2, 4> M;
 	M[0][0] = static_cast<T>(2.0);
 	M[0][1] = static_cast<T>(4.0);
@@ -474,6 +474,72 @@ BOOST_AUTO_TEST_CASE_TEMPLATE(transpose, T, float_types) {
 }
 
 BOOST_AUTO_TEST_CASE_TEMPLATE(equals, T, float_types) {
+	vmath::core::Matrix<T, 2, 4> M1;
+	M1[0][0] = static_cast<T>(1.0);
+	M1[0][1] = static_cast<T>(2.0);
+	M1[1][0] = static_cast<T>(3.0);
+	M1[1][1] = static_cast<T>(4.0);
+	M1[2][0] = static_cast<T>(5.0);
+	M1[2][1] = static_cast<T>(6.0);
+	M1[3][0] = static_cast<T>(7.0);
+	M1[3][1] = static_cast<T>(8.0);
+	vmath::core::Matrix<T, 2, 4> M2;
+	M2[0][0] = static_cast<T>(1.0);
+	M2[0][1] = static_cast<T>(2.0);
+	M2[1][0] = static_cast<T>(3.0);
+	M2[1][1] = static_cast<T>(4.0);
+	M2[2][0] = static_cast<T>(5.0);
+	M2[2][1] = static_cast<T>(6.0);
+	M2[3][0] = static_cast<T>(7.0);
+	M2[3][1] = static_cast<T>(8.0);
+	vmath::core::Matrix<T, 2, 4> M3;
+	M3[0][0] = static_cast<T>(8.0);
+	M3[0][1] = static_cast<T>(7.0);
+	M3[1][0] = static_cast<T>(6.0);
+	M3[1][1] = static_cast<T>(5.0);
+	M3[2][0] = static_cast<T>(4.0);
+	M3[2][1] = static_cast<T>(3.0);
+	M3[3][0] = static_cast<T>(2.0);
+	M3[3][1] = static_cast<T>(1.0);
+	BOOST_CHECK(M1.equals(M2));
+	BOOST_CHECK(!M1.equals(M3));
+	BOOST_CHECK(!M2.equals(M3));
+}
+
+BOOST_AUTO_TEST_CASE_TEMPLATE(equals_specify_ulp, T, float_types) {
+	vmath::core::Matrix<T, 2, 4> M1;
+	M1[0][0] = static_cast<T>(1.0);
+	M1[0][1] = static_cast<T>(2.0);
+	M1[1][0] = static_cast<T>(3.0);
+	M1[1][1] = static_cast<T>(4.0);
+	M1[2][0] = static_cast<T>(5.0);
+	M1[2][1] = static_cast<T>(6.0);
+	M1[3][0] = static_cast<T>(7.0);
+	M1[3][1] = static_cast<T>(8.0);
+	vmath::core::Matrix<T, 2, 4> M2;
+	M2[0][0] = static_cast<T>(1.0);
+	M2[0][1] = static_cast<T>(2.0);
+	M2[1][0] = static_cast<T>(3.0);
+	M2[1][1] = static_cast<T>(4.0);
+	M2[2][0] = static_cast<T>(5.0);
+	M2[2][1] = static_cast<T>(6.0);
+	M2[3][0] = static_cast<T>(7.0);
+	M2[3][1] = static_cast<T>(8.0);
+	vmath::core::Matrix<T, 2, 4> M3;
+	M3[0][0] = static_cast<T>(8.0);
+	M3[0][1] = static_cast<T>(7.0);
+	M3[1][0] = static_cast<T>(6.0);
+	M3[1][1] = static_cast<T>(5.0);
+	M3[2][0] = static_cast<T>(4.0);
+	M3[2][1] = static_cast<T>(3.0);
+	M3[3][0] = static_cast<T>(2.0);
+	M3[3][1] = static_cast<T>(1.0);
+	BOOST_CHECK(M1.equals(M2, 3));
+	BOOST_CHECK(!M1.equals(M3, 3));
+	BOOST_CHECK(!M2.equals(M3, 3));
+}
+
+BOOST_AUTO_TEST_CASE_TEMPLATE(equals_op, T, float_types) {
 	vmath::core::Matrix<T, 2, 4> M1;
 	M1[0][0] = static_cast<T>(1.0);
 	M1[0][1] = static_cast<T>(2.0);

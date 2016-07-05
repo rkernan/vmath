@@ -189,7 +189,7 @@ BOOST_AUTO_TEST_CASE_TEMPLATE(members, T, float_types) {
 	BOOST_CHECK_THROW(V[4] = static_cast<T>(0.0), std::out_of_range);
 }
 
-BOOST_AUTO_TEST_CASE_TEMPLATE(assign, T, float_types) {
+BOOST_AUTO_TEST_CASE_TEMPLATE(assign_op, T, float_types) {
 	vmath::core::Vector<T, 4> V;
 	V.x = static_cast<T>(20.12);
 	V.y = static_cast<T>(100.89);
@@ -203,7 +203,7 @@ BOOST_AUTO_TEST_CASE_TEMPLATE(assign, T, float_types) {
 	BOOST_CHECK_CLOSE(V_assign.w, V.w, 1e-4f);
 }
 
-BOOST_AUTO_TEST_CASE_TEMPLATE(negate, T, float_types) {
+BOOST_AUTO_TEST_CASE_TEMPLATE(negate_op, T, float_types) {
 	vmath::core::Vector<T, 4> V;
 	V.x = static_cast<T>(20.12);
 	V.y = static_cast<T>(100.89);
@@ -217,7 +217,7 @@ BOOST_AUTO_TEST_CASE_TEMPLATE(negate, T, float_types) {
 	BOOST_CHECK_CLOSE(V_neg.w, static_cast<T>(-35.62), 1e-4f);
 }
 
-BOOST_AUTO_TEST_CASE_TEMPLATE(add, T, float_types) {
+BOOST_AUTO_TEST_CASE_TEMPLATE(add_op, T, float_types) {
 	vmath::core::Vector<T, 4> V1;
 	V1.x = static_cast<T>(20.12);
 	V1.y = static_cast<T>(100.89);
@@ -236,7 +236,7 @@ BOOST_AUTO_TEST_CASE_TEMPLATE(add, T, float_types) {
 	BOOST_CHECK_CLOSE(V_add.w, static_cast<T>(-164.72), 1e-4f);
 }
 
-BOOST_AUTO_TEST_CASE_TEMPLATE(add_eq, T, float_types) {
+BOOST_AUTO_TEST_CASE_TEMPLATE(add_eq_op, T, float_types) {
 	vmath::core::Vector<T, 4> V1;
 	V1.x = static_cast<T>(20.12);
 	V1.y = static_cast<T>(100.89);
@@ -255,7 +255,7 @@ BOOST_AUTO_TEST_CASE_TEMPLATE(add_eq, T, float_types) {
 	BOOST_CHECK_CLOSE(V_add.w, static_cast<T>(-164.72), 1e-4f);
 }
 
-BOOST_AUTO_TEST_CASE_TEMPLATE(sub, T, float_types) {
+BOOST_AUTO_TEST_CASE_TEMPLATE(sub_op, T, float_types) {
 	vmath::core::Vector<T, 4> V1;
 	V1.x = static_cast<T>(20.12);
 	V1.y = static_cast<T>(100.89);
@@ -274,7 +274,7 @@ BOOST_AUTO_TEST_CASE_TEMPLATE(sub, T, float_types) {
 	BOOST_CHECK_CLOSE(V_sub.w, static_cast<T>(235.96), 1e-4f);
 }
 
-BOOST_AUTO_TEST_CASE_TEMPLATE(sub_eq, T, float_types) {
+BOOST_AUTO_TEST_CASE_TEMPLATE(sub_eq_op, T, float_types) {
 	vmath::core::Vector<T, 4> V1;
 	V1.x = static_cast<T>(20.12);
 	V1.y = static_cast<T>(100.89);
@@ -293,7 +293,7 @@ BOOST_AUTO_TEST_CASE_TEMPLATE(sub_eq, T, float_types) {
 	BOOST_CHECK_CLOSE(V_sub.w, static_cast<T>(235.96), 1e-4f);
 }
 
-BOOST_AUTO_TEST_CASE_TEMPLATE(mult, T, float_types) {
+BOOST_AUTO_TEST_CASE_TEMPLATE(mult_op, T, float_types) {
 	vmath::core::Vector<T, 4> V1;
 	V1.x = static_cast<T>(20.12);
 	V1.y = static_cast<T>(100.89);
@@ -312,7 +312,7 @@ BOOST_AUTO_TEST_CASE_TEMPLATE(mult, T, float_types) {
 	BOOST_CHECK_CLOSE(V_mult.w, static_cast<T>(-7136.11079999999995), 1e-4f);
 }
 
-BOOST_AUTO_TEST_CASE_TEMPLATE(mult_eq, T, float_types) {
+BOOST_AUTO_TEST_CASE_TEMPLATE(mult_eq_op, T, float_types) {
 	vmath::core::Vector<T, 4> V1;
 	V1.x = static_cast<T>(20.12);
 	V1.y = static_cast<T>(100.89);
@@ -331,7 +331,7 @@ BOOST_AUTO_TEST_CASE_TEMPLATE(mult_eq, T, float_types) {
 	BOOST_CHECK_CLOSE(V_mult.w, static_cast<T>(-7136.11079999999995), 1e-4f);
 }
 
-BOOST_AUTO_TEST_CASE_TEMPLATE(div, T, float_types) {
+BOOST_AUTO_TEST_CASE_TEMPLATE(div_op, T, float_types) {
 	vmath::core::Vector<T, 4> V1;
 	V1.x = static_cast<T>(20.12);
 	V1.y = static_cast<T>(100.89);
@@ -350,7 +350,7 @@ BOOST_AUTO_TEST_CASE_TEMPLATE(div, T, float_types) {
 	BOOST_CHECK_CLOSE(V_div.w, static_cast<T>(-0.17779774383547967), 1e-4f);
 }
 
-BOOST_AUTO_TEST_CASE_TEMPLATE(div_eq, T, float_types) {
+BOOST_AUTO_TEST_CASE_TEMPLATE(div_eq_op, T, float_types) {
 	vmath::core::Vector<T, 4> V1;
 	V1.x = static_cast<T>(20.12);
 	V1.y = static_cast<T>(100.89);
@@ -369,7 +369,7 @@ BOOST_AUTO_TEST_CASE_TEMPLATE(div_eq, T, float_types) {
 	BOOST_CHECK_CLOSE(V_div.w, static_cast<T>(-0.17779774383547967), 1e-4f);
 }
 
-BOOST_AUTO_TEST_CASE_TEMPLATE(scalar_mult, T, float_types) {
+BOOST_AUTO_TEST_CASE_TEMPLATE(scalar_mult_op, T, float_types) {
 	vmath::core::Vector<T, 4> V;
 	V.x = static_cast<T>(20.12);
 	V.y = static_cast<T>(100.89);
@@ -384,7 +384,7 @@ BOOST_AUTO_TEST_CASE_TEMPLATE(scalar_mult, T, float_types) {
 	BOOST_CHECK_CLOSE(V_mult.w, static_cast<T>(-1227.109), 1e-4f);
 }
 
-BOOST_AUTO_TEST_CASE_TEMPLATE(scalar_mult_eq, T, float_types) {
+BOOST_AUTO_TEST_CASE_TEMPLATE(scalar_mult_eq_op, T, float_types) {
 	vmath::core::Vector<T, 4> V;
 	V.x = static_cast<T>(20.12);
 	V.y = static_cast<T>(100.89);
@@ -399,7 +399,7 @@ BOOST_AUTO_TEST_CASE_TEMPLATE(scalar_mult_eq, T, float_types) {
 	BOOST_CHECK_CLOSE(V_mult.w, static_cast<T>(-1227.109), 1e-4f);
 }
 
-BOOST_AUTO_TEST_CASE_TEMPLATE(scalar_div, T, float_types) {
+BOOST_AUTO_TEST_CASE_TEMPLATE(scalar_div_op, T, float_types) {
 	vmath::core::Vector<T, 4> V;
 	V.x = static_cast<T>(20.12);
 	V.y = static_cast<T>(100.89);
@@ -414,7 +414,7 @@ BOOST_AUTO_TEST_CASE_TEMPLATE(scalar_div, T, float_types) {
 	BOOST_CHECK_CLOSE(V_div.w, static_cast<T>(-1.0339622641509432), 1e-4f);
 }
 
-BOOST_AUTO_TEST_CASE_TEMPLATE(scalar_div_eq, T, float_types) {
+BOOST_AUTO_TEST_CASE_TEMPLATE(scalar_div_eq_op, T, float_types) {
 	vmath::core::Vector<T, 4> V;
 	V.x = static_cast<T>(20.12);
 	V.y = static_cast<T>(100.89);
@@ -517,6 +517,50 @@ BOOST_AUTO_TEST_CASE_TEMPLATE(normalize, T, float_types) {
 }
 
 BOOST_AUTO_TEST_CASE_TEMPLATE(equals, T, float_types) {
+	vmath::core::Vector<T, 4> V1;
+	V1.x = static_cast<T>(20.12);
+	V1.y = static_cast<T>(100.89);
+	V1.z = static_cast<T>(-18.2);
+	V1.w = static_cast<T>(35.62);
+	vmath::core::Vector<T, 4> V2;
+	V2.x = static_cast<T>(10.34);
+	V2.y = static_cast<T>(-15.5);
+	V2.z = static_cast<T>(20.2);
+	V2.w = static_cast<T>(-200.34);
+	vmath::core::Vector<T, 4> V3;
+	V3.x = static_cast<T>(20.12);
+	V3.y = static_cast<T>(100.89);
+	V3.z = static_cast<T>(-18.2);
+	V3.w = static_cast<T>(35.62);
+	BOOST_CHECK(!V1.equals(V2));
+	BOOST_CHECK(!V2.equals(V3));
+	BOOST_CHECK(V1.equals(V1));
+	BOOST_CHECK(V1.equals(V3));
+}
+
+BOOST_AUTO_TEST_CASE_TEMPLATE(equals_specify_ulp, T, float_types) {
+	vmath::core::Vector<T, 4> V1;
+	V1.x = static_cast<T>(20.12);
+	V1.y = static_cast<T>(100.89);
+	V1.z = static_cast<T>(-18.2);
+	V1.w = static_cast<T>(35.62);
+	vmath::core::Vector<T, 4> V2;
+	V2.x = static_cast<T>(10.34);
+	V2.y = static_cast<T>(-15.5);
+	V2.z = static_cast<T>(20.2);
+	V2.w = static_cast<T>(-200.34);
+	vmath::core::Vector<T, 4> V3;
+	V3.x = static_cast<T>(20.12);
+	V3.y = static_cast<T>(100.89);
+	V3.z = static_cast<T>(-18.2);
+	V3.w = static_cast<T>(35.62);
+	BOOST_CHECK(!V1.equals(V2, 3));
+	BOOST_CHECK(!V2.equals(V3, 3));
+	BOOST_CHECK(V1.equals(V1, 3));
+	BOOST_CHECK(V1.equals(V3, 3));
+}
+
+BOOST_AUTO_TEST_CASE_TEMPLATE(equals_op, T, float_types) {
 	vmath::core::Vector<T, 4> V1;
 	V1.x = static_cast<T>(20.12);
 	V1.y = static_cast<T>(100.89);

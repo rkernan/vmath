@@ -112,7 +112,7 @@ BOOST_AUTO_TEST_CASE_TEMPLATE(members, T, float_types) {
 	BOOST_CHECK_THROW(H[4] = static_cast<T>(0.0), std::out_of_range);
 }
 
-BOOST_AUTO_TEST_CASE_TEMPLATE(assign, T, float_types) {
+BOOST_AUTO_TEST_CASE_TEMPLATE(assign_op, T, float_types) {
 	vmath::core::Quaternion<T> H;
 	H.x = static_cast<T>(20.12);
 	H.y = static_cast<T>(100.89);
@@ -126,7 +126,7 @@ BOOST_AUTO_TEST_CASE_TEMPLATE(assign, T, float_types) {
 	BOOST_CHECK_CLOSE(H_assign.w, H.w, 1e-4f);
 }
 
-BOOST_AUTO_TEST_CASE_TEMPLATE(negate, T, float_types) {
+BOOST_AUTO_TEST_CASE_TEMPLATE(negate_op, T, float_types) {
 	vmath::core::Quaternion<T> H;
 	H.x = static_cast<T>(20.12);
 	H.y = static_cast<T>(100.89);
@@ -140,7 +140,7 @@ BOOST_AUTO_TEST_CASE_TEMPLATE(negate, T, float_types) {
 	BOOST_CHECK_CLOSE(H_neg.w, static_cast<T>(-35.62), 1e-4f);
 }
 
-BOOST_AUTO_TEST_CASE_TEMPLATE(add, T, float_types) {
+BOOST_AUTO_TEST_CASE_TEMPLATE(add_op, T, float_types) {
 	vmath::core::Quaternion<T> H1;
 	H1.x = static_cast<T>(20.12);
 	H1.y = static_cast<T>(100.89);
@@ -159,7 +159,7 @@ BOOST_AUTO_TEST_CASE_TEMPLATE(add, T, float_types) {
 	BOOST_CHECK_CLOSE(H_add.w, static_cast<T>(-164.72), 1e-4f);
 }
 
-BOOST_AUTO_TEST_CASE_TEMPLATE(add_eq, T, float_types) {
+BOOST_AUTO_TEST_CASE_TEMPLATE(add_eq_op, T, float_types) {
 	vmath::core::Quaternion<T> H1;
 	H1.x = static_cast<T>(20.12);
 	H1.y = static_cast<T>(100.89);
@@ -178,7 +178,7 @@ BOOST_AUTO_TEST_CASE_TEMPLATE(add_eq, T, float_types) {
 	BOOST_CHECK_CLOSE(H_add.w, static_cast<T>(-164.72), 1e-4f);
 }
 
-BOOST_AUTO_TEST_CASE_TEMPLATE(sub, T, float_types) {
+BOOST_AUTO_TEST_CASE_TEMPLATE(sub_op, T, float_types) {
 	vmath::core::Quaternion<T> H1;
 	H1.x = static_cast<T>(20.12);
 	H1.y = static_cast<T>(100.89);
@@ -197,7 +197,7 @@ BOOST_AUTO_TEST_CASE_TEMPLATE(sub, T, float_types) {
 	BOOST_CHECK_CLOSE(H_sub.w, static_cast<T>(235.96), 1e-4f);
 }
 
-BOOST_AUTO_TEST_CASE_TEMPLATE(sub_eq, T, float_types) {
+BOOST_AUTO_TEST_CASE_TEMPLATE(sub_eq_op, T, float_types) {
 	vmath::core::Quaternion<T> H1;
 	H1.x = static_cast<T>(20.12);
 	H1.y = static_cast<T>(100.89);
@@ -216,7 +216,7 @@ BOOST_AUTO_TEST_CASE_TEMPLATE(sub_eq, T, float_types) {
 	BOOST_CHECK_CLOSE(H_sub.w, static_cast<T>(235.96), 1e-4f);
 }
 
-BOOST_AUTO_TEST_CASE_TEMPLATE(mult, T, float_types) {
+BOOST_AUTO_TEST_CASE_TEMPLATE(mult_op, T, float_types) {
 	vmath::core::Quaternion<T> H1;
 	H1.x = static_cast<T>(20.12);
 	H1.y = static_cast<T>(100.89);
@@ -235,7 +235,7 @@ BOOST_AUTO_TEST_CASE_TEMPLATE(mult, T, float_types) {
 	BOOST_CHECK_CLOSE(H_mult.w, static_cast<T>(-5412.7166), 1e-4f);
 }
 
-BOOST_AUTO_TEST_CASE_TEMPLATE(mult_eq, T, float_types) {
+BOOST_AUTO_TEST_CASE_TEMPLATE(mult_eq_op, T, float_types) {
 	vmath::core::Quaternion<T> H1;
 	H1.x = static_cast<T>(20.12);
 	H1.y = static_cast<T>(100.89);
@@ -254,7 +254,7 @@ BOOST_AUTO_TEST_CASE_TEMPLATE(mult_eq, T, float_types) {
 	BOOST_CHECK_CLOSE(H_mult.w, static_cast<T>(-5412.7166), 1e-4f);
 }
 
-BOOST_AUTO_TEST_CASE_TEMPLATE(vector3_mult, T, float_types) {
+BOOST_AUTO_TEST_CASE_TEMPLATE(vector3_mult_op, T, float_types) {
 	vmath::core::Quaternion<T> H;
 	H.x = static_cast<T>(0.3651483655);
 	H.y = static_cast<T>(0.5477225184);
@@ -271,7 +271,7 @@ BOOST_AUTO_TEST_CASE_TEMPLATE(vector3_mult, T, float_types) {
 	BOOST_CHECK_CLOSE(V_rot.z, static_cast<T>(0.3333333135), 1e-4f);
 }
 
-BOOST_AUTO_TEST_CASE_TEMPLATE(scalar_mult, T, float_types) {
+BOOST_AUTO_TEST_CASE_TEMPLATE(scalar_mult_op, T, float_types) {
 	vmath::core::Quaternion<T> H;
 	H.x = static_cast<T>(20.12);
 	H.y = static_cast<T>(100.89);
@@ -286,7 +286,7 @@ BOOST_AUTO_TEST_CASE_TEMPLATE(scalar_mult, T, float_types) {
 	BOOST_CHECK_CLOSE(H_mult.w, static_cast<T>(-1227.109), 1e-4f);
 }
 
-BOOST_AUTO_TEST_CASE_TEMPLATE(scalar_div, T, float_types) {
+BOOST_AUTO_TEST_CASE_TEMPLATE(scalar_div_op, T, float_types) {
 	vmath::core::Quaternion<T> H;
 	H.x = static_cast<T>(20.12);
 	H.y = static_cast<T>(100.89);
@@ -481,6 +481,50 @@ BOOST_AUTO_TEST_CASE_TEMPLATE(to_matrix4, T, float_types) {
 }
 
 BOOST_AUTO_TEST_CASE_TEMPLATE(equals, T, float_types) {
+	vmath::core::Quaternion<T> H1;
+	H1.x = static_cast<T>(20.12);
+	H1.y = static_cast<T>(100.89);
+	H1.z = static_cast<T>(-18.2);
+	H1.w = static_cast<T>(35.62);
+	vmath::core::Quaternion<T> H2;
+	H2.x = static_cast<T>(10.34);
+	H2.y = static_cast<T>(-15.5);
+	H2.z = static_cast<T>(20.2);
+	H2.w = static_cast<T>(-200.34);
+	vmath::core::Quaternion<T> H3;
+	H3.x = static_cast<T>(20.12);
+	H3.y = static_cast<T>(100.89);
+	H3.z = static_cast<T>(-18.2);
+	H3.w = static_cast<T>(35.62);
+	BOOST_CHECK(!H1.equals(H2));
+	BOOST_CHECK(!H2.equals(H3));
+	BOOST_CHECK(H1.equals(H1));
+	BOOST_CHECK(H1.equals(H3));
+}
+
+BOOST_AUTO_TEST_CASE_TEMPLATE(equals_specify_ulp, T, float_types) {
+	vmath::core::Quaternion<T> H1;
+	H1.x = static_cast<T>(20.12);
+	H1.y = static_cast<T>(100.89);
+	H1.z = static_cast<T>(-18.2);
+	H1.w = static_cast<T>(35.62);
+	vmath::core::Quaternion<T> H2;
+	H2.x = static_cast<T>(10.34);
+	H2.y = static_cast<T>(-15.5);
+	H2.z = static_cast<T>(20.2);
+	H2.w = static_cast<T>(-200.34);
+	vmath::core::Quaternion<T> H3;
+	H3.x = static_cast<T>(20.12);
+	H3.y = static_cast<T>(100.89);
+	H3.z = static_cast<T>(-18.2);
+	H3.w = static_cast<T>(35.62);
+	BOOST_CHECK(!H1.equals(H2, 3));
+	BOOST_CHECK(!H2.equals(H3, 3));
+	BOOST_CHECK(H1.equals(H1, 3));
+	BOOST_CHECK(H1.equals(H3, 3));
+}
+
+BOOST_AUTO_TEST_CASE_TEMPLATE(equals_op, T, float_types) {
 	vmath::core::Quaternion<T> H1;
 	H1.x = static_cast<T>(20.12);
 	H1.y = static_cast<T>(100.89);

@@ -6,7 +6,7 @@
 
 BOOST_AUTO_TEST_SUITE(swizzle4)
 
-BOOST_AUTO_TEST_CASE(negate) {
+BOOST_AUTO_TEST_CASE(negate_op) {
 	vmath::core::Vector<float, 4> V;
 	V.x = 20.12f;
 	V.y = 100.89f;
@@ -20,7 +20,7 @@ BOOST_AUTO_TEST_CASE(negate) {
 	BOOST_CHECK_CLOSE(V_neg.w, -20.12f, 1e-4f);
 }
 
-BOOST_AUTO_TEST_CASE(add) {
+BOOST_AUTO_TEST_CASE(add_op) {
 	vmath::core::Vector<float, 4> V1;
 	V1.x = 20.12f;
 	V1.y = 100.89f;
@@ -44,7 +44,7 @@ BOOST_AUTO_TEST_CASE(add) {
 	BOOST_CHECK_CLOSE(V_add.w, 30.46f, 1e-4f);
 }
 
-BOOST_AUTO_TEST_CASE(add_eq) {
+BOOST_AUTO_TEST_CASE(add_eq_op) {
 	vmath::core::Vector<float, 4> V1;
 	V1.x = 20.12f;
 	V1.y = 100.89f;
@@ -63,7 +63,7 @@ BOOST_AUTO_TEST_CASE(add_eq) {
 	BOOST_CHECK_CLOSE(V_add.w, 45.96f, 1e-4f);
 }
 
-BOOST_AUTO_TEST_CASE(sub) {
+BOOST_AUTO_TEST_CASE(sub_op) {
 	vmath::core::Vector<float, 4> V1;
 	V1.x = 20.12f;
 	V1.y = 100.89f;
@@ -87,7 +87,7 @@ BOOST_AUTO_TEST_CASE(sub) {
 	BOOST_CHECK_CLOSE(V_sub.w, -9.78f, 1e-4f);
 }
 
-BOOST_AUTO_TEST_CASE(sub_eq) {
+BOOST_AUTO_TEST_CASE(sub_eq_op) {
 	vmath::core::Vector<float, 4> V1;
 	V1.x = 20.12f;
 	V1.y = 100.89f;
@@ -106,7 +106,7 @@ BOOST_AUTO_TEST_CASE(sub_eq) {
 	BOOST_CHECK_CLOSE(V_sub.w, 25.28f, 1e-4f);
 }
 
-BOOST_AUTO_TEST_CASE(mult) {
+BOOST_AUTO_TEST_CASE(mult_op) {
 	vmath::core::Vector<float, 4> V1;
 	V1.x = 20.12f;
 	V1.y = 100.89f;
@@ -130,7 +130,7 @@ BOOST_AUTO_TEST_CASE(mult) {
 	BOOST_CHECK_CLOSE(V_mult.w, 208.0408f, 1e-4f);
 }
 
-BOOST_AUTO_TEST_CASE(mult_eq) {
+BOOST_AUTO_TEST_CASE(mult_eq_op) {
 	vmath::core::Vector<float, 4> V1;
 	V1.x = 20.12f;
 	V1.y = 100.89f;
@@ -149,7 +149,7 @@ BOOST_AUTO_TEST_CASE(mult_eq) {
 	BOOST_CHECK_CLOSE(V_mult.w, 368.3108f, 1e-4f);
 }
 
-BOOST_AUTO_TEST_CASE(div) {
+BOOST_AUTO_TEST_CASE(div_op) {
 	vmath::core::Vector<float, 4> V1;
 	V1.x = 20.0f;
 	V1.y = 40.0f;
@@ -173,7 +173,7 @@ BOOST_AUTO_TEST_CASE(div) {
 	BOOST_CHECK_CLOSE(V_div.w, 5.0f, 1e-4f);
 }
 
-BOOST_AUTO_TEST_CASE(div_eq) {
+BOOST_AUTO_TEST_CASE(div_eq_op) {
 	vmath::core::Vector<float, 4> V1;
 	V1.x = 20.0f;
 	V1.y = 40.0f;
@@ -192,7 +192,7 @@ BOOST_AUTO_TEST_CASE(div_eq) {
 	BOOST_CHECK_CLOSE(V_div.w, 40.0f, 1e-4f);
 }
 
-BOOST_AUTO_TEST_CASE(scalar_mult) {
+BOOST_AUTO_TEST_CASE(scalar_mult_op) {
 	vmath::core::Vector<float, 4> V;
 	V.x = 20.12f;
 	V.y = 100.89f;
@@ -207,7 +207,7 @@ BOOST_AUTO_TEST_CASE(scalar_mult) {
 	BOOST_CHECK_CLOSE(V_mult.w, -1227.109f, 1e-4f);
 }
 
-BOOST_AUTO_TEST_CASE(scalar_mult_eq) {
+BOOST_AUTO_TEST_CASE(scalar_mult_eq_op) {
 	vmath::core::Vector<float, 4> V;
 	V.x = 20.12f;
 	V.y = 100.89f;
@@ -222,7 +222,7 @@ BOOST_AUTO_TEST_CASE(scalar_mult_eq) {
 	BOOST_CHECK_CLOSE(V_mult.w, -1227.109f, 1e-4f);
 }
 
-BOOST_AUTO_TEST_CASE(scalar_div) {
+BOOST_AUTO_TEST_CASE(scalar_div_op) {
 	vmath::core::Vector<float, 4> V;
 	V.x = 20.12f;
 	V.y = 100.89f;
@@ -237,7 +237,7 @@ BOOST_AUTO_TEST_CASE(scalar_div) {
 	BOOST_CHECK_CLOSE(V_div.w, -1.0339622641509432f, 1e-4f);
 }
 
-BOOST_AUTO_TEST_CASE(scalar_div_eq) {
+BOOST_AUTO_TEST_CASE(scalar_div_eq_op) {
 	vmath::core::Vector<float, 4> V;
 	V.x = 20.12f;
 	V.y = 100.89f;
@@ -252,7 +252,7 @@ BOOST_AUTO_TEST_CASE(scalar_div_eq) {
 	BOOST_CHECK_CLOSE(V_div.w, -1.0339622641509432f, 1e-4f);
 }
 
-BOOST_AUTO_TEST_CASE(access) {
+BOOST_AUTO_TEST_CASE(swizzles) {
 	vmath::core::Vector<float, 4> V;
 	V.x = 20.12f;
 	V.y = 100.89f;
@@ -1846,7 +1846,7 @@ BOOST_AUTO_TEST_CASE(access) {
 	BOOST_CHECK_CLOSE(wwww.getE4(), V.w, 1e-4f);
 }
 
-BOOST_AUTO_TEST_CASE(assign) {
+BOOST_AUTO_TEST_CASE(assign_op) {
 	vmath::core::Vector<float, 2> V2;
 	V2.x = 20.12f;
 	V2.y = 100.89f;
@@ -1960,6 +1960,72 @@ BOOST_AUTO_TEST_CASE(assign) {
 	BOOST_CHECK_CLOSE(V.y, V4.y, 1e-4f);
 	BOOST_CHECK_CLOSE(V.z, V4.w, 1e-4f);
 	BOOST_CHECK_CLOSE(V.w, V4.z, 1e-4f);
+}
+
+BOOST_AUTO_TEST_CASE(equals) {
+	vmath::core::Vector<float, 4> V1;
+	V1.x = 20.12f;
+	V1.y = 100.89f;
+	V1.z = 18.2f;
+	V1.w = 35.62f;
+	vmath::core::Vector<float, 4> V2;
+	V2.x = 10.34f;
+	V2.y = 15.5f;
+	V2.z = 20.2f;
+	V2.w = 200.34f;
+	vmath::core::Vector<float, 4> V3;
+	V3.x = 20.12f;
+	V3.y = 100.89f;
+	V3.z = 18.2f;
+	V3.w = 35.62f;
+	BOOST_CHECK(!V1.xyzw.equals(V2));
+	BOOST_CHECK(!V2.xyzw.equals(V3));
+	BOOST_CHECK(V1.xyzw.equals(V1));
+	BOOST_CHECK(V1.xyzw.equals(V3));
+}
+
+BOOST_AUTO_TEST_CASE(equals_specify_ulp) {
+	vmath::core::Vector<float, 4> V1;
+	V1.x = 20.12f;
+	V1.y = 100.89f;
+	V1.z = 18.2f;
+	V1.w = 35.62f;
+	vmath::core::Vector<float, 4> V2;
+	V2.x = 10.34f;
+	V2.y = 15.5f;
+	V2.z = 20.2f;
+	V2.w = 200.34f;
+	vmath::core::Vector<float, 4> V3;
+	V3.x = 20.12f;
+	V3.y = 100.89f;
+	V3.z = 18.2f;
+	V3.w = 35.62f;
+	BOOST_CHECK(!V1.xyzw.equals(V2, 3));
+	BOOST_CHECK(!V2.xyzw.equals(V3, 3));
+	BOOST_CHECK(V1.xyzw.equals(V1, 3));
+	BOOST_CHECK(V1.xyzw.equals(V3, 3));
+}
+
+BOOST_AUTO_TEST_CASE(equals_op) {
+	vmath::core::Vector<float, 4> V1;
+	V1.x = 20.12f;
+	V1.y = 100.89f;
+	V1.z = 18.2f;
+	V1.w = 35.62f;
+	vmath::core::Vector<float, 4> V2;
+	V2.x = 10.34f;
+	V2.y = 15.5f;
+	V2.z = 20.2f;
+	V2.w = 200.34f;
+	vmath::core::Vector<float, 4> V3;
+	V3.x = 20.12f;
+	V3.y = 100.89f;
+	V3.z = 18.2f;
+	V3.w = 35.62f;
+	BOOST_CHECK(V1.xyzw != V2);
+	BOOST_CHECK(V2.xyzw != V3);
+	BOOST_CHECK(V1.xyzw == V1);
+	BOOST_CHECK(V1.xyzw == V3);
 }
 
 BOOST_AUTO_TEST_SUITE_END()
