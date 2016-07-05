@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['det',['det',['../classmath_1_1core_1_1matrix.html#aa7c709e942b49ff9a658e16198388967',1,'math::core::matrix']]],
-  ['dot',['dot',['../classmath_1_1core_1_1quaternion.html#ab1124de9d9a75ca169697fbdbff7adf2',1,'math::core::quaternion::dot()'],['../singletonmath_1_1core_1_1vector.html#a5ad16d2fa4af5a01a40dd039027b0a1e',1,'math::core::vector::dot()']]]
+  ['det',['det',['../classvmath_1_1core_1_1Matrix.html#a02ed88e25bb200c9b186ae8ac61eb678',1,'vmath::core::Matrix']]],
+  ['dot',['dot',['../classvmath_1_1core_1_1Quaternion.html#a10dafab93a2768cf743d5be33a3c727b',1,'vmath::core::Quaternion::dot()'],['../classvmath_1_1core_1_1Vector.html#a1429761cbf50037e85be2c5ef5a0fd7c',1,'vmath::core::Vector::dot()']]]
 ];

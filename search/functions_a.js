@@ -1,7 +1,4 @@
 var searchData=
 [
-  ['reflect',['reflect',['../singletonmath_1_1core_1_1vector.html#abf8be5457a4470179185c6905a10f3be',1,'math::core::vector']]],
-  ['refract',['refract',['../singletonmath_1_1core_1_1vector.html#ad30872030305f77065aad1e7a4a198e0',1,'math::core::vector']]],
-  ['roll',['roll',['../classmath_1_1core_1_1quaternion.html#aa4ed80e5c019e03bb6c6c6fca5892603',1,'math::core::quaternion']]],
-  ['rotation',['rotation',['../classmath_1_1core_1_1matrix.html#a9f091571611ab91e3840d06a6e2e5ac2',1,'math::core::matrix']]]
+  ['quaternion',['Quaternion',['../classvmath_1_1core_1_1Quaternion.html#a119351b06bfa0d9df6023639e16fb60b',1,'vmath::core::Quaternion::Quaternion()'],['../classvmath_1_1core_1_1Quaternion.html#a882e2f5909aeae4decdda18aaa001110',1,'vmath::core::Quaternion::Quaternion(const T x, const T y, const T z, const T w)'],['../classvmath_1_1core_1_1Quaternion.html#a101c299e0ed62a83e7cef2f601098ab9',1,'vmath::core::Quaternion::Quaternion(const T pitch, const T yaw, const T roll)'],['../classvmath_1_1core_1_1Quaternion.html#aaf3154e10020d8ce6deb2c354138da06',1,'vmath::core::Quaternion::Quaternion(const Vector&lt; T, 3 &gt; &amp;axis, const T angle)'],['../classvmath_1_1core_1_1Quaternion.html#ad3b22eb479694b64de987a144f3cd299',1,'vmath::core::Quaternion::Quaternion(const Matrix&lt; T, 4, 4 &gt; &amp;mat)'],['../classvmath_1_1core_1_1Quaternion.html#a4d10b5953d9bea0efd8df2e4cd7385c0',1,'vmath::core::Quaternion::Quaternion(const Quaternion &amp;other)=default'],['../classvmath_1_1core_1_1Quaternion.html#a473ed736bd4cfc4af0bf2ae43e22bfad',1,'vmath::core::Quaternion::Quaternion(Quaternion &amp;&amp;other)=default']]]
 ];

@@ -1,7 +1,7 @@
 var searchData=
 [
-  ['swizzle',['swizzle',['../classmath_1_1core_1_1swizzle.html',1,'math::core']]],
-  ['swizzle2',['swizzle2',['../classmath_1_1core_1_1swizzle2.html',1,'math::core']]],
-  ['swizzle3',['swizzle3',['../classmath_1_1core_1_1swizzle3.html',1,'math::core']]],
-  ['swizzle4',['swizzle4',['../classmath_1_1core_1_1swizzle4.html',1,'math::core']]]
+  ['swizzle',['Swizzle',['../classvmath_1_1core_1_1Swizzle.html',1,'vmath::core']]],
+  ['swizzle2',['Swizzle2',['../classvmath_1_1core_1_1Swizzle2.html',1,'vmath::core']]],
+  ['swizzle3',['Swizzle3',['../classvmath_1_1core_1_1Swizzle3.html',1,'vmath::core']]],
+  ['swizzle4',['Swizzle4',['../classvmath_1_1core_1_1Swizzle4.html',1,'vmath::core']]]
 ];

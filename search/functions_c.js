@@ -1,6 +1,5 @@
 var searchData=
 [
-  ['to_5fmatrix',['to_matrix',['../classmath_1_1core_1_1quaternion.html#a7b756ab778cb0ea863ec24b7dcd3fb25',1,'math::core::quaternion']]],
-  ['translation',['translation',['../classmath_1_1core_1_1matrix.html#a13a893eae7a879ca258b7b2373e79b55',1,'math::core::matrix']]],
-  ['transpose',['transpose',['../classmath_1_1core_1_1matrix.html#a8b163d6b5d7b24c5ff1029468040501a',1,'math::core::matrix']]]
+  ['scale',['scale',['../classvmath_1_1core_1_1Matrix.html#ab6228904cb2d1dfa3183b5f9d8ac01f0',1,'vmath::core::Matrix']]],
+  ['slerp',['slerp',['../classvmath_1_1core_1_1Quaternion.html#ad454fc3f8441269ce16c633f68319c61',1,'vmath::core::Quaternion']]]
 ];

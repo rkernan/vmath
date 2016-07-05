@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['quaternion',['quaternion',['../classmath_1_1core_1_1quaternion.html',1,'math::core']]]
+  ['quaternion',['Quaternion',['../classvmath_1_1core_1_1Quaternion.html',1,'vmath::core']]]
 ];

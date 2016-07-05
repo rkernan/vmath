@@ -1,6 +1,6 @@
 <map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
-<area shape="rect" id="node1" href="$classmath_1_1core_1_1swizzle.html" title="math::core::swizzle\l\&lt; T, N \&gt;" alt="" coords="5,71,141,112"/>
-<area shape="rect" id="node2" href="$classmath_1_1core_1_1swizzle2.html" title="math::core::swizzle2\l\&lt; T, N, E1, E2 \&gt;" alt="" coords="202,5,345,47"/>
-<area shape="rect" id="node3" href="$classmath_1_1core_1_1swizzle3.html" title="math::core::swizzle3\l\&lt; T, N, E1, E2, E3 \&gt;" alt="" coords="201,71,345,112"/>
-<area shape="rect" id="node4" href="$classmath_1_1core_1_1swizzle4.html" title="math::core::swizzle4\l\&lt; T, N, E1, E2, E3, E4 \&gt;" alt="" coords="189,136,357,177"/>
+<area shape="rect" id="node1" href="$classvmath_1_1core_1_1Swizzle.html" title="Base swizzle type. " alt="" coords="5,71,188,112"/>
+<area shape="rect" id="node2" href="$classvmath_1_1core_1_1Swizzle2.html" title="A 2&#45;dimensional vector swizzle. " alt="" coords="248,5,439,47"/>
+<area shape="rect" id="node3" href="$classvmath_1_1core_1_1Swizzle3.html" title="A 3&#45;dimensional vector swizzle. " alt="" coords="248,71,439,112"/>
+<area shape="rect" id="node4" href="$classvmath_1_1core_1_1Swizzle4.html" title="A 4&#45;dimensional vector swizzle. " alt="" coords="236,136,451,177"/>
 </map>
