@@ -474,10 +474,11 @@ public:
 	/*!
 	 * \brief Check vector equality
 	 * \param[in] other Vector to check equality with
-	 * \param[in] epsilon Floating point comparison tolerance
+	 * \param[in] ulp The desired floating point precision in ULPs
 	 * \return True if equal, else false
 	 */
-	bool equals(const Vector<T, N>& other, const T epsilon) const;
+	template<typename U = T, typename = typename std::enable_if<std::is_floating_point<U>::value>::type>
+	bool equals(const Vector<T, N>& other, const int ulp) const;
 
 	/*!
 	 * \brief Equality operator

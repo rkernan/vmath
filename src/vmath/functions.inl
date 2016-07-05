@@ -8,14 +8,10 @@
 namespace vmath {
 
 template<typename T, typename>
-bool equals(const T a, const T b) {
-	static const T epsilon = static_cast<T>(0.00001L);
-	return vmath::equals<T>(a, b, epsilon);
-}
-
-template<typename T, typename>
-bool equals(const T a, const T b, const T epsilon) {
-	return std::abs(a - b) <= epsilon;
+bool equals(const T a, const T b, const int ulp) {
+	return std::abs(a - b) < std::numeric_limits<T>::epsilon() * std::abs(a + b) * ulp ||
+	       // unless the result is sub-normal
+	       std::abs(a - b) < std::numeric_limits<T>::min();
 }
 
 template<typename T, typename>

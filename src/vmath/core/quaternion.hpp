@@ -20,7 +20,6 @@ class Matrix;
 template<typename T>
 class Quaternion {
 public:
-	// FIXME This relies on undefined behavior
 	union {
 		std::array<T, 4> data;
 		// axis coords
@@ -293,6 +292,15 @@ public:
 	 * \return True if they are equal, otherwise false
 	 */
 	bool equals(const Quaternion<T>& other) const;
+
+	/*!
+	 * \brief Check quaternion equality operator
+	 * \param[in] other Quaternion to check equality with
+	 * \param[in] ulp The desired floating point precision in ULPs
+	 * \return True if they are equal, otherwise false
+	 */
+	template<typename U = T, typename = typename std::enable_if<std::is_floating_point<U>::value>::type>
+	bool equals(const Quaternion<T>& other, const int ulp) const;
 
 	/*!
 	 * \brief Check quaternion equality operator

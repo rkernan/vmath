@@ -88,7 +88,17 @@ template<typename T, std::size_t M, std::size_t N>
 bool Matrix<T, M, N>::equals(const Matrix<T, M, N>& other) const {
 	bool equal = true;
 	for (std::size_t i = 0; i < N; i++) {
-		equal = equal && this->data[i] == other.data[i];
+		equal = equal && this->data[i].equals(other.data[i]);
+	}
+	return equal;
+}
+
+template<typename T, std::size_t M, std::size_t N>
+template<typename U, typename>
+bool Matrix<T, M, N>::equals(const Matrix<T, M, N>& other, const int ulp) const {
+	bool equal = true;
+	for (std::size_t i = 0; i < N; i++) {
+		equal = equal && this->data[i].equals(other.data[i], ulp);
 	}
 	return equal;
 }

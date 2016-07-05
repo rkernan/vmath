@@ -209,24 +209,16 @@ Matrix<T, 4> Quaternion<T>::to_matrix() const {
 	return mat;
 }
 
-/*!
- * \brief Specialization for Quaternions containing floats
- * \param[in] h1 Quaternion to check equality with
- * \param[in] h2 Quaternion to check equality with
- * \return True if they are equal, otherwise false
- */
+// Equals specialization for floating point types
 template<typename T>
 static inline typename std::enable_if<std::is_floating_point<T>::value, bool>::type equals_helper(const Quaternion<T>& h1, const Quaternion<T>& h2) {
-	// FIXME Can't specify epsilon
-	return vmath::equals(h1.x, h2.x) && vmath::equals(h1.y, h2.y) && vmath::equals(h1.z, h2.z) && vmath::equals(h1.w, h2.w);
+	return vmath::equals(h1.x, h2.x) &&
+	       vmath::equals(h1.y, h2.y) &&
+	       vmath::equals(h1.z, h2.z) &&
+	       vmath::equals(h1.w, h2.w);
 }
 
-/*!
- * \brief Specialization for Quaternions containing integers or other
- * \param[in] h1 Quaternion to check equality with
- * \param[in] h2 Quaternion to check equality with
- * \return True if they are equal, otherwise false
- */
+// Equals comparison for non floating point types
 template<typename T>
 static inline typename std::enable_if<!std::is_floating_point<T>::value, bool>::type equals_helper(const Quaternion<T>& h1, const Quaternion<T>& h2) {
 	return h1.x == h2.x && h1.y == h2.y && h1.z == h2.z && h1.w == h2.w;
@@ -235,6 +227,15 @@ static inline typename std::enable_if<!std::is_floating_point<T>::value, bool>::
 template<typename T>
 bool Quaternion<T>::equals(const Quaternion<T>& other) const {
 	return equals_helper(*this, other);
+}
+
+template<typename T>
+template<typename U, typename>
+bool Quaternion<T>::equals(const Quaternion<T>& other, const int ulp) const {
+	return vmath::equals(this->x, other.x, ulp) &&
+	       vmath::equals(this->y, other.y, ulp) &&
+	       vmath::equals(this->z, other.z, ulp) &&
+	       vmath::equals(this->w, other.w, ulp);
 }
 
 template<typename T>

@@ -164,6 +164,42 @@ public:
 		return v.to_vector() / s;
 	}
 
+	/*!
+	 * \brief Check vector equality
+	 * \param[in] other Vector to check equality with
+	 * \return True if equal, else false
+	 */
+	bool equals(const Vector<T, 3>& other) const;
+
+	/*!
+	 * \brief Check vector equality
+	 * \param[in] other Vector to check equality with
+	 * \param[in] ulp The desired floating point precision in ULPs
+	 * \return True if equal, else false
+	 */
+	template<typename U = T, typename = typename std::enable_if<std::is_floating_point<U>::value>::type>
+	bool equals(const Vector<T, 3>& other, const int ulp) const;
+
+	/*!
+	 * \brief Equality operator
+	 * \param[in] lhs Vector to check equality
+	 * \param[in] rhs Vector to check equality with
+	 * \return True if equal, else false
+	 */
+	friend bool operator==(const Swizzle3<T, N, E1, E2, E3>& lhs, const Vector<T, 3>& rhs) {
+		return lhs.equals(rhs);
+	}
+
+	/*!
+	 * \brief Inequality operator
+	 * \param[in] lhs Vector to check inequality
+	 * \param[in] rhs Vector to check inequality with
+	 * \return False if equal, else true
+	 */
+	friend bool operator!=(const Swizzle3<T, N, E1, E2, E3>& lhs, const Vector<T, 3>& rhs) {
+		return !lhs.equals(rhs);
+	}
+
 #if defined(VMATH_CORE_SWIZZLE_ENABLE_ELEMENT_ACCESSORS)
 	T getE1() { return this->data[E1]; }
 	T getE2() { return this->data[E2]; }

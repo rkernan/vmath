@@ -102,15 +102,9 @@ Vector<T, N>& Vector<T, N>::normalize() {
 	return *this = this->normal();
 }
 
-/*!
- * \brief Equality helper for floating point equality
- * \param[in] V1 Vector to check equality with
- * \param[in] V2 Vector to check equality with
- * \return True if they are equal, otherwise false
- */
+// Equals specialization for floating point types
 template<typename T, std::size_t N>
 static inline typename std::enable_if<std::is_floating_point<T>::value, bool>::type equals_helper(const Vector<T, N>& v1, const Vector<T, N>& v2) {
-	// FIXME Doesn't allow error resolution
 	bool equal = true;
 	for (std::size_t i = 0; i < N; ++i) {
 		equal = equal && vmath::equals(v1.data[i], v2.data[i]);
@@ -118,12 +112,7 @@ static inline typename std::enable_if<std::is_floating_point<T>::value, bool>::t
 	return equal;
 }
 
-/*!
- * \brief Equality helper for non-floating point equality
- * \param[in] V1 Vector to check equality with.
- * \param[in] V2 Vector to check equality with.
- * \return True if they are equal, otherwise false.
- */
+// Equals specialization for non floating point types
 template<typename T, std::size_t N>
 static inline typename std::enable_if<!std::is_floating_point<T>::value, bool>::type equals_helper(const Vector<T, N>& v1, const Vector<T, N>& v2) {
 	bool equal = true;
@@ -136,6 +125,16 @@ static inline typename std::enable_if<!std::is_floating_point<T>::value, bool>::
 template<typename T, std::size_t N>
 bool Vector<T, N>::equals(const Vector<T, N>& other) const {
 	return equals_helper(*this, other);
+}
+
+template<typename T, std::size_t N>
+template<typename U, typename>
+bool Vector<T, N>::equals(const Vector<T, N>& other, const int ulp) const {
+	bool equal = true;
+	for (std::size_t i = 0; i < N; ++i) {
+		equal = equal && vmath::equals(this->data[i], other.data[i], ulp);
+	}
+	return equal;
 }
 
 template<typename T, std::size_t N>

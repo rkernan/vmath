@@ -5,7 +5,6 @@
 #include <cstddef>
 #include <vmath/core/vector.hpp>
 
-// FIXME need to undefine minor macro
 #undef minor
 
 namespace vmath {
@@ -423,6 +422,15 @@ public:
 	 * \return True if they are equal, otherwise false
 	 */
 	bool equals(const Matrix<T, M, N>& other) const;
+
+	/*!
+	 * \brief Check matrix equality
+	 * \param[in] other Matrix to check equality with
+	 * \param[in] ulp The desired floating point precision in ULPs
+	 * \return True if equal, else false
+	 */
+	template<typename U = T, typename = typename std::enable_if<std::is_floating_point<U>::value>::type>
+	bool equals(const Matrix<T, M, N>& other, const int ulp) const;
 
 	/*!
 	 * \brief Check matrix equality operator

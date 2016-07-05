@@ -74,6 +74,17 @@ Vector<T, 4>& Swizzle4<T, N, E1, E2, E3, E4>::operator/=(const T s) {
 	return this->from_vector(this->to_vector() / s);
 }
 
+template<typename T, std::size_t N, std::size_t E1, std::size_t E2, std::size_t E3, std::size_t E4>
+bool Swizzle4<T, N, E1, E2, E3, E4>::equals(const Vector<T, 4>& other) const {
+	return this->to_vector().equals(other);
+}
+
+template<typename T, std::size_t N, std::size_t E1, std::size_t E2, std::size_t E3, std::size_t E4>
+template<typename U, typename>
+bool Swizzle4<T, N, E1, E2, E3, E4>::equals(const Vector<T, 4>& other, const int ulp) const {
+	return this->to_vector().equals(other, ulp);
+}
+
 }
 }
 
