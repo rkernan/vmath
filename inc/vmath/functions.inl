@@ -4,6 +4,7 @@
 #include <vmath/functions.hpp>
 
 #include <cmath>
+#include <limits>
 
 namespace vmath {
 
