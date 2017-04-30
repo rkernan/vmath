@@ -1,7 +1,7 @@
 find_package(Doxygen)
 option(BUILD_DOCUMENTATION "Build HTML base API documentation (requires Doxygen)" ${DOXYGEN_FOUND})
 
-if (BUILD_DOCUMENTATION)
+if(BUILD_DOCUMENTATION)
     set(DOXYFILE_IN "${CMAKE_CURRENT_SOURCE_DIR}/Doxyfile.in")
     set(DOXYFILE "${CMAKE_CURRENT_BINARY_DIR}/Doxyfile}")
 
@@ -16,5 +16,5 @@ if (BUILD_DOCUMENTATION)
         COMMENT "Generating HTML documentation" VERBATIM
     )
 else()
-    message(STATUS "Skipping documentation build")
+    message(WARNING "Skipping documentation build")
 endif()
