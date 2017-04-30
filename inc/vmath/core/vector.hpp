@@ -11,7 +11,6 @@
 
 namespace vmath {
 namespace core {
-namespace {
 
 /*!
  * \brief Definition of the components available in a generic vector
@@ -301,8 +300,6 @@ public:
 	VectorComponents<T, 4>& operator=(VectorComponents<T, 4>&& other) = default;
 };
 
-}
-
 /*!
  * \brief A vector with generic size and type
  * \tparam T Storage type
@@ -561,5 +558,26 @@ public:
 }
 
 #include <vmath/core/vector.inl>
+
+#ifndef VMATH_HEADER_ONLY
+extern template class vmath::core::Vector<float, 2>;
+extern template class vmath::core::Vector<float, 3>;
+extern template class vmath::core::Vector<float, 4>;
+extern template class vmath::core::Vector<double, 2>;
+extern template class vmath::core::Vector<double, 3>;
+extern template class vmath::core::Vector<double, 4>;
+extern template class vmath::core::Vector<long double, 2>;
+extern template class vmath::core::Vector<long double, 3>;
+extern template class vmath::core::Vector<long double, 4>;
+extern template class vmath::core::Vector<bool, 2>;
+extern template class vmath::core::Vector<bool, 3>;
+extern template class vmath::core::Vector<bool, 4>;
+extern template class vmath::core::Vector<int, 2>;
+extern template class vmath::core::Vector<int, 3>;
+extern template class vmath::core::Vector<int, 4>;
+extern template class vmath::core::Vector<unsigned int, 2>;
+extern template class vmath::core::Vector<unsigned int, 3>;
+extern template class vmath::core::Vector<unsigned int, 4>;
+#endif
 
 #endif

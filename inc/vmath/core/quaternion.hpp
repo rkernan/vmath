@@ -355,4 +355,10 @@ public:
 
 #include <vmath/core/quaternion.inl>
 
+#ifndef VMATH_HEADER_ONLY
+extern template class vmath::core::Quaternion<float>;
+extern template class vmath::core::Quaternion<double>;
+extern template class vmath::core::Quaternion<long double>;
+#endif
+
 #endif

@@ -18,8 +18,6 @@ namespace core {
 template<std::size_t M, std::size_t N>
 struct is_square_matrix : std::integral_constant<bool, N == M> {};
 
-namespace {
-
 /*!
  * \brief Column-major definition of the components available in a generic matrix
  * \tparam T Storage type
@@ -291,8 +289,6 @@ public:
 	MatrixComponents<T, M, 4>& operator=(MatrixComponents<T, M, 4>&& other) = default;
 };
 
-}
-
 /*!
  * \brief A column-major Matrix with generic size and type
  * \tparam T Storage type.
@@ -552,5 +548,35 @@ public:
 }
 
 #include <vmath/core/matrix.inl>
+
+#ifndef VMATH_HEADER_ONLY
+extern template class vmath::core::Matrix<float, 2>;
+extern template class vmath::core::Matrix<float, 2, 3>;
+extern template class vmath::core::Matrix<float, 2, 4>;
+extern template class vmath::core::Matrix<float, 3, 2>;
+extern template class vmath::core::Matrix<float, 3>;
+extern template class vmath::core::Matrix<float, 3, 4>;
+extern template class vmath::core::Matrix<float, 4, 2>;
+extern template class vmath::core::Matrix<float, 4, 3>;
+extern template class vmath::core::Matrix<float, 4>;
+extern template class vmath::core::Matrix<double, 2>;
+extern template class vmath::core::Matrix<double, 2, 3>;
+extern template class vmath::core::Matrix<double, 2, 4>;
+extern template class vmath::core::Matrix<double, 3, 2>;
+extern template class vmath::core::Matrix<double, 3>;
+extern template class vmath::core::Matrix<double, 3, 4>;
+extern template class vmath::core::Matrix<double, 4, 2>;
+extern template class vmath::core::Matrix<double, 4, 3>;
+extern template class vmath::core::Matrix<double, 4>;
+extern template class vmath::core::Matrix<long double, 2>;
+extern template class vmath::core::Matrix<long double, 2, 3>;
+extern template class vmath::core::Matrix<long double, 2, 4>;
+extern template class vmath::core::Matrix<long double, 3, 2>;
+extern template class vmath::core::Matrix<long double, 3>;
+extern template class vmath::core::Matrix<long double, 3, 4>;
+extern template class vmath::core::Matrix<long double, 4, 2>;
+extern template class vmath::core::Matrix<long double, 4, 3>;
+extern template class vmath::core::Matrix<long double, 4>;
+#endif
 
 #endif
