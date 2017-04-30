@@ -15,5 +15,6 @@ if (BUILD_DOCUMENTATION)
         WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}
         COMMENT "Generating HTML documentation" VERBATIM
     )
+else()
+    message(STATUS "Skipping documentation build")
 endif()
-
