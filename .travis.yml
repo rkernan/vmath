@@ -23,5 +23,4 @@ script:
   - mkdir build
   - cd build
   - cmake -DVMATH_BUILD_DOC=OFF ..
-  - make
-  - make test
+  - make all check
