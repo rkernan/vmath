@@ -1,21 +1,22 @@
-cmake_minimum_required(VERSION 2.8)
+cmake_minimum_required(VERSION 3.0.2 FATAL_ERROR)
 
-set(VERSION_MAJOR 1 CACHE STRING "Project major version number")
-set(VERSION_MINOR 0 CACHE STRING "Project minor version number")
-set(VERSION_PATCH 1 CACHE STRING "Project patch version number")
-mark_as_advanced(VERSION_MAJOR VERSION_MINOR VERSION_PATCH)
-
-project("vmath" VERSION ${VERSION_MAJOR}.${VERSION_MINOR}.${VERSION_PATCH} LANGUAGES CXX)
-message(STATUS "Project Version: ${PROJECT_VERSION}")
+set(PROJECT_NAME "vmath")
+set(PROJECT_VERSION_MAJOR 1 CACHE STRING "Project major version number")
+set(PROJECT_VERSION_MINOR 1 CACHE STRING "Project minor version number")
+set(PROJECT_VERSION_PATCH 0 CACHE STRING "Project patch version number")
+mark_as_advanced(PROJECT_VERSION_MAJOR PROJECT_VERSION_MINOR PROJECT_VERSION_PATCH)
+project(${PROJECT_NAME} VERSION ${PROJECT_VERSION_MAJOR}.${PROJECT_VERSION_MINOR}.${PROJECT_VERSION_PATCH} LANGUAGES CXX)
+message(STATUS "Project: ${PROJECT_NAME} ${PROJECT_VERSION}")
 
 set(CMAKE_CXX_STANDARD 14)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}/inc)
-add_library(vmath SHARED src/vmath.cpp)
+add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/inc/vmath)
+add_library(${PROJECT_NAME} SHARED ${CMAKE_CURRENT_SOURCE_DIR}/src/vmath.cpp)
 
 enable_testing()
 add_custom_target(check COMMAND ${CMAKE_CTEST_COMMAND})
-add_subdirectory(test)
+add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/test)
 
-add_subdirectory(doc)
+add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/doc)
