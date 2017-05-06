@@ -11,4 +11,4 @@ Full API documentation can be found [here](http://kernan.github.io/vmath/)
 
 ## License
 
-MIT License. Copyright (c) 2013-2016 Robert Kernan.
+MIT License. Copyright (c) 2013-2017 Robert Kernan.
