@@ -63,7 +63,7 @@ before_script:
   # create build environment
   - mkdir build
   - cd build
-  - cmake .. -DCMAKE_CXX_COMPILER=${CXX_COMPILER} -DBOOST_ROOT=${DEPS_DIR}/boost
+  - cmake .. -DCMAKE_CXX_COMPILER=${CXX_COMPILER} -DBOOST_ROOT=${BOOST_DIR}
 
 script:
   - make
