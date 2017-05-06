@@ -1,5 +1,7 @@
 language: c++
 sudo: false
+os: linux
+compiler: clang
 
 branches:
   only:
@@ -11,11 +13,6 @@ cache:
     - ${TRAVIS_BUILD_DIR}/deps/cmake
     - ${TRAVIS_BUILD_DIR}/deps/llvm-3.9.0
     - ${TRAIVS_BUILD_DIR}/deps/boost-1.63.0
-
-matrix:
-  - os: linux
-    env: LLVM_VERSION="3.9.0" BOOST_VERSION="1.63.0"
-    compiler: clang
 
 install:
   - DEPS_DIR="${TRAVIS_BUILD_DIR}/deps"
@@ -31,6 +28,7 @@ install:
     export PATH=${CMAKE_DIR}/bin:${PATH}
   # install llvm and clang
   - |
+    LLVM_VERSION="3.9.0"
     LLVM_DIR=${DEPS_DIR}/llvm-${LLVM_VERSION}
     if [[ -z "$(ls -A ${LLVM_DIR})" ]]; then
       CLANG_URL=http://llvm.org/releases/${LLVM_VERSION}/clang+llvm-${LLVM_VERSION}-x86_64-linux-gnu-ubuntu-14.04.tar.xz
@@ -38,9 +36,9 @@ install:
       travis_retry wget --quiet -O - ${CLANG_URL} | tar --strip-components=1 -xJ -C ${LLVM_DIR}/clang
     fi
     export PATH=${LLVM_DIR}/clang/bin:${PATH}
-    export CXX=clang++ CC=clang
   # install boost headers
   - |
+    BOOST_VER="3.9.0"
     BOOST_DIR=${DEPS_DIR}/boost-${BOOST_VERSION}
     if [[ -z "$(ls -A ${BOOST_DIR})" ]]; then
       mkdir -p ${BOOST_DIR}
