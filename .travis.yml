@@ -12,9 +12,10 @@ cache:
     - ${TRAVIS_BUILD_DIR}/deps/llvm-3.9.0
     - ${TRAIVS_BUILD_DIR}/deps/boost-1.63.0
 
-- os: linux
-- env: LLVM_VERSION="3.9.0" BOOST_VERSION="1.63.0"
-- compiler: clang
+matrix:
+  - os: linux
+    env: LLVM_VERSION="3.9.0" BOOST_VERSION="1.63.0"
+    compiler: clang
 
 install:
   - DEPS_DIR="${TRAVIS_BUILD_DIR}/deps"
