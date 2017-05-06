@@ -38,7 +38,7 @@ install:
     export PATH=${LLVM_DIR}/clang/bin:${PATH}
   # install boost headers
   - |
-    BOOST_VER="3.9.0"
+    BOOST_VERSION="3.9.0"
     BOOST_DIR=${DEPS_DIR}/boost-${BOOST_VERSION}
     if [[ -z "$(ls -A ${BOOST_DIR})" ]]; then
       mkdir -p ${BOOST_DIR}
