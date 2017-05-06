@@ -17,15 +17,12 @@ compiler:
 
 matrix:
   - os: linux
-    env: LLVM_VERSION=default BOOST_VERSION=default
+    env: LLVM_VERSION="3.9.0" BOOST_VERSION="1.63.0"
     compiler: clang
 
 install:
   - DEPS_DIR="${TRAVIS_BUILD_DIR}/deps"
   - mkdir -p ${DEPS_DIR} && cd ${DEPS_DIR}
-  # default versions
-  - if [[ "${LLVM_VERSION}" == "default" ]]; then LLVM_VERSION="3.9.0"; fi
-  - if [[ "${BOOST_VERSION}" == "default" ]]; then LLVM_VERSION="1.63.0"; fi
   # install cmake
   - |
     CMAKE_DIR=${DEPS_DIR}/cmake
