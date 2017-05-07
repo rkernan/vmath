@@ -32,7 +32,7 @@ before_script:
   # create build environment
   - mkdir build
   - cd build
-  - cmake .. -DVMATH_BUILD_DOC=OFF
+  - cmake .. -DBIULD_DOCUMENTATION=OFF
 
 script:
   - make
