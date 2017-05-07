@@ -8,57 +8,31 @@ branches:
     - master
     - develop
 
-cache:
-  directories:
-    - ${TRAVIS_BUILD_DIR}/deps/cmake
-    - ${TRAVIS_BUILD_DIR}/deps/llvm-3.9.0
-    - ${TRAIVS_BUILD_DIR}/deps/boost-1.63.0
+addons:
+  apt:
+    sources:
+      - ubuntu-toolchain-r-test
+      - llvm-toolchain-precise-3.7
+      - george-edison55-precise-backports
+    packages:
+      - clang-3.7
+      - libboost-dev
+      - libboost-test-dev
+      - cmake
+      - cmake-data
 
 install:
-  - DEPS_DIR="${TRAVIS_BUILD_DIR}/deps"
-  - mkdir -p ${DEPS_DIR} && cd ${DEPS_DIR}
-  # install cmake
-  - |
-    CMAKE_DIR=${DEPS_DIR}/cmake
-    if [[ -z "$(ls -A ${CMAKE_DIR})" ]]; then
-      mkdir -p ${CMAKE_DIR}
-      CMAKE_URL=http://www.cmake.org/files/v3.2/cmake-3.2.1-Linux-x86_64.tar.gz
-      travis_retry wget --no-check-certificate --quiet -O - ${CMAKE_URL} | tar --strip-components=1 -xz -C ${CMAKE_DIR}
-    fi
-    export PATH=${CMAKE_DIR}/bin:${PATH}
-  # install llvm and clang
-  - |
-    LLVM_VERSION="3.9.0"
-    LLVM_DIR=${DEPS_DIR}/llvm-${LLVM_VERSION}
-    if [[ -z "$(ls -A ${LLVM_DIR})" ]]; then
-      CLANG_URL=http://llvm.org/releases/${LLVM_VERSION}/clang+llvm-${LLVM_VERSION}-x86_64-linux-gnu-ubuntu-14.04.tar.xz
-      mkdir -p ${LLVM_DIR} ${LLVM_DIR}/build ${LLVM_DIR}/clang
-      travis_retry wget --quiet -O - ${CLANG_URL} | tar --strip-components=1 -xJ -C ${LLVM_DIR}/clang
-    fi
-    export PATH=${LLVM_DIR}/clang/bin:${PATH}
-  # install boost headers
-  - |
-    BOOST_VERSION="3.9.0"
-    BOOST_DIR=${DEPS_DIR}/boost-${BOOST_VERSION}
-    if [[ -z "$(ls -A ${BOOST_DIR})" ]]; then
-      mkdir -p ${BOOST_DIR}
-      BOOST_URL=http://sourceforge.net/projects/boost/files/boost/${BOOST_VERSION}/boost_${BOOST_VERSION//\./_}.tar.gz
-      travis_retry wget --quiet -O - ${BOOST_URL} | tar --strip-components=1 -xz -C ${BOOST_DIR}
-    fi
+  - if [ "$CXX" == "clang++" ]; then export CXX="clang++-3.7" CC="clang-3.7"; fi
 
 before_script:
-  - cd ${TRAVIS_BUILD_DIR}
-  # useful stats
-  - free
-  - vmstat
-  - ps aux --sort=rss | head -n 10
-  # verify tool versions
+  # verify tools
+  - which $CXX
   - $CXX --version
   - cmake --version
   # create build environment
   - mkdir build
   - cd build
-  - cmake .. -DBOOST_ROOT=${BOOST_DIR}
+  - cmake .. -DVMATH_BUILD_DOC=OFF
 
 script:
   - make
