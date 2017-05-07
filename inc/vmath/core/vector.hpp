@@ -3,6 +3,7 @@
 
 #include <array>
 #include <cstddef>
+#include <ostream>
 #include <type_traits>
 #include <vmath/core/swizzle/swizzle2.hpp>
 #include <vmath/core/swizzle/swizzle3.hpp>
@@ -342,12 +343,6 @@ public:
 	 */
 	Vector<T, N>& operator+=(const Vector<T, N>& v);
 
-	/*!
-	 * \brief Component-wise addition operator
-	 * \param[in] lhs Vector to add to
-	 * \param[in] rhs Vector to add
-	 * \return The component-wise sum
-	 */
 	friend Vector<T, N> operator+(Vector<T, N> lhs, const Vector<T, N>& rhs) {
 		return lhs += rhs;
 	}
@@ -359,12 +354,6 @@ public:
 	 */
 	Vector<T, N>& operator-=(const Vector<T, N>& v);
 
-	/*!
-	 * \brief Component-wise subtraction operator
-	 * \param[in] lhs Vector to subtract from
-	 * \param[in] rhs Vector to subtract
-	 * \return The component-wise difference
-	 */
 	friend Vector<T, N> operator-(Vector<T, N> lhs, const Vector<T, N>& rhs) {
 		return lhs -= rhs;
 	}
@@ -376,12 +365,6 @@ public:
 	 */
 	Vector<T, N>& operator*=(const Vector<T, N>& v);
 
-	/*!
-	 * \brief Component-wise multiplication operator
-	 * \param[in] lhs Vector to multiply
-	 * \param[in] rhs Vector to multiply by
-	 * \return The component-wise product
-	 */
 	friend Vector<T, N> operator*(Vector<T, N> lhs, const Vector<T, N>& rhs) {
 		return lhs *= rhs;
 	}
@@ -393,12 +376,6 @@ public:
 	 */
 	Vector<T, N>& operator/=(const Vector<T, N>& v);
 
-	/*!
-	 * \brief Component-wise division operator
-	 * \param[in] lhs Vector to divide
-	 * \param[in] rhs Vector to divide by
-	 * \return The component-wise quotient
-	 */
 	friend Vector<T, N> operator/(Vector<T, N> lhs, const Vector<T, N>& rhs) {
 		return lhs /= rhs;
 	}
@@ -410,12 +387,6 @@ public:
 	 */
 	Vector<T, N>& operator*=(const T s);
 
-	/*!
-	 * \brief Scalar multiplication operator
-	 * \param[in] v Vector to multiply
-	 * \param[in] s Scalar to multiply by
-	 * \return Vector-scalar product
-	 */
 	friend Vector<T, N> operator*(Vector<T, N> v, const T s) {
 		return v *= s;
 	}
@@ -427,12 +398,6 @@ public:
 	 */
 	Vector<T, N>& operator/=(const T s);
 
-	/*!
-	 * \brief Scalar division operator
-	 * \param[in] v Vector to divide
-	 * \param[in] s Scalar to divide by
-	 * \return Vector-scalar quotient
-	 */
 	friend Vector<T, N> operator/(Vector<T, N> v, const T s) {
 		return v /= s;
 	}
@@ -477,22 +442,10 @@ public:
 	template<typename U = T, typename = typename std::enable_if<std::is_floating_point<U>::value>::type>
 	bool equals(const Vector<T, N>& other, const int ulp) const;
 
-	/*!
-	 * \brief Equality operator
-	 * \param[in] lhs Vector to check equality
-	 * \param[in] rhs Vector to check equality with
-	 * \return True if equal, else false
-	 */
 	friend bool operator==(const Vector<T, N>& lhs, const Vector<T, N>& rhs) {
 		return lhs.equals(rhs);
 	}
 
-	/*!
-	 * \brief Inequality operator
-	 * \param[in] lhs Vector to check inequality
-	 * \param[in] rhs Vector to check inequality with
-	 * \return False if equal, else true
-	 */
 	friend bool operator!=(const Vector<T, N>& lhs, const Vector<T, N>& rhs) {
 		return !(lhs.equals(rhs));
 	}
@@ -552,6 +505,18 @@ public:
 	 */
 	template<typename U = T, typename = typename std::enable_if<N == 3, U>::type>
 	static Vector<T, N> cross(const Vector<T, N>& v1, const Vector<T, N>& v2);
+
+	friend std::ostream& operator<<(std::ostream& os, const Vector<T, N>& vec) {
+		os << "<";
+		for (std::size_t i = 0; i < N; i++) {
+			if (i > 0) {
+				os << ",";
+			}
+			os << vec.data[i];
+		}
+		os << ">";
+		return os;
+	}
 };
 
 }

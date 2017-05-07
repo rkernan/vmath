@@ -3,6 +3,7 @@
 
 #include <array>
 #include <cstddef>
+#include <ostream>
 #include <vmath/core/vector.hpp>
 
 #undef minor
@@ -332,12 +333,6 @@ public:
 	 */
 	Matrix<T, M, N>& operator+=(const Matrix<T, M, N>& w);
 
-	/*!
-	 * \brief Matrix addition operator
-	 * \param[in] lhs Matrix to add to
-	 * \param[in] rhs Matrix to add
-	 * \return Matrix sum
-	 */
 	friend Matrix<T, M, N> operator+(Matrix<T, M, N>& lhs, const Matrix<T, M, N>& rhs) {
 		lhs += rhs;
 		return lhs;
@@ -350,12 +345,6 @@ public:
 	 */
 	Matrix<T, M, N>& operator-=(const Matrix<T, M, N>& w);
 
-	/*!
-	 * \brief Matrix subtraction operator
-	 * \param[in] lhs Matrix to subtract from
-	 * \param[in] rhs Matrix to subtract
-	 * \return Matrix difference
-	 */
 	friend Matrix<T, M, N> operator-(Matrix<T, M, N>& lhs, const Matrix<T, M, N>& rhs) {
 		lhs -= rhs;
 		return lhs;
@@ -377,12 +366,6 @@ public:
 	 */
 	Matrix<T, M, N>& operator*=(const T s);
 
-	/*!
-	 * \brief Scalar multiplication operator
-	 * \param[in] w Matrix to multiply
-	 * \param[in] s Scalar to multiply by
-	 * \return Matrix-scalar product
-	 */
 	friend Matrix<T, M, N> operator*(Matrix<T, M, N> w, const T s) {
 		w *= s;
 		return w;
@@ -395,12 +378,6 @@ public:
 	 */
 	Matrix<T, M, N>& operator/=(const T s);
 
-	/*!
-	 * \brief Scalar division operator
-	 * \param[in] w Matrix to divide
-	 * \param[in] s Scalar to divide by
-	 * \return Matrix-scalar quotient
-	 */
 	friend Matrix<T, M, N> operator/(Matrix<T, M, N> w, const T s) {
 		w /= s;
 		return w;
@@ -428,22 +405,10 @@ public:
 	template<typename U = T, typename = typename std::enable_if<std::is_floating_point<U>::value>::type>
 	bool equals(const Matrix<T, M, N>& other, const int ulp) const;
 
-	/*!
-	 * \brief Check matrix equality operator
-	 * \param[in] lhs Matrix to check equality with
-	 * \param[in] rhs Matrix to check equality with
-	 * \return True if they are equal, otherwise false
-	 */
 	friend bool operator==(const Matrix<T, M, N>& lhs, const Matrix<T, M, N>& rhs) {
 		return lhs.equals(rhs);
 	}
 
-	/*!
-	 * \brief Check Matrix inequality operator
-	 * \param[in] lhs Matrix to check inequality with
-	 * \param[in] rhs Matrix to check inequality with
-	 * \return False if they are equal, otherwise true
-	 */
 	friend bool operator!=(const Matrix<T, M, N>& lhs, const Matrix<T, M, N>& rhs) {
 		return !lhs.equals(rhs);
 	}
@@ -542,6 +507,25 @@ public:
 	 */
 	template<typename U = T, typename = typename std::enable_if<is_square_matrix<M, N>::value && M == 4, U>::type>
 	static Matrix<T, M, N> perspective(const T fov, const T aspect, const T near, const T far);
+
+	friend std::ostream& operator<<(std::ostream& os, const Matrix<T, M, N>& mat) {
+		os << "[";
+		for (std::size_t i = 0; i < M; i++) {
+			if ( i > 0) {
+				os << ",";
+			}
+			os << "<";
+			for (std::size_t j = 0; j < N; j++) {
+				if (j > 0) {
+					os << ",";
+				}
+				os << mat.data[i][j];
+			}
+			os << ">";
+		}
+		os << "]";
+		return os;
+	}
 };
 
 }

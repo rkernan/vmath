@@ -3,6 +3,7 @@
 
 #include <array>
 #include <cstddef>
+#include <ostream>
 
 namespace vmath {
 namespace core {
@@ -120,12 +121,6 @@ public:
 	 */
 	Quaternion<T>& operator+=(const Quaternion<T>& h);
 
-	/*!
-	 * \brief Component-wise addition operator
-	 * \param[in] lhs Quaternion to add to
-	 * \param[in] rhs Quaternion to add
-	 * \return Component-wise sum
-	 */
 	friend Quaternion<T> operator+(Quaternion<T> lhs, const Quaternion<T>& rhs) {
 		lhs += rhs;
 		return lhs;
@@ -138,12 +133,6 @@ public:
 	 */
 	Quaternion<T>& operator-=(const Quaternion<T>& h);
 
-	/*!
-	 * \brief Component-wise subtraction operator
-	 * \param[in] lhs Quaternion to subtract from
-	 * \param[in] rhs Quaternion to subtract
-	 * \return Component-wise difference
-	 */
 	friend Quaternion<T> operator-(Quaternion<T> lhs, const Quaternion<T>& rhs) {
 		lhs -= rhs;
 		return lhs;
@@ -158,12 +147,6 @@ public:
 	 */
 	Quaternion<T>& operator*=(const Quaternion<T>& h);
 
-	/*!
-	 * \brief Component-wise subtraction operator
-	 * \param[in] lhs Quaternion to multiply
-	 * \param[in] rhs Quaternion to multiply by
-	 * \return Component-wise difference
-	 */
 	friend Quaternion<T> operator*(Quaternion<T> lhs, const Quaternion<T>& rhs) {
 		lhs *= rhs;
 		return lhs;
@@ -185,12 +168,6 @@ public:
 	 */
 	Quaternion<T>& operator*=(const T s);
 
-	/*!
-	 * \brief Scalar multiplication operator
-	 * \param[in] h Quaternion to multiply
-	 * \param[in] s Scalar to multiply by
-	 * \return Quaternion-scalar product
-	 */
 	friend Quaternion<T> operator*(Quaternion<T> h, const T s) {
 		h *= s;
 		return h;
@@ -203,12 +180,6 @@ public:
 	 */
 	Quaternion<T>& operator/=(const T s);
 
-	/*!
-	 * \brief Scalar division operator
-	 * \param[in] h Quaternion to divide
-	 * \param[in] s Scalar to divide by
-	 * \return Quaternion-scalar quotient
-	 */
 	friend Quaternion<T> operator/(Quaternion<T> h, const T s) {
 		h /= s;
 		return h;
@@ -302,22 +273,10 @@ public:
 	template<typename U = T, typename = typename std::enable_if<std::is_floating_point<U>::value>::type>
 	bool equals(const Quaternion<T>& other, const int ulp) const;
 
-	/*!
-	 * \brief Check quaternion equality operator
-	 * \param[in] lhs Quaternion to check equality
-	 * \param[in] rhs Quaternion to check equality with
-	 * \return True if they are equal, otherwise false
-	 */
 	friend bool operator==(const Quaternion<T>& lhs, const Quaternion<T>& rhs) {
 		return lhs.equals(rhs);
 	}
 
-	/*!
-	 * \brief Check quaternion inequality operator
-	 * \param[in] lhs Quaternion to check inequality
-	 * \param[in] rhs Quaternion to check inequality with
-	 * \return False if they are equal, otherwise true
-	 */
 	friend bool operator!=(const Quaternion<T>& lhs, const Quaternion<T>& rhs) {
 		return !lhs.equals(rhs);
 	}
@@ -348,6 +307,11 @@ public:
 	 * \return Interpolated quaternion
 	 */
 	static Quaternion<T> slerp(const Quaternion<T>& start, const Quaternion<T>& end, const T t, const bool shortest = true);
+
+	friend std::ostream& operator<<(std::ostream& os, const Quaternion<T>& quat) {
+		os << "<" << quat.data[0] << "," << quat.data[1] << "," << quat.data[2] << "," << quat.data[3] << ">";
+		return os;
+	}
 };
 
 }
