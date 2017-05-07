@@ -1,5 +1,5 @@
 # vmath
-[![Build Status](https://travis-ci.org/kernan/vmath.svg?branch=develop)](https://travis-ci.org/kernan/vmath)
+[![Build Status](https://travis-ci.org/kernan/vmath.svg?branch=master)](https://travis-ci.org/kernan/vmath)
 
 ## Introduction
 
