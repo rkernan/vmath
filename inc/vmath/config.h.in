@@ -1,6 +1,0 @@
-#ifndef VMATH_CONFIG_H
-#define VMATH_CONFIG_H
-
-#define VMATH_VERSION "${PROJECT_VERSION}"
-
-#endif
