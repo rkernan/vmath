@@ -10,4 +10,5 @@
 #define TOLERANCE 1e-4f
 
 #include <boost/mpl/list.hpp>
-typedef boost::mpl::list< float, double, long double> float_types;
+typedef boost::mpl::list<float, double, long double> floating_point_types;
+typedef boost::mpl::list<short int, unsigned short int, int, unsigned int, long int, unsigned long int, long long int, unsigned long long int> integral_types;
