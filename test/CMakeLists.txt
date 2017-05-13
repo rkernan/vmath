@@ -22,6 +22,7 @@ endfunction()
 add_boost_test(vector2.cpp)
 add_boost_test(vector3.cpp)
 add_boost_test(vector4.cpp)
+add_boost_test(functions.cpp)
 
 #file(GLOB TEST_SRCS RELATIVE ${CMAKE_CURRENT_SOURCE_DIR} *.cpp)
 #foreach(TEST_SRC ${TEST_SRCS})
