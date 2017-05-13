@@ -47,7 +47,8 @@ namespace vmath {
  * \tparam T Storage type
  */
 template<typename T>
-struct Vector<T, 3> {
+class Vector<T, 3> {
+public:
 	union {
 		std::array<T, 3> data;
 		// axis coords

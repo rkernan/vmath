@@ -40,7 +40,8 @@ namespace vmath {
  * Vector specialization for 2-dimensional vectors
  */
 template<typename T>
-struct Vector<T, 2> {
+class Vector<T, 2> {
+public:
 	union {
 		std::array<T, 2> data;
 		// axis coords

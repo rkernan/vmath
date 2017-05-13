@@ -10,7 +10,8 @@ namespace vmath {
  * Vector of generic length
  */
 template<typename T, std::size_t N>
-struct Vector {
+class Vector {
+public:
 	std::array<T, N> data;
 };
 
