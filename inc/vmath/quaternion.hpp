@@ -6,7 +6,6 @@
 #include <ostream>
 #include <type_traits>
 #include <vmath/vector3.hpp>
-#include <vmath/vector4.hpp>
 
 #define VMATH_QUATERNION_BINARY_SCALAR_OPERATOR(OP) \
 	friend Quaternion<T> operator OP (Quaternion<T> h, const T& s) { \
