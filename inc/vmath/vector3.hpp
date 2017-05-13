@@ -4,22 +4,18 @@
 #include <array>
 #include <cmath>
 #include <ostream>
+#include <type_traits>
 #include <vmath/swizzle.hpp>
 #include <vmath/vector.hpp>
 #include <vmath/vector2.hpp>
 
 #define VMATH_VECTOR3_BINARY_SCALAR_OPERATOR(OP) \
-	template<typename T> \
-	Vector<T, 3> operator OP (Vector<T, 3> v, const T s) { \
+	friend Vector<T, 3> operator OP (Vector<T, 3> v, const T& s) { \
 		return v OP##= s; \
 	} \
-	template<typename T> \
-	Vector<T, 3> operator OP (const T s, const Vector<T, 3>& v) { \
-		return v * s; \
-	}
 
 #define VMATH_VECTOR3_BINARY_SCALAR_OPERATOR_ASSIGN(OP) \
-	Vector<T, 3>& operator OP (const T s) { \
+	Vector<T, 3>& operator OP (const T& s) { \
 		this->x OP s; \
 		this->y OP s; \
 		this->z OP s; \
@@ -27,9 +23,8 @@
 	}
 
 #define VMATH_VECTOR3_BINARY_COMPONENTWISE_OPERATOR(OP) \
-	template<typename T> \
-	Vector<T, 3> operator OP (Vector<T, 3> v1, const Vector<T, 3>& v2) { \
-		return v1 OP##= v2; \
+	friend Vector<T, 3> operator OP (Vector<T, 3> lhs, const Vector<T, 3>& rhs) { \
+		return lhs OP##= rhs; \
 	}
 
 #define VMATH_VECTOR3_BINARY_COMPONENTWISE_OPERATOR_ASSIGN(OP) \
@@ -43,8 +38,7 @@
 namespace vmath {
 
 /*!
- * \brief Vector specialization for 3-dimensional vectors
- * \tparam T Storage type
+ * Vector specialization for 3-dimensional vectors
  */
 template<typename T>
 class Vector<T, 3> {
@@ -69,8 +63,8 @@ public:
 	};
 
 	Vector() : x(), y(), z() {}
-	Vector(const T x, const T y, const T z) : x(x), y(y), z(z) {}
-	Vector(const Vector<T, 2>& v, const T z) : x(v.x), y(v.y), z(z) {}
+	Vector(const T& x, const T& y, const T& z) : x(x), y(y), z(z) {}
+	Vector(const Vector<T, 2>& v, const T& z) : x(v.x), y(v.y), z(z) {}
 
 	T operator[](const std::size_t i) const {
 		return this->data.at(i);
@@ -80,14 +74,21 @@ public:
 		return this->data.at(i);
 	}
 
+	VMATH_VECTOR3_BINARY_SCALAR_OPERATOR_ASSIGN(*=)
+	VMATH_VECTOR3_BINARY_SCALAR_OPERATOR_ASSIGN(/=)
+
+	VMATH_VECTOR3_BINARY_SCALAR_OPERATOR(*)
+	VMATH_VECTOR3_BINARY_SCALAR_OPERATOR(/)
+
 	VMATH_VECTOR3_BINARY_COMPONENTWISE_OPERATOR_ASSIGN(+=)
 	VMATH_VECTOR3_BINARY_COMPONENTWISE_OPERATOR_ASSIGN(-=)
 	VMATH_VECTOR3_BINARY_COMPONENTWISE_OPERATOR_ASSIGN(*=)
 	VMATH_VECTOR3_BINARY_COMPONENTWISE_OPERATOR_ASSIGN(/=)
-	VMATH_VECTOR3_BINARY_COMPONENTWISE_OPERATOR_ASSIGN(%=)
-	VMATH_VECTOR3_BINARY_SCALAR_OPERATOR_ASSIGN(*=)
-	VMATH_VECTOR3_BINARY_SCALAR_OPERATOR_ASSIGN(/=)
-	VMATH_VECTOR3_BINARY_SCALAR_OPERATOR_ASSIGN(%=)
+
+	VMATH_VECTOR3_BINARY_COMPONENTWISE_OPERATOR(+)
+	VMATH_VECTOR3_BINARY_COMPONENTWISE_OPERATOR(-)
+	VMATH_VECTOR3_BINARY_COMPONENTWISE_OPERATOR(*)
+	VMATH_VECTOR3_BINARY_COMPONENTWISE_OPERATOR(/)
 
 	Vector<T, 3> operator-() const {
 		return *this * static_cast<T>(-1.0);
@@ -110,34 +111,23 @@ public:
 	}
 
 	template<typename U = T>
-	typename std::enable_if<std::is_floating_point<U>::value, bool>::type operator==(const Vector<T, 3>& other) const {
-		return vmath::equals(this->x, other.x) && vmath::equals(this->y, other.y) && vmath::equals(this->z, other.z);
+	friend typename std::enable_if<std::is_floating_point<U>::value, bool>::type operator==(const Vector<T, 3>& lhs, const Vector<T, 3>& rhs) {
+		return vmath::equals(lhs.x, rhs.x) && vmath::equals(lhs.y, rhs.y) && vmath::equals(lhs.z, rhs.z);
 	}
 
 	template<typename U = T>
-	typename std::enable_if<!std::is_floating_point<U>::value, bool>::type operator==(const Vector<T, 3>& other) const {
-		return this->x == other.x && this->y == other.y && this->z == other.z;
+	friend typename std::enable_if<!std::is_floating_point<U>::value, bool>::type operator==(const Vector<T, 3>& lhs, const Vector<T, 3>& rhs) {
+		return lhs.x == rhs.x && lhs.y == rhs.y && lhs.z == rhs.z;
 	}
 
-	bool operator!=(const Vector<T, 3>& other) const {
-		return !(*this == other);
+	friend bool operator!=(const Vector<T, 3>& lhs, const Vector<T, 3>& rhs) {
+		return !(lhs == rhs);
+	}
+
+	friend std::ostream& operator<<(std::ostream& os, const Vector<T, 3>& v) {
+	    return os << "<" << v.x << "," << v.y << "," << v.z << ">";
 	}
 };
-
-
-VMATH_VECTOR3_BINARY_COMPONENTWISE_OPERATOR(+)
-VMATH_VECTOR3_BINARY_COMPONENTWISE_OPERATOR(-)
-VMATH_VECTOR3_BINARY_COMPONENTWISE_OPERATOR(*)
-VMATH_VECTOR3_BINARY_COMPONENTWISE_OPERATOR(/)
-VMATH_VECTOR3_BINARY_COMPONENTWISE_OPERATOR(%)
-VMATH_VECTOR3_BINARY_SCALAR_OPERATOR(*)
-VMATH_VECTOR3_BINARY_SCALAR_OPERATOR(/)
-VMATH_VECTOR3_BINARY_SCALAR_OPERATOR(%)
-
-template<typename T>
-std::ostream& operator<<(std::ostream& os, const Vector<T, 3>& v) {
-    return os << "<" << v.x << "," << v.y << "," << v.z << ">";
-}
 
 template<typename T>
 T dot(const Vector<T, 3>& v1, const Vector<T, 3>& v2) {
