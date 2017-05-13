@@ -12,9 +12,9 @@ BOOST_AUTO_TEST_CASE_TEMPLATE(size, T, floating_point_types) {
 
 BOOST_AUTO_TEST_CASE_TEMPLATE(constructor_default, T, floating_point_types) {
 	vmath::Vector<T, 3> v;
-	BOOST_CHECK_SMALL(v.x, static_cast<T>(1e-7));
-	BOOST_CHECK_SMALL(v.y, static_cast<T>(1e-7));
-	BOOST_CHECK_SMALL(v.z, static_cast<T>(1e-7));
+	BOOST_CHECK_SMALL(v.x, static_cast<T>(ZERO));
+	BOOST_CHECK_SMALL(v.y, static_cast<T>(ZERO));
+	BOOST_CHECK_SMALL(v.z, static_cast<T>(ZERO));
 }
 
 BOOST_AUTO_TEST_CASE_TEMPLATE(constructor_param, T, floating_point_types) {
@@ -79,7 +79,8 @@ BOOST_AUTO_TEST_CASE_TEMPLATE(negate_op, T, floating_point_types) {
 }
 
 BOOST_AUTO_TEST_CASE_TEMPLATE(add_op, T, floating_point_types) {
-	auto v = vmath::Vector<T, 3>(static_cast<T>(20.12), static_cast<T>(100.89), static_cast<T>(-18.2)) + vmath::Vector<T, 3>(static_cast<T>(10.34), static_cast<T>(-15.5), static_cast<T>(20.2));
+	auto v = vmath::Vector<T, 3>(static_cast<T>(20.12), static_cast<T>(100.89), static_cast<T>(-18.2))
+	         + vmath::Vector<T, 3>(static_cast<T>(10.34), static_cast<T>(-15.5), static_cast<T>(20.2));
 	BOOST_CHECK_CLOSE(v.x, static_cast<T>(30.46), TOLERANCE);
 	BOOST_CHECK_CLOSE(v.y, static_cast<T>(85.39), TOLERANCE);
 	BOOST_CHECK_CLOSE(v.z, static_cast<T>(2.0), TOLERANCE);
@@ -94,7 +95,8 @@ BOOST_AUTO_TEST_CASE_TEMPLATE(add_eq_op, T, floating_point_types) {
 }
 
 BOOST_AUTO_TEST_CASE_TEMPLATE(sub_op, T, floating_point_types) {
-	auto v = vmath::Vector<T, 3>(static_cast<T>(20.12), static_cast<T>(100.89), static_cast<T>(-18.2)) - vmath::Vector<T, 3>(static_cast<T>(10.34), static_cast<T>(-15.5), static_cast<T>(20.2));
+	auto v = vmath::Vector<T, 3>(static_cast<T>(20.12), static_cast<T>(100.89), static_cast<T>(-18.2))
+	         - vmath::Vector<T, 3>(static_cast<T>(10.34), static_cast<T>(-15.5), static_cast<T>(20.2));
 	BOOST_CHECK_CLOSE(v.x, static_cast<T>(9.78), TOLERANCE);
 	BOOST_CHECK_CLOSE(v.y, static_cast<T>(116.39), TOLERANCE);
 	BOOST_CHECK_CLOSE(v.z, static_cast<T>(-38.4), TOLERANCE);
@@ -109,7 +111,8 @@ BOOST_AUTO_TEST_CASE_TEMPLATE(sub_eq_op, T, floating_point_types) {
 }
 
 BOOST_AUTO_TEST_CASE_TEMPLATE(mult_op, T, floating_point_types) {
-	auto v = vmath::Vector<T, 3>(static_cast<T>(20.12), static_cast<T>(100.89), static_cast<T>(-18.2)) * vmath::Vector<T, 3>(static_cast<T>(10.34), static_cast<T>(-15.5), static_cast<T>(20.2));
+	auto v = vmath::Vector<T, 3>(static_cast<T>(20.12), static_cast<T>(100.89), static_cast<T>(-18.2))
+	         * vmath::Vector<T, 3>(static_cast<T>(10.34), static_cast<T>(-15.5), static_cast<T>(20.2));
 	BOOST_CHECK_CLOSE(v.x, static_cast<T>(208.0408), TOLERANCE);
 	BOOST_CHECK_CLOSE(v.y, static_cast<T>(-1563.795), TOLERANCE);
 	BOOST_CHECK_CLOSE(v.z, static_cast<T>(-367.64), TOLERANCE);
@@ -124,7 +127,8 @@ BOOST_AUTO_TEST_CASE_TEMPLATE(mult_eq_op, T, floating_point_types) {
 }
 
 BOOST_AUTO_TEST_CASE_TEMPLATE(div_op, T, floating_point_types) {
-	auto v = vmath::Vector<T, 3>(static_cast<T>(20.12), static_cast<T>(100.89), static_cast<T>(-18.2)) / vmath::Vector<T, 3>(static_cast<T>(10.34), static_cast<T>(-15.5), static_cast<T>(20.2));
+	auto v = vmath::Vector<T, 3>(static_cast<T>(20.12), static_cast<T>(100.89), static_cast<T>(-18.2))
+	         / vmath::Vector<T, 3>(static_cast<T>(10.34), static_cast<T>(-15.5), static_cast<T>(20.2));
 	BOOST_CHECK_CLOSE(v.x, static_cast<T>(1.9458413926499034), TOLERANCE);
 	BOOST_CHECK_CLOSE(v.y, static_cast<T>(-6.509032258064516), TOLERANCE);
 	BOOST_CHECK_CLOSE(v.z, static_cast<T>(-0.900990099009901), TOLERANCE);
@@ -174,7 +178,7 @@ BOOST_AUTO_TEST_CASE_TEMPLATE(mag, T, floating_point_types) {
 	v = vmath::Vector<T, 3>(static_cast<T>(1.0), static_cast<T>(0.0), static_cast<T>(0.0));
 	BOOST_CHECK_CLOSE(v.mag(), static_cast<T>(1.0), TOLERANCE);
 	v = vmath::Vector<T, 3>(static_cast<T>(0.0), static_cast<T>(0.0), static_cast<T>(0.0));
-	BOOST_CHECK_SMALL(v.mag(), static_cast<T>(1e-7));
+	BOOST_CHECK_SMALL(v.mag(), static_cast<T>(ZERO));
 }
 
 BOOST_AUTO_TEST_CASE_TEMPLATE(mag2, T, floating_point_types) {
@@ -183,7 +187,7 @@ BOOST_AUTO_TEST_CASE_TEMPLATE(mag2, T, floating_point_types) {
 	v = vmath::Vector<T, 3>(static_cast<T>(1.0), static_cast<T>(0.0), static_cast<T>(0.0));
 	BOOST_CHECK_CLOSE(v.mag2(), static_cast<T>(1.0), TOLERANCE);
 	v = vmath::Vector<T, 3>(static_cast<T>(0.0), static_cast<T>(0.0), static_cast<T>(0.0));
-	BOOST_CHECK_SMALL(v.mag2(), static_cast<T>(1e-7));
+	BOOST_CHECK_SMALL(v.mag2(), static_cast<T>(ZERO));
 }
 
 BOOST_AUTO_TEST_CASE_TEMPLATE(normal, T, floating_point_types) {
@@ -195,8 +199,8 @@ BOOST_AUTO_TEST_CASE_TEMPLATE(normal, T, floating_point_types) {
 	v = vmath::Vector<T, 3>(static_cast<T>(1.0), static_cast<T>(0.0), static_cast<T>(0.0));
 	n = v.normal();
 	BOOST_CHECK_CLOSE(n.x, static_cast<T>(1.0), TOLERANCE);
-	BOOST_CHECK_SMALL(n.y, static_cast<T>(1e-7));
-	BOOST_CHECK_SMALL(n.z, static_cast<T>(1e-7));
+	BOOST_CHECK_SMALL(n.y, static_cast<T>(ZERO));
+	BOOST_CHECK_SMALL(n.z, static_cast<T>(ZERO));
 }
 
 BOOST_AUTO_TEST_CASE_TEMPLATE(normalize, T, floating_point_types) {
@@ -206,10 +210,10 @@ BOOST_AUTO_TEST_CASE_TEMPLATE(normalize, T, floating_point_types) {
 	BOOST_CHECK_CLOSE(v.y, static_cast<T>(0.96569346754615), TOLERANCE);
 	BOOST_CHECK_CLOSE(v.z, static_cast<T>(-0.17420578454845276), TOLERANCE);
 	v = vmath::Vector<T, 3>(static_cast<T>(1.0), static_cast<T>(0.0), static_cast<T>(0.0));
-	v.normalize();
-	BOOST_CHECK_CLOSE(v.x, static_cast<T>(1.0), TOLERANCE);
-	BOOST_CHECK_SMALL(v.y, static_cast<T>(1e-7));
-	BOOST_CHECK_SMALL(v.z, static_cast<T>(1e-7));
+	auto n = v.normalize();
+	BOOST_CHECK_CLOSE(n.x, static_cast<T>(1.0), TOLERANCE);
+	BOOST_CHECK_SMALL(n.y, static_cast<T>(ZERO));
+	BOOST_CHECK_SMALL(n.z, static_cast<T>(ZERO));
 }
 
 BOOST_AUTO_TEST_CASE_TEMPLATE(dot, T, floating_point_types) {
@@ -242,7 +246,7 @@ BOOST_AUTO_TEST_CASE_TEMPLATE(reflect, T, floating_point_types) {
 	auto reflect = vmath::reflect(incident, surface_normal);
 	BOOST_CHECK_CLOSE(reflect.x, static_cast<T>(1.0), TOLERANCE);
 	BOOST_CHECK_CLOSE(reflect.y, static_cast<T>(-1.0), TOLERANCE);
-	BOOST_CHECK_SMALL(reflect.z, static_cast<T>(1e-7));
+	BOOST_CHECK_SMALL(reflect.z, static_cast<T>(ZERO));
 }
 
 BOOST_AUTO_TEST_CASE_TEMPLATE(refract, T, floating_point_types) {
@@ -251,7 +255,7 @@ BOOST_AUTO_TEST_CASE_TEMPLATE(refract, T, floating_point_types) {
 	auto refraction = vmath::refract(incident, surface_normal, static_cast<T>(0.2));
 	BOOST_CHECK_CLOSE(refraction.x, static_cast<T>(-1.0), TOLERANCE);
 	BOOST_CHECK_CLOSE(refraction.y, static_cast<T>(-0.2), TOLERANCE);
-	BOOST_CHECK_SMALL(refraction.z, static_cast<T>(1e-7));
+	BOOST_CHECK_SMALL(refraction.z, static_cast<T>(ZERO));
 }
 
 BOOST_AUTO_TEST_CASE_TEMPLATE(equals, T, floating_point_types) {

@@ -8,6 +8,7 @@
 #endif
 
 #define TOLERANCE 1e-4f
+#define ZERO 1e-7f
 
 #include <boost/mpl/list.hpp>
 typedef boost::mpl::list<float, double, long double> floating_point_types;
