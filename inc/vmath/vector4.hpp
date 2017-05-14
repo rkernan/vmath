@@ -11,7 +11,8 @@
 #include <vmath/vector3.hpp>
 
 #define VMATH_VECTOR4_BINARY_SCALAR_OPERATOR(OP) \
-	friend Vector<T, 4> operator OP (Vector<T, 4> v, const T& s) { \
+	template<typename T> \
+	Vector<T, 4> operator OP (Vector<T, 4> v, const T& s) { \
 		return v OP##= s; \
 	}
 
@@ -25,7 +26,8 @@
 	}
 
 #define VMATH_VECTOR4_BINARY_COMPONENTWISE_OPERATOR(OP) \
-	friend Vector<T, 4> operator OP (Vector<T, 4> lhs, const Vector<T, 4>& rhs) { \
+	template<typename T> \
+	Vector<T, 4> operator OP (Vector<T, 4> lhs, const Vector<T, 4>& rhs) { \
 		return lhs OP##= rhs; \
 	}
 
@@ -82,21 +84,11 @@ public:
 	VMATH_VECTOR4_BINARY_SCALAR_OPERATOR_ASSIGN(/=)
 	VMATH_VECTOR4_BINARY_SCALAR_OPERATOR_ASSIGN(%=)
 
-	VMATH_VECTOR4_BINARY_SCALAR_OPERATOR(*)
-	VMATH_VECTOR4_BINARY_SCALAR_OPERATOR(/)
-	VMATH_VECTOR4_BINARY_SCALAR_OPERATOR(%)
-
 	VMATH_VECTOR4_BINARY_COMPONENTWISE_OPERATOR_ASSIGN(+=)
 	VMATH_VECTOR4_BINARY_COMPONENTWISE_OPERATOR_ASSIGN(-=)
 	VMATH_VECTOR4_BINARY_COMPONENTWISE_OPERATOR_ASSIGN(*=)
 	VMATH_VECTOR4_BINARY_COMPONENTWISE_OPERATOR_ASSIGN(/=)
 	VMATH_VECTOR4_BINARY_COMPONENTWISE_OPERATOR_ASSIGN(%=)
-
-	VMATH_VECTOR4_BINARY_COMPONENTWISE_OPERATOR(+)
-	VMATH_VECTOR4_BINARY_COMPONENTWISE_OPERATOR(-)
-	VMATH_VECTOR4_BINARY_COMPONENTWISE_OPERATOR(*)
-	VMATH_VECTOR4_BINARY_COMPONENTWISE_OPERATOR(/)
-	VMATH_VECTOR4_BINARY_COMPONENTWISE_OPERATOR(%)
 
 	Vector<T, 4> operator-() const {
 		return *this * static_cast<T>(-1.0);
@@ -117,25 +109,37 @@ public:
 	Vector<T, 4>& normalize() {
 		return *this = this->normal();
 	}
-
-	template<typename U = T>
-	friend typename std::enable_if<std::is_floating_point<U>::value, bool>::type operator==(const Vector<T, 4>& lhs, const Vector<T, 4>& rhs) {
-		return vmath::equals(lhs.x, rhs.x) && vmath::equals(lhs.y, rhs.y) && vmath::equals(lhs.z, rhs.z) && vmath::equals(lhs.w, rhs.w);
-	}
-
-	template<typename U = T>
-	friend typename std::enable_if<!std::is_floating_point<U>::value, bool>::type operator==(const Vector<T, 4>& lhs, const Vector<T, 4>& rhs) {
-		return lhs.x == rhs.x && lhs.y == rhs.y && lhs.z == rhs.z && lhs.w == rhs.w;
-	}
-
-	friend bool operator!=(const Vector<T, 4>& lhs, const Vector<T, 4>& rhs) {
-		return !(lhs == rhs);
-	}
-
-	friend std::ostream& operator<<(std::ostream& os, const Vector<T, 4>& v) {
-		return os << "<" << v.x << "," << v.y << "," << v.z << "," << v.w << ">";
-	}
 };
+
+VMATH_VECTOR4_BINARY_SCALAR_OPERATOR(*)
+VMATH_VECTOR4_BINARY_SCALAR_OPERATOR(/)
+VMATH_VECTOR4_BINARY_SCALAR_OPERATOR(%)
+
+VMATH_VECTOR4_BINARY_COMPONENTWISE_OPERATOR(+)
+VMATH_VECTOR4_BINARY_COMPONENTWISE_OPERATOR(-)
+VMATH_VECTOR4_BINARY_COMPONENTWISE_OPERATOR(*)
+VMATH_VECTOR4_BINARY_COMPONENTWISE_OPERATOR(/)
+VMATH_VECTOR4_BINARY_COMPONENTWISE_OPERATOR(%)
+
+template<typename T>
+typename std::enable_if<std::is_floating_point<T>::value, bool>::type operator==(const Vector<T, 4>& lhs, const Vector<T, 4>& rhs) {
+	return vmath::equals(lhs.x, rhs.x) && vmath::equals(lhs.y, rhs.y) && vmath::equals(lhs.z, rhs.z) && vmath::equals(lhs.w, rhs.w);
+}
+
+template<typename T>
+typename std::enable_if<!std::is_floating_point<T>::value, bool>::type operator==(const Vector<T, 4>& lhs, const Vector<T, 4>& rhs) {
+	return lhs.x == rhs.x && lhs.y == rhs.y && lhs.z == rhs.z && lhs.w == rhs.w;
+}
+
+template<typename T>
+bool operator!=(const Vector<T, 4>& lhs, const Vector<T, 4>& rhs) {
+	return !(lhs == rhs);
+}
+
+template<typename T>
+std::ostream& operator<<(std::ostream& os, const Vector<T, 4>& v) {
+	return os << "<" << v.x << "," << v.y << "," << v.z << "," << v.w << ">";
+}
 
 template<typename T>
 T dot(const Vector<T, 4>& v1, const Vector<T, 4>& v2) {

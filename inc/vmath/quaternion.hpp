@@ -8,7 +8,8 @@
 #include <vmath/vector3.hpp>
 
 #define VMATH_QUATERNION_BINARY_SCALAR_OPERATOR(OP) \
-	friend Quaternion<T> operator OP (Quaternion<T> h, const T& s) { \
+	template<typename T> \
+	Quaternion<T> operator OP (Quaternion<T> h, const T& s) { \
 		return h OP##= s; \
 	}
 
@@ -22,7 +23,8 @@
 	}
 
 #define VMATH_QUATERNION_BINARY_OPERATOR(OP) \
-	friend Quaternion<T> operator OP (Quaternion<T> lhs, const Quaternion<T>& rhs) { \
+	template<typename T> \
+	Quaternion<T> operator OP (Quaternion<T> lhs, const Quaternion<T>& rhs) { \
 		return lhs OP##= rhs; \
 	}
 
@@ -115,9 +117,6 @@ public:
 	VMATH_QUATERNION_BINARY_SCALAR_OPERATOR_ASSIGN(*=)
 	VMATH_QUATERNION_BINARY_SCALAR_OPERATOR_ASSIGN(/=)
 
-	VMATH_QUATERNION_BINARY_SCALAR_OPERATOR(*)
-	VMATH_QUATERNION_BINARY_SCALAR_OPERATOR(/)
-
 	VMATH_QUATERNION_BINARY_COMPONENTWISE_OPERATOR_ASSIGN(+=)
 	VMATH_QUATERNION_BINARY_COMPONENTWISE_OPERATOR_ASSIGN(-=)
 	VMATH_QUATERNION_BINARY_COMPONENTWISE_OPERATOR_ASSIGN(/=)
@@ -130,22 +129,8 @@ public:
 		return *this = Quaternion<T>(x, y, z, w);
 	}
 
-	VMATH_QUATERNION_BINARY_OPERATOR(+)
-	VMATH_QUATERNION_BINARY_OPERATOR(-)
-	VMATH_QUATERNION_BINARY_OPERATOR(*)
-	VMATH_QUATERNION_BINARY_OPERATOR(/)
-
 	Quaternion<T> operator-() const {
 		return *this * static_cast<T>(-1.0);
-	}
-
-	friend Vector<T, 3> operator*(const Quaternion<T>& h, const Vector<T, 3>& v) {
-		auto n = v.normal();
-		Quaternion<T> vq(n.x, n.y, n.z, static_cast<T>(0.0));
-		Quaternion<T> cq(h.inverse());
-		Quaternion<T> rq(vq * cq);
-		rq = h * rq;
-		return Vector<T, 3>(rq.x, rq.y, rq.z);
 	}
 
 	T mag() const {
@@ -172,25 +157,45 @@ public:
 	Quaternion<T>& invert() {
 		return *this = this->inverse();
 	}
-
-	template<typename U = T>
-	friend typename std::enable_if<std::is_floating_point<U>::value, bool>::type operator==(const Quaternion<T>& lhs, const Quaternion<T>& rhs) {
-		return vmath::equals(lhs.x, rhs.x) && vmath::equals(lhs.y, rhs.y) && vmath::equals(lhs.z, rhs.z) && vmath::equals(lhs.w, rhs.w);
-	}
-
-	template<typename U = T>
-	friend typename std::enable_if<!std::is_floating_point<U>::value, bool>::type operator==(const Quaternion<T>& lhs, const Quaternion<T>& rhs) {
-		return lhs.x == rhs.x && lhs.y == rhs.y && lhs.z == rhs.z && lhs.w == rhs.w;
-	}
-
-	friend bool operator!=(const Quaternion<T>& lhs, const Quaternion<T>& rhs) {
-		return !(lhs == rhs);
-	}
-	
-	friend std::ostream& operator<<(std::ostream& os, const Quaternion<T>& h) {
-		return os << "<" << h.x << "," << h.y < "," << h.z << "," << h.w << ">";
-	}
 };
+
+VMATH_QUATERNION_BINARY_SCALAR_OPERATOR(*)
+VMATH_QUATERNION_BINARY_SCALAR_OPERATOR(/)
+
+VMATH_QUATERNION_BINARY_OPERATOR(+)
+VMATH_QUATERNION_BINARY_OPERATOR(-)
+VMATH_QUATERNION_BINARY_OPERATOR(*)
+VMATH_QUATERNION_BINARY_OPERATOR(/)
+
+template<typename T>
+Vector<T, 3> operator*(const Quaternion<T>& h, const Vector<T, 3>& v) {
+	auto n = v.normal();
+	Quaternion<T> vq(n.x, n.y, n.z, static_cast<T>(0.0));
+	Quaternion<T> cq(h.inverse());
+	Quaternion<T> rq(vq * cq);
+	rq = h * rq;
+	return Vector<T, 3>(rq.x, rq.y, rq.z);
+}
+
+template<typename T>
+typename std::enable_if<std::is_floating_point<T>::value, bool>::type operator==(const Quaternion<T>& lhs, const Quaternion<T>& rhs) {
+	return vmath::equals(lhs.x, rhs.x) && vmath::equals(lhs.y, rhs.y) && vmath::equals(lhs.z, rhs.z) && vmath::equals(lhs.w, rhs.w);
+}
+
+template<typename T>
+typename std::enable_if<!std::is_floating_point<T>::value, bool>::type operator==(const Quaternion<T>& lhs, const Quaternion<T>& rhs) {
+	return lhs.x == rhs.x && lhs.y == rhs.y && lhs.z == rhs.z && lhs.w == rhs.w;
+}
+
+template<typename T>
+bool operator!=(const Quaternion<T>& lhs, const Quaternion<T>& rhs) {
+	return !(lhs == rhs);
+}
+
+template<typename T>
+std::ostream& operator<<(std::ostream& os, const Quaternion<T>& h) {
+	return os << "<" << h.x << "," << h.y < "," << h.z << "," << h.w << ">";
+}
 
 template<typename T>
 T dot(const Quaternion<T>& h1, const Quaternion<T>& h2) {
