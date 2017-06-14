@@ -1,5 +1,5 @@
 #ifndef VMATH_MATRIX4X2_HPP
-#define VMATH_MATRIX4x2_HPP
+#define VMATH_MATRIX4X2_HPP
 
 #include <array>
 #include <ostream>
