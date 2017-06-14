@@ -33,12 +33,6 @@ T lerp(const T& s, const T& e, const T& t) {
 	return s + ((e - s) * t);
 }
 
-// TODO C++17 is adding std::clamp!
-template<typename T, typename = typename std::enable_if<std::is_floating_point<T>::value>::type>
-T clamp(const T& s, const T& lo, const T& hi) {
-	return (s <= lo) ? lo : ((s >= hi) ? hi : s);
-}
-
 } // namespace vmath
 
 #endif

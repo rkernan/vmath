@@ -9,6 +9,20 @@
 #include <vmath/vector.hpp>
 #include <vmath/vector2.hpp>
 
+#define VMATH_VECTOR3_BINARY_OPERATOR(OP) \
+	template<typename T> \
+	Vector<T, 3> operator OP (Vector<T, 3> lhs, const Vector<T, 3>& rhs) { \
+		return lhs OP##= rhs; \
+	}
+
+#define VMATH_VECTOR3_BINARY_OPERATOR_ASSIGN(OP) \
+	Vector<T, 3>& operator OP (const Vector<T, 3>& v) { \
+		this->x OP v.x; \
+		this->y OP v.y; \
+		this->z OP v.z; \
+		return *this; \
+	}
+
 #define VMATH_VECTOR3_BINARY_SCALAR_OPERATOR(OP) \
 	template<typename T> \
 	Vector<T, 3> operator OP (Vector<T, 3> v, const T& s) { \
@@ -20,20 +34,6 @@
 		this->x OP s; \
 		this->y OP s; \
 		this->z OP s; \
-		return *this; \
-	}
-
-#define VMATH_VECTOR3_BINARY_COMPONENTWISE_OPERATOR(OP) \
-	template<typename T> \
-	Vector<T, 3> operator OP (Vector<T, 3> lhs, const Vector<T, 3>& rhs) { \
-		return lhs OP##= rhs; \
-	}
-
-#define VMATH_VECTOR3_BINARY_COMPONENTWISE_OPERATOR_ASSIGN(OP) \
-	Vector<T, 3>& operator OP (const Vector<T, 3>& v) { \
-		this->x OP v.x; \
-		this->y OP v.y; \
-		this->z OP v.z; \
 		return *this; \
 	}
 
@@ -67,6 +67,7 @@ public:
 	Vector() : x(), y(), z() {}
 	Vector(const T& x, const T& y, const T& z) : x(x), y(y), z(z) {}
 	Vector(const Vector<T, 2>& v, const T& z) : x(v.x), y(v.y), z(z) {}
+	explicit Vector(const std::array<T, 3> data) : data(data) {}
 
 	T operator[](const std::size_t i) const {
 		return this->data.at(i);
@@ -76,13 +77,13 @@ public:
 		return this->data.at(i);
 	}
 
+	VMATH_VECTOR3_BINARY_OPERATOR_ASSIGN(+=)
+	VMATH_VECTOR3_BINARY_OPERATOR_ASSIGN(-=)
+	VMATH_VECTOR3_BINARY_OPERATOR_ASSIGN(*=)
+	VMATH_VECTOR3_BINARY_OPERATOR_ASSIGN(/=)
+
 	VMATH_VECTOR3_BINARY_SCALAR_OPERATOR_ASSIGN(*=)
 	VMATH_VECTOR3_BINARY_SCALAR_OPERATOR_ASSIGN(/=)
-
-	VMATH_VECTOR3_BINARY_COMPONENTWISE_OPERATOR_ASSIGN(+=)
-	VMATH_VECTOR3_BINARY_COMPONENTWISE_OPERATOR_ASSIGN(-=)
-	VMATH_VECTOR3_BINARY_COMPONENTWISE_OPERATOR_ASSIGN(*=)
-	VMATH_VECTOR3_BINARY_COMPONENTWISE_OPERATOR_ASSIGN(/=)
 
 	Vector<T, 3> operator-() const {
 		return *this * static_cast<T>(-1.0);
@@ -105,13 +106,13 @@ public:
 	}
 };
 
+VMATH_VECTOR3_BINARY_OPERATOR(+)
+VMATH_VECTOR3_BINARY_OPERATOR(-)
+VMATH_VECTOR3_BINARY_OPERATOR(*)
+VMATH_VECTOR3_BINARY_OPERATOR(/)
+
 VMATH_VECTOR3_BINARY_SCALAR_OPERATOR(*)
 VMATH_VECTOR3_BINARY_SCALAR_OPERATOR(/)
-
-VMATH_VECTOR3_BINARY_COMPONENTWISE_OPERATOR(+)
-VMATH_VECTOR3_BINARY_COMPONENTWISE_OPERATOR(-)
-VMATH_VECTOR3_BINARY_COMPONENTWISE_OPERATOR(*)
-VMATH_VECTOR3_BINARY_COMPONENTWISE_OPERATOR(/)
 
 template<typename T>
 typename std::enable_if<std::is_floating_point<T>::value, bool>::type operator==(const Vector<T, 3>& lhs, const Vector<T, 3>& rhs) {
@@ -148,9 +149,9 @@ Vector<T, 3> cross(const Vector<T, 3>& v1, const Vector<T, 3>& v2) {
 
 } // namespace vmath
 
+#undef VMATH_VECTOR3_BINARY_OPERATOR
+#undef VMATH_VECTOR3_BINARY_OPERATOR_ASSIGN
 #undef VMATH_VECTOR3_BINARY_SCALAR_OPERATOR
 #undef VMATH_VECTOR3_BINARY_SCALAR_OPERATOR_ASSIGN
-#undef VMATH_VECTOR3_BINARY_COMPONENTWISE_OPERATOR
-#undef VMATH_VECTOR3_BINARY_COMPONENTWISE_OPERATOR_ASSIGN
 
 #endif

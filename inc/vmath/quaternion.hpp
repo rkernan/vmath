@@ -7,6 +7,21 @@
 #include <type_traits>
 #include <vmath/vector3.hpp>
 
+#define VMATH_QUATERNION_BINARY_OPERATOR(OP) \
+	template<typename T> \
+	Quaternion<T> operator OP (Quaternion<T> lhs, const Quaternion<T>& rhs) { \
+		return lhs OP##= rhs; \
+	}
+
+#define VMATH_QUATERNION_BINARY_OPERATOR_ASSIGN(OP) \
+	Quaternion<T>& operator OP (const Quaternion<T>& h) { \
+		this->x OP h.x; \
+		this->y OP h.y; \
+		this->z OP h.z; \
+		this->w OP h.w; \
+		return *this; \
+	}
+
 #define VMATH_QUATERNION_BINARY_SCALAR_OPERATOR(OP) \
 	template<typename T> \
 	Quaternion<T> operator OP (Quaternion<T> h, const T& s) { \
@@ -19,21 +34,6 @@
 		this->y OP s; \
 		this->z OP s; \
 		this->w OP s; \
-		return *this; \
-	}
-
-#define VMATH_QUATERNION_BINARY_OPERATOR(OP) \
-	template<typename T> \
-	Quaternion<T> operator OP (Quaternion<T> lhs, const Quaternion<T>& rhs) { \
-		return lhs OP##= rhs; \
-	}
-
-#define VMATH_QUATERNION_BINARY_COMPONENTWISE_OPERATOR_ASSIGN(OP) \
-	Quaternion<T>& operator OP (const Quaternion<T>& h) { \
-		this->x OP h.x; \
-		this->y OP h.y; \
-		this->z OP h.z; \
-		this->w OP h.w; \
 		return *this; \
 	}
 
@@ -117,9 +117,9 @@ public:
 	VMATH_QUATERNION_BINARY_SCALAR_OPERATOR_ASSIGN(*=)
 	VMATH_QUATERNION_BINARY_SCALAR_OPERATOR_ASSIGN(/=)
 
-	VMATH_QUATERNION_BINARY_COMPONENTWISE_OPERATOR_ASSIGN(+=)
-	VMATH_QUATERNION_BINARY_COMPONENTWISE_OPERATOR_ASSIGN(-=)
-	VMATH_QUATERNION_BINARY_COMPONENTWISE_OPERATOR_ASSIGN(/=)
+	VMATH_QUATERNION_BINARY_OPERATOR_ASSIGN(+=)
+	VMATH_QUATERNION_BINARY_OPERATOR_ASSIGN(-=)
+	VMATH_QUATERNION_BINARY_OPERATOR_ASSIGN(/=)
 
 	Quaternion<T>& operator*=(const Quaternion<T>& h) {
 		auto x = (this->w * h.x) + (this->x * h.w) + (this->y * h.z) - (this->z * h.y);
@@ -226,9 +226,9 @@ bool equals(const Quaternion<T>& a, const Quaternion<T>& b) {
 
 } // namespace vmath
 
+#undef VMATH_QUATERNION_BINARY_OPERATOR
+#undef VMATH_QUATERNION_BINARY_OPERATOR_ASSIGN
 #undef VMATH_QUATERNION_BINARY_SCALAR_OPERATOR
 #undef VMATH_QUATERNION_BINARY_SCALAR_OPERATOR_ASSIGN
-#undef VMATH_QUATERNION_BINARY_OPERATOR
-#undef VMATH_QUATERNION_BINARY_COMPONENTWISE_OPERATOR_ASSIGN
 
 #endif

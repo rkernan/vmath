@@ -10,6 +10,21 @@
 #include <vmath/vector2.hpp>
 #include <vmath/vector3.hpp>
 
+#define VMATH_VECTOR4_BINARY_OPERATOR(OP) \
+	template<typename T> \
+	Vector<T, 4> operator OP (Vector<T, 4> lhs, const Vector<T, 4>& rhs) { \
+		return lhs OP##= rhs; \
+	}
+
+#define VMATH_VECTOR4_BINARY_OPERATOR_ASSIGN(OP) \
+	Vector<T, 4>& operator OP (const Vector<T, 4>& v) { \
+		this->x OP v.x; \
+		this->y OP v.y; \
+		this->z OP v.z; \
+		this->w OP v.w; \
+		return *this; \
+	}
+
 #define VMATH_VECTOR4_BINARY_SCALAR_OPERATOR(OP) \
 	template<typename T> \
 	Vector<T, 4> operator OP (Vector<T, 4> v, const T& s) { \
@@ -22,21 +37,6 @@
 		this->y OP s; \
 		this->z OP s; \
 		this->w OP s; \
-		return *this; \
-	}
-
-#define VMATH_VECTOR4_BINARY_COMPONENTWISE_OPERATOR(OP) \
-	template<typename T> \
-	Vector<T, 4> operator OP (Vector<T, 4> lhs, const Vector<T, 4>& rhs) { \
-		return lhs OP##= rhs; \
-	}
-
-#define VMATH_VECTOR4_BINARY_COMPONENTWISE_OPERATOR_ASSIGN(OP) \
-	Vector<T, 4>& operator OP (const Vector<T, 4>& v) { \
-		this->x OP v.x; \
-		this->y OP v.y; \
-		this->z OP v.z; \
-		this->w OP v.w; \
 		return *this; \
 	}
 
@@ -71,6 +71,7 @@ public:
 	Vector(const T& x, const T& y, const T& z, const T& w) : x(x), y(y), z(z), w(w) {}
 	Vector(const Vector<T, 2>& v, const T& z, const T& w) : x(v.x), y(v.y), z(z), w(w) {}
 	Vector(const Vector<T, 3>& v, const T& w) : x(v.x), y(v.y), z(v.z), w(w) {}
+	explicit Vector(const std::array<T, 4> data) : data(data) {}
 
 	T operator[](const std::size_t i) const {
 		return this->data.at(i);
@@ -80,15 +81,15 @@ public:
 		return this->data.at(i);
 	}
 
+	VMATH_VECTOR4_BINARY_OPERATOR_ASSIGN(+=)
+	VMATH_VECTOR4_BINARY_OPERATOR_ASSIGN(-=)
+	VMATH_VECTOR4_BINARY_OPERATOR_ASSIGN(*=)
+	VMATH_VECTOR4_BINARY_OPERATOR_ASSIGN(/=)
+	VMATH_VECTOR4_BINARY_OPERATOR_ASSIGN(%=)
+
 	VMATH_VECTOR4_BINARY_SCALAR_OPERATOR_ASSIGN(*=)
 	VMATH_VECTOR4_BINARY_SCALAR_OPERATOR_ASSIGN(/=)
 	VMATH_VECTOR4_BINARY_SCALAR_OPERATOR_ASSIGN(%=)
-
-	VMATH_VECTOR4_BINARY_COMPONENTWISE_OPERATOR_ASSIGN(+=)
-	VMATH_VECTOR4_BINARY_COMPONENTWISE_OPERATOR_ASSIGN(-=)
-	VMATH_VECTOR4_BINARY_COMPONENTWISE_OPERATOR_ASSIGN(*=)
-	VMATH_VECTOR4_BINARY_COMPONENTWISE_OPERATOR_ASSIGN(/=)
-	VMATH_VECTOR4_BINARY_COMPONENTWISE_OPERATOR_ASSIGN(%=)
 
 	Vector<T, 4> operator-() const {
 		return *this * static_cast<T>(-1.0);
@@ -111,15 +112,13 @@ public:
 	}
 };
 
+VMATH_VECTOR4_BINARY_OPERATOR(+)
+VMATH_VECTOR4_BINARY_OPERATOR(-)
+VMATH_VECTOR4_BINARY_OPERATOR(*)
+VMATH_VECTOR4_BINARY_OPERATOR(/)
+
 VMATH_VECTOR4_BINARY_SCALAR_OPERATOR(*)
 VMATH_VECTOR4_BINARY_SCALAR_OPERATOR(/)
-VMATH_VECTOR4_BINARY_SCALAR_OPERATOR(%)
-
-VMATH_VECTOR4_BINARY_COMPONENTWISE_OPERATOR(+)
-VMATH_VECTOR4_BINARY_COMPONENTWISE_OPERATOR(-)
-VMATH_VECTOR4_BINARY_COMPONENTWISE_OPERATOR(*)
-VMATH_VECTOR4_BINARY_COMPONENTWISE_OPERATOR(/)
-VMATH_VECTOR4_BINARY_COMPONENTWISE_OPERATOR(%)
 
 template<typename T>
 typename std::enable_if<std::is_floating_point<T>::value, bool>::type operator==(const Vector<T, 4>& lhs, const Vector<T, 4>& rhs) {
@@ -148,9 +147,9 @@ T dot(const Vector<T, 4>& v1, const Vector<T, 4>& v2) {
 
 } // namespace vmath
 
+#undef VMATH_VECTOR4_BINARY_OPERATOR
+#undef VMATH_VECTOR4_BINARY_OPERATOR_ASSIGN
 #undef VMATH_VECTOR4_BINARY_SCALAR_OPERATOR
 #undef VMATH_VECTOR4_BINARY_SCALAR_OPERATOR_ASSIGN
-#undef VMATH_VECTOR4_BINARY_COMPONENTWISE_OPERATOR
-#undef VMATH_VECTOR4_BINARY_COMPONENTWISE_OPERATOR_ASSIGN
 
 #endif

@@ -27,14 +27,6 @@ BOOST_AUTO_TEST_CASE_TEMPLATE(radians_to_degrees, T, floating_point_types) {
 	BOOST_CHECK_CLOSE(vmath::degrees(static_cast<T>(0.345)), static_cast<T>(19.76704393), TOLERANCE);
 }
 
-BOOST_AUTO_TEST_CASE_TEMPLATE(clamp, T, floating_point_types) {
-	BOOST_CHECK_CLOSE(vmath::clamp(static_cast<T>(1.2), static_cast<T>(1.5), static_cast<T>(2.0)), static_cast<T>(1.5), TOLERANCE);
-	BOOST_CHECK_CLOSE(vmath::clamp(static_cast<T>(1.5), static_cast<T>(1.5), static_cast<T>(2.0)), static_cast<T>(1.5), TOLERANCE);
-	BOOST_CHECK_CLOSE(vmath::clamp(static_cast<T>(1.75), static_cast<T>(1.5), static_cast<T>(2.0)), static_cast<T>(1.75), TOLERANCE);
-	BOOST_CHECK_CLOSE(vmath::clamp(static_cast<T>(2.0), static_cast<T>(1.5), static_cast<T>(2.0)), static_cast<T>(2.0), TOLERANCE);
-	BOOST_CHECK_CLOSE(vmath::clamp(static_cast<T>(2.2), static_cast<T>(1.5), static_cast<T>(2.0)), static_cast<T>(2.0), TOLERANCE);
-}
-
 BOOST_AUTO_TEST_CASE_TEMPLATE(lerp, T, floating_point_types) {
 	BOOST_CHECK_CLOSE(vmath::lerp(static_cast<T>(1.0), static_cast<T>(2.0), static_cast<T>(0.0)), static_cast<T>(1.0), TOLERANCE);
 	BOOST_CHECK_CLOSE(vmath::lerp(static_cast<T>(1.0), static_cast<T>(2.0), static_cast<T>(1.0)), static_cast<T>(2.0), TOLERANCE);

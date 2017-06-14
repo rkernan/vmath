@@ -1,11 +1,13 @@
-find_package(Boost COMPONENTS unit_test_framework REQUIRED)
-include_directories(${Boost_INCLUDE_DIR})
-
-find_package(Boost 1.34.0 COMPONENTS unit_test_framework REQUIRED)
-
 if(WIN32)
 	set(BOOST_TEST_HEADER_ONLY ON)
 endif()
+
+if(${BOOST_TEST_HEADER_ONLY})
+	find_package(Boost 1.34.0 COMPONENTS unit_test_framework)
+else()
+	find_package(Boost 1.34.0 COMPONENTS unit_test_framework REQUIRED)
+endif()
+include_directories(${Boost_INCLUDE_DIR})
 
 function(add_boost_test SOURCE_FILE)
 	get_filename_component(TEST_NAME ${SOURCE_FILE} NAME_WE)
@@ -19,13 +21,7 @@ function(add_boost_test SOURCE_FILE)
 	add_dependencies(check ${TEST_NAME})
 endfunction()
 
-add_boost_test(vector2.cpp)
-add_boost_test(vector3.cpp)
-add_boost_test(vector4.cpp)
-add_boost_test(functions.cpp)
-add_boost_test(quaternion.cpp)
-
-#file(GLOB TEST_SRCS RELATIVE ${CMAKE_CURRENT_SOURCE_DIR} *.cpp)
-#foreach(TEST_SRC ${TEST_SRCS})
-#	add_boost_test(${TEST_SRC})
-#endforeach()
+file(GLOB TEST_SRCS RELATIVE ${CMAKE_CURRENT_SOURCE_DIR} *.cpp)
+foreach(TEST_SRC ${TEST_SRCS})
+	add_boost_test(${TEST_SRC})
+endforeach()
